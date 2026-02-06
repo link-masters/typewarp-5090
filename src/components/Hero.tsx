@@ -23,7 +23,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center pt-24 md:pt-32 pb-16 md:pb-20 overflow-hidden">
+    <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-20 md:pt-32 pb-12 md:pb-20 overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 -z-10 bg-[var(--background)]">
         <RainingLetters showTitle={false} fullHeight={true} />
@@ -32,7 +32,7 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 relative z-10 text-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 mb-6 md:mb-8 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-xl shadow-[0_0_30px_rgba(220,38,38,0.15)] animate-fade-in">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 mb-4 md:mb-8 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-xl shadow-[0_0_30px_rgba(220,38,38,0.15)] animate-fade-in">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
@@ -43,21 +43,21 @@ const Hero = () => {
         </div>
 
         {/* Main Heading */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl font-black mb-6 md:mb-8 tracking-tighter leading-[1.2] md:leading-[1.05] animate-fade-in-up">
+        <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-black mb-4 md:mb-8 tracking-tighter leading-[1.1] md:leading-[1.05] animate-fade-in-up">
           <span className="block bg-gradient-to-b from-[var(--foreground)] via-[var(--foreground)] to-[var(--muted)] bg-clip-text text-transparent">
             Warp your
           </span>
-          <span className="relative inline-block mt-2">
+          <span className="relative inline-block mt-1 md:mt-2">
             <span className="bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 bg-clip-text text-transparent animate-gradient-x px-2 md:px-4">
               Digital Reality
             </span>
-            <span className="absolute -bottom-2 md:-bottom-4 left-0 right-0 h-1 md:h-1.5 bg-gradient-to-r from-transparent via-red-600 to-transparent blur-md opacity-50"></span>
-            <span className="absolute -bottom-2 md:-bottom-4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-400 to-transparent"></span>
+            <span className="absolute -bottom-1 md:-bottom-4 left-0 right-0 h-1 md:h-1.5 bg-gradient-to-r from-transparent via-red-600 to-transparent blur-md opacity-50"></span>
+            <span className="absolute -bottom-1 md:-bottom-4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-400 to-transparent"></span>
           </span>
         </h1>
 
         {/* Description */}
-        <p className="max-w-3xl mx-auto text-[15px] md:text-2xl text-[var(--muted)] mb-8 md:mb-12 leading-relaxed font-light animate-fade-in-up animation-delay-200 px-4 sm:px-0">
+        <p className="max-w-2xl mx-auto text-sm md:text-2xl text-[var(--muted)] mb-6 md:mb-12 leading-relaxed font-light animate-fade-in-up animation-delay-200 px-4 sm:px-0">
           The ultimate text dimension. Transform your messages into{" "}
           <span className="text-red-500 font-bold drop-shadow-[0_0_10px_rgba(239,68,68,0.5)]">
             fancy styles
@@ -88,7 +88,7 @@ const Hero = () => {
                 onKeyDown={(e) => e.key === "Enter" && handleCorrupt()}
                 placeholder="Drop your text..."
                 aria-label="Enter text to transform"
-                className="flex-1 w-full bg-transparent border-none outline-none py-4 md:py-6 px-6 md:px-10 text-xl md:text-2xl text-[var(--foreground)] placeholder:text-[var(--muted)] focus:ring-0"
+                className="flex-1 w-full bg-transparent border-none outline-none py-3 md:py-4 px-6 md:px-10 text-xl md:text-2xl text-[var(--foreground)] placeholder:text-[var(--muted)] focus:ring-0"
               />
               <div className="p-3 w-full md:w-auto">
                 <button

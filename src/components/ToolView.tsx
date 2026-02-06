@@ -249,7 +249,7 @@ export default function ToolView({ tool, category }: ToolViewProps) {
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Insert text to warp..."
                   aria-label={`Insert text to transform with ${tool.name}`}
-                  className="w-full h-12 md:h-28 bg-transparent text-lg md:text-2xl font-bold text-zinc-900 dark:text-white placeholder:text-zinc-300 dark:placeholder:text-zinc-800 outline-none resize-none custom-scrollbar"
+                  className="w-full h-10 md:h-20 bg-transparent text-lg md:text-2xl font-bold text-zinc-900 dark:text-white placeholder:text-zinc-300 dark:placeholder:text-zinc-800 outline-none resize-none custom-scrollbar"
                   autoFocus
                 />
               </div>

@@ -41,10 +41,10 @@ const Header = () => {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center justify-center flex-1 gap-2 px-8 relative h-10">
+            <div className="hidden lg:flex items-center justify-center flex-1 gap-1 xl:gap-2 px-4 xl:px-8 relative h-10">
               <Link
                 href="/"
-                className="px-5 py-2.5 text-sm font-medium text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--card-bg)] rounded-lg"
+                className="px-3 xl:px-5 py-2.5 text-sm font-medium text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--card-bg)] rounded-lg transition-colors"
               >
                 Home
               </Link>
@@ -62,15 +62,15 @@ const Header = () => {
                         activeCategory === category.slug ? null : category.slug,
                       )
                     }
-                    className={`px-5 py-2.5 text-sm font-medium rounded-lg flex items-center gap-2 transition-all ${
+                    className={`px-3 xl:px-5 py-2.5 text-sm font-medium rounded-lg flex items-center gap-1.5 transition-all ${
                       activeCategory === category.slug
                         ? "text-[var(--foreground)] bg-[var(--card-bg)]"
                         : "text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--card-bg)]"
                     }`}
                   >
-                    <span>{category.name}</span>
+                    <span className="whitespace-nowrap">{category.name}</span>
                     <svg
-                      className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                      className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${
                         activeCategory === category.slug ? "rotate-180" : ""
                       }`}
                       fill="none"
@@ -133,14 +133,14 @@ const Header = () => {
 
               <Link
                 href="/blog"
-                className="px-5 py-2.5 text-sm font-medium text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--card-bg)] rounded-xl"
+                className="px-3 xl:px-5 py-2.5 text-sm font-medium text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--card-bg)] rounded-xl transition-colors"
               >
                 Blog
               </Link>
             </div>
 
             {/* Actions */}
-            <div className="hidden lg:flex items-center justify-end gap-4 min-w-[200px]">
+            <div className="hidden lg:flex items-center justify-end gap-3 xl:gap-4 shrink-0">
               <button
                 onClick={toggleTheme}
                 className="relative p-2.5 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] hover:bg-[var(--card-border)] transition-all duration-300 group active:scale-90"
