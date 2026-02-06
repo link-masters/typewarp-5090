@@ -1,0 +1,60 @@
+import { categories } from "@/lib/categories";
+import Link from "next/link";
+import { ToolIcon } from "@/components/ToolIcon";
+
+export const metadata = {
+  title: "All Tools | TypeWarp",
+  description:
+    "Browse our complete collection of 50+ text transformation tools.",
+};
+
+export default function TextToolsPage() {
+  const allTools = categories.flatMap((category) =>
+    category.tools.map((tool) => ({ ...tool, category })),
+  );
+
+  return (
+    <div className="min-h-screen pt-32 pb-20 bg-[var(--background)]">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <header className="text-center mb-10 md:mb-16">
+          <h1 className="text-4xl md:text-6xl font-black mb-4 md:mb-6 tracking-tighter text-[var(--foreground)] animate-fade-in-up uppercase">
+            The Complete <span className="text-red-500">Arsenal</span>
+          </h1>
+          <p className="text-[var(--muted)] text-lg md:text-xl max-w-3xl mx-auto animate-fade-in-up animation-delay-200">
+            Explore our entire suite of text manipulation engines. From
+            aesthetic generators to low-level data converters.
+          </p>
+        </header>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {allTools.map((tool, index) => (
+            <Link
+              key={tool.slug}
+              href={`/${tool.category.slug}/${tool.slug}`}
+              className={`group relative p-6 sm:p-8 rounded-[1.5rem] sm:rounded-[2rem] bg-[var(--card-bg)] border border-[var(--card-border)] hover:border-[var(--foreground)]/20 transition-all duration-300 hover:-translate-y-1 animate-fade-in-up`}
+              style={{ animationDelay: `${index * 50}ms` }}
+            >
+              <div className="flex items-start gap-6">
+                <div className="w-16 h-16 shrink-0 rounded-2xl bg-[var(--background)] border border-[var(--card-border)] flex items-center justify-center text-4xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 overflow-hidden">
+                  <ToolIcon
+                    slug={tool.slug}
+                    categorySlug={tool.category.slug}
+                    className="w-8 h-8 text-red-500"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-xl font-black mb-2 text-[var(--foreground)] uppercase tracking-tight">
+                    {tool.name}
+                  </h3>
+                  <div className="inline-block px-3 py-1 rounded-full bg-[var(--background)] border border-[var(--card-border)] text-[10px] font-bold text-[var(--muted)] uppercase tracking-widest mb-3">
+                    {tool.category.name}
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
