@@ -249,7 +249,7 @@ export default function ToolView({ tool, category }: ToolViewProps) {
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Insert text to warp..."
                   aria-label={`Insert text to transform with ${tool.name}`}
-                  className="w-full h-10 md:h-20 bg-transparent text-lg md:text-2xl font-bold text-zinc-900 dark:text-white placeholder:text-zinc-300 dark:placeholder:text-zinc-800 outline-none resize-none custom-scrollbar"
+                  className="w-full h-8 md:h-15 bg-transparent text-lg md:text-2xl font-bold text-zinc-900 dark:text-white placeholder:text-zinc-300 dark:placeholder:text-zinc-800 outline-none resize-none custom-scrollbar"
                   autoFocus
                 />
               </div>
@@ -258,7 +258,7 @@ export default function ToolView({ tool, category }: ToolViewProps) {
             {output && (
               <div className="animate-slide-in-up">
                 <div
-                  className={`relative p-4 md:p-6 rounded-[2rem] sm:rounded-[2.5rem] bg-white dark:bg-black border-2 border-red-600/50 shadow-xl dark:shadow-[0_0_100px_rgba(239,68,68,0.15)] group overflow-hidden ${options.customSettings?.mockup ? "max-w-md mx-auto aspect-[9/19] rounded-[2.5rem] sm:rounded-[3rem] border-[10px] sm:border-[14px] border-zinc-950 shadow-2xl" : ""}`}
+                  className={`relative p-3 md:p-5 rounded-[2rem] bg-white dark:bg-black border-2 border-red-600/50 shadow-xl dark:shadow-[0_0_100px_rgba(239,68,68,0.15)] group overflow-hidden ${options.customSettings?.mockup ? "max-w-md mx-auto aspect-[9/19] rounded-[2.5rem] sm:rounded-[3rem] border-[10px] sm:border-[14px] border-zinc-950 shadow-2xl" : ""}`}
                 >
                   {options.customSettings?.mockup &&
                     tool.slug.includes("instagram") && (
@@ -287,17 +287,17 @@ export default function ToolView({ tool, category }: ToolViewProps) {
                     </div>
                   )}
 
-                  <div className="relative min-h-[60px] md:min-h-[80px] flex items-center justify-center text-center z-10 w-full overflow-y-auto custom-scrollbar max-h-[400px]">
-                    <div className="flex flex-col gap-6 w-full">
+                  <div className="relative min-h-[50px] md:min-h-[60px] flex items-center justify-center text-center z-10 w-full overflow-y-auto custom-scrollbar max-h-[350px]">
+                    <div className="flex flex-col gap-4 w-full">
                       <p
-                        className="text-2xl md:text-3xl font-black break-all leading-snug selection:bg-red-600 selection:text-white whitespace-pre-wrap transition-colors duration-300"
+                        className="text-xl md:text-2xl font-black break-all leading-snug selection:bg-red-600 selection:text-white whitespace-pre-wrap transition-colors duration-300"
                         style={{ color: outputColor }}
                       >
                         {output}
                       </p>
 
                       {tool.slug === "character-counter" && input && (
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 pt-12 border-t border-zinc-100 dark:border-white/10">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-zinc-100 dark:border-white/10">
                           {[
                             {
                               l: "Words",
@@ -317,12 +317,12 @@ export default function ToolView({ tool, category }: ToolViewProps) {
                           ].map((s) => (
                             <div
                               key={s.l}
-                              className="bg-white dark:bg-white/5 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-zinc-200 dark:border-transparent"
+                              className="bg-white dark:bg-white/5 p-3 rounded-xl border border-zinc-200 dark:border-transparent"
                             >
                               <div className="text-[10px] uppercase font-black text-zinc-400 dark:text-zinc-500 mb-1">
                                 {s.l}
                               </div>
-                              <div className="text-2xl font-black text-zinc-900 dark:text-white">
+                              <div className="text-xl font-black text-zinc-900 dark:text-white">
                                 {s.v}
                               </div>
                             </div>
@@ -332,13 +332,13 @@ export default function ToolView({ tool, category }: ToolViewProps) {
                     </div>
                   </div>
 
-                  <div className="flex flex-col md:flex-row gap-4 justify-between items-center mt-6 pt-6 md:mt-12 md:pt-8 border-t border-zinc-100 dark:border-white/5 relative z-20">
+                  <div className="flex flex-col md:flex-row gap-3 justify-between items-center mt-4 pt-4 md:mt-8 md:pt-6 border-t border-zinc-100 dark:border-white/5 relative z-20">
                     <span className="text-[10px] font-black uppercase text-zinc-400 dark:text-zinc-500">
                       System Ready
                     </span>
                     <button
                       onClick={handleCopy}
-                      className={`flex items-center gap-3 px-6 py-3 md:px-6 md:py-3 rounded-[2rem] bg-zinc-900 dark:bg-white text-white dark:text-black text-xs font-black uppercase tracking-widest hover:bg-zinc-800 dark:hover:bg-zinc-200 ${btnStyle}`}
+                      className={`flex items-center gap-2.5 px-5 py-2.5 md:px-6 md:py-3 rounded-[2rem] bg-zinc-900 dark:bg-white text-white dark:text-black text-xs font-black uppercase tracking-widest hover:bg-zinc-800 dark:hover:bg-zinc-200 ${btnStyle}`}
                     >
                       {isCopied ? "Success" : "Copy Result"}
                     </button>
