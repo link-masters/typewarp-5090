@@ -23,7 +23,7 @@ export default function ContactPage() {
   return (
     <>
       <JSONLD data={jsonLd} />
-      <div className="min-h-screen pt-40 pb-20 bg-[var(--background)]">
+      <div className="min-h-screen pt-40 pb-20 bg-zinc-50 dark:bg-[var(--background)]">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="flex flex-col lg:flex-row gap-20">
             {/* Left Column: Context */}

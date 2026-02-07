@@ -130,6 +130,8 @@ export default function RootLayout({
             `,
           }}
         />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="apple-touch-icon" href="/logo.png" />
       </head>
       <body
         suppressHydrationWarning

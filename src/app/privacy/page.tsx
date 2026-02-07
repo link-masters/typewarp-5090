@@ -16,7 +16,7 @@ export default function PrivacyPage() {
         <h1 className="text-4xl md:text-6xl font-black mb-8 text-[var(--foreground)]">
           Privacy <span className="text-red-500 italic">Policy</span>
         </h1>
-        <div className="prose prose-invert prose-red max-w-none space-y-8 text-[var(--muted)]">
+        <div className="prose dark:prose-invert prose-red max-w-none space-y-8 text-zinc-600 dark:text-[var(--muted)]">
           <section>
             <h2 className="text-2xl font-bold text-[var(--foreground)]">
               1. Information We Collect
@@ -64,7 +64,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <p className="text-sm border-t border-[var(--card-border)] pt-8">
+            <p className="text-sm border-t border-zinc-200 dark:border-[var(--card-border)] pt-8">
               Last Updated: February 5, 2026
             </p>
           </section>

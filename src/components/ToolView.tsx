@@ -179,10 +179,10 @@ export default function ToolView({ tool, category }: ToolViewProps) {
   const content = getDynamicContent();
 
   return (
-    <div className="min-h-screen pt-24 pb-20 px-4 container mx-auto bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
-      <div className="fixed inset-0 overflow-hidden pointer-events-none opacity-10 dark:opacity-20">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-red-600/20 rounded-full blur-[120px] animate-pulse-slow"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-600/20 rounded-full blur-[120px] animate-pulse-slow"></div>
+    <div className="min-h-screen pt-24 pb-20 px-4 container mx-auto bg-zinc-50 dark:bg-black text-black dark:text-white transition-colors duration-300">
+      <div className="fixed inset-0 overflow-hidden pointer-events-none opacity-30 dark:opacity-20">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-red-500/10 dark:bg-red-600/20 rounded-full blur-[120px] animate-pulse-slow"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-500/10 dark:bg-purple-600/20 rounded-full blur-[120px] animate-pulse-slow"></div>
       </div>
 
       <div className="relative z-10 flex flex-col gap-8 max-w-7xl mx-auto px-1 sm:px-0">
@@ -190,16 +190,16 @@ export default function ToolView({ tool, category }: ToolViewProps) {
           <div>
             <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-red-500 mb-2">
               <span className="w-8 h-[1px] bg-red-500"></span>
-              TypeWarp System v2.1 // {category.name}
+              {category.name}
             </div>
-            <h1 className="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white tracking-tighter">
+            <h1 className="text-3xl md:text-5xl font-black text-zinc-900 dark:text-white tracking-tighter">
               {tool.name.split(" ")[0]}{" "}
               <span className="bg-gradient-to-r from-red-600 to-purple-600 bg-clip-text text-transparent">
                 {tool.name.split(" ").slice(1).join(" ")}
               </span>
             </h1>
           </div>
-          <div className="flex items-center gap-2 sm:gap-4 bg-white dark:bg-white/5 p-1.5 sm:p-2 rounded-2xl border border-zinc-200 dark:border-white/10 backdrop-blur-xl shadow-sm dark:shadow-none w-full sm:w-auto overflow-x-auto sm:overflow-visible no-scrollbar">
+          <div className="flex items-center gap-2 sm:gap-4 bg-white dark:bg-white/5 p-1.5 sm:p-2 rounded-2xl border border-zinc-200 dark:border-white/10 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:shadow-none w-full sm:w-auto overflow-x-auto sm:overflow-visible no-scrollbar">
             <Link
               href="/"
               className={`px-3 sm:px-4 py-2 text-[10px] sm:text-xs font-black uppercase tracking-widest text-zinc-400 dark:text-white/50 hover:text-zinc-900 dark:hover:text-white whitespace-nowrap ${btnStyle}`}
@@ -218,8 +218,8 @@ export default function ToolView({ tool, category }: ToolViewProps) {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-8 flex flex-col gap-6">
-            <div className="group relative overflow-hidden rounded-[2rem] bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 transition-all duration-300 hover:border-red-500/50 shadow-sm dark:shadow-none">
-              <div className="p-4 sm:p-8 sm:pb-10">
+            <div className="group relative overflow-hidden rounded-[1.5rem] bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 transition-all duration-300 hover:border-red-500/50 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-none">
+              <div className="p-4 sm:p-7">
                 <div className="flex justify-between items-center mb-6">
                   <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 dark:text-white/30">
                     Input Buffer
@@ -258,7 +258,7 @@ export default function ToolView({ tool, category }: ToolViewProps) {
             {output && (
               <div className="animate-slide-in-up">
                 <div
-                  className={`relative p-3 md:p-5 rounded-[2rem] bg-white dark:bg-black border-2 border-red-600/50 shadow-xl dark:shadow-[0_0_100px_rgba(239,68,68,0.15)] group overflow-hidden ${options.customSettings?.mockup ? "max-w-md mx-auto aspect-[9/19] rounded-[2.5rem] sm:rounded-[3rem] border-[10px] sm:border-[14px] border-zinc-950 shadow-2xl" : ""}`}
+                  className={`relative p-4 md:p-6 rounded-[1.5rem] bg-white dark:bg-black border-2 border-red-600/50 shadow-xl dark:shadow-[0_0_100px_rgba(239,68,68,0.15)] group overflow-hidden ${options.customSettings?.mockup ? "max-w-md mx-auto aspect-[9/19] rounded-[2.5rem] sm:rounded-[3rem] border-[10px] sm:border-[14px] border-zinc-950 shadow-2xl" : ""}`}
                 >
                   {options.customSettings?.mockup &&
                     tool.slug.includes("instagram") && (
@@ -350,28 +350,28 @@ export default function ToolView({ tool, category }: ToolViewProps) {
             )}
           </div>
 
-          <div className="lg:col-span-4 flex flex-col gap-6 lg:sticky lg:top-24">
-            <div className="rounded-[2.5rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 p-5 md:p-8 shadow-sm dark:shadow-2xl overflow-hidden relative group">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-red-600 to-purple-700 flex items-center justify-center text-xl shadow-lg">
+          <div className="lg:col-span-4 flex flex-col gap-5 lg:sticky lg:top-24">
+            <div className="rounded-[1.5rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 p-5 md:p-7 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-2xl overflow-hidden relative group">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-600 to-purple-700 flex items-center justify-center text-lg shadow-lg">
                   <ToolIcon
                     slug={tool.slug}
                     categorySlug={category.slug}
-                    className="w-6 h-6 text-white"
+                    className="w-5 h-5 text-white"
                   />
                 </div>
                 <div>
-                  <h3 className="text-xs font-black uppercase tracking-widest text-zinc-900 dark:text-white">
-                    Configuration
+                  <h3 className="text-[11px] font-black uppercase tracking-widest text-zinc-900 dark:text-white">
+                    Settings
                   </h3>
                 </div>
               </div>
 
-              <div className="flex flex-col gap-5 md:gap-8">
+              <div className="flex flex-col gap-5 md:gap-6">
                 {toolConfig?.controls.map((control: any) => (
-                  <div key={control.id} className="flex flex-col gap-4">
+                  <div key={control.id} className="flex flex-col gap-3">
                     <div className="flex justify-between items-center px-1">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
                         {control.label}
                       </span>
                       <span className="text-xs font-mono text-red-500">
@@ -420,7 +420,7 @@ export default function ToolView({ tool, category }: ToolViewProps) {
                           }))
                         }
                         aria-label={`Select ${control.label}`}
-                        className="w-full bg-white dark:bg-zinc-900/50 border border-[0.6px] border-zinc-200 dark:border-white/10 rounded-2xl px-4 py-3 md:px-5 md:py-4 text-xs font-black text-zinc-900 dark:text-white outline-none cursor-pointer"
+                        className="w-full bg-white dark:bg-zinc-900/50 border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-4 text-[11px] font-black text-zinc-900 dark:text-white outline-none cursor-pointer"
                       >
                         {control.options?.map((opt: any) => (
                           <option
@@ -450,72 +450,87 @@ export default function ToolView({ tool, category }: ToolViewProps) {
                             };
                           });
                         }}
-                        className={`w-full flex items-center justify-between px-4 py-3 md:px-6 md:py-5 rounded-2xl border transition-all ${
+                        className={`w-full flex items-center justify-between px-4 py-4 rounded-xl border transition-all ${
                           (options.customSettings?.[control.id] ??
                           control.defaultValue)
                             ? "border-red-600/30 dark:border-red-600/50 bg-red-50 dark:bg-red-600/5 text-red-600 dark:text-red-500"
-                            : "border-zinc-100 dark:border-white/5 bg-white dark:bg-zinc-900 text-zinc-400 dark:text-zinc-500"
+                            : "border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 text-zinc-400 dark:text-zinc-500"
                         } ${btnStyle}`}
                       >
-                        <span className="text-[10px] font-black uppercase tracking-widest">
-                          {options.customSettings?.[control.id] ? "On" : "Off"}
-                        </span>
+                        <div className="flex flex-col items-start gap-0.5">
+                          <span className="text-[10px] font-black uppercase tracking-widest text-zinc-900 dark:text-white">
+                            {control.label}
+                          </span>
+                          <span className="text-[8px] font-medium uppercase tracking-tighter opacity-70">
+                            {options.customSettings?.[control.id]
+                              ? "Enabled"
+                              : "Disabled"}
+                          </span>
+                        </div>
                         <div
-                          className={`w-3 h-3 rounded-full ${
+                          className={`w-7 h-3.5 rounded-full relative transition-colors ${
                             (options.customSettings?.[control.id] ??
                             control.defaultValue)
-                              ? "bg-red-600 shadow-[0_0_10px_rgba(231,68,68,0.5)]"
+                              ? "bg-red-600"
                               : "bg-zinc-200 dark:bg-zinc-800"
                           }`}
-                        />
+                        >
+                          <div
+                            className={`absolute top-0.5 w-2.5 h-2.5 rounded-full bg-white transition-all ${
+                              (options.customSettings?.[control.id] ??
+                              control.defaultValue)
+                                ? "right-0.5"
+                                : "left-0.5"
+                            }`}
+                          />
+                        </div>
                       </button>
                     )}
                   </div>
                 ))}
 
-                <div className="pt-6 border-t border-zinc-100 dark:border-white/5">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 block mb-4 md:mb-6 px-1">
-                    System Tint
+                <div className="pt-5 border-t border-zinc-100 dark:border-white/5">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 block mb-3 md:mb-4 px-1">
+                    Color
                   </span>
-                  <div className="grid grid-cols-6 gap-3 mb-4">
+                  <div className="grid grid-cols-6 gap-2.5 mb-3">
                     {colors.map((c) => (
                       <button
                         key={c.name}
                         onClick={() => setOutputColor(c.value)}
-                        className={`aspect-square rounded-xl transition-all duration-100 ${c.bg} ${outputColor === c.value ? "scale-110 ring-2 ring-zinc-300 dark:ring-white/20" : "opacity-30 hover:opacity-100"} ${btnStyle}`}
+                        className={`aspect-square rounded-lg transition-all duration-100 ${c.bg} ${outputColor === c.value ? "scale-110 ring-2 ring-zinc-300 dark:ring-white/20" : "opacity-30 hover:opacity-100"} ${btnStyle}`}
                       />
                     ))}
                   </div>
-                  <p className="text-[9px] font-bold text-zinc-400 dark:text-zinc-600 leading-relaxed px-1">
-                    * Colors work in Google Docs, Word, Notes, etc. Social media
-                    apps only support plain text.
+                  <p className="text-[8px] font-medium text-zinc-400 dark:text-zinc-600 leading-relaxed px-1">
+                    * Colors work in docs apps, not social media.
                   </p>
                 </div>
 
-                <div className="pt-6 border-t border-zinc-100 dark:border-white/5">
+                <div className="pt-5 border-t border-zinc-100 dark:border-white/5">
                   <button
                     onClick={() =>
                       setOptions({ ...options, uppercase: !options.uppercase })
                     }
-                    className={`w-full flex items-center justify-between px-4 py-3 md:px-6 md:py-5 rounded-2xl border transition-all ${
+                    className={`w-full flex items-center justify-between px-4 py-4 rounded-xl border transition-all ${
                       options.uppercase
-                        ? "border-purple-600/30 dark:border-purple-600/50 bg-purple-50 dark:bg-purple-600/5 text-purple-600 dark:text-purple-500 shadow-sm"
-                        : "border-zinc-100 dark:border-white/5 bg-white dark:bg-zinc-900 text-zinc-400 dark:text-zinc-500"
+                        ? "border-purple-600/30 dark:border-purple-600/50 bg-purple-50 dark:bg-purple-600/5 text-purple-600 dark:text-purple-500"
+                        : "border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 text-zinc-400 dark:text-zinc-500"
                     } ${btnStyle}`}
                   >
                     <div className="flex flex-col items-start gap-0.5">
                       <span className="text-[10px] font-black uppercase tracking-widest text-zinc-900 dark:text-white">
                         Caps Lock
                       </span>
-                      <span className="text-[8px] font-bold uppercase tracking-tighter opacity-70">
-                        {options.uppercase ? "Forcing Upper" : "Variable Case"}
+                      <span className="text-[8px] font-medium uppercase tracking-tighter opacity-70">
+                        {options.uppercase ? "Enabled" : "Disabled"}
                       </span>
                     </div>
                     <div
-                      className={`w-8 h-4 rounded-full relative transition-colors ${options.uppercase ? "bg-purple-600" : "bg-zinc-200 dark:bg-zinc-800"}`}
+                      className={`w-7 h-3.5 rounded-full relative transition-colors ${options.uppercase ? "bg-purple-600" : "bg-zinc-200 dark:bg-zinc-800"}`}
                     >
                       <div
-                        className={`absolute top-1 w-2 h-2 rounded-full bg-white transition-all ${options.uppercase ? "right-1" : "left-1"}`}
+                        className={`absolute top-0.5 w-2.5 h-2.5 rounded-full bg-white transition-all ${options.uppercase ? "right-0.5" : "left-0.5"}`}
                       />
                     </div>
                   </button>
@@ -525,36 +540,36 @@ export default function ToolView({ tool, category }: ToolViewProps) {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20 animate-fade-in-up">
-          <div className="p-10 rounded-[2.5rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/5 shadow-sm dark:shadow-xl">
-            <h2 className="text-xl font-black text-zinc-900 dark:text-white uppercase tracking-widest mb-8 flex items-center gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16 animate-fade-in-up">
+          <div className="p-6 md:p-7 rounded-[1.5rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-xl">
+            <h2 className="text-lg font-black text-zinc-900 dark:text-white uppercase tracking-widest mb-6 flex items-center gap-3">
               <span className="w-2 h-2 rounded-full bg-red-600"></span>
               About {tool.name}
             </h2>
-            <div className="space-y-6">
-              <p className="text-zinc-600 dark:text-zinc-500 leading-relaxed font-bold text-sm">
+            <div className="space-y-4">
+              <p className="text-zinc-600 dark:text-zinc-500 leading-relaxed font-medium text-sm">
                 {content.about}
               </p>
-              <p className="text-zinc-500 dark:text-zinc-600 leading-relaxed font-medium text-xs border-l-2 border-red-600/20 pl-6 italic">
+              <p className="text-zinc-500 dark:text-zinc-600 leading-relaxed font-medium text-xs border-l-2 border-red-600/30 pl-5 italic">
                 {content.moreInfo}
               </p>
             </div>
           </div>
-          <div className="p-10 rounded-[2.5rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm dark:shadow-xl">
-            <h2 className="text-xl font-black text-zinc-900 dark:text-white uppercase tracking-widest mb-8 flex items-center gap-3 space-x-2">
+          <div className="p-6 md:p-7 rounded-[1.5rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-xl">
+            <h2 className="text-lg font-black text-zinc-900 dark:text-white uppercase tracking-widest mb-6 flex items-center gap-3">
               <span className="w-2 h-2 rounded-full bg-purple-600"></span>
               Key Features
             </h2>
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 gap-3">
               {content.features.map((f) => (
                 <div
                   key={f.title}
-                  className="p-4 rounded-xl bg-white dark:bg-white/[0.02] border border-zinc-200 dark:border-white/5"
+                  className="p-3 rounded-xl bg-zinc-50 dark:bg-white/[0.02] border border-zinc-100 dark:border-white/5"
                 >
-                  <h3 className="text-xs font-black text-zinc-900 dark:text-white uppercase tracking-widest mb-1">
+                  <h3 className="text-[11px] font-black text-zinc-900 dark:text-white uppercase tracking-widest mb-1">
                     {f.title}
                   </h3>
-                  <p className="text-zinc-500 dark:text-zinc-600 text-[10px] font-bold">
+                  <p className="text-zinc-500 dark:text-zinc-600 text-[10px] font-medium">
                     {f.text}
                   </p>
                 </div>
@@ -564,39 +579,39 @@ export default function ToolView({ tool, category }: ToolViewProps) {
         </div>
 
         {/* How to Use Section */}
-        <div className="mt-32 animate-fade-in-up">
-          <h2 className="text-3xl font-black text-zinc-900 dark:text-white uppercase tracking-[0.2em] text-center mb-16">
+        <div className="mt-20 animate-fade-in-up">
+          <h2 className="text-2xl font-black text-zinc-900 dark:text-white uppercase tracking-[0.15em] text-center mb-10">
             How to use <span className="text-red-600">{tool.name}</span>
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
                 s: "01",
                 t: "Input Text",
-                d: "Paste or type your content into the generator console above.",
+                d: "Paste or type your content into the generator above.",
               },
               {
                 s: "02",
-                t: "Warp Controls",
-                d: "Adjust the style, intensity, and formatting to your preference.",
+                t: "Customize",
+                d: "Adjust the style and intensity to your preference.",
               },
               {
                 s: "03",
-                t: "Copy Result",
-                d: "Copy your new stylized text and deploy it anywhere instantly.",
+                t: "Copy & Use",
+                d: "Copy your stylized text and use it anywhere.",
               },
             ].map((step) => (
               <div
                 key={step.s}
-                className="relative p-10 rounded-[2.5rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/5 group hover:border-red-500/30 transition-all duration-300 shadow-sm dark:shadow-none"
+                className="relative p-6 md:p-7 rounded-[1.5rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/5 group hover:border-red-500/30 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-none"
               >
-                <div className="text-6xl font-black text-zinc-100 dark:text-white/5 absolute top-6 right-6 group-hover:text-red-500/10 transition-colors">
+                <div className="text-5xl font-black text-zinc-200 dark:text-white/5 absolute top-5 right-5 group-hover:text-red-500/20 dark:group-hover:text-red-500/10 transition-colors">
                   {step.s}
                 </div>
-                <h3 className="text-lg font-black text-zinc-900 dark:text-white uppercase tracking-widest mb-4">
+                <h3 className="text-base font-black text-zinc-900 dark:text-white uppercase tracking-widest mb-3">
                   {step.t}
                 </h3>
-                <p className="text-zinc-500 dark:text-zinc-500 text-sm font-bold leading-relaxed">
+                <p className="text-zinc-500 dark:text-zinc-500 text-sm font-medium leading-relaxed">
                   {step.d}
                 </p>
               </div>
@@ -605,22 +620,22 @@ export default function ToolView({ tool, category }: ToolViewProps) {
         </div>
 
         {/* FAQs Section */}
-        <div className="mt-32 mb-20 animate-fade-in-up">
-          <h2 className="text-3xl font-black text-zinc-900 dark:text-white uppercase tracking-[0.2em] text-center mb-16">
+        <div className="mt-20 mb-16 animate-fade-in-up">
+          <h2 className="text-2xl font-black text-zinc-900 dark:text-white uppercase tracking-[0.15em] text-center mb-10">
             Frequently Asked <span className="text-purple-600">Questions</span>
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {content.faqs.map((faq, i) => (
               <div
                 key={i}
-                className="p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/5 shadow-sm dark:shadow-none"
+                className="p-5 sm:p-7 rounded-[1.5rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-none"
               >
-                <h4 className="text-sm font-black text-zinc-900 dark:text-white uppercase tracking-widest mb-4 flex gap-4">
+                <h4 className="text-xs font-black text-zinc-900 dark:text-white uppercase tracking-widest mb-3 flex gap-3">
                   <span className="text-red-500">Q.</span> {faq.q}
                 </h4>
-                <div className="flex gap-4">
-                  <span className="text-purple-500 text-sm font-black">A.</span>
-                  <p className="text-zinc-600 dark:text-zinc-500 text-sm font-bold leading-relaxed">
+                <div className="flex gap-3">
+                  <span className="text-purple-500 text-xs font-black">A.</span>
+                  <p className="text-zinc-600 dark:text-zinc-500 text-sm font-medium leading-relaxed">
                     {faq.a}
                   </p>
                 </div>

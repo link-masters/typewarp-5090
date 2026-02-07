@@ -29,7 +29,7 @@ const Header = () => {
     <>
       <header className="fixed top-4 left-0 right-0 px-4 md:px-6 lg:px-8 z-50 w-full">
         <div className="max-w-[1600px] mx-auto">
-          <nav className="flex items-center justify-between w-full px-6 lg:px-8 py-3.5 rounded-xl border-[0.6px] shadow-2xl backdrop-blur-xl backdrop-saturate-150 border-[var(--card-border)] bg-[var(--background)]/80">
+          <nav className="flex items-center justify-between w-full px-6 lg:px-8 py-3.5 rounded-xl border-[0.6px] shadow-[0_4px_30px_rgba(0,0,0,0.08)] dark:shadow-2xl backdrop-blur-xl backdrop-saturate-150 border-zinc-200 dark:border-[var(--card-border)] bg-white/90 dark:bg-[var(--background)]/80">
             {/* Logo */}
             <Link href="/" className="flex items-center shrink-0 min-w-[140px]">
               <span className="text-xl sm:text-2xl font-black tracking-tighter text-[var(--foreground)]">

@@ -32,7 +32,7 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 relative z-10 text-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 mb-4 md:mb-8 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-xl shadow-[0_0_30px_rgba(220,38,38,0.15)] animate-fade-in">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 mb-4 md:mb-8 rounded-full border border-zinc-200 dark:border-[var(--card-border)] bg-white dark:bg-[var(--card-bg)] backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-[0_0_30px_rgba(220,38,38,0.15)] animate-fade-in">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
@@ -75,10 +75,10 @@ const Hero = () => {
 
         {/* Input Section */}
         <div className="w-full max-w-5xl mx-auto relative group mb-10 md:mb-12 animate-fade-in-up animation-delay-400 px-2 sm:px-0">
-          <div className="absolute -inset-2 bg-gradient-to-r from-red-600/20 via-purple-600/20 to-blue-600/20 rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+          <div className="absolute -inset-2 bg-gradient-to-r from-red-500/10 dark:from-red-600/20 via-purple-500/10 dark:via-purple-600/20 to-blue-500/10 dark:to-blue-600/20 rounded-[1.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
-          <div className="relative p-0.5 md:p-1 rounded-2xl md:rounded-3xl bg-[var(--card-bg)] border border-[var(--card-border)] shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-3xl overflow-hidden">
-            <div className="flex flex-col md:flex-row items-center gap-0 bg-[var(--background)]/40 rounded-xl md:rounded-[1.4rem]">
+          <div className="relative p-0.5 md:p-1 rounded-[1.5rem] bg-white dark:bg-[var(--card-bg)] border border-zinc-200 dark:border-[var(--card-border)] shadow-[0_4px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-3xl overflow-hidden">
+            <div className="flex flex-col md:flex-row items-center gap-0 bg-zinc-50/50 dark:bg-[var(--background)]/40 rounded-xl">
               <input
                 type="text"
                 id="hero-transformation-input"
@@ -93,7 +93,7 @@ const Hero = () => {
               <div className="p-3 w-full md:w-auto">
                 <button
                   onClick={handleCorrupt}
-                  className="w-full group/btn px-10 py-5 rounded-[1.1rem] bg-[var(--foreground)] text-[var(--background)] font-black text-xl transition-all duration-300 active:scale-[0.98] flex items-center justify-center gap-3 relative overflow-hidden hover:bg-red-600 hover:text-white hover:shadow-[0_0_30px_rgba(220,38,38,0.5)] hover:scale-[1.02]"
+                  className="w-full group/btn px-10 py-5 rounded-xl bg-[var(--foreground)] text-[var(--background)] font-black text-xl transition-all duration-300 active:scale-[0.98] flex items-center justify-center gap-3 relative overflow-hidden hover:bg-red-600 hover:text-white hover:shadow-[0_0_30px_rgba(220,38,38,0.5)] hover:scale-[1.02]"
                 >
                   <span className="relative z-10 uppercase">Warp Text</span>
                   <svg
@@ -120,8 +120,8 @@ const Hero = () => {
 
         {output && (
           <div className="w-full max-w-5xl mx-auto mb-16 animate-fade-in-up">
-            <div className="relative p-6 sm:p-10 md:p-14 rounded-3xl bg-[var(--card-bg)] border border-[var(--card-border)] backdrop-blur-2xl shadow-[0_32px_64px_rgba(0,0,0,0.4)] group/output overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-purple-500/10 to-blue-500/10 opacity-0 group-hover/output:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative p-6 sm:p-10 md:p-14 rounded-[1.5rem] bg-white dark:bg-[var(--card-bg)] border border-zinc-200 dark:border-[var(--card-border)] backdrop-blur-2xl shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_32px_64px_rgba(0,0,0,0.4)] group/output overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 dark:from-red-500/10 via-purple-500/5 dark:via-purple-500/10 to-blue-500/5 dark:to-blue-500/10 opacity-0 group-hover/output:opacity-100 transition-opacity duration-500"></div>
 
               <div className="relative flex flex-col items-center">
                 <p className="text-3xl md:text-5xl lg:text-6xl text-[var(--foreground)] font-mono break-all leading-[1.3] text-center">
@@ -131,7 +131,7 @@ const Hero = () => {
                 <div className="mt-10 flex flex-wrap justify-center gap-4">
                   <button
                     onClick={handleCopy}
-                    className="flex items-center gap-3 px-8 py-3.5 rounded-2xl bg-[var(--card-bg)] hover:bg-[var(--card-border)] border border-[var(--card-border)] transition-all text-[var(--foreground)] font-bold backdrop-blur-xl group/copy"
+                    className="flex items-center gap-3 px-8 py-3.5 rounded-xl bg-zinc-50 dark:bg-[var(--card-bg)] hover:bg-zinc-100 dark:hover:bg-[var(--card-border)] border border-zinc-200 dark:border-[var(--card-border)] transition-all text-[var(--foreground)] font-bold backdrop-blur-xl group/copy"
                   >
                     {isCopied ? (
                       <span className="text-green-500 font-black">COPIED!</span>
@@ -177,7 +177,7 @@ const Hero = () => {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="group/stat p-6 sm:p-10 rounded-2xl sm:rounded-[2.5rem] bg-[var(--card-bg)] border border-[var(--card-border)] backdrop-blur-md hover:border-red-500/30 transition-all duration-500 text-center"
+              className="group/stat p-6 sm:p-10 rounded-[1.5rem] bg-white dark:bg-[var(--card-bg)] border border-zinc-200 dark:border-[var(--card-border)] backdrop-blur-md hover:border-red-500/30 transition-all duration-500 text-center shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-none"
             >
               <div className="text-3xl sm:text-5xl font-black text-[var(--foreground)] mb-3 tracking-tighter leading-none">
                 {stat.value}

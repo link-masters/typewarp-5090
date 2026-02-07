@@ -6,9 +6,11 @@ import { Metadata } from "next";
 import { ToolIcon } from "@/components/ToolIcon";
 
 export function generateStaticParams() {
-  return categories.map((category) => ({
-    category: category.slug,
-  }));
+  return categories
+    .filter((category) => category.slug !== "text-tools")
+    .map((category) => ({
+      category: category.slug,
+    }));
 }
 
 export async function generateMetadata({
@@ -61,7 +63,7 @@ export default async function CategoryPage({
       <div className="max-w-7xl mx-auto mb-10 flex items-center gap-3 text-sm font-medium animate-fade-in-up">
         <Link
           href="/"
-          className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--muted)] hover:text-[var(--foreground)] hover:border-[var(--muted)] transition-colors duration-200 group"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white dark:bg-[var(--card-bg)] border border-zinc-200 dark:border-[var(--card-border)] text-[var(--muted)] hover:text-[var(--foreground)] hover:border-zinc-300 dark:hover:border-[var(--muted)] transition-colors duration-200 group shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none"
         >
           <svg
             className="w-4 h-4 text-red-500 group-hover:scale-110 transition-transform"
@@ -101,7 +103,7 @@ export default async function CategoryPage({
 
       <div className="container mx-auto max-w-7xl">
         {/* Modern Category Hero */}
-        <div className="relative mb-12 md:mb-20 p-6 sm:p-10 md:p-16 rounded-[2.5rem] sm:rounded-[3rem] bg-[var(--card-bg)] border border-[var(--card-border)] overflow-hidden animate-fade-in-up">
+        <div className="relative mb-12 md:mb-20 p-6 sm:p-10 md:p-16 rounded-[1.5rem] md:rounded-[2rem] bg-white dark:bg-[var(--card-bg)] border border-zinc-200 dark:border-[var(--card-border)] overflow-hidden animate-fade-in-up shadow-[0_8px_40px_rgba(0,0,0,0.06)] dark:shadow-none">
           <div className="absolute top-0 right-0 p-8 opacity-5 text-[15rem] md:text-[20rem] leading-none select-none font-black translate-x-1/4 translate-y-[-10%]">
             {category.icon}
           </div>
@@ -127,10 +129,10 @@ export default async function CategoryPage({
             <Link
               key={tool.slug}
               href={`/${category.slug}/${tool.slug}`}
-              className="group relative flex flex-col p-6 sm:p-8 rounded-[1.5rem] sm:rounded-[2rem] bg-[var(--card-bg)] border border-[var(--card-border)] hover:border-red-500/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]"
+              className="group relative flex flex-col p-6 sm:p-8 rounded-[1.5rem] bg-white dark:bg-[var(--card-bg)] border border-zinc-200 dark:border-[var(--card-border)] hover:border-red-500/30 transition-all duration-300 hover:-translate-y-1.5 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]"
               style={{ animationDelay: `${index * 50}ms` }}
             >
-              <div className="mb-6 w-16 h-16 rounded-2xl bg-[var(--background)] border border-[var(--card-border)] flex items-center justify-center text-4xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 overflow-hidden">
+              <div className="mb-6 w-16 h-16 rounded-xl bg-zinc-50 dark:bg-[var(--background)] border border-zinc-100 dark:border-[var(--card-border)] flex items-center justify-center text-4xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 overflow-hidden shadow-inner">
                 <ToolIcon
                   slug={tool.slug}
                   categorySlug={category.slug}
@@ -170,7 +172,8 @@ export default async function CategoryPage({
         </div>
 
         {/* About Footer Section */}
-        <div className="mt-32 p-8 md:p-16 rounded-[3rem] border border-[var(--card-border)] bg-gradient-to-br from-[var(--card-bg)] to-transparent animate-fade-in-up">
+        <div className="mt-32 p-8 md:p-16 rounded-[1.5rem] md:rounded-[2rem] border border-zinc-200 dark:border-[var(--card-border)] bg-white dark:bg-zinc-950 shadow-[0_8px_40px_rgba(0,0,0,0.04)] dark:shadow-none relative overflow-hidden animate-fade-in-up">
+          <div className="absolute inset-0 bg-gradient-to-br from-red-500/[0.02] to-transparent pointer-events-none" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-black mb-6 text-[var(--foreground)] tracking-tight">

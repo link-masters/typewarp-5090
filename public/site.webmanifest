@@ -1,16 +1,25 @@
 {
-  "name": "TypeWarp",
+  "name": "TypeWarp - Text Transformer",
   "short_name": "TypeWarp",
+  "description": "The ultimate text transformation and typography platform. Transform your text into fancy fonts, cursed text, zalgo, and more.",
   "icons": [
     {
       "src": "/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "theme_color": "#000000",
   "background_color": "#000000",
   "display": "standalone",
   "scope": "/",
-  "start_url": "/"
+  "start_url": "/",
+  "orientation": "portrait-primary",
+  "categories": ["utilities", "productivity", "design"]
 }

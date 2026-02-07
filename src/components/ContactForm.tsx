@@ -43,7 +43,7 @@ export default function ContactForm() {
             name="name"
             required
             disabled={isPending}
-            className="w-full bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl px-6 py-5 text-[var(--foreground)] outline-none focus:border-red-500/50 transition-all font-bold placeholder:text-zinc-500"
+            className="w-full bg-white dark:bg-[var(--card-bg)] border border-zinc-200 dark:border-[var(--card-border)] rounded-xl px-6 py-5 text-[var(--foreground)] outline-none focus:border-red-500/50 transition-all font-bold placeholder:text-zinc-500 shadow-sm dark:shadow-none"
             placeholder="John Doe"
           />
         </div>
@@ -60,7 +60,7 @@ export default function ContactForm() {
             name="email"
             required
             disabled={isPending}
-            className="w-full bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl px-6 py-5 text-[var(--foreground)] outline-none focus:border-red-500/50 transition-all font-bold placeholder:text-zinc-500"
+            className="w-full bg-white dark:bg-[var(--card-bg)] border border-zinc-200 dark:border-[var(--card-border)] rounded-xl px-6 py-5 text-[var(--foreground)] outline-none focus:border-red-500/50 transition-all font-bold placeholder:text-zinc-500 shadow-sm dark:shadow-none"
             placeholder="john@example.com"
           />
         </div>
@@ -78,7 +78,7 @@ export default function ContactForm() {
           name="message"
           required
           disabled={isPending}
-          className="w-full bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl px-6 py-5 text-[var(--foreground)] outline-none focus:border-red-500/50 transition-all font-bold placeholder:text-zinc-500 h-48 resize-none"
+          className="w-full bg-white dark:bg-[var(--card-bg)] border border-zinc-200 dark:border-[var(--card-border)] rounded-xl px-6 py-5 text-[var(--foreground)] outline-none focus:border-red-500/50 transition-all font-bold placeholder:text-zinc-500 h-48 resize-none shadow-sm dark:shadow-none"
           placeholder="What do you have in mind?"
         ></textarea>
       </div>
@@ -99,7 +99,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={isPending}
-        className="inline-flex items-center gap-4 bg-[var(--foreground)] text-[var(--background)] px-10 py-5 rounded-full font-black text-xs uppercase tracking-[0.3em] hover:scale-105 active:scale-95 transition-all disabled:opacity-50"
+        className="inline-flex items-center gap-4 bg-[var(--foreground)] text-[var(--background)] px-10 py-5 rounded-xl font-black text-xs uppercase tracking-[0.3em] hover:scale-105 active:scale-95 transition-all disabled:opacity-50 shadow-lg dark:shadow-none"
       >
         <span>{isPending ? "Sending..." : "Submit Inquiry"}</span>
         <svg

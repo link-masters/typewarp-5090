@@ -4,6 +4,7 @@ import { categories } from "@/lib/categories";
 
 const Footer = () => {
   const legalLinks = [
+    { href: "/blog", label: "Blog" },
     { href: "/about", label: "About Us" },
     { href: "/terms", label: "Terms of Service" },
     { href: "/privacy", label: "Privacy Policy" },
@@ -13,7 +14,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="w-full py-16 px-6 md:px-12 lg:px-16 xl:px-20 border-t border-[var(--card-border)] bg-[var(--background)]">
+    <footer className="w-full py-16 px-6 md:px-12 lg:px-16 xl:px-20 border-t border-zinc-200 dark:border-[var(--card-border)] bg-zinc-50 dark:bg-[var(--background)]">
       <div className="mx-auto max-w-7xl">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 mb-12">
@@ -82,7 +83,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[var(--card-border)] flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="pt-8 border-t border-zinc-200 dark:border-[var(--card-border)] flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-[var(--muted)]">
             © {new Date().getFullYear()} TypeWarp. All rights reserved.
           </p>

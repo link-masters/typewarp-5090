@@ -58,12 +58,7 @@ export default async function Home() {
   return (
     <>
       <JSONLD data={jsonLd} />
-      <div style={{ display: "none" }}>
-        <h1 itemProp="name">TypeWarp - Premium Text Transformation</h1>
-        <p itemProp="description">
-          The ultimate toolkit for fancy text, cursed scripts, and typography.
-        </p>
-      </div>
+
       <Hero />
 
       {/* Core Capabilities Section */}
@@ -223,7 +218,7 @@ export default async function Home() {
             ].map((feature, i) => (
               <div
                 key={feature.title}
-                className={`group relative p-8 md:p-12 rounded-2xl md:rounded-[2rem] bg-white/[0.03] border border-[var(--card-border)] hover:border-[var(--foreground)]/20 transition-all duration-500 ${
+                className={`group relative p-8 md:p-10 rounded-[1.5rem] bg-white dark:bg-white/[0.03] border border-zinc-200 dark:border-[var(--card-border)] hover:border-zinc-300 dark:hover:border-[var(--foreground)]/20 transition-all duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-none ${
                   i < 3 ? "animate-slide-in-up" : "animate-fade-in-up"
                 } ${
                   i % 3 === 0
@@ -234,7 +229,7 @@ export default async function Home() {
                 }`}
               >
                 <div
-                  className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem]`}
+                  className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[1.5rem]`}
                 />
 
                 <div className="relative z-10">
@@ -276,7 +271,7 @@ export default async function Home() {
             </div>
             <Link
               href="/text-tools"
-              className="px-8 py-4 rounded-2xl bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] font-bold hover:bg-[var(--card-border)] transition-all flex items-center gap-2"
+              className="px-8 py-4 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] font-bold hover:bg-[var(--card-border)] transition-all flex items-center gap-2"
             >
               Explore All Tools
               <svg
@@ -300,12 +295,12 @@ export default async function Home() {
               <Link
                 key={category.slug}
                 href={`/${category.slug}`}
-                className="group relative p-10 rounded-[3rem] bg-[var(--background)] border border-[var(--card-border)] hover:border-purple-500/50 transition-all duration-500 overflow-hidden"
+                className="group relative p-8 md:p-10 rounded-[1.5rem] bg-white dark:bg-[var(--background)] border border-zinc-200 dark:border-[var(--card-border)] hover:border-purple-500/50 transition-all duration-500 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-none"
               >
                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-500/5 rounded-full blur-3xl group-hover:bg-purple-500/10 transition-colors" />
                 <div className="relative z-10">
                   <div className="mb-8 flex justify-between items-start">
-                    <div className="p-4 rounded-2xl bg-[var(--card-bg)] border border-[var(--card-border)] group-hover:scale-110 transition-transform duration-500">
+                    <div className="p-4 rounded-xl bg-zinc-50 dark:bg-[var(--card-bg)] border border-zinc-100 dark:border-[var(--card-border)] group-hover:scale-110 transition-transform duration-500">
                       <ToolIcon
                         slug={category.slug}
                         categorySlug={category.slug}
@@ -352,7 +347,7 @@ export default async function Home() {
             </div>
             <Link
               href="/blog"
-              className="px-8 py-4 rounded-2xl bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] font-bold hover:bg-[var(--card-border)] transition-all flex items-center gap-2"
+              className="px-8 py-4 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] font-bold hover:bg-[var(--card-border)] transition-all flex items-center gap-2"
             >
               Explore All Articles
               <svg
@@ -393,9 +388,9 @@ export default async function Home() {
       {/* Newsletter / CTA Section */}
       <section className="py-20 px-4 relative overflow-hidden">
         <div className="container mx-auto max-w-7xl">
-          <div className="relative p-8 md:p-24 rounded-[2rem] md:rounded-[3rem] bg-[var(--card-bg)] border border-[var(--card-border)] overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-red-600/20 to-purple-600/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-blue-600/10 to-transparent rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2" />
+          <div className="relative p-8 md:p-20 rounded-[1.5rem] md:rounded-[2rem] bg-white dark:bg-[var(--card-bg)] border border-zinc-200 dark:border-[var(--card-border)] overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:shadow-2xl">
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-red-500/10 dark:from-red-600/20 to-purple-500/10 dark:to-purple-600/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-blue-500/5 dark:from-blue-600/10 to-transparent rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2" />
 
             <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto">
               <span className="inline-block px-4 py-2 rounded-full bg-red-500/10 text-red-500 text-xs font-black uppercase tracking-widest mb-8 border border-red-500/20">
@@ -414,7 +409,7 @@ export default async function Home() {
               <div className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto">
                 <Link
                   href="/dark-horror/cursed-text"
-                  className="w-full sm:w-auto px-12 py-6 rounded-2xl bg-[var(--foreground)] text-[var(--background)] font-black text-lg hover:scale-105 transition-all active:scale-95 shadow-[0_20px_40px_rgba(0,0,0,0.2)] flex items-center justify-center gap-3"
+                  className="w-full sm:w-auto px-12 py-6 rounded-xl bg-[var(--foreground)] text-[var(--background)] font-black text-lg hover:scale-105 transition-all active:scale-95 shadow-[0_20px_40px_rgba(0,0,0,0.2)] flex items-center justify-center gap-3"
                 >
                   <span className="uppercase">Launch Generator</span>
                   <svg
@@ -433,7 +428,7 @@ export default async function Home() {
                 </Link>
                 <Link
                   href="/text-tools"
-                  className="w-full sm:w-auto px-12 py-6 rounded-2xl bg-[var(--card-bg)] text-[var(--foreground)] font-black text-lg border border-[var(--card-border)] hover:bg-[var(--card-border)] transition-all active:scale-95 flex items-center justify-center"
+                  className="w-full sm:w-auto px-12 py-6 rounded-xl bg-[var(--card-bg)] text-[var(--foreground)] font-black text-lg border border-[var(--card-border)] hover:bg-[var(--card-border)] transition-all active:scale-95 flex items-center justify-center"
                 >
                   VIEW ALL TOOLS
                 </Link>

@@ -40,7 +40,7 @@ const AboutPage = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           {/* Hero Section */}
           <section className="text-center mb-20 md:mb-32 animate-fade-in">
-            <div className="inline-block px-3 py-1 md:px-4 md:py-1.5 mb-6 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] text-red-500">
+            <div className="inline-block px-3 py-1 md:px-4 md:py-1.5 mb-6 rounded-full border border-zinc-200 dark:border-[var(--card-border)] bg-white dark:bg-[var(--card-bg)] text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] text-red-500 shadow-sm">
               Origins & Evolution
             </div>
             <h1 className="text-4xl sm:text-6xl md:text-8xl font-black mb-8 tracking-tighter text-[var(--foreground)] uppercase leading-[1.1] md:leading-[0.9]">
@@ -77,7 +77,7 @@ const AboutPage = () => {
                 </p>
               </div>
             </div>
-            <div className="relative aspect-square rounded-[3rem] bg-[var(--card-bg)] border border-[var(--card-border)] overflow-hidden flex items-center justify-center p-12 group">
+            <div className="relative aspect-square rounded-[1.5rem] md:rounded-[2rem] bg-white dark:bg-[var(--card-bg)] border border-zinc-200 dark:border-[var(--card-border)] overflow-hidden flex items-center justify-center p-12 group shadow-[0_8px_40px_rgba(0,0,0,0.04)] dark:shadow-none">
               <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 via-purple-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
               <div className="relative text-[12rem] font-black text-red-500/20 group-hover:scale-110 group-hover:text-red-500/40 transition-all duration-700 select-none">
                 TW
@@ -109,7 +109,7 @@ const AboutPage = () => {
             ].map((pillar) => (
               <div
                 key={pillar.title}
-                className="p-10 rounded-[2.5rem] bg-[var(--card-bg)] border border-[var(--card-border)] hover:border-red-500/30 transition-all duration-500"
+                className="p-10 rounded-[1.5rem] bg-white dark:bg-[var(--card-bg)] border border-zinc-200 dark:border-[var(--card-border)] hover:border-red-500/30 transition-all duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] dark:hover:shadow-none"
               >
                 <div className="text-4xl mb-6">{pillar.icon}</div>
                 <h3 className="text-xl font-black text-[var(--foreground)] mb-4 uppercase tracking-wider">
@@ -123,8 +123,8 @@ const AboutPage = () => {
           </div>
 
           {/* Future Vision */}
-          <section className="relative p-12 md:p-24 rounded-[4rem] bg-[var(--card-bg)] border border-[var(--card-border)] overflow-hidden text-center">
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-red-600/10 to-transparent rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+          <section className="relative p-12 md:p-24 rounded-[1.5rem] md:rounded-[2rem] bg-white dark:bg-[var(--card-bg)] border border-zinc-200 dark:border-[var(--card-border)] overflow-hidden text-center shadow-[0_8px_40px_rgba(0,0,0,0.06)] dark:shadow-none">
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-red-500/5 dark:from-red-600/10 to-transparent rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
 
             <h2 className="text-4xl md:text-6xl font-black text-[var(--foreground)] mb-8 tracking-tighter uppercase relative z-10">
               The Future of <span className="text-purple-600">Text</span>
@@ -137,7 +137,7 @@ const AboutPage = () => {
             </p>
             <Link
               href="/text-tools"
-              className="inline-flex items-center gap-4 px-12 py-6 rounded-2xl bg-[var(--foreground)] text-[var(--background)] font-black text-xs uppercase tracking-widest hover:scale-105 transition-all active:scale-95 relative z-10"
+              className="inline-flex items-center gap-4 px-12 py-6 rounded-xl bg-[var(--foreground)] text-[var(--background)] font-black text-xs uppercase tracking-widest hover:scale-105 transition-all active:scale-95 relative z-10"
             >
               Explore the Tools
               <svg

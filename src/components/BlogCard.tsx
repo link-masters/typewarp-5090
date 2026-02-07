@@ -5,7 +5,7 @@ import { BlogPost } from "@/lib/blog";
 export default function BlogCard({ post }: { post: BlogPost }) {
   return (
     <Link href={`/blog/${post.slug}`} className="group block h-full">
-      <article className="h-full flex flex-col bg-[var(--card-bg)] backdrop-blur-md border border-[var(--card-border)] rounded-2xl overflow-hidden transition-all duration-300 hover:border-red-500/50 hover:shadow-[0_0_30px_rgba(239,68,68,0.2)]">
+      <article className="h-full flex flex-col bg-white dark:bg-[var(--card-bg)] backdrop-blur-md border border-zinc-200 dark:border-[var(--card-border)] rounded-[1.5rem] overflow-hidden transition-all duration-300 hover:border-red-500/50 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_8px_30px_rgba(239,68,68,0.15)] dark:hover:shadow-[0_0_30px_rgba(239,68,68,0.2)]">
         <div className="relative h-48 w-full overflow-hidden">
           <Image
             src={post.image}

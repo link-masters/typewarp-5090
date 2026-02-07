@@ -3,14 +3,16 @@
 @variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
+  --background: #fafafa;
   --foreground: #09090b;
-  --card-bg: #f8f9fa;
-  --card-border: rgba(0, 0, 0, 0.04);
-  --muted: #6c757d;
+  --card-bg: #ffffff;
+  --card-border: rgba(0, 0, 0, 0.08);
+  --muted: #52525b;
   --accent: #dc2626;
-  --gradient-from: rgba(220, 38, 38, 0.05);
-  --gradient-to: rgba(168, 85, 247, 0.05);
+  --gradient-from: rgba(220, 38, 38, 0.08);
+  --gradient-to: rgba(168, 85, 247, 0.08);
+  --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
 .dark {
@@ -22,6 +24,8 @@
   --accent: #ef4444;
   --gradient-from: rgba(220, 38, 38, 0.2);
   --gradient-to: rgba(168, 85, 247, 0.2);
+  --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.5);
 }
 
 body {
@@ -211,4 +215,80 @@ body {
 
 .animate-spin-slow {
   animation: rotate-slow 20s linear infinite;
+}
+
+/* Blog Post Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Remove underlines from heading links */
+.heading-link,
+article h1 a,
+article h2 a,
+article h3 a,
+article h4 a,
+article h5 a,
+article h6 a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.heading-link:hover,
+article h1 a:hover,
+article h2 a:hover,
+article h3 a:hover,
+article h4 a:hover,
+article h5 a:hover,
+article h6 a:hover {
+  text-decoration: none !important;
+}
+
+/* Prose overrides for better typography */
+.prose h2,
+.prose h3,
+.prose h4 {
+  text-decoration: none;
+  border: none;
+}
+
+.prose a:not(.heading-link) {
+  text-decoration: none;
+}
+
+.prose a:not(.heading-link):hover {
+  text-decoration: none;
+}
+
+/* Thin scrollbar for TOC and other elements */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
