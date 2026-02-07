@@ -14,7 +14,14 @@ export interface ToolConfig {
 }
 
 export const toolConfigs: Record<string, ToolConfig> = {
+  // FONT DATA
+  // -------------------------------------------------------------------------
+
+  // Social Fonts (Discord, Twitter, etc)
+  social_fonts_list: null as any, // Placeholder if needed
+
   // DARK & HORROR
+
   "cursed-text": {
     controls: [
       {
@@ -187,6 +194,73 @@ export const toolConfigs: Record<string, ToolConfig> = {
   "discord-font": {
     controls: [
       {
+        id: "fontStyle",
+        label: "Font Style",
+        type: "select",
+        options: [
+          { label: "Fraktur", value: "fraktur" },
+          { label: "Bold Fraktur", value: "boldFraktur" },
+          { label: "Mixed Fancy", value: "mixedFancy" },
+          { label: "Bold Script", value: "boldScript" },
+          { label: "Script / Cursive", value: "script" },
+          { label: "Double-Struck", value: "doubleStruck" },
+          { label: "Fullwidth", value: "fullwidth" },
+          { label: "Decorated Cursive", value: "decoratedCursive" },
+          { label: "Small Caps", value: "smallCaps" },
+          { label: "Upside Down", value: "upsideDown" },
+          { label: "Keycap", value: "keycap" },
+          { label: "Square Overlay", value: "squareOverlay" },
+          { label: "Squared Latin", value: "squared" },
+          { label: "Mirror / Reverse", value: "mirror" },
+          { label: "Zalgo / Glitch", value: "zalgo" },
+          { label: "Negative Squared", value: "invertedSquared" },
+          { label: "Subscript", value: "subscript" },
+          { label: "Superscript", value: "superscript" },
+          { label: "Circled", value: "circled" },
+          { label: "Thai Style", value: "thai" },
+          { label: "Fancy Serif", value: "serifBold" }, // Approximation
+          { label: "Armenian Mix", value: "armenian" },
+          { label: "Cherokee Type", value: "cherokee" },
+          { label: "Tibetan Mix", value: "tibetan" },
+          { label: "Lao Mix", value: "lao" },
+          { label: "Serif Bold", value: "serifBold" },
+          { label: "Sans-Serif Bold", value: "sansBold" },
+          { label: "Sans-Serif Italic", value: "sansItalic" },
+          { label: "Sans-Serif Bold Italic", value: "sansBoldItalic" },
+          { label: "Monospace", value: "monospace" },
+          { label: "Cyrillic / Russian", value: "cyrillic" },
+          { label: "Aesthetic", value: "aesthetic" },
+          { label: "Nordic / Viking", value: "runic" }, // reused
+          { label: "Currency Style", value: "currency" },
+          { label: "CJK / Chinese Box", value: "cjk" },
+          { label: "Japanese Style", value: "japanese" },
+          { label: "Lenticular Bracket", value: "lenticular" },
+          { label: "Japanese Bracket", value: "bracket" },
+          { label: "Wavy", value: "wavy" },
+          { label: "Block Shade", value: "blockShade" },
+          { label: "Kaomoji Cute", value: "kaomoji" },
+          { label: "Fullwidth Japanese", value: "fullwidthVar" },
+          { label: "Sparkle Border", value: "sparkle" },
+          { label: "Underline Box", value: "underlineBox" },
+          { label: "Splatter", value: "splatter" },
+          { label: "Canadian Syllabics", value: "canadian" },
+          { label: "Strikethrough", value: "strikethrough" },
+          { label: "Tilde Strikethrough", value: "tildeStrike" },
+          { label: "Short Strikethrough", value: "shortStrike" },
+          { label: "Underline", value: "underline" },
+          { label: "Double Underline", value: "doubleUnderline" },
+          { label: "Tilde Above", value: "tildeAbove" },
+          { label: "Heart Separator", value: "hearts" },
+          { label: "Cross Below", value: "crossBelow" },
+          { label: "Bubble / Metallic", value: "bubble" },
+          { label: "Wingdings", value: "wingdings" },
+          { label: "Emoji Mixed", value: "emojiMix" },
+          { label: "Block Gradient", value: "blockGradient" },
+          { label: "Tamil/Arabic Border", value: "tamilBorder" },
+        ],
+        defaultValue: "fraktur",
+      },
+      {
         id: "markdown",
         label: "Markdown Combo",
         type: "toggle",
@@ -234,6 +308,34 @@ export const toolConfigs: Record<string, ToolConfig> = {
   "twitter-font": {
     controls: [
       {
+        id: "fontStyle",
+        label: "Font Style",
+        type: "select",
+        options: [
+          { label: "Fraktur", value: "fraktur" },
+          { label: "Bold Fraktur", value: "boldFraktur" },
+          { label: "Script / Cursive", value: "script" },
+          { label: "Bold Script", value: "boldScript" },
+          { label: "Double-Struck", value: "doubleStruck" },
+          { label: "Fullwidth", value: "fullwidth" },
+          { label: "Sans-Serif Bold", value: "sansBold" },
+          { label: "Sans-Serif Italic", value: "sansItalic" },
+          { label: "Sans-Serif Bold Italic", value: "sansBoldItalic" },
+          { label: "Monospace", value: "monospace" },
+          { label: "Small Caps", value: "smallCaps" },
+          { label: "Bubble", value: "bubble" },
+          { label: "Decorated", value: "decoratedCursive" },
+          { label: "Zalgo", value: "zalgo" },
+          { label: "Underline", value: "underline" },
+          { label: "Strikethrough", value: "strikethrough" },
+          { label: "Slashed", value: "shortStrike" },
+          { label: "Circular", value: "circled" },
+          { label: "Squared", value: "squared" },
+          { label: "Inverted Square", value: "invertedSquared" },
+        ],
+        defaultValue: "sansBold",
+      },
+      {
         id: "thread",
         label: "Thread Mode",
         type: "toggle",
@@ -251,14 +353,39 @@ export const toolConfigs: Record<string, ToolConfig> = {
     controls: [
       {
         id: "game",
-        label: "Game Preset",
+        label: "Game / Style",
         type: "select",
         options: [
-          { label: "Fortnite", value: "fortnite" },
-          { label: "COD", value: "cod" },
-          { label: "Valorant", value: "valorant" },
+          // Retro
+          { label: "Retro: Press Start 2P", value: "retro_press" },
+          { label: "Retro: VCR OSD", value: "retro_vcr" },
+          { label: "Retro: Joystix", value: "retro_joy" },
+          { label: "Retro: Arcade Classic", value: "retro_arcade" },
+          // Esports
+          { label: "Esports: Bebas Neue", value: "esports_bebas" },
+          { label: "Esports: Rajdhani", value: "esports_raj" },
+          { label: "Esports: Teko", value: "esports_teko" },
+          { label: "Esports: Bungee", value: "esports_bungee" },
+          // Sci-Fi
+          { label: "Sci-Fi: Orbitron", value: "scifi_orb" },
+          { label: "Sci-Fi: Audiowide", value: "scifi_audio" },
+          { label: "Sci-Fi: Exo", value: "scifi_exo" },
+          { label: "Sci-Fi: Electrolize", value: "scifi_elec" },
+          // Horror
+          { label: "Horror: Creepster", value: "horror_creep" },
+          { label: "Horror: Nosifer", value: "horror_nos" },
+          { label: "Horror: Glitch", value: "horror_glitch" },
+          // Fantasy
+          { label: "Fantasy: Cinzel", value: "fantasy_cinzel" },
+          { label: "Fantasy: Medieval", value: "fantasy_med" },
+          // Specific
+          { label: "Game: Minecraft", value: "game_mine" },
+          { label: "Game: Pokemon", value: "game_poke" },
+          { label: "Game: Fortnite", value: "game_fort" },
+          { label: "Game: GTA Style", value: "game_gta" },
+          { label: "Game: COD Style", value: "game_cod" },
         ],
-        defaultValue: "fortnite",
+        defaultValue: "game_fort",
       },
     ],
   },

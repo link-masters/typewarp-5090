@@ -287,7 +287,9 @@ export default function ToolView({ tool, category }: ToolViewProps) {
                     </div>
                   )}
 
-                  <div className="relative min-h-[50px] md:min-h-[60px] flex items-center justify-center text-center z-10 w-full overflow-y-auto custom-scrollbar max-h-[350px]">
+                  <div
+                    className={`relative min-h-[50px] md:min-h-[60px] flex items-center ${tool.slug.includes("instagram") || tool.slug.includes("twitter") ? "justify-start text-left" : "justify-center text-center"} z-10 w-full overflow-y-auto custom-scrollbar max-h-[350px]`}
+                  >
                     <div className="flex flex-col gap-4 w-full">
                       <p
                         className="text-xl md:text-2xl font-black break-all leading-snug selection:bg-red-600 selection:text-white whitespace-pre-wrap transition-colors duration-300"
