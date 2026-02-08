@@ -1,11 +1,10 @@
-import { categories } from "@/lib/categories";
+import { categories, TOTAL_TOOLS_COUNT } from "@/lib/categories";
 import Link from "next/link";
 import { ToolIcon } from "@/components/ToolIcon";
 
 export const metadata = {
   title: "All Tools | TypeWarp",
-  description:
-    "Browse our complete collection of 50+ text transformation tools.",
+  description: `Browse our complete collection of ${TOTAL_TOOLS_COUNT}+ text transformation tools.`,
 };
 
 export default function TextToolsPage() {

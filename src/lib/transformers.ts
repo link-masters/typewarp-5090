@@ -892,287 +892,514 @@ function toSignLanguage(text: string): string {
 function generateAsciiArt(text: string, font: string = "std"): string {
   const upperText = text.toUpperCase();
 
-  if (font === "3d") {
-    // 3D Block style
-    const block3dChars: Record<string, string[]> = {
-      A: ["▄█▄", "█▀█", "▀ ▀"],
-      B: ["██▄", "█▄█", "██▀"],
-      C: ["▄█▄", "█  ", "▀█▀"],
-      D: ["██▄", "█ █", "██▀"],
-      E: ["███", "█▄ ", "███"],
-      F: ["███", "█▄ ", "█  "],
-      G: ["▄██", "█ ▄", "▀██"],
-      H: ["█ █", "███", "█ █"],
-      I: ["███", " █ ", "███"],
-      J: ["  █", "  █", "██▀"],
-      K: ["█▄▀", "██ ", "█ █"],
-      L: ["█  ", "█  ", "███"],
-      M: ["█▄█", "█▀█", "█ █"],
-      N: ["██▄", "█ █", "█ █"],
-      O: ["▄█▄", "█ █", "▀█▀"],
-      P: ["██▄", "█▀ ", "█  "],
-      Q: ["▄█▄", "█ █", "▀█▄"],
-      R: ["██▄", "█▀▄", "█ █"],
-      S: ["▄██", "▀█▄", "██▀"],
-      T: ["███", " █ ", " █ "],
-      U: ["█ █", "█ █", "▀█▀"],
-      V: ["█ █", "█ █", " ▀ "],
-      W: ["█ █", "█▄█", "█▀█"],
-      X: ["█ █", " ▀ ", "█ █"],
-      Y: ["█ █", " █ ", " █ "],
-      Z: ["██▄", " ▄▀", "███"],
-      " ": ["   ", "   ", "   "],
-    };
-
-    const lines = ["", "", ""];
-    for (const char of upperText) {
-      const art = block3dChars[char] || block3dChars[" "];
-      lines[0] += art[0] + " ";
-      lines[1] += art[1] + " ";
-      lines[2] += art[2] + " ";
-    }
-    return lines.join("\n");
-  }
-
-  if (font === "cyber") {
-    // Cyber/futuristic style
-    const cyberChars: Record<string, string[]> = {
-      A: ["╔═╗", "╠═╣", "╩ ╩"],
-      B: ["╔╗ ", "╠╩╗", "╚═╝"],
-      C: ["╔═╗", "║  ", "╚═╝"],
-      D: ["╔╦╗", " ║║", "═╩╝"],
-      E: ["╔═╗", "╠╣ ", "╚═╝"],
-      F: ["╔═╗", "╠╣ ", "╚  "],
-      G: ["╔═╗", "║ ╦", "╚═╝"],
-      H: ["╦ ╦", "╠═╣", "╩ ╩"],
-      I: ["╦", "║", "╩"],
-      J: [" ╦", " ║", "╚╝"],
-      K: ["╦╔╗", "╠╩╝", "╩ ╚"],
-      L: ["╦  ", "║  ", "╩═╝"],
-      M: ["╔╦╗", "║║║", "╩ ╩"],
-      N: ["╔╗╔", "║║║", "╝╚╝"],
-      O: ["╔═╗", "║ ║", "╚═╝"],
-      P: ["╔═╗", "╠═╝", "╩  "],
-      Q: ["╔═╗", "║ ║", "╚═╬"],
-      R: ["╔═╗", "╠╦╝", "╩╚═"],
-      S: ["╔═╗", "╚═╗", "╚═╝"],
-      T: ["╔╦╗", " ║ ", " ╩ "],
-      U: ["╦ ╦", "║ ║", "╚═╝"],
-      V: ["╦  ╦", "╚╗╔╝", " ╚╝ "],
-      W: ["╦ ╦", "║║║", "╚╩╝"],
-      X: ["╔╗╔", "╚╬╝", "╔╩╗"],
-      Y: ["╦ ╦", "╚╦╝", " ╩ "],
-      Z: ["╔═╗", "╔═╝", "╚══"],
-      " ": ["   ", "   ", "   "],
-    };
-
-    const lines = ["", "", ""];
-    for (const char of upperText) {
-      const art = cyberChars[char] || cyberChars[" "];
-      lines[0] += art[0] + " ";
-      lines[1] += art[1] + " ";
-      lines[2] += art[2] + " ";
-    }
-    return (
-      "┌" +
-      "─".repeat(lines[0].length) +
-      "┐\n" +
-      "│ " +
-      lines[0] +
-      "│\n" +
-      "│ " +
-      lines[1] +
-      "│\n" +
-      "│ " +
-      lines[2] +
-      "│\n" +
-      "└" +
-      "─".repeat(lines[0].length) +
-      "┘"
-    );
-  }
-
-  // Standard ASCII art
-  const stdChars: Record<string, string[]> = {
-    A: [" █████╗ ", "██╔══██╗", "███████║", "██╔══██║", "██║  ██║", "╚═╝  ╚═╝"],
-    B: ["██████╗ ", "██╔══██╗", "██████╔╝", "██╔══██╗", "██████╔╝", "╚═════╝ "],
-    C: [" ██████╗", "██╔════╝", "██║     ", "██║     ", "╚██████╗", " ╚═════╝"],
-    D: ["██████╗ ", "██╔══██╗", "██║  ██║", "██║  ██║", "██████╔╝", "╚═════╝ "],
-    E: ["███████╗", "██╔════╝", "█████╗  ", "██╔══╝  ", "███████╗", "╚══════╝"],
-    F: ["███████╗", "██╔════╝", "█████╗  ", "██╔══╝  ", "██║     ", "╚═╝     "],
-    G: [
-      " ██████╗ ",
-      "██╔════╝ ",
-      "██║  ███╗",
-      "██║   ██║",
-      "╚██████╔╝",
-      " ╚═════╝ ",
-    ],
-    H: ["██╗  ██╗", "██║  ██║", "███████║", "██╔══██║", "██║  ██║", "╚═╝  ╚═╝"],
-    I: ["██╗", "██║", "██║", "██║", "██║", "╚═╝"],
-    J: ["     ██╗", "     ██║", "     ██║", "██   ██║", "╚█████╔╝", " ╚════╝ "],
-    K: ["██╗  ██╗", "██║ ██╔╝", "█████╔╝ ", "██╔═██╗ ", "██║  ██╗", "╚═╝  ╚═╝"],
-    L: ["██╗     ", "██║     ", "██║     ", "██║     ", "███████╗", "╚══════╝"],
-    M: [
-      "███╗   ███╗",
-      "████╗ ████║",
-      "██╔████╔██║",
-      "██║╚██╔╝██║",
-      "██║ ╚═╝ ██║",
-      "╚═╝     ╚═╝",
-    ],
-    N: [
-      "███╗   ██╗",
-      "████╗  ██║",
-      "██╔██╗ ██║",
-      "██║╚██╗██║",
-      "██║ ╚████║",
-      "╚═╝  ╚═══╝",
-    ],
-    O: [
-      " ██████╗ ",
-      "██╔═══██╗",
-      "██║   ██║",
-      "██║   ██║",
-      "╚██████╔╝",
-      " ╚═════╝ ",
-    ],
-    P: ["██████╗ ", "██╔══██╗", "██████╔╝", "██╔═══╝ ", "██║     ", "╚═╝     "],
-    Q: [
-      " ██████╗ ",
-      "██╔═══██╗",
-      "██║   ██║",
-      "██║▄▄ ██║",
-      "╚██████╔╝",
-      " ╚══▀▀═╝ ",
-    ],
-    R: ["██████╗ ", "██╔══██╗", "██████╔╝", "██╔══██╗", "██║  ██║", "╚═╝  ╚═╝"],
-    S: ["███████╗", "██╔════╝", "███████╗", "╚════██║", "███████║", "╚══════╝"],
-    T: [
-      "████████╗",
-      "╚══██╔══╝",
-      "   ██║   ",
-      "   ██║   ",
-      "   ██║   ",
-      "   ╚═╝   ",
-    ],
-    U: [
-      "██╗   ██╗",
-      "██║   ██║",
-      "██║   ██║",
-      "██║   ██║",
-      "╚██████╔╝",
-      " ╚═════╝ ",
-    ],
-    V: [
-      "██╗   ██╗",
-      "██║   ██║",
-      "██║   ██║",
-      "╚██╗ ██╔╝",
-      " ╚████╔╝ ",
-      "  ╚═══╝  ",
-    ],
-    W: [
-      "██╗    ██╗",
-      "██║    ██║",
-      "██║ █╗ ██║",
-      "██║███╗██║",
-      "╚███╔███╔╝",
-      " ╚══╝╚══╝ ",
-    ],
-    X: ["██╗  ██╗", "╚██╗██╔╝", " ╚███╔╝ ", " ██╔██╗ ", "██╔╝ ██╗", "╚═╝  ╚═╝"],
-    Y: [
-      "██╗   ██╗",
-      "╚██╗ ██╔╝",
-      " ╚████╔╝ ",
-      "  ╚██╔╝  ",
-      "   ██║   ",
-      "   ╚═╝   ",
-    ],
-    Z: ["███████╗", "╚══███╔╝", "  ███╔╝ ", " ███╔╝  ", "███████╗", "╚══════╝"],
-    " ": ["    ", "    ", "    ", "    ", "    ", "    "],
-    "0": [
-      " ██████╗ ",
-      "██╔═══██╗",
-      "██║   ██║",
-      "██║   ██║",
-      "╚██████╔╝",
-      " ╚═════╝ ",
-    ],
-    "1": [" ██╗", "███║", "╚██║", " ██║", " ██║", " ╚═╝"],
-    "2": [
-      "██████╗ ",
-      "╚════██╗",
-      " █████╔╝",
-      "██╔═══╝ ",
-      "███████╗",
-      "╚══════╝",
-    ],
-    "3": [
-      "██████╗ ",
-      "╚════██╗",
-      " █████╔╝",
-      " ╚═══██╗",
-      "██████╔╝",
-      "╚═════╝ ",
-    ],
-    "4": [
-      "██╗  ██╗",
-      "██║  ██║",
-      "███████║",
-      "╚════██║",
-      "     ██║",
-      "     ╚═╝",
-    ],
-    "5": [
-      "███████╗",
-      "██╔════╝",
-      "███████╗",
-      "╚════██║",
-      "███████║",
-      "╚══════╝",
-    ],
-    "6": [
-      " ██████╗ ",
-      "██╔════╝ ",
-      "███████╗ ",
-      "██╔═══██╗",
-      "╚██████╔╝",
-      " ╚═════╝ ",
-    ],
-    "7": [
-      "███████╗",
-      "╚════██║",
-      "    ██╔╝",
-      "   ██╔╝ ",
-      "   ██║  ",
-      "   ╚═╝  ",
-    ],
-    "8": [
-      " █████╗ ",
-      "██╔══██╗",
-      "╚█████╔╝",
-      "██╔══██╗",
-      "╚█████╔╝",
-      " ╚════╝ ",
-    ],
-    "9": [
-      " █████╗ ",
-      "██╔══██╗",
-      "╚██████║",
-      " ╚═══██║",
-      " █████╔╝",
-      " ╚════╝ ",
-    ],
+  const fonts: Record<
+    string,
+    { height: number; chars: Record<string, string[]> }
+  > = {
+    banner: {
+      height: 5,
+      chars: {
+        A: ["  #  ", " # # ", "#####", "#   #", "#   #"],
+        B: ["#### ", "#   #", "#### ", "#   #", "#### "],
+        C: [" ####", "#    ", "#    ", "#    ", " ####"],
+        D: ["#### ", "#   #", "#   #", "#   #", "#### "],
+        E: ["#####", "#    ", "#### ", "#    ", "#####"],
+        F: ["#####", "#    ", "#### ", "#    ", "#    "],
+        G: [" ####", "#    ", "# ###", "#   #", " ### "],
+        H: ["#   #", "#   #", "#####", "#   #", "#   #"],
+        I: ["#####", "  #  ", "  #  ", "  #  ", "#####"],
+        J: ["  ###", "    #", "    #", "#   #", " ### "],
+        K: ["#   #", "#  # ", "###  ", "#  # ", "#   #"],
+        L: ["#    ", "#    ", "#    ", "#    ", "#####"],
+        M: ["#   #", "## ##", "# # #", "#   #", "#   #"],
+        N: ["#   #", "##  #", "# # #", "#  ##", "#   #"],
+        O: [" ### ", "#   #", "#   #", "#   #", " ### "],
+        P: ["#### ", "#   #", "#### ", "#    ", "#    "],
+        Q: [" ### ", "#   #", "# # #", "#  ##", " ####"],
+        R: ["#### ", "#   #", "#### ", "#  # ", "#   #"],
+        S: [" ####", "#    ", " ### ", "    #", "#### "],
+        T: ["#####", "  #  ", "  #  ", "  #  ", "  #  "],
+        U: ["#   #", "#   #", "#   #", "#   #", " ### "],
+        V: ["#   #", "#   #", " # # ", " # # ", "  #  "],
+        W: ["#   #", "#   #", "# # #", "## ##", "#   #"],
+        X: ["#   #", " # # ", "  #  ", " # # ", "#   #"],
+        Y: ["#   #", " # # ", "  #  ", "  #  ", "  #  "],
+        Z: ["#####", "   # ", "  #  ", " #   ", "#####"],
+        " ": ["     ", "     ", "     ", "     ", "     "],
+      },
+    },
+    big: {
+      height: 5,
+      chars: {
+        A: ["  AA  ", " A  A ", "AAAAAA", "A    A", "A    A"],
+        B: ["BBBB ", "B   B", "BBBB ", "B   B", "BBBB "],
+        C: [" CCCC", "C    ", "C    ", "C    ", " CCCC"],
+        D: ["DDDD ", "D   D", "D   D", "D   D", "DDDD "],
+        E: ["EEEEE", "E    ", "EEEE ", "E    ", "EEEEE"],
+        F: ["FFFFF", "F    ", "FFFF ", "F    ", "F    "],
+        G: [" GGGG", "G    ", "G  GG", "G   G", " GGG "],
+        H: ["H   H", "H   H", "HHHHH", "H   H", "H   H"],
+        I: ["IIIII", "  I  ", "  I  ", "  I  ", "IIIII"],
+        J: ["JJJJJ", "   J ", "   J ", "J  J ", " JJ  "],
+        K: ["K   K", "K  K ", "KKK  ", "K  K ", "K   K"],
+        L: ["L    ", "L    ", "L    ", "L    ", "LLLLL"],
+        M: ["M   M", "MM MM", "M M M", "M   M", "M   M"],
+        N: ["N   N", "NN  N", "N N N", "N  NN", "N   N"],
+        O: [" OOO ", "O   O", "O   O", "O   O", " OOO "],
+        P: ["PPPP ", "P   P", "PPPP ", "P    ", "P    "],
+        Q: [" QQQ ", "Q   Q", "Q Q Q", "Q  QQ", " QQQQ"],
+        R: ["RRRR ", "R   R", "RRRR ", "R  R ", "R   R"],
+        S: [" SSSS", "S    ", " SSS ", "    S", "SSSS "],
+        T: ["TTTTT", "  T  ", "  T  ", "  T  ", "  T  "],
+        U: ["U   U", "U   U", "U   U", "U   U", " UUU "],
+        V: ["V   V", "V   V", " V V ", " V V ", "  V  "],
+        W: ["W   W", "W   W", "W W W", "WW WW", "W   W"],
+        X: ["X   X", " X X ", "  X  ", " X X ", "X   X"],
+        Y: ["Y   Y", " Y Y ", "  Y  ", "  Y  ", "  Y  "],
+        Z: ["ZZZZZ", "   Z ", "  Z  ", " Z   ", "ZZZZZ"],
+        " ": ["      ", "      ", "      ", "      ", "      "],
+      },
+    },
+    block: {
+      height: 3,
+      chars: {
+        A: ["█▀▀█", "█▄▄█", "█  █"],
+        B: ["█▀▀▄", "█▀▀▄", "█▄▄▀"],
+        C: ["█▀▀▀", "█   ", "█▄▄▄"],
+        D: ["█▀▀▄", "█  █", "█▄▄▀"],
+        E: ["█▀▀▀", "█▀▀ ", "█▄▄▄"],
+        F: ["█▀▀▀", "█▀▀ ", "█   "],
+        G: ["█▀▀▀", "█ ▀█", "█▄▄█"],
+        H: ["█  █", "█▀▀█", "█  █"],
+        I: ["▀█▀", " █ ", "▄█▄"],
+        J: ["  █", "  █", "█▄█"],
+        K: ["█ █", "█▀▄", "█ █"],
+        L: ["█  ", "█  ", "█▄▄"],
+        M: ["█▄ ▄█", "█ █ █", "█   █"],
+        N: ["█▄  █", "█ █ █", "█  ▀█"],
+        O: ["█▀▀█", "█  █", "█▄▄█"],
+        P: ["█▀▀█", "█▀▀▀", "█   "],
+        Q: ["█▀▀█", "█ ▄█", "█▄▄▀"],
+        R: ["█▀▀█", "█▀▀▄", "█  █"],
+        S: ["█▀▀▀", " ▀▀█", "▄▄▄█"],
+        T: ["▀▀█▀▀", "  █  ", "  █  "],
+        U: ["█  █", "█  █", "█▄▄█"],
+        V: ["█  █", "█  █", " ▀▀ "],
+        W: ["█   █", "█ █ █", "█▄ ▄█"],
+        X: ["▀▄ ▄▀", " ▄█▄ ", "▀▀ ▀▀"],
+        Y: ["█  █", " ▀▀ ", " ▀▀ "],
+        Z: ["▀▀▀█", " ▄▀ ", "█▄▄▄"],
+        " ": ["   ", "   ", "   "],
+      },
+    },
+    mini: {
+      height: 2,
+      chars: {
+        A: ["▲", "█"],
+        B: ["▀▄", "▄▀"],
+        C: ["▄", "▀"],
+        D: ["▀▄", "▄▀"],
+        E: ["▀", "▄"],
+        F: ["▀", "█"],
+        G: ["▄▄", "▀█"],
+        H: ["█▀█", "█ █"],
+        I: ["▀█▀", " █ "],
+        J: [" █", "▀▀"],
+        K: ["█▀", "█▄"],
+        L: ["█ ", "▀▀"],
+        M: ["█▀█", "█ █"],
+        N: ["█▄█", "█ █"],
+        O: ["█▀█", "▀▀▀"],
+        P: ["█▀", "█ "],
+        Q: ["█▀█", " ▀▄"],
+        R: ["█▀", "█▄"],
+        S: ["▀▄", "▄▀"],
+        T: ["▀█▀", " █ "],
+        U: ["█ █", "▀▀▀"],
+        V: ["█ █", " ▀ "],
+        W: ["█ █", "█▀█"],
+        X: ["▀▄▀", "▄▀▄"],
+        Y: ["█ █", " ▀ "],
+        Z: ["▀▀█", "█▀▀"],
+        " ": [" ", " "],
+      },
+    },
+    shadow: {
+      height: 4,
+      chars: {
+        A: ["  ▄█░  ", " █▀█░  ", "█▀▀▀█░ ", "█   █░ "],
+        B: ["█▀▀▀█░", "█▀▀▀█░", "█   █░", "█▄▄▄█░"],
+        C: [" ▄▄▄░ ", "█░░░  ", "█░░░  ", " ▀▀▀░ "],
+        D: ["█▀▀▀▄░", "█   █░", "█   █░", "█▄▄▄▀░"],
+        E: ["█▀▀▀▀░", "█▀▀▀░ ", "█░░░░ ", "█▄▄▄▄░"],
+        F: ["█▀▀▀▀░", "█▀▀▀░ ", "█░░░░ ", "█░░░░ "],
+        G: [" ▄▄▄░ ", "█░░░  ", "█  ▀█░", " ▀▀▀░ "],
+        H: ["█░  █░", "█▀▀▀█░", "█   █░", "█   █░"],
+        I: ["███░", " █░ ", " █░ ", "███░"],
+        J: ["  ▄█░", "   █░", "█  █░", " ▀▀░ "],
+        K: ["█░ █░", "█▀▀░ ", "█▀▀░ ", "█░ █░"],
+        L: ["█░   ", "█░   ", "█░   ", "█▀▀▀░"],
+        M: ["█▄░▄█░", "█ █ █░", "█   █░", "█   █░"],
+        N: ["█▄  █░", "█ █ █░", "█  ▀█░", "█   █░"],
+        O: [" ▄▄▄░ ", "█   █░", "█   █░", " ▀▀▀░ "],
+        P: ["█▀▀▀█░", "█▀▀▀░ ", "█░░░░ ", "█░░░░ "],
+        Q: [" ▄▄▄░ ", "█   █░", "█  ▄█░", " ▀▀▀▄░"],
+        R: ["█▀▀▀█░", "█▀▀█░ ", "█░ █░ ", "█░  █░"],
+        S: [" ▄▄▄░", "▀▄░░░", "░░▀▄░", "▄▄▄▀░"],
+        T: ["█▀▀▀█░", "  █░  ", "  █░  ", "  █░  "],
+        U: ["█░  █░", "█   █░", "█   █░", " ▀▀▀░ "],
+        V: ["█░  █░", "█   █░", " █ █░ ", "  ▀░  "],
+        W: ["█░  █░", "█ ▄ █░", "█▀ ▀█░", "█   █░"],
+        X: ["█░  █░", " ▀▄▀░ ", " ▄▀▄░ ", "█░  █░"],
+        Y: ["█░  █░", " ▀▄▀░ ", "  █░  ", "  █░  "],
+        Z: ["█▀▀▀█░", "  ▄▀░ ", " ▄▀░░ ", "█▄▄▄█░"],
+        " ": ["      ", "      ", "      ", "      "],
+      },
+    },
+    isometric: {
+      height: 4,
+      chars: {
+        A: ["  ▄█▄  ", " █▀ ▀█ ", "█▄▄▄▄▄█", "█     █"],
+        B: ["█▀▀▀▀▄", "█▄▄▄▄▀", "█    █", "█▄▄▄▄▀"],
+        C: [" ▄▀▀▀▀", "█     ", "█     ", " ▀▄▄▄▄"],
+        D: ["█▀▀▀▀▄", "█    █", "█    █", "█▄▄▄▄▀"],
+        E: ["█▀▀▀▀▀", "█▄▄▄  ", "█     ", "█▄▄▄▄▄"],
+        F: ["█▀▀▀▀▀", "█▄▄▄  ", "█     ", "█     "],
+        G: [" ▄▀▀▀▀", "█     ", "█  ▀▀█", " ▀▄▄▄▀"],
+        H: ["█    █", "█▄▄▄▄█", "█    █", "█    █"],
+        I: ["▀▀█▀▀", "  █  ", "  █  ", "▄▄█▄▄"],
+        J: ["   ▀█", "    █", "▄   █", " ▀▀▀ "],
+        K: ["█   ▄▀", "█ ▄▀  ", "█▀▄   ", "█  ▀▄ "],
+        L: ["█     ", "█     ", "█     ", "█▄▄▄▄▄"],
+        M: ["█▄   ▄█", "█ ▀▄▀ █", "█     █", "█     █"],
+        N: ["█▄    █", "█ ▀▄  █", "█   ▀▄█", "█     █"],
+        O: [" ▄▀▀▀▄ ", "█     █", "█     █", " ▀▄▄▄▀ "],
+        P: ["█▀▀▀▀▄", "█    █", "█▄▄▄▄▀", "█     "],
+        Q: [" ▄▀▀▀▄ ", "█     █", "█   ▄ █", " ▀▄▄▀▄▀"],
+        R: ["█▀▀▀▀▄", "█    █", "█▄▄▄▄▀", "█   ▀▄"],
+        S: [" ▄▀▀▀▀", "▀▄    ", "   ▀▄ ", "▄▄▄▄▀ "],
+        T: ["▀▀█▀▀▀", "  █   ", "  █   ", "  █   "],
+        U: ["█    █", "█    █", "█    █", " ▀▄▄▄▀"],
+        V: ["█    █", "█    █", " ▀▄▄▀ ", "  ▀▀  "],
+        W: ["█     █", "█  ▄  █", "█ ▀ ▀ █", "█▀   ▀█"],
+        X: ["▀▄   ▄▀", "  ▀▄▀  ", "  ▄▀▄  ", "▄▀   ▀▄"],
+        Y: ["▀▄   ▄▀", "  ▀▄▀  ", "   █   ", "   █   "],
+        Z: ["▀▀▀▀▀█", "   ▄▀ ", "  ▄▀  ", "█▄▄▄▄▄"],
+        " ": ["      ", "      ", "      ", "      "],
+      },
+    },
+    graffiti: {
+      height: 3,
+      chars: {
+        A: ["▄▀█", "█▀█", "▀ ▀"],
+        B: ["█▄▄", "█▄█", "▀▀▀"],
+        C: ["█▀▀", "█▄▄", "▀▀▀"],
+        D: ["█▀▄", "█▄▀", "▀▀▀"],
+        E: ["█▀▀", "█▀▀", "▀▀▀"],
+        F: ["█▀▀", "█▀▀", "▀  "],
+        G: ["█▀█", "█▄█", "▀▀▀"],
+        H: ["█ █", "█▀█", "▀ ▀"],
+        I: ["█", "█", "▀"],
+        J: ["  █", "█▄█", "▀▀▀"],
+        K: ["█▄▀", "█ █", "▀ ▀"],
+        L: ["█  ", "█▄▄", "▀▀▀"],
+        M: ["█▀▄▀█", "█ ▀ █", "▀   ▀"],
+        N: ["█▄ █", "█ ▀█", "▀  ▀"],
+        O: ["█▀█", "█▄█", "▀▀▀"],
+        P: ["█▀█", "█▀▀", "▀  "],
+        Q: ["█▀█", "█▀█", "▀▀█"],
+        R: ["█▀█", "█▀▄", "▀ ▀"],
+        S: ["▄▀█", "▄▀█", "▀▀▀"],
+        T: ["▀█▀", " █ ", " ▀ "],
+        U: ["█ █", "█▄█", "▀▀▀"],
+        V: ["█ █", "▀▄▀", " ▀ "],
+        W: ["█ █ █", "█▄▀▄█", "▀ ▀ ▀"],
+        X: ["▀▄▀", "█ █", "▀ ▀"],
+        Y: ["█ █", "▀▀█", "▀▀▀"],
+        Z: ["▀▀█", "▄▀ ", "▀▀▀"],
+        " ": ["   ", "   ", "   "],
+      },
+    },
+    bubble: {
+      height: 1,
+      chars: {
+        A: ["Ⓐ"],
+        B: ["Ⓑ"],
+        C: ["Ⓒ"],
+        D: ["Ⓓ"],
+        E: ["Ⓔ"],
+        F: ["Ⓕ"],
+        G: ["Ⓖ"],
+        H: ["Ⓗ"],
+        I: ["Ⓘ"],
+        J: ["Ⓙ"],
+        K: ["Ⓚ"],
+        L: ["Ⓛ"],
+        M: ["Ⓜ"],
+        N: ["Ⓝ"],
+        O: ["Ⓞ"],
+        P: ["Ⓟ"],
+        Q: ["Ⓠ"],
+        R: ["Ⓡ"],
+        S: ["Ⓢ"],
+        T: ["Ⓣ"],
+        U: ["Ⓤ"],
+        V: ["Ⓥ"],
+        W: ["Ⓦ"],
+        X: ["Ⓧ"],
+        Y: ["Ⓨ"],
+        Z: ["Ⓩ"],
+        " ": [" "],
+      },
+    },
+    digital: {
+      height: 3,
+      chars: {
+        A: [" █ ", "█▀█", "█ █"],
+        B: ["█▀▄", "█▀▄", "█▄▀"],
+        C: ["█▀▀", "█  ", "█▄▄"],
+        D: ["█▀▄", "█ █", "█▄▀"],
+        E: ["█▀▀", "█▀▀", "█▄▄"],
+        F: ["█▀▀", "█▀▀", "█  "],
+        G: ["█▀▀", "█ █", "█▄█"],
+        H: ["█ █", "█▀█", "█ █"],
+        I: ["█", "█", "█"],
+        J: ["  █", "  █", "█▄█"],
+        K: ["█ █", "█▀▄", "█ █"],
+        L: ["█  ", "█  ", "█▄▄"],
+        M: ["█▄█", "█ █", "█ █"],
+        N: ["█▄ █", "█ ▀█", "█  █"],
+        O: ["█▀█", "█ █", "█▄█"],
+        P: ["█▀█", "█▀▀", "█  "],
+        Q: ["█▀█", "█ █", "▀▀█"],
+        R: ["█▀█", "█▀▄", "█ █"],
+        S: ["█▀▀", "▀▀█", "▄▄█"],
+        T: ["▀█▀", " █ ", " █ "],
+        U: ["█ █", "█ █", "█▄█"],
+        V: ["█ █", "█ █", " ▀ "],
+        W: ["█ █", "█▄█", "█ █"],
+        X: ["█ █", " █ ", "█ █"],
+        Y: ["█ █", "▀▀█", " ▀ "],
+        Z: ["▀▀█", " █ ", "█▄▄"],
+        " ": ["   ", "   ", "   "],
+      },
+    },
+    std: {
+      height: 6,
+      chars: {
+        A: [
+          " █████╗ ",
+          "██╔══██╗",
+          "███████║",
+          "██╔══██║",
+          "██║  ██║",
+          "╚═╝  ╚═╝",
+        ],
+        B: [
+          "██████╗ ",
+          "██╔══██╗",
+          "██████╔╝",
+          "██╔══██╗",
+          "██████╔╝",
+          "╚═════╝ ",
+        ],
+        C: [
+          " ██████╗",
+          "██╔════╝",
+          "██║     ",
+          "██║     ",
+          "╚██████╗",
+          " ╚═════╝",
+        ],
+        D: [
+          "██████╗ ",
+          "██╔══██╗",
+          "██║  ██║",
+          "██║  ██║",
+          "██████╔╝",
+          "╚═════╝ ",
+        ],
+        E: [
+          "███████╗",
+          "██╔════╝",
+          "█████╗  ",
+          "██╔══╝  ",
+          "███████╗",
+          "╚══════╝",
+        ],
+        F: [
+          "███████╗",
+          "██╔════╝",
+          "█████╗  ",
+          "██╔══╝  ",
+          "██║     ",
+          "╚═╝     ",
+        ],
+        G: [
+          " ██████╗ ",
+          "██╔════╝ ",
+          "██║  ███╗",
+          "██║   ██║",
+          "╚██████╔╝",
+          " ╚═════╝ ",
+        ],
+        H: [
+          "██╗  ██╗",
+          "██║  ██║",
+          "███████║",
+          "██╔══██║",
+          "██║  ██║",
+          "╚═╝  ╚═╝",
+        ],
+        I: ["██╗", "██║", "██║", "██║", "██║", "╚═╝"],
+        J: [
+          "     ██╗",
+          "     ██║",
+          "     ██║",
+          "██   ██║",
+          "╚█████╔╝",
+          " ╚════╝ ",
+        ],
+        K: [
+          "██╗  ██╗",
+          "██║ ██╔╝",
+          "█████╔╝ ",
+          "██╔═██╗ ",
+          "██║  ██╗",
+          "╚═╝  ╚═╝",
+        ],
+        L: [
+          "██╗     ",
+          "██║     ",
+          "██║     ",
+          "██║     ",
+          "███████╗",
+          "╚══════╝",
+        ],
+        M: [
+          "███╗   ███╗",
+          "████╗ ████║",
+          "██╔████╔██║",
+          "██║╚██╔╝██║",
+          "██║ ╚═╝ ██║",
+          "╚═╝     ╚═╝",
+        ],
+        N: [
+          "███╗   ██╗",
+          "████╗  ██║",
+          "██╔██╗ ██║",
+          "██║╚██╗██║",
+          "██║ ╚████║",
+          "╚═╝  ╚═══╝",
+        ],
+        O: [
+          " ██████╗ ",
+          "██╔═══██╗",
+          "██║   ██║",
+          "██║   ██║",
+          "╚██████╔╝",
+          " ╚═════╝ ",
+        ],
+        P: [
+          "██████╗ ",
+          "██╔══██╗",
+          "██████╔╝",
+          "██╔═══╝ ",
+          "██║     ",
+          "╚═╝     ",
+        ],
+        Q: [
+          " ██████╗ ",
+          "██╔═══██╗",
+          "██║   ██║",
+          "██║▄▄ ██║",
+          "╚██████╔╝",
+          " ╚══▀▀═╝ ",
+        ],
+        R: [
+          "██████╗ ",
+          "██╔══██╗",
+          "██████╔╝",
+          "██╔══██╗",
+          "██║  ██║",
+          "╚═╝  ╚═╝",
+        ],
+        S: [
+          "███████╗",
+          "██╔════╝",
+          "███████╗",
+          "╚════██║",
+          "███████║",
+          "╚══════╝",
+        ],
+        T: [
+          "████████╗",
+          "╚══██╔══╝",
+          "   ██║   ",
+          "   ██║   ",
+          "   ██║   ",
+          "   ╚═╝   ",
+        ],
+        U: [
+          "██╗   ██╗",
+          "██║   ██║",
+          "██║   ██║",
+          "██║   ██║",
+          "╚██████╔╝",
+          " ╚═════╝ ",
+        ],
+        V: [
+          "██╗   ██╗",
+          "██║   ██║",
+          "██║   ██║",
+          "╚██╗ ██╔╝",
+          " ╚████╔╝ ",
+          "  ╚═══╝  ",
+        ],
+        W: [
+          "██╗    ██╗",
+          "██║    ██║",
+          "██║ █╗ ██║",
+          "██║███╗██║",
+          "╚███╔███╔╝",
+          " ╚══╝╚══╝ ",
+        ],
+        X: [
+          "██╗  ██╗",
+          "╚██╗██╔╝",
+          " ╚███╔╝ ",
+          " ██╔██╗ ",
+          "██╔╝ ██╗",
+          "╚═╝  ╚═╝",
+        ],
+        Y: [
+          "██╗   ██╗",
+          "╚██╗ ██╔╝",
+          " ╚████╔╝ ",
+          "  ╚██╔╝  ",
+          "   ██║   ",
+          "   ╚═╝   ",
+        ],
+        Z: [
+          "███████╗",
+          "╚══███╔╝",
+          "  ███╔╝ ",
+          " ███╔╝  ",
+          "███████╗",
+          "╚══════╝",
+        ],
+        " ": ["    ", "    ", "    ", "    ", "    ", "    "],
+      },
+    },
   };
 
-  const maxLines = 6;
-  const lines: string[] = Array(maxLines).fill("");
+  const selectedFont = fonts[font] || fonts.std;
+  const lines: string[] = Array(selectedFont.height).fill("");
 
   for (const char of upperText) {
-    const art = stdChars[char] || stdChars[" "];
-    for (let i = 0; i < maxLines; i++) {
-      lines[i] += (art[i] || "    ") + " ";
+    const art = selectedFont.chars[char] || selectedFont.chars[" "];
+    for (let i = 0; i < selectedFont.height; i++) {
+      lines[i] += (art[i] || " ".repeat(art[0]?.length || 4)) + " ";
     }
   }
 
@@ -1188,6 +1415,36 @@ export interface TransformOptions {
   decoration?: string;
   customSettings?: Record<string, any>;
 }
+
+const SUBSCRIPT_MAP: Record<string, string> = {
+  "0": "₀",
+  "1": "₁",
+  "2": "₂",
+  "3": "₃",
+  "4": "₄",
+  "5": "₅",
+  "6": "₆",
+  "7": "₇",
+  "8": "₈",
+  "9": "₉",
+  a: "ₐ",
+  e: "ₑ",
+  h: "ₕ",
+  i: "ᵢ",
+  j: "ⱼ",
+  k: "ₖ",
+  l: "ₗ",
+  m: "ₘ",
+  n: "ₙ",
+  o: "ₒ",
+  p: "ₚ",
+  r: "ᵣ",
+  s: "ₛ",
+  t: "ₜ",
+  u: "ᵤ",
+  v: "ᵥ",
+  x: "ₓ",
+};
 
 // Helper to apply advanced styles
 function applyFontStyle(text: string, style: string): string {
@@ -1316,50 +1573,6 @@ function applyFontStyle(text: string, style: string): string {
   }
 }
 
-// ... (Keep existing maps below for fallback compatibility)
-// We will simply define SUBSCRIPT_MAP here
-const SUBSCRIPT_MAP: Record<string, string> = {
-  "0": "₀",
-  "1": "₁",
-  "2": "₂",
-  "3": "₃",
-  "4": "₄",
-  "5": "₅",
-  "6": "₆",
-  "7": "₇",
-  "8": "₈",
-  "9": "₉",
-  a: "ₐ",
-  e: "ₑ",
-  h: "ₕ",
-  i: "ᵢ",
-  j: "ⱼ",
-  k: "ₖ",
-  l: "ₗ",
-  m: "ₘ",
-  n: "ₙ",
-  o: "ₒ",
-  p: "ₚ",
-  r: "ᵣ",
-  s: "ₛ",
-  t: "ₜ",
-  u: "ᵤ",
-  v: "ᵥ",
-  x: "ₓ",
-};
-
-// ... Include original maps here so we don't break simple refs ...
-// (I will assume BOLD_MAP, MONOSPACE_MAP etc are available in closure because I'm replacing the end of file, but I should be careful)
-// Actually I am replacing lines 1200-1286 mostly (switch cases), but I need to make sure maps are available.
-// The tool `replace_file_content` replaces a BLOCK.
-// I will scroll up to see where BOLD_MAP is defined. It is defined at the top.
-// My replacement will likely start around line 858 to keep maps and replace helper functions?
-// PROPER PLAN:
-// 1. I will replace `function transformText` ... to the end.
-// 2. I will ADD `applyFontStyle` before it or inside.
-
-// Let's refine the replacement to targeting `transformText`.
-
 export function transformText(
   text: string,
   slug: string,
@@ -1440,20 +1653,355 @@ export function transformText(
   // ... Original switch for other tools ...
   switch (s) {
     case "cursed-text":
-    case "corrupted-text":
-      return corruptText(workingText, customSettings.intensity || intensity);
+    case "corrupted-text": {
+      const fontStyle = customSettings.fontStyle || "zalgo";
+      const baseIntensity = customSettings.intensity || intensity;
+
+      // Apply font style first
+      let styledText = workingText;
+
+      // Font style character maps for various Unicode ranges
+      const cursedFontMaps: Record<string, Record<string, string>> = {
+        cyrillic: {
+          a: "Ѧ",
+          b: "Ъ",
+          c: "Ҁ",
+          d: "Ԁ",
+          e: "Є",
+          f: "Ғ",
+          g: "Ԍ",
+          h: "Ң",
+          i: "І",
+          j: "Ј",
+          k: "Қ",
+          l: "Ԯ",
+          m: "М",
+          n: "Ҋ",
+          o: "Ө",
+          p: "Ҏ",
+          q: "Ҩ",
+          r: "Я",
+          s: "Ѕ",
+          t: "Ҭ",
+          u: "Ц",
+          v: "Ѵ",
+          w: "Ш",
+          x: "Җ",
+          y: "Ұ",
+          z: "Ҙ",
+        },
+        tibetan: {
+          a: "ཨ",
+          b: "བ",
+          c: "ཅ",
+          d: "ད",
+          e: "ཨེ",
+          f: "ཕ",
+          g: "ག",
+          h: "ཧ",
+          i: "ཨི",
+          j: "ཇ",
+          k: "ཀ",
+          l: "ལ",
+          m: "མ",
+          n: "ན",
+          o: "ཨོ",
+          p: "པ",
+          q: "ཀྭ",
+          r: "ར",
+          s: "ས",
+          t: "ཏ",
+          u: "ཨུ",
+          v: "ཝ",
+          w: "ཝ",
+          x: "ཀྵ",
+          y: "ཡ",
+          z: "ཟ",
+        },
+        ethiopic: {
+          a: "ኣ",
+          b: "ብ",
+          c: "ች",
+          d: "ድ",
+          e: "ኤ",
+          f: "ፍ",
+          g: "ግ",
+          h: "ህ",
+          i: "ኢ",
+          j: "ጅ",
+          k: "ክ",
+          l: "ል",
+          m: "ም",
+          n: "ን",
+          o: "ኦ",
+          p: "ፕ",
+          q: "ቅ",
+          r: "ር",
+          s: "ስ",
+          t: "ት",
+          u: "ኡ",
+          v: "ቭ",
+          w: "ው",
+          x: "ሽ",
+          y: "ይ",
+          z: "ዝ",
+        },
+        vai: {
+          a: "ꔀ",
+          b: "ꕫ",
+          c: "ꔲ",
+          d: "ꕒ",
+          e: "ꗂ",
+          f: "ꕘ",
+          g: "ꕬ",
+          h: "ꖅ",
+          i: "ꔤ",
+          j: "ꕽ",
+          k: "ꔅ",
+          l: "ꕞ",
+          m: "ꕮ",
+          n: "ꕯ",
+          o: "ꖂ",
+          p: "ꕶ",
+          q: "ꔳ",
+          r: "ꕃ",
+          s: "ꖬ",
+          t: "ꕧ",
+          u: "ꖄ",
+          v: "ꖆ",
+          w: "ꖇ",
+          x: "ꔵ",
+          y: "ꖏ",
+          z: "ꖓ",
+        },
+        canadian: {
+          a: "ᐊ",
+          b: "ᑊ",
+          c: "ᑲ",
+          d: "ᑎ",
+          e: "ᐁ",
+          f: "ᖴ",
+          g: "ᒐ",
+          h: "ᕼ",
+          i: "ᐃ",
+          j: "ᒍ",
+          k: "ᕮ",
+          l: "ᒡ",
+          m: "ᒪ",
+          n: "ᓀ",
+          o: "ᐅ",
+          p: "ᑭ",
+          q: "ᕿ",
+          r: "ᕆ",
+          s: "ᔅ",
+          t: "ᑦ",
+          u: "ᐆ",
+          v: "ᕓ",
+          w: "ᐧ",
+          x: "ᕁ",
+          y: "ᔨ",
+          z: "ᔑ",
+        },
+        cherokee: {
+          a: "Ꭺ",
+          b: "Ᏸ",
+          c: "Ꮸ",
+          d: "Ꮧ",
+          e: "Ꭱ",
+          f: "Ᏺ",
+          g: "Ᏻ",
+          h: "Ꮵ",
+          i: "Ꭲ",
+          j: "Ꮴ",
+          k: "Ꮶ",
+          l: "Ꮮ",
+          m: "Ꮇ",
+          n: "Ꮑ",
+          o: "Ꭳ",
+          p: "Ꭾ",
+          q: "Ꮖ",
+          r: "Ꮢ",
+          s: "Ꮝ",
+          t: "Ꮦ",
+          u: "Ꮼ",
+          v: "Ꭴ",
+          w: "Ꮃ",
+          x: "Ꮜ",
+          y: "Ᏹ",
+          z: "Ꮓ",
+        },
+        cjk: {
+          a: "丹",
+          b: "乃",
+          c: "匚",
+          d: "刀",
+          e: "乇",
+          f: "下",
+          g: "呂",
+          h: "卄",
+          i: "工",
+          j: "ヨ",
+          k: "片",
+          l: "し",
+          m: "冊",
+          n: "れ",
+          o: "口",
+          p: "尸",
+          q: "㔿",
+          r: "尺",
+          s: "丂",
+          t: "丁",
+          u: "凵",
+          v: "リ",
+          w: "山",
+          x: "メ",
+          y: "ㄚ",
+          z: "乙",
+        },
+      };
+
+      // Apply font style if not using zalgo base
+      if (
+        fontStyle !== "zalgo" &&
+        fontStyle !== "extendedDiacritical" &&
+        fontStyle !== "halfMarks" &&
+        fontStyle !== "enclosingMarks"
+      ) {
+        const fontMap =
+          cursedFontMaps[fontStyle] || UNICODE_MAPS[fontStyle] || {};
+        if (Object.keys(fontMap).length > 0) {
+          styledText = mapChars(workingText, fontMap);
+        }
+      }
+
+      // Apply corruption with varying combining characters based on font style
+      const combiningMarks: Record<string, string[]> = {
+        zalgo: [
+          "\u0300",
+          "\u0301",
+          "\u0302",
+          "\u0303",
+          "\u0304",
+          "\u0305",
+          "\u0306",
+          "\u0307",
+          "\u0308",
+          "\u0309",
+          "\u030A",
+          "\u030B",
+          "\u030C",
+          "\u030D",
+          "\u030E",
+          "\u030F",
+          "\u0310",
+          "\u0311",
+          "\u0312",
+          "\u0313",
+          "\u0314",
+          "\u0315",
+          "\u031A",
+          "\u031B",
+          "\u033D",
+          "\u033E",
+          "\u033F",
+          "\u0340",
+          "\u0341",
+          "\u0342",
+          "\u0343",
+          "\u0344",
+          "\u0346",
+          "\u034A",
+          "\u034B",
+          "\u034C",
+          "\u0350",
+          "\u0351",
+          "\u0352",
+          "\u0357",
+          "\u035B",
+          "\u0363",
+          "\u0364",
+          "\u0365",
+          "\u0366",
+          "\u0367",
+          "\u0368",
+          "\u0369",
+          "\u036A",
+          "\u036B",
+          "\u036C",
+          "\u036D",
+          "\u036E",
+          "\u036F",
+        ],
+        extendedDiacritical: [
+          "\u1AB0",
+          "\u1AB1",
+          "\u1AB2",
+          "\u1AB3",
+          "\u1AB4",
+          "\u1AB5",
+          "\u1AB6",
+          "\u1AB7",
+          "\u1AB8",
+          "\u1AB9",
+          "\u1ABA",
+          "\u1ABB",
+          "\u1ABC",
+          "\u1ABD",
+        ],
+        halfMarks: [
+          "\uFE20",
+          "\uFE21",
+          "\uFE22",
+          "\uFE23",
+          "\uFE24",
+          "\uFE25",
+          "\uFE26",
+        ],
+        enclosingMarks: [
+          "\u20DD",
+          "\u20DE",
+          "\u20DF",
+          "\u20E0",
+          "\u20E2",
+          "\u20E3",
+          "\u20E4",
+        ],
+      };
+
+      const marks = combiningMarks[fontStyle] || combiningMarks.zalgo;
+
+      return styledText
+        .split("")
+        .map((char) => {
+          if (char === " ") return char;
+          let result = char;
+          const numMarks = Math.floor(Math.random() * baseIntensity) + 1;
+          for (let i = 0; i < numMarks; i++) {
+            result += marks[Math.floor(Math.random() * marks.length)];
+          }
+          return result;
+        })
+        .join("");
+    }
     case "zalgo-text": {
+      const fontStyle = customSettings.fontStyle || "classic";
       const { up, middle, down, intensity: customIntensity } = customSettings;
       const finalIntensity = customIntensity || intensity;
 
+      // Apply font style first if not classic
+      let styledText = workingText;
+      if (fontStyle !== "classic") {
+        styledText = applyFontStyle(workingText, fontStyle);
+      }
+
       if (up !== undefined || middle !== undefined || down !== undefined) {
-        return corruptText(workingText, finalIntensity, {
+        return corruptText(styledText, finalIntensity, {
           up: up ?? 0,
           middle: middle ?? 0,
           down: down ?? 0,
         });
       }
-      return corruptText(workingText, finalIntensity);
+      return corruptText(styledText, finalIntensity);
     }
     case "demonic-text": {
       const demonicStyle = customSettings.demonicStyle || "gothic";
@@ -1512,15 +2060,50 @@ export function transformText(
     }
 
     case "glitch-text": {
-      // ... existing glitch logic ...
+      const fontStyle = customSettings.fontStyle || "standard";
+      const glitchLevel = customSettings.glitchLevel || 5;
       const gType = customSettings.glitchType || "digital";
-      const finalIntensity = customSettings.intensity || intensity;
-      return workingText
+
+      // Apply font style first if not standard
+      let styledText = workingText;
+      if (fontStyle !== "standard") {
+        styledText = applyFontStyle(workingText, fontStyle);
+      }
+
+      // Glitch characters for various types
+      const glitchChars: Record<string, string[]> = {
+        digital: ["░", "▒", "▓", "█", "▄", "▀", "■", "□", "▪", "▫"],
+        vhs: ["▓", "▒", "░", "█", "▌", "▐", "▀", "▄"],
+        static: ["░", "▒", "▓", "·", ":", ";", "!", "?", "*"],
+        matrix: ["0", "1", "ー", "｜", "／", "＼"],
+        cyber: ["⟨", "⟩", "⌈", "⌉", "⌊", "⌋", "⟪", "⟫", "⦃", "⦄"],
+      };
+
+      const glitchSet = glitchChars[gType] || glitchChars.digital;
+      const glitchProbability = glitchLevel / 20; // 0.05 to 0.5
+
+      return styledText
         .split("")
         .map((c) => {
-          if (gType === "static" && Math.random() < 0.2) return "░";
-          if (gType === "vhs" && Math.random() < 0.1) return "▓";
-          return corruptText(c, Math.ceil(finalIntensity / 4));
+          if (c === " ") return c;
+
+          // Random glitch character insertion based on level
+          if (Math.random() < glitchProbability) {
+            const glitchChar =
+              glitchSet[Math.floor(Math.random() * glitchSet.length)];
+            if (Math.random() < 0.5) {
+              return glitchChar;
+            } else {
+              return c + glitchChar;
+            }
+          }
+
+          // Apply corruption based on glitch level
+          if (Math.random() < glitchProbability * 0.5) {
+            return corruptText(c, Math.ceil(glitchLevel / 3));
+          }
+
+          return c;
         })
         .join("");
     }
@@ -2649,21 +3232,374 @@ export function transformText(
         )
         .join(sep);
     }
-    case "binary":
-      return toBinary(
-        workingText,
-        customSettings.bits || "8",
-        customSettings.prefix || false,
-      );
-    case "hex-code":
-      return toHex(workingText);
-    case "base64":
-      return toBase64(workingText);
+    case "binary": {
+      const conversionType = customSettings.conversionType || "textToBinary";
+      const bits = customSettings.bits || "8";
+      const showPrefix = customSettings.prefix || false;
+      const separator =
+        customSettings.separator === "none"
+          ? ""
+          : customSettings.separator === "comma"
+            ? ", "
+            : customSettings.separator === "newline"
+              ? "\n"
+              : " ";
+
+      // Helper functions for conversions
+      const textToBinary = (text: string) => {
+        const bitCount = parseInt(bits) || 8;
+        const prefix = showPrefix ? "0b" : "";
+        return text
+          .split("")
+          .map(
+            (char) =>
+              prefix + char.charCodeAt(0).toString(2).padStart(bitCount, "0"),
+          )
+          .join(separator);
+      };
+
+      const binaryToText = (binary: string) => {
+        const cleanBinary = binary.replace(/0b/gi, "").replace(/[^01\s]/g, "");
+        const bytes = cleanBinary.split(/\s+/).filter((b) => b);
+        return bytes.map((b) => String.fromCharCode(parseInt(b, 2))).join("");
+      };
+
+      const textToHex = (text: string) => {
+        const prefix = showPrefix ? "0x" : "";
+        return text
+          .split("")
+          .map(
+            (char) =>
+              prefix +
+              char.charCodeAt(0).toString(16).toUpperCase().padStart(2, "0"),
+          )
+          .join(separator);
+      };
+
+      const hexToText = (hex: string) => {
+        const cleanHex = hex.replace(/0x/gi, "").replace(/[^0-9a-fA-F\s]/g, "");
+        const bytes = cleanHex.match(/.{1,2}/g) || [];
+        return bytes.map((b) => String.fromCharCode(parseInt(b, 16))).join("");
+      };
+
+      const textToDecimal = (text: string) => {
+        return text
+          .split("")
+          .map((char) => char.charCodeAt(0).toString())
+          .join(separator);
+      };
+
+      const decimalToText = (dec: string) => {
+        const numbers = dec.split(/[\s,]+/).filter((n) => n);
+        return numbers
+          .map((n) => String.fromCharCode(parseInt(n, 10)))
+          .join("");
+      };
+
+      const textToOctal = (text: string) => {
+        const prefix = showPrefix ? "0o" : "";
+        return text
+          .split("")
+          .map((char) => prefix + char.charCodeAt(0).toString(8))
+          .join(separator);
+      };
+
+      const octalToText = (oct: string) => {
+        const cleanOctal = oct.replace(/0o/gi, "").replace(/[^0-7\s]/g, "");
+        const bytes = cleanOctal.split(/\s+/).filter((b) => b);
+        return bytes.map((b) => String.fromCharCode(parseInt(b, 8))).join("");
+      };
+
+      const binaryToHex = (binary: string) => {
+        const cleanBinary = binary.replace(/0b/gi, "").replace(/[^01\s]/g, "");
+        const bytes = cleanBinary.split(/\s+/).filter((b) => b);
+        const prefix = showPrefix ? "0x" : "";
+        return bytes
+          .map((b) => prefix + parseInt(b, 2).toString(16).toUpperCase())
+          .join(separator);
+      };
+
+      const hexToBinary = (hex: string) => {
+        const cleanHex = hex.replace(/0x/gi, "").replace(/[^0-9a-fA-F\s]/g, "");
+        const bytes = cleanHex.match(/.{1,2}/g) || [];
+        const prefix = showPrefix ? "0b" : "";
+        return bytes
+          .map((b) => prefix + parseInt(b, 16).toString(2).padStart(8, "0"))
+          .join(separator);
+      };
+
+      const binaryToDecimal = (binary: string) => {
+        const cleanBinary = binary.replace(/0b/gi, "").replace(/[^01\s]/g, "");
+        const bytes = cleanBinary.split(/\s+/).filter((b) => b);
+        return bytes.map((b) => parseInt(b, 2).toString()).join(separator);
+      };
+
+      const decimalToBinary = (dec: string) => {
+        const numbers = dec.split(/[\s,]+/).filter((n) => n);
+        const bitCount = parseInt(bits) || 8;
+        const prefix = showPrefix ? "0b" : "";
+        return numbers
+          .map(
+            (n) => prefix + parseInt(n, 10).toString(2).padStart(bitCount, "0"),
+          )
+          .join(separator);
+      };
+
+      const hexToDecimal = (hex: string) => {
+        const cleanHex = hex.replace(/0x/gi, "").replace(/[^0-9a-fA-F\s]/g, "");
+        const bytes = cleanHex.match(/.{1,2}/g) || [];
+        return bytes.map((b) => parseInt(b, 16).toString()).join(separator);
+      };
+
+      const decimalToHex = (dec: string) => {
+        const numbers = dec.split(/[\s,]+/).filter((n) => n);
+        const prefix = showPrefix ? "0x" : "";
+        return numbers
+          .map((n) => prefix + parseInt(n, 10).toString(16).toUpperCase())
+          .join(separator);
+      };
+
+      const octalToDecimal = (oct: string) => {
+        const cleanOctal = oct.replace(/0o/gi, "").replace(/[^0-7\s]/g, "");
+        const bytes = cleanOctal.split(/\s+/).filter((b) => b);
+        return bytes.map((b) => parseInt(b, 8).toString()).join(separator);
+      };
+
+      const decimalToOctal = (dec: string) => {
+        const numbers = dec.split(/[\s,]+/).filter((n) => n);
+        const prefix = showPrefix ? "0o" : "";
+        return numbers
+          .map((n) => prefix + parseInt(n, 10).toString(8))
+          .join(separator);
+      };
+
+      // Execute the selected conversion
+      switch (conversionType) {
+        case "textToBinary":
+          return textToBinary(workingText);
+        case "binaryToText":
+          return binaryToText(workingText);
+        case "textToHex":
+          return textToHex(workingText);
+        case "hexToText":
+          return hexToText(workingText);
+        case "textToDecimal":
+          return textToDecimal(workingText);
+        case "decimalToText":
+          return decimalToText(workingText);
+        case "textToOctal":
+          return textToOctal(workingText);
+        case "octalToText":
+          return octalToText(workingText);
+        case "binaryToHex":
+          return binaryToHex(workingText);
+        case "hexToBinary":
+          return hexToBinary(workingText);
+        case "binaryToDecimal":
+          return binaryToDecimal(workingText);
+        case "decimalToBinary":
+          return decimalToBinary(workingText);
+        case "hexToDecimal":
+          return hexToDecimal(workingText);
+        case "decimalToHex":
+          return decimalToHex(workingText);
+        case "octalToDecimal":
+          return octalToDecimal(workingText);
+        case "decimalToOctal":
+          return decimalToOctal(workingText);
+        default:
+          return textToBinary(workingText);
+      }
+    }
+    case "hex-code": {
+      const isUpper = customSettings.uppercase !== false;
+      const showPrefix = customSettings.prefix === true;
+      const sep = customSettings.separator ?? " ";
+
+      return workingText
+        .split("")
+        .map((char) => {
+          let hex = char.charCodeAt(0).toString(16);
+          if (isUpper) hex = hex.toUpperCase();
+          if (hex.length === 1) hex = "0" + hex;
+          return (showPrefix ? "0x" : "") + hex;
+        })
+        .join(sep);
+    }
+    case "base64": {
+      const mode = customSettings.mode || "encode";
+      const urlSafe = customSettings.urlSafe === true;
+      const usePadding = customSettings.padding !== false;
+
+      if (mode === "decode") {
+        try {
+          return atob(workingText);
+        } catch (e) {
+          return "Invalid Base64 Input";
+        }
+      }
+
+      let result = btoa(workingText);
+      if (urlSafe) {
+        result = result.replace(/\+/g, "-").replace(/\//g, "_");
+      }
+      if (!usePadding) {
+        result = result.replace(/=+$/, "");
+      }
+      return result;
+    }
+    case "reverse-text": {
+      const mode = customSettings.mode || "entire";
+      if (mode === "words") {
+        return workingText
+          .split(" ")
+          .map((w) => w.split("").reverse().join(""))
+          .join(" ");
+      } else if (mode === "vertical") {
+        return mapChars(workingText, UPSIDE_DOWN_MAP);
+      }
+      return workingText.split("").reverse().join("");
+    }
+    case "caesar-cipher": {
+      const shift = customSettings.shift || 3;
+      const direction = customSettings.direction || "encode";
+      const actualShift = direction === "encode" ? shift : 26 - (shift % 26);
+
+      return workingText
+        .split("")
+        .map((char) => {
+          if (char.match(/[a-z]/i)) {
+            const code = char.charCodeAt(0);
+            const base = code >= 97 ? 97 : 65;
+            return String.fromCharCode(
+              ((code - base + actualShift) % 26) + base,
+            );
+          }
+          return char;
+        })
+        .join("");
+    }
+    case "rot13": {
+      return workingText
+        .split("")
+        .map((char) => {
+          if (char.match(/[a-z]/i)) {
+            const code = char.charCodeAt(0);
+            const base = code >= 97 ? 97 : 65;
+            return String.fromCharCode(((code - base + 13) % 26) + base);
+          }
+          return char;
+        })
+        .join("");
+    }
+    case "nato-phonetic": {
+      const nato: Record<string, string> = {
+        a: "Alpha",
+        b: "Bravo",
+        c: "Charlie",
+        d: "Delta",
+        e: "Echo",
+        f: "Foxtrot",
+        g: "Golf",
+        h: "Hotel",
+        i: "India",
+        j: "Juliett",
+        k: "Kilo",
+        l: "Lima",
+        m: "Mike",
+        n: "November",
+        o: "Oscar",
+        p: "Papa",
+        q: "Quebec",
+        r: "Romeo",
+        s: "Sierra",
+        t: "Tango",
+        u: "Uniform",
+        v: "Victor",
+        w: "Whiskey",
+        x: "X-ray",
+        y: "Yankee",
+        z: "Zulu",
+        "0": "Zero",
+        "1": "One",
+        "2": "Two",
+        "3": "Three",
+        "4": "Four",
+        "5": "Five",
+        "6": "Six",
+        "7": "Seven",
+        "8": "Eight",
+        "9": "Nine",
+      };
+      const sep = customSettings.separator || "-";
+      return workingText
+        .toLowerCase()
+        .split("")
+        .map((c) => nato[c] || c)
+        .join(sep);
+    }
+    case "atbash": {
+      const maintainCase = customSettings.maintainCase !== false;
+      return workingText
+        .split("")
+        .map((char) => {
+          if (char.match(/[a-z]/i)) {
+            const code = char.charCodeAt(0);
+            if (code >= 97 && code <= 122) {
+              return String.fromCharCode(122 - (code - 97));
+            } else if (code >= 65 && code <= 90) {
+              return String.fromCharCode(90 - (code - 65));
+            }
+          }
+          return char;
+        })
+        .join("");
+    }
+    case "leetspeak": {
+      const level = customSettings.level || "basic";
+      const basic: Record<string, string> = {
+        a: "4",
+        e: "3",
+        i: "1",
+        o: "0",
+        s: "5",
+        t: "7",
+      };
+      const advanced: Record<string, string> = {
+        ...basic,
+        b: "8",
+        g: "9",
+        l: "1",
+        z: "2",
+      };
+      const elite: Record<string, string> = {
+        ...advanced,
+        a: "@",
+        c: "(",
+        d: "|)",
+        f: "ph",
+        h: "|-|",
+        k: "|<",
+        m: "|\\/|",
+        n: "|\\|",
+        r: "|2",
+        u: "|_|",
+        v: "\\/",
+        w: "\\/\\/",
+      };
+      const map =
+        level === "elite" ? elite : level === "advanced" ? advanced : basic;
+      return workingText
+        .toLowerCase()
+        .split("")
+        .map((c) => map[c] || c)
+        .join("");
+    }
     case "wingdings": {
       const style = customSettings.style || "classic";
       const addSpacing = customSettings.spacing === true;
 
-      // Different wingdings character sets
+      // Different wingdings character sets - 15 styles
       const wingdingsSets: Record<string, Record<string, string>> = {
         classic: {
           a: "✌",
@@ -2749,6 +3685,342 @@ export function transformText(
           y: "✤",
           z: "✥",
         },
+        wingdings2: {
+          a: "✰",
+          b: "✱",
+          c: "✲",
+          d: "✳",
+          e: "✴",
+          f: "✵",
+          g: "✶",
+          h: "✷",
+          i: "✸",
+          j: "✹",
+          k: "✺",
+          l: "✻",
+          m: "✼",
+          n: "✽",
+          o: "✾",
+          p: "✿",
+          q: "❀",
+          r: "❁",
+          s: "❂",
+          t: "❃",
+          u: "❄",
+          v: "❅",
+          w: "❆",
+          x: "❇",
+          y: "❈",
+          z: "❉",
+        },
+        wingdings3: {
+          a: "➀",
+          b: "➁",
+          c: "➂",
+          d: "➃",
+          e: "➄",
+          f: "➅",
+          g: "➆",
+          h: "➇",
+          i: "➈",
+          j: "➉",
+          k: "➊",
+          l: "➋",
+          m: "➌",
+          n: "➍",
+          o: "➎",
+          p: "➏",
+          q: "➐",
+          r: "➑",
+          s: "➒",
+          t: "➓",
+          u: "⓵",
+          v: "⓶",
+          w: "⓷",
+          x: "⓸",
+          y: "⓹",
+          z: "⓺",
+        },
+        zodiac: {
+          a: "♈",
+          b: "♉",
+          c: "♊",
+          d: "♋",
+          e: "♌",
+          f: "♍",
+          g: "♎",
+          h: "♏",
+          i: "♐",
+          j: "♑",
+          k: "♒",
+          l: "♓",
+          m: "☉",
+          n: "☽",
+          o: "☿",
+          p: "♀",
+          q: "♂",
+          r: "♃",
+          s: "♄",
+          t: "♅",
+          u: "♆",
+          v: "♇",
+          w: "⚳",
+          x: "⚴",
+          y: "⚵",
+          z: "⚶",
+        },
+        arrows: {
+          a: "→",
+          b: "←",
+          c: "↑",
+          d: "↓",
+          e: "↔",
+          f: "↕",
+          g: "↖",
+          h: "↗",
+          i: "↘",
+          j: "↙",
+          k: "⇐",
+          l: "⇒",
+          m: "⇑",
+          n: "⇓",
+          o: "⇔",
+          p: "⇕",
+          q: "➜",
+          r: "➝",
+          s: "➞",
+          t: "➟",
+          u: "➠",
+          v: "➡",
+          w: "➢",
+          x: "➣",
+          y: "➤",
+          z: "➥",
+        },
+        geometric: {
+          a: "◉",
+          b: "◊",
+          c: "○",
+          d: "◌",
+          e: "◍",
+          f: "◎",
+          g: "●",
+          h: "◐",
+          i: "◑",
+          j: "◒",
+          k: "◓",
+          l: "◔",
+          m: "◕",
+          n: "◖",
+          o: "◗",
+          p: "◘",
+          q: "◙",
+          r: "◚",
+          s: "◛",
+          t: "◜",
+          u: "◝",
+          v: "◞",
+          w: "◟",
+          x: "◠",
+          y: "◡",
+          z: "◢",
+        },
+        music: {
+          a: "♩",
+          b: "♪",
+          c: "♫",
+          d: "♬",
+          e: "♭",
+          f: "♮",
+          g: "♯",
+          h: "𝄞",
+          i: "𝄢",
+          j: "𝄫",
+          k: "𝄪",
+          l: "𝄐",
+          m: "𝄑",
+          n: "𝄒",
+          o: "𝄓",
+          p: "𝄔",
+          q: "𝄕",
+          r: "𝄖",
+          s: "𝄗",
+          t: "𝄘",
+          u: "𝄙",
+          v: "𝄚",
+          w: "𝄛",
+          x: "𝄜",
+          y: "𝄝",
+          z: "𝄰",
+        },
+        weather: {
+          a: "☀",
+          b: "☁",
+          c: "☂",
+          d: "☃",
+          e: "☄",
+          f: "★",
+          g: "☆",
+          h: "☇",
+          i: "☈",
+          j: "☉",
+          k: "☊",
+          l: "☋",
+          m: "☌",
+          n: "☍",
+          o: "⛅",
+          p: "⛆",
+          q: "⛇",
+          r: "⛈",
+          s: "❄",
+          t: "❅",
+          u: "❆",
+          v: "⛄",
+          w: "🌈",
+          x: "⚡",
+          y: "🌧",
+          z: "🌩",
+        },
+        tech: {
+          a: "⌘",
+          b: "⌥",
+          c: "⇧",
+          d: "⌃",
+          e: "⎋",
+          f: "⏎",
+          g: "⌫",
+          h: "⇥",
+          i: "⌧",
+          j: "⏏",
+          k: "⎗",
+          l: "⎘",
+          m: "⌨",
+          n: "🖥",
+          o: "🖨",
+          p: "🖱",
+          q: "💾",
+          r: "💿",
+          s: "📀",
+          t: "🔌",
+          u: "📡",
+          v: "📶",
+          w: "🔋",
+          x: "⚙",
+          y: "🔧",
+          z: "🔨",
+        },
+        religious: {
+          a: "✝",
+          b: "☦",
+          c: "✡",
+          d: "☪",
+          e: "☯",
+          f: "☸",
+          g: "✠",
+          h: "✙",
+          i: "✚",
+          j: "✛",
+          k: "✜",
+          l: "✞",
+          m: "✟",
+          n: "†",
+          o: "‡",
+          p: "☥",
+          q: "⚕",
+          r: "☬",
+          s: "☭",
+          t: "☮",
+          u: "☯",
+          v: "卍",
+          w: "卐",
+          x: "ॐ",
+          y: "☩",
+          z: "☨",
+        },
+        cards: {
+          a: "♠",
+          b: "♤",
+          c: "♥",
+          d: "♡",
+          e: "♦",
+          f: "♢",
+          g: "♣",
+          h: "♧",
+          i: "🂠",
+          j: "🂡",
+          k: "🂢",
+          l: "🂣",
+          m: "🂤",
+          n: "🂥",
+          o: "🂦",
+          p: "🂧",
+          q: "🂨",
+          r: "🂩",
+          s: "🂪",
+          t: "🂫",
+          u: "🂬",
+          v: "🂭",
+          w: "🂮",
+          x: "🃏",
+          y: "🎴",
+          z: "🀄",
+        },
+        dingbats: {
+          a: "❧",
+          b: "☙",
+          c: "❦",
+          d: "❡",
+          e: "❢",
+          f: "❣",
+          g: "❤",
+          h: "❥",
+          i: "❩",
+          j: "❪",
+          k: "❫",
+          l: "❬",
+          m: "❭",
+          n: "❮",
+          o: "❯",
+          p: "❰",
+          q: "❱",
+          r: "❲",
+          s: "❳",
+          t: "❴",
+          u: "❵",
+          v: "⁂",
+          w: "⁕",
+          x: "⁖",
+          y: "⁘",
+          z: "⁙",
+        },
+        mathematical: {
+          a: "±",
+          b: "×",
+          c: "÷",
+          d: "≠",
+          e: "≤",
+          f: "≥",
+          g: "∞",
+          h: "∑",
+          i: "∏",
+          j: "√",
+          k: "∛",
+          l: "∜",
+          m: "∫",
+          n: "∬",
+          o: "∭",
+          p: "π",
+          q: "Ω",
+          r: "∂",
+          s: "∇",
+          t: "∈",
+          u: "∉",
+          v: "∋",
+          w: "∌",
+          x: "⊂",
+          y: "⊃",
+          z: "⊆",
+        },
       };
 
       const charMap = wingdingsSets[style] || wingdingsSets.classic;
@@ -2765,7 +4037,10 @@ export function transformText(
     case "runic": {
       const alphabet = customSettings.alphabet || "elder";
       const medieval = customSettings.medieval === true;
+      const showRuneNames = customSettings.showRuneNames === true;
+      const showPoemExcerpt = customSettings.showPoemExcerpt === true;
 
+      // Extended runic sets - 10 different alphabets
       const runicSets: Record<string, Record<string, string>> = {
         elder: {
           a: "ᚨ",
@@ -2851,17 +4126,259 @@ export function transformText(
           y: "ᚣ",
           z: "ᛉ",
         },
+        medieval: {
+          a: "ᛆ",
+          b: "ᛒ",
+          c: "ᛍ",
+          d: "ᛑ",
+          e: "ᛂ",
+          f: "ᚠ",
+          g: "ᚵ",
+          h: "ᚼ",
+          i: "ᛁ",
+          j: "ᛁ",
+          k: "ᚴ",
+          l: "ᛚ",
+          m: "ᛘ",
+          n: "ᚿ",
+          o: "ᚮ",
+          p: "ᛔ",
+          q: "ᚴ",
+          r: "ᚱ",
+          s: "ᛌ",
+          t: "ᛐ",
+          u: "ᚢ",
+          v: "ᚡ",
+          w: "ᚢ",
+          x: "ᛌ",
+          y: "ᛦ",
+          z: "ᛌ",
+        },
+        dalecarlian: {
+          a: "𐌀",
+          b: "𐌁",
+          c: "𐌂",
+          d: "𐌃",
+          e: "𐌄",
+          f: "𐌅",
+          g: "𐌆",
+          h: "𐌇",
+          i: "𐌉",
+          j: "𐌉",
+          k: "𐌊",
+          l: "𐌋",
+          m: "𐌌",
+          n: "𐌍",
+          o: "𐌏",
+          p: "𐌐",
+          q: "𐌒",
+          r: "𐌓",
+          s: "𐌔",
+          t: "𐌕",
+          u: "𐌖",
+          v: "𐌖",
+          w: "𐌖",
+          x: "𐌗",
+          y: "𐌖",
+          z: "𐌆",
+        },
+        marcomannic: {
+          a: "ᚫ",
+          b: "ᛔ",
+          c: "ᛤ",
+          d: "ᛥ",
+          e: "ᛯ",
+          f: "ᚨ",
+          g: "ᚵ",
+          h: "ᚺ",
+          i: "ᛃ",
+          j: "ᛃ",
+          k: "ᛤ",
+          l: "ᚻ",
+          m: "ᛗ",
+          n: "ᚿ",
+          o: "ᛨ",
+          p: "ᛈ",
+          q: "ᛤ",
+          r: "ᛕ",
+          s: "ᛧ",
+          t: "ᛦ",
+          u: "ᚩ",
+          v: "ᚦ",
+          w: "ᚦ",
+          x: "ᛤᛋ",
+          y: "ᛣ",
+          z: "ᛰ",
+        },
+        gothic: {
+          a: "𐌰",
+          b: "𐌱",
+          c: "𐌲",
+          d: "𐌳",
+          e: "𐌴",
+          f: "𐍆",
+          g: "𐌲",
+          h: "𐌷",
+          i: "𐌹",
+          j: "𐌾",
+          k: "𐌺",
+          l: "𐌻",
+          m: "𐌼",
+          n: "𐌽",
+          o: "𐌿",
+          p: "𐍀",
+          q: "𐌵",
+          r: "𐍂",
+          s: "𐍃",
+          t: "𐍄",
+          u: "𐌿",
+          v: "𐍅",
+          w: "𐍅",
+          x: "𐌺𐍃",
+          y: "𐌹",
+          z: "𐌶",
+        },
+        hungarian: {
+          a: "𐲀",
+          b: "𐲂",
+          c: "𐲄",
+          d: "𐲆",
+          e: "𐲈",
+          f: "𐲊",
+          g: "𐲌",
+          h: "𐲎",
+          i: "𐲐",
+          j: "𐲒",
+          k: "𐲔",
+          l: "𐲖",
+          m: "𐲘",
+          n: "𐲚",
+          o: "𐲜",
+          p: "𐲞",
+          q: "𐲔",
+          r: "𐲢",
+          s: "𐲤",
+          t: "𐲦",
+          u: "𐲨",
+          v: "𐲪",
+          w: "𐲪",
+          x: "𐲔𐲤",
+          y: "𐲐",
+          z: "𐲰",
+        },
+        turkic: {
+          a: "𐰁",
+          b: "𐰉",
+          c: "𐰲",
+          d: "𐰓",
+          e: "𐰀",
+          f: "𐰯",
+          g: "𐰍",
+          h: "𐰴",
+          i: "𐰃",
+          j: "𐰘",
+          k: "𐰚",
+          l: "𐰞",
+          m: "𐰢",
+          n: "𐰤",
+          o: "𐰆",
+          p: "𐰯",
+          q: "𐰴",
+          r: "𐰺",
+          s: "𐰽",
+          t: "𐱃",
+          u: "𐰆",
+          v: "𐰋",
+          w: "𐰃",
+          x: "𐰚𐰽",
+          y: "𐰖",
+          z: "𐰔",
+        },
+        cirth: {
+          a: "ᚫ",
+          b: "ᛔ",
+          c: "ᛤ",
+          d: "ᛞ",
+          e: "ᛟ",
+          f: "ᚠ",
+          g: "ᚸ",
+          h: "ᚺ",
+          i: "ᛁ",
+          j: "ᛃ",
+          k: "ᛤ",
+          l: "ᛚ",
+          m: "ᛗ",
+          n: "ᚾ",
+          o: "ᛟ",
+          p: "ᛈ",
+          q: "ᛤ",
+          r: "ᚱ",
+          s: "ᛋ",
+          t: "ᛏ",
+          u: "ᚢ",
+          v: "ᚹ",
+          w: "ᚹ",
+          x: "ᛤᛋ",
+          y: "ᚣ",
+          z: "ᛉ",
+        },
+      };
+
+      // Rune names from various poems
+      const runeNames: Record<string, Record<string, string>> = {
+        elder: {
+          f: "fehu (cattle)",
+          u: "uruz (aurochs)",
+          a: "ansuz (god)",
+          r: "raido (journey)",
+          k: "kenaz (torch)",
+          g: "gebo (gift)",
+          w: "wunjo (joy)",
+          h: "hagalaz (hail)",
+          n: "naudhiz (need)",
+          i: "isa (ice)",
+          j: "jera (year)",
+          e: "ehwaz (horse)",
+          p: "perthro (lot cup)",
+          s: "sowilo (sun)",
+          t: "tiwaz (Tyr)",
+          b: "berkano (birch)",
+          m: "mannaz (man)",
+          l: "laguz (water)",
+          d: "dagaz (day)",
+          o: "othala (heritage)",
+        },
+      };
+
+      // Rune poem excerpts
+      const poemExcerpts: Record<string, string> = {
+        elder:
+          "ᚠ Fehu: Wealth is a comfort to all, yet must each give freely if glory before the gods they would gain.",
+        younger:
+          "ᚠ Fé: Money causes strife among kinsmen; the wolf grows up in the woods.",
+        anglosaxon:
+          "ᚠ Feoh: Wealth is a comfort to everyone, yet must each give it away freely, if before the Lord his lot of honour he would obtain.",
       };
 
       const runeMap = runicSets[alphabet] || runicSets.elder;
       let result = workingText
         .toLowerCase()
         .split("")
-        .map((c) => runeMap[c] || c)
+        .map((c) => {
+          const rune = runeMap[c] || c;
+          if (showRuneNames && runeNames.elder && runeNames.elder[c]) {
+            return `${rune}(${runeNames.elder[c]})`;
+          }
+          return rune;
+        })
         .join("");
 
       if (medieval) {
         result = "᛭ " + result + " ᛭";
+      }
+
+      if (showPoemExcerpt && poemExcerpts[alphabet]) {
+        result = result + "\n\n--- Rune Poem ---\n" + poemExcerpts[alphabet];
       }
 
       return result;
@@ -2869,37 +4386,189 @@ export function transformText(
     case "old-english": {
       const era = customSettings.era || "medieval";
       const useThorn = customSettings.addThorn !== false;
+      const useEth = customSettings.useEth !== false;
+      const useAsh = customSettings.useAsh !== false;
+      const useWynn = customSettings.useWynn === true;
+      const useYogh = customSettings.useYogh === true;
+      const convertToFuthorc = customSettings.convertToFuthorc === true;
+      const showPronunciation = customSettings.showPronunciation === true;
 
       let result = workingText;
 
-      // Common Old English replacements
+      // Common Old English character replacements
       if (useThorn) {
         result = result.replace(/th/gi, "þ");
         result = result.replace(/Th/g, "Þ");
       }
 
-      // Era-specific transformations
-      if (era === "anglosaxon") {
-        result = result.replace(/w/gi, "ƿ");
+      if (useEth) {
+        // Eth for voiced th sound (typically between vowels)
+        result = result.replace(/([aeiou])th([aeiou])/gi, "$1ð$2");
+      }
+
+      if (useAsh) {
         result = result.replace(/ae/gi, "æ");
-        result = result.replace(/oo/gi, "ō");
-        result = result.replace(/ee/gi, "ē");
-      } else if (era === "medieval") {
-        result = result.replace(/v/gi, "u");
-        result = result.replace(/j/gi, "i");
-        result = result.replace(/u(?=[aeiou])/gi, "v");
-      } else if (era === "shakespearean") {
-        result = result.replace(/you/gi, "thou");
-        result = result.replace(/your/gi, "thy");
-        result = result.replace(/are/gi, "art");
-        result = result.replace(/have/gi, "hath");
-        result = result.replace(/do/gi, "doth");
+        result = result.replace(/Ae/g, "Æ");
+      }
+
+      if (useWynn) {
+        result = result.replace(/w/gi, "ƿ");
+        result = result.replace(/W/g, "Ƿ");
+      }
+
+      if (useYogh) {
+        result = result.replace(/gh/gi, "ȝ");
+        result = result.replace(/Gh/g, "Ȝ");
+      }
+
+      // Era-specific transformations
+      const eraTransformations: Record<string, (text: string) => string> = {
+        anglosaxon: (t) =>
+          t.replace(/oo/gi, "ō").replace(/ee/gi, "ē").replace(/ea/gi, "ēa"),
+        earlyOE: (t) => t.replace(/oo/gi, "ō").replace(/ee/gi, "ē"),
+        classicalOE: (t) =>
+          t.replace(/oo/gi, "ō").replace(/ee/gi, "ē").replace(/sc/gi, "sc"),
+        lateOE: (t) =>
+          t.replace(/oo/gi, "ō").replace(/ee/gi, "ē").replace(/cw/gi, "qu"),
+        medieval: (t) =>
+          t
+            .replace(/v/gi, "u")
+            .replace(/j/gi, "i")
+            .replace(/u(?=[aeiou])/gi, "v"),
+        middleEnglish: (t) => t.replace(/gh/gi, "ȝ").replace(/wh/gi, "hw"),
+        chaucerian: (t) =>
+          t
+            .replace(/you/gi, "ye")
+            .replace(/your/gi, "youre")
+            .replace(/have/gi, "han"),
+        shakespearean: (t) =>
+          t
+            .replace(/you/gi, "thou")
+            .replace(/your/gi, "thy")
+            .replace(/are/gi, "art")
+            .replace(/have/gi, "hath")
+            .replace(/do/gi, "doth")
+            .replace(/will/gi, "wilt"),
+        kjv: (t) =>
+          t
+            .replace(/you/gi, "thee")
+            .replace(/your/gi, "thine")
+            .replace(/are/gi, "art")
+            .replace(/have/gi, "hast")
+            .replace(/is/gi, "be")
+            .replace(/said/gi, "saith"),
+        elizabethan: (t) =>
+          t
+            .replace(/you/gi, "thou")
+            .replace(/your/gi, "thy")
+            .replace(/are/gi, "art")
+            .replace(/have/gi, "hast"),
+        victorian: (t) => t.replace(/you/gi, "thee").replace(/has/gi, "hath"),
+        beowulf: (t) =>
+          t
+            .replace(/the/gi, "se")
+            .replace(/and/gi, "ond")
+            .replace(/king/gi, "cyning")
+            .replace(/warrior/gi, "wiga"),
+        wessex: (t) => t.replace(/i/gi, "ic").replace(/was/gi, "wæs"),
+        mercian: (t) => t.replace(/ea/gi, "e").replace(/eo/gi, "e"),
+        northumbrian: (t) => t.replace(/ea/gi, "æ").replace(/eo/gi, "e"),
+        kentish: (t) => t.replace(/y/gi, "e").replace(/ie/gi, "e"),
+        westSaxon: (t) => t.replace(/was/gi, "wæs").replace(/they/gi, "hie"),
+        poetic: (t) =>
+          "Hwæt! " + t.replace(/the/gi, "se").replace(/and/gi, "ond"),
+      };
+
+      if (eraTransformations[era]) {
+        result = eraTransformations[era](result);
+      }
+
+      // Optional Futhorc runic conversion
+      if (convertToFuthorc) {
+        const futhorc: Record<string, string> = {
+          a: "ᚪ",
+          b: "ᛒ",
+          c: "ᚳ",
+          d: "ᛞ",
+          e: "ᛖ",
+          f: "ᚠ",
+          g: "ᚷ",
+          h: "ᚻ",
+          i: "ᛁ",
+          j: "ᛡ",
+          k: "ᚳ",
+          l: "ᛚ",
+          m: "ᛗ",
+          n: "ᚾ",
+          o: "ᚩ",
+          p: "ᛈ",
+          q: "ᚳᚹ",
+          r: "ᚱ",
+          s: "ᛋ",
+          t: "ᛏ",
+          u: "ᚢ",
+          v: "ᚹ",
+          w: "ᚹ",
+          x: "ᚳᛋ",
+          y: "ᚣ",
+          z: "ᛉ",
+          þ: "ᚦ",
+          ð: "ᚦ",
+          æ: "ᚫ",
+          ƿ: "ᚹ",
+        };
+        result = result
+          .toLowerCase()
+          .split("")
+          .map((c) => futhorc[c] || c)
+          .join("");
+      }
+
+      // Optional pronunciation guide
+      if (showPronunciation) {
+        const pronunciations: Record<string, string> = {
+          þ: "[th]",
+          ð: "[th/dh]",
+          æ: "[a]",
+          ƿ: "[w]",
+          ȝ: "[y/gh]",
+          ō: "[oh]",
+          ē: "[ay]",
+          ā: "[ah]",
+        };
+        let guide = "\n\n--- Pronunciation Guide ---\n";
+        Object.entries(pronunciations).forEach(([char, pron]) => {
+          if (result.includes(char)) {
+            guide += `${char} = ${pron}\n`;
+          }
+        });
+        result += guide;
       }
 
       return result;
     }
-    case "braille":
-      return toBraille(workingText, customSettings.showIndicator ?? true);
+    case "braille": {
+      const showIndicator = customSettings.showIndicator !== false;
+      const showCap = customSettings.showCapitalIndicator !== false;
+      const grade = customSettings.grade || "grade1";
+
+      // Basic Grade 1 implementation with indicators
+      let result = toBraille(workingText, showIndicator);
+
+      if (showCap) {
+        // Simple capital indicator addition
+        result = workingText
+          .split("")
+          .map((char, i) => {
+            const b = toBraille(char, showIndicator);
+            if (/[A-Z]/.test(char)) return "⠠" + b;
+            return b;
+          })
+          .join("");
+      }
+
+      return result;
+    }
     case "sign-language": {
       const format = customSettings.format || "emoji";
       const separator =
@@ -2935,6 +4604,34 @@ export function transformText(
           v: "✌",
           w: "🤟",
           x: "🤞",
+          y: "🤙",
+          z: "👉",
+        },
+        unicode: {
+          a: "🖐️",
+          b: "✋",
+          c: "🤏",
+          d: "☝️",
+          e: "✊",
+          f: "🤞",
+          g: "👈",
+          h: "🤘",
+          i: "🤙",
+          j: "👋",
+          k: "🖖",
+          l: "🤟",
+          m: "👊",
+          n: "👎",
+          o: "👌",
+          p: "🤌",
+          q: "🤏",
+          r: "🤞",
+          s: "✊",
+          t: "👍",
+          u: "👆",
+          v: "✌️",
+          w: "👋",
+          x: "🫵",
           y: "🤙",
           z: "👉",
         },
@@ -3298,8 +4995,51 @@ export function transformText(
           return workingText + " " + lenny;
       }
     }
+    case "hex-code":
+      return workingText
+        .split("")
+        .map((char) => char.charCodeAt(0).toString(16).padStart(2, "0"))
+        .join(" ");
 
-    // Defaults
+    case "base64":
+      try {
+        return btoa(workingText);
+      } catch (e) {
+        return "Encoding Error: Use valid text characters.";
+      }
+
+    case "reverse-text":
+      return workingText.split("").reverse().join("");
+
+    case "caesar-cipher": {
+      const shift = Number(customSettings.shift) || 3;
+      return workingText
+        .split("")
+        .map((char) => {
+          if (char.match(/[a-z]/i)) {
+            const code = char.charCodeAt(0);
+            const base = code >= 65 && code <= 90 ? 65 : 97;
+            return String.fromCharCode(((code - base + shift) % 26) + base);
+          }
+          return char;
+        })
+        .join("");
+    }
+
+    case "rot13": {
+      return workingText
+        .split("")
+        .map((char) => {
+          if (char.match(/[a-z]/i)) {
+            const code = char.charCodeAt(0);
+            const base = code >= 65 && code <= 90 ? 65 : 97;
+            return String.fromCharCode(((code - base + 13) % 26) + base);
+          }
+          return char;
+        })
+        .join("");
+    }
+
     default:
       return workingText;
   }

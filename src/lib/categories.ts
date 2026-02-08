@@ -128,13 +128,21 @@ export const categories: Category[] = [
   {
     name: "Translators",
     slug: "translators",
-    count: 8,
+    count: 16,
     icon: "🌐",
     description: "Convert text to morse, binary, braille & more",
     tools: [
       { name: "Morse Code Translator", slug: "morse-code", icon: "•−" },
       { name: "Braille Translator", slug: "braille", icon: "⠃" },
       { name: "Binary Converter", slug: "binary", icon: "01" },
+      { name: "Hex Converter", slug: "hex-code", icon: "⬡" },
+      { name: "Base64 Encoder", slug: "base64", icon: "📦" },
+      { name: "Reverse Text", slug: "reverse-text", icon: "◀" },
+      { name: "Caesar Cipher", slug: "caesar-cipher", icon: "🏛️" },
+      { name: "Rot13 Translator", slug: "rot13", icon: "🔄" },
+      { name: "NATO Phonetic Alphabet", slug: "nato-phonetic", icon: "✈️" },
+      { name: "Atbash Cipher", slug: "atbash", icon: "📜" },
+      { name: "Leetspeak Generator", slug: "leetspeak", icon: "1337" },
       { name: "Wingdings Translator", slug: "wingdings", icon: "✈" },
       { name: "Runic Translator", slug: "runic", icon: "ᚱ" },
       { name: "Old English Translator", slug: "old-english", icon: "Ꝋ" },
@@ -143,3 +151,12 @@ export const categories: Category[] = [
     ],
   },
 ];
+
+export const TOTAL_TOOLS_COUNT = categories.reduce(
+  (acc, cat) => acc + cat.tools.length,
+  0,
+);
+
+export const ALL_TOOLS = categories.flatMap((cat) =>
+  cat.tools.map((tool) => ({ ...tool, categorySlug: cat.slug })),
+);

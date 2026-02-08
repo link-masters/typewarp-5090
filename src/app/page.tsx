@@ -1,5 +1,5 @@
 import Hero from "@/components/Hero";
-import { categories } from "@/lib/categories";
+import { categories, TOTAL_TOOLS_COUNT } from "@/lib/categories";
 import Link from "next/link";
 import { Metadata } from "next";
 import JSONLD from "@/components/JSONLD";
@@ -265,8 +265,8 @@ export default async function Home() {
                 <span className="text-purple-600">Frequency</span>
               </h2>
               <p className="text-[var(--muted)] text-lg font-medium">
-                Over 58 specialized tools curated for style, platform, and
-                functional precision.
+                Over {TOTAL_TOOLS_COUNT}+ specialized tools curated for style,
+                platform, and functional precision.
               </p>
             </div>
             <Link

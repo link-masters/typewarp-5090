@@ -2,7 +2,7 @@ import { getBlogPosts } from "@/lib/blog";
 import BlogCard from "@/components/BlogCard";
 import { Metadata } from "next";
 import Link from "next/link";
-import { categories } from "@/lib/categories";
+import { categories, TOTAL_TOOLS_COUNT } from "@/lib/categories";
 import JSONLD from "@/components/JSONLD";
 
 export const metadata: Metadata = {
@@ -198,8 +198,9 @@ export default async function BlogPage() {
               Ready to Transform Your Text?
             </h2>
             <p className="text-[var(--muted)] mb-8 max-w-2xl mx-auto">
-              Explore our collection of 58+ free text generators, from cursed
-              and zalgo text to stylish fonts for Instagram, Discord, and more.
+              Explore our collection of {TOTAL_TOOLS_COUNT}+ free text
+              generators, from cursed and zalgo text to stylish fonts for
+              Instagram, Discord, and more.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link

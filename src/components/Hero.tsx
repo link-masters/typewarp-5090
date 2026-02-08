@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { corruptText } from "@/lib/cursed";
+import { TOTAL_TOOLS_COUNT } from "@/lib/categories";
 import RainingLetters from "@/components/ui/modern-animated-hero-section";
 
 const Hero = () => {
@@ -38,12 +39,12 @@ const Hero = () => {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
           </span>
           <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-[var(--muted)]">
-            58+ Advanced Text Generators
+            {TOTAL_TOOLS_COUNT}+ Advanced Text Generators
           </span>
         </div>
 
         {/* Main Heading */}
-        <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-black mb-4 md:mb-8 tracking-tighter leading-[1.1] md:leading-[1.05] animate-fade-in-up">
+        <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-[7rem] xl:text-[8.5rem] font-black mb-4 md:mb-8 tracking-tighter leading-[1.1] md:leading-[1.05] animate-fade-in-up">
           <span className="block bg-gradient-to-b from-[var(--foreground)] via-[var(--foreground)] to-[var(--muted)] bg-clip-text text-transparent">
             Warp your
           </span>
@@ -170,7 +171,7 @@ const Hero = () => {
         {/* Stats */}
         <div className="mt-32 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-6xl mx-auto animate-fade-in-up animation-delay-800">
           {[
-            { label: "Generators", value: "58+", icon: "⚡" },
+            { label: "Generators", value: `${TOTAL_TOOLS_COUNT}+`, icon: "⚡" },
             { label: "Monthly Users", value: "250K+", icon: "👥" },
             { label: "Messages", value: "15M+", icon: "🔥" },
             { label: "Uptime", value: "99.9%", icon: "✅" },
