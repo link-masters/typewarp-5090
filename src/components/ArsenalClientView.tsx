@@ -18,7 +18,7 @@ export default function ArsenalClientView({
   totalCount,
 }: ArsenalClientViewProps) {
   return (
-    <div className="min-h-screen pt-28 pb-24 bg-bg-void text-text-primary relative overflow-hidden">
+    <div className="min-h-screen pt-20 sm:pt-24 pb-16 bg-bg-void text-text-primary relative overflow-hidden">
       <BackgroundEffect />
 
       <div className="container mx-auto px-6 max-w-7xl relative z-10">

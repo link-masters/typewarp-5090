@@ -27,7 +27,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-12 md:py-40 bg-bg-void relative overflow-hidden">
+    <section className="py-12 md:py-28 bg-bg-void relative overflow-hidden">
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(circle_at_50%_50%,#39FF14_1px,transparent_1px)] bg-[size:60px_60px]" />
 
       <div className="container mx-auto max-w-7xl px-4 relative z-10">

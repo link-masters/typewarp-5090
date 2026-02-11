@@ -24,7 +24,7 @@ export default function BackgroundEffect() {
 
     // Matrix Rain effect (Performance Optimized for 100% Score)
     const characters = "01$#@%&*";
-    const fontSize = 20; // Fewer columns = massive performance gain
+    const fontSize = 14; // Denser grid = less empty space
     const columns = Math.ceil(canvas.width / fontSize);
     const drops: number[] = new Array(columns)
       .fill(1)

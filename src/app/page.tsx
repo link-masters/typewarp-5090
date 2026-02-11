@@ -20,12 +20,13 @@ import {
   Workflow,
   Target,
   Layers,
+  Radio,
 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "TypeWarp | #1 Cursed Text & Glitch Font Generator Toolkit",
   description:
-    "Generate the best cursed text, zalgo script, and glitchy fonts instantly. TypeWarp is the ultimate toolkit for digital creators looking to warp their typography for Discord, Twitter, and more.",
+    "Generate cursed text, Zalgo script, and glitchy fonts instantly. TypeWarp is the ultimate toolkit to warp typography for Discord, Twitter, and more.",
   keywords: [
     "cursed text generator",
     "glitch fonts",
@@ -38,13 +39,16 @@ export const metadata: Metadata = {
   openGraph: {
     title: "TypeWarp | Ultimate Cursed Text & Glitch Font Toolkit",
     description:
-      "Transform your text into digital masterpieces, glitchy scripts, and more with TypeWarp's high-performance engine.",
+      "Transform your text into glitchy scripts and digital masterpieces with TypeWarp's high-performance engine.",
     images: ["/og-image.png"],
     url: "https://typewarp.com",
     type: "website",
   },
   alternates: {
     canonical: "https://typewarp.com",
+  },
+  other: {
+    "og:updated_time": new Date().toISOString(),
   },
 };
 
@@ -182,94 +186,95 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Core Transformation Pipeline (Organized Info) */}
-      <section className="py-12 md:py-28 px-4 bg-[#050505] relative overflow-hidden border-y border-border-subtle/30">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div>
-              <h2 className="text-2xl md:text-6xl font-black tracking-tighter uppercase mb-4 leading-tight">
-                The <span className="text-accent-glitch">Processing</span>{" "}
-                <br /> Pipeline
-              </h2>
-              <p className="text-text-muted font-mono text-lg mb-8 max-w-xl">
-                How TypeWarp handles complex character substitution and
-                positional offset matrices at scale.
-              </p>
+      {/* Deep Warp Architecture - Technical Blueprint Section */}
+      <section className="py-24 md:py-32 px-4 bg-bg-void relative overflow-hidden border-y border-border-subtle/20">
+        <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none bg-[linear-gradient(to_right,#888_1px,transparent_1px),linear-gradient(to_bottom,#888_1px,transparent_1px)] bg-[size:50px_50px]" />
 
-              <div className="space-y-8">
-                {[
-                  {
-                    title: "Input Analysis",
-                    desc: "Our engine maps raw Unicode characters to high-entropy substitutes across 24 localized font maps.",
-                    icon: Target,
-                  },
-                  {
-                    title: "Layering Logic",
-                    desc: "Zalgo and glitch layers are stacked using positional relative matrices for precise visual corruption.",
-                    icon: Layers,
-                  },
-                  {
-                    title: "Output Finalization",
-                    desc: "Final string sets are optimized for maximum compatibility across various digital environments.",
-                    icon: Workflow,
-                  },
-                ].map((step, idx) => (
-                  <div key={idx} className="flex gap-6">
-                    <div className="flex flex-col items-center">
-                      <div className="w-8 h-8 rounded-full border border-accent-glitch/20 flex items-center justify-center text-accent-glitch font-mono text-[10px] shrink-0">
-                        {idx + 1}
-                      </div>
-                      {idx !== 2 && (
-                        <div className="w-px flex-1 bg-gradient-to-b from-accent-glitch/20 to-transparent mt-2" />
-                      )}
-                    </div>
-                    <div>
-                      <h4 className="font-black uppercase tracking-widest text-sm text-text-primary mb-1">
-                        {step.title}
-                      </h4>
-                      <p className="text-text-muted text-xs font-mono">
-                        {step.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            {/* Left: Technical Diagram Visual */}
+            <div className="relative aspect-square max-w-[500px] mx-auto lg:mx-0 group">
+              <div className="absolute inset-0 border border-accent-glitch/20 rounded-full animate-spin-slow" />
+              <div className="absolute inset-10 border border-accent-glitch/10 rounded-full animate-reverse-spin" />
+
+              {/* Inner HUD Core */}
+              <div className="absolute inset-20 bg-bg-card border border-border-subtle flex flex-col items-center justify-center p-8 text-center group-hover:border-accent-glitch/40 transition-colors duration-700">
+                <Cpu className="w-12 h-12 text-accent-glitch mb-4 opacity-50 group-hover:opacity-100 transition-opacity" />
+                <div className="font-mono text-[9px] text-accent-glitch tracking-[0.4em] uppercase mb-2">
+                  System_Core
+                </div>
+                <div className="w-full h-px bg-white/10 mb-2" />
+                <div className="font-mono text-[9px] text-text-muted uppercase">
+                  Latency: 0.04ms
+                </div>
+              </div>
+
+              {/* Data Points (Orbiting) */}
+              {[0, 120, 240].map((angle, i) => (
+                <div
+                  key={i}
+                  className="absolute top-1/2 left-1/2 w-4 h-4 bg-accent-glitch group-hover:shadow-[0_0_15px_#39FF14] transition-all duration-500"
+                  style={{
+                    transform: `translate(-50%, -50%) rotate(${angle}deg) translate(180px) rotate(-${angle}deg)`,
+                  }}
+                />
+              ))}
+
+              {/* Blueprint Labels */}
+              <div className="absolute -top-4 -right-4 font-mono text-[10px] text-text-muted/40 uppercase tracking-widest border border-white/5 p-4 backdrop-blur-sm">
+                SPEC: TW_X_800
+                <br />
+                VER: 1.4.0
               </div>
             </div>
 
-            <div className="relative aspect-square bg-bg-void border border-border-subtle p-6 overflow-hidden group">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.05)_0%,transparent_70%)]" />
-              <div className="relative h-full border border-accent-glitch/10 flex flex-col p-8 justify-between">
-                <div className="flex justify-between items-start">
-                  <div className="w-16 h-1 w-accent-glitch bg-accent-glitch/30" />
-                  <Activity className="w-6 h-6 text-accent-glitch opacity-40 animate-pulse" />
+            {/* Right: Spec Details */}
+            <div className="space-y-12">
+              <div>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-1.5 h-1.5 bg-accent-glitch" />
+                  <span className="text-accent-glitch font-mono text-[10px] uppercase tracking-[0.4em]">
+                    Engine_Specifications
+                  </span>
                 </div>
-                <div className="font-mono text-[10px] text-text-muted space-y-4">
-                  <div className="text-accent-glitch flex justify-between uppercase tracking-widest">
-                    <span>Status: ACTIVE</span>
-                    <span>Uptime: 99.9%</span>
+                <h2 className="text-4xl md:text-7xl font-black tracking-tighter uppercase leading-[0.85] mb-8">
+                  Deep Warp <br />{" "}
+                  <span className="text-accent-glitch">Architecture</span>
+                </h2>
+                <p className="text-text-muted font-mono text-base leading-relaxed max-w-xl">
+                  Unveiling the proprietary layering logic that powers
+                  TypeWarp's digital corruption. High-fidelity rendering meets
+                  extreme character entropy.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                {[
+                  {
+                    title: "Zalgo-Stack Protocol",
+                    desc: "Multi-threaded vertical character layering with sub-pixel jitter control.",
+                  },
+                  {
+                    title: "Matrix Jitter Engine",
+                    desc: "Pseudo-random positional offsets calibrated for Discord & GitHub rendering.",
+                  },
+                  {
+                    title: "Unicode Mapping 2.0",
+                    desc: "Proprietary substitution matrices mapping 4,000+ unique glyph sets.",
+                  },
+                ].map((spec, idx) => (
+                  <div
+                    key={idx}
+                    className="group border-l border-white/10 pl-8 py-4 hover:border-accent-glitch transition-colors"
+                  >
+                    <h4 className="font-black text-xl uppercase tracking-tighter mb-2 group-hover:text-accent-glitch transition-colors">
+                      {spec.title}
+                    </h4>
+                    <p className="text-sm font-mono text-text-muted leading-relaxed">
+                      {spec.desc}
+                    </p>
                   </div>
-                  <div className="h-[2px] w-full bg-white/5 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-accent-glitch w-2/3" />
-                  </div>
-                  <p className="leading-loose">
-                    FETCHING_CORE_MATRICES... [DONE]
-                    <br />
-                    INITIALIZING_GLITCH_ENGINE... [READY]
-                    <br />
-                    CALIBRATING_ZALGO_LEVELS... [COMPLETE]
-                    <br />
-                    SYSTEM_READY_FOR_INPUT...
-                  </p>
-                </div>
-                <div className="aspect-video border border-border-subtle bg-[#080808] relative overflow-hidden">
-                  <div className="absolute inset-x-0 h-px bg-white/5 top-1/2" />
-                  <div className="absolute inset-y-0 w-px bg-white/5 left-1/2" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-24 h-24 rounded-full border border-accent-glitch/20 flex items-center justify-center animate-spin-slow">
-                      <Zap className="w-8 h-8 text-accent-glitch" />
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
@@ -306,7 +311,7 @@ export default async function Home() {
               <Link
                 key={category.slug}
                 href={`/${category.slug}`}
-                className="group relative p-5 md:p-8 bg-bg-void border border-border-subtle hover:border-accent-glitch/50 transition-all duration-500 overflow-hidden"
+                className="group relative p-5 md:p-6 bg-bg-void border border-border-subtle hover:border-accent-glitch/50 transition-all duration-500 overflow-hidden"
               >
                 <div className="absolute top-0 right-0 p-3 md:p-4 font-mono text-[9px] md:text-[10px] text-text-primary/10 group-hover:text-accent-glitch/20 transition-colors">
                   #{category.count.toString().padStart(2, "0")}

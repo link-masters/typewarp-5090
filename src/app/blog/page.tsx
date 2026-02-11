@@ -31,9 +31,10 @@ export const metadata: Metadata = {
       "Deep dives into the art of text manipulation, typography trends, and digital entropy.",
     url: "https://typewarp.com/blog",
     type: "website",
-    images: [
-      { url: "/og-image.png", width: 1200, height: 630, alt: "TypeWarp Intel" },
-    ],
+    images: ["/og-image.png"],
+  },
+  other: {
+    "og:updated_time": new Date().toISOString(),
   },
   alternates: { canonical: "https://typewarp.com/blog" },
 };

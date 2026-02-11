@@ -139,42 +139,42 @@ export default async function ToolPage({
       <ToolView category={category} tool={tool} hideFaqs={!!toolContent} />
 
       {toolContent && (
-        <div className="bg-bg-void pt-32 pb-48 border-t border-white/5">
+        <div className="bg-bg-void pt-12 pb-24 border-t border-white/5">
           <div className="container mx-auto max-w-7xl px-4">
-            <div className="flex flex-col lg:flex-row gap-20">
+            <div className="flex flex-col lg:flex-row gap-10">
               {/* Sticky TOC Sidebar */}
               <aside className="hidden lg:block w-72 shrink-0 sticky top-32 h-fit">
-                <div className="border border-white/5 bg-bg-card p-8 shadow-2xl">
-                  <div className="flex items-center gap-3 mb-10">
+                <div className="border border-white/5 bg-bg-card p-5 shadow-2xl">
+                  <div className="flex items-center gap-4 mb-6">
                     <Activity className="w-4 h-4 text-accent-glitch animate-pulse" />
                     <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-text-muted font-black">
                       System_Index
                     </span>
                   </div>
-                  <nav className="flex flex-col gap-1">
+                  <nav className="flex flex-col">
                     {headings.map((h, i) => (
                       <a
                         key={i}
                         href={`#${h.id}`}
-                        className="group flex items-center gap-4 py-4 border-b border-white/[0.03] last:border-0 hover:text-accent-glitch transition-all"
+                        className="group flex items-start gap-4 py-3 border-b border-white/[0.03] last:border-0 hover:bg-white/[0.01] px-1 -mx-1 transition-all"
                       >
-                        <span className="text-[9px] font-mono text-white/5 group-hover:text-accent-glitch opacity-50 tabular-nums">
+                        <span className="text-[9px] font-mono text-white/30 group-hover:text-accent-glitch transition-colors tabular-nums mt-0.5">
                           {String(i + 1).padStart(2, "0")}
                         </span>
-                        <span className="text-[10px] font-mono uppercase tracking-[0.2em] truncate font-medium">
+                        <span className="text-[10px] font-mono uppercase tracking-[0.15em] font-black group-hover:text-white transition-colors leading-relaxed">
                           {h.title}
                         </span>
                       </a>
                     ))}
                   </nav>
-                  <div className="mt-16 pt-8 border-t border-white/5 flex flex-col gap-4">
-                    <div className="flex items-center gap-2">
-                      <Shield className="w-3 h-3 text-accent-glitch/40" />
-                      <span className="text-[8px] font-mono text-text-muted/40 uppercase tracking-[0.3em]">
+                  <div className="mt-12 pt-6 border-t border-white/5 flex flex-col gap-3">
+                    <div className="flex items-center gap-4">
+                      <Shield className="w-3 h-3 text-accent-glitch/60" />
+                      <span className="text-[9px] font-mono text-text-muted/60 uppercase tracking-[0.3em]">
                         Verified_Safe
                       </span>
                     </div>
-                    <div className="text-[8px] font-mono text-text-muted/20 uppercase tracking-[0.4em] leading-relaxed">
+                    <div className="text-[8px] font-mono text-text-muted/30 uppercase tracking-[0.4em] px-0.5">
                       Build_Ref: TW-2026-X4
                     </div>
                   </div>
@@ -184,11 +184,11 @@ export default async function ToolPage({
               {/* Main MDX Content */}
               <div className="flex-1 min-w-0">
                 {/* Module Intel Header */}
-                <div className="mb-20 p-8 md:p-12 border border-white/5 bg-bg-card/30 relative overflow-hidden group shadow-xl">
+                <div className="mb-8 p-6 border border-white/5 bg-bg-card/30 relative overflow-hidden group shadow-xl">
                   <div className="absolute top-0 right-0 p-4 opacity-[0.03] pointer-events-none">
                     <Box className="w-48 h-48" />
                   </div>
-                  <div className="flex items-center gap-4 mb-10 relative z-10">
+                  <div className="flex items-center gap-4 mb-6 relative z-10">
                     <div className="p-2 border border-accent-glitch/20 bg-accent-glitch/5">
                       <Shield className="w-5 h-5 text-accent-glitch" />
                     </div>
@@ -226,8 +226,8 @@ export default async function ToolPage({
 
                 <div
                   className="prose prose-invert max-w-none 
-                  prose-headings:uppercase prose-headings:font-black prose-headings:tracking-tighter prose-headings:text-text-primary
-                  prose-p:font-mono prose-p:text-text-muted prose-p:leading-relaxed prose-p:text-base
+                  prose-h2:mt-8 prose-h2:mb-3 prose-h3:mt-6 prose-h3:mb-2
+                  prose-p:font-mono prose-p:text-text-muted prose-p:leading-relaxed prose-p:text-base prose-p:my-2
                   prose-a:text-accent-glitch prose-a:no-underline hover:prose-a:underline
                   prose-strong:text-white prose-strong:font-black
                   prose-ul:list-none prose-ol:list-none

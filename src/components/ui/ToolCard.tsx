@@ -21,8 +21,8 @@ export default function ToolCard({
     <motion.div
       whileHover={{ y: -5 }}
       className={`
-        relative p-8 px-9 bg-bg-card border border-border-subtle
-        flex flex-col gap-6 group cursor-pointer
+        relative p-6 px-7 bg-bg-card border border-border-subtle
+        flex flex-col gap-4 group cursor-pointer
         transition-all duration-500 overflow-hidden
         hover:border-accent-glitch/40 hover:shadow-[0_20px_50px_-10px_rgba(57,255,20,0.1)]
         ${className}
@@ -38,25 +38,25 @@ export default function ToolCard({
       </div>
 
       <div className="relative z-10">
-        <div className="w-14 h-14 flex items-center justify-center bg-bg-void border border-border-subtle group-hover:border-accent-glitch group-hover:bg-accent-glitch/5 transition-all duration-500 rounded-sm">
+        <div className="w-12 h-12 flex items-center justify-center bg-bg-void border border-border-subtle group-hover:border-accent-glitch group-hover:bg-accent-glitch/5 transition-all duration-500 rounded-sm">
           <div className="relative">
             {icon}
             <div className="absolute -inset-2 bg-accent-glitch/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
         </div>
 
-        <div className="mt-8">
+        <div className="mt-6">
           <h3 className="font-mono text-xl md:text-2xl font-black uppercase tracking-tight text-text-primary group-hover:text-accent-glitch transition-colors duration-300">
             {title}
           </h3>
-          <p className="text-text-muted text-[13px] font-mono leading-relaxed mt-4 opacity-70 group-hover:opacity-100 transition-opacity">
+          <p className="text-text-muted text-[12px] font-mono leading-relaxed mt-3 opacity-70 group-hover:opacity-100 transition-opacity">
             {description}
           </p>
         </div>
       </div>
 
       {/* Decorative footer element */}
-      <div className="mt-auto pt-8 flex justify-between items-end relative z-10">
+      <div className="mt-auto pt-6 flex justify-between items-end relative z-10">
         <div className="flex flex-col gap-1">
           <div className="text-[8px] font-mono text-accent-glitch opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0 uppercase tracking-[0.3em]">
             // MODULE_LOADED

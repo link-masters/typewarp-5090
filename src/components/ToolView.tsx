@@ -193,12 +193,12 @@ export default function ToolView({
   const content = getDynamicContent();
 
   return (
-    <div className="min-h-screen pt-28 pb-24 px-4 bg-bg-void text-text-primary relative overflow-hidden">
+    <div className="min-h-screen pt-20 sm:pt-24 pb-12 px-4 bg-bg-void text-text-primary relative overflow-hidden">
       <BackgroundEffect />
 
       <div className="container mx-auto max-w-7xl relative z-10">
         {/* Compact Breadcrumbs */}
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-6 font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted transition-opacity duration-500">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted transition-opacity duration-500">
           <Link
             href="/"
             className="hover:text-accent-glitch transition-colors flex items-center gap-1.5 shrink-0"
@@ -220,11 +220,11 @@ export default function ToolView({
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-6 items-start">
+        <div className="flex flex-col lg:flex-row gap-3 items-start">
           {/* Main Transformation Area */}
-          <div className="flex-1 w-full flex flex-col gap-4">
+          <div className="flex-1 w-full flex flex-col gap-3">
             {/* Optimized Header - Compact Edition */}
-            <div className="bg-bg-card border border-border-subtle p-4 md:p-6 lg:px-8 relative overflow-hidden">
+            <div className="bg-bg-card border border-border-subtle p-3 md:p-4 lg:px-6 relative overflow-hidden">
               <div className="flex flex-col gap-2 relative z-10">
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tighter uppercase leading-tight break-words max-w-4xl">
                   {tool.name}
@@ -257,7 +257,7 @@ export default function ToolView({
                   </button>
                 </div>
               </div>
-              <div className="p-3 md:p-5">
+              <div className="p-2 md:p-3">
                 <textarea
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
@@ -269,7 +269,7 @@ export default function ToolView({
             </div>
 
             {/* Output Panel */}
-            <div className="bg-bg-card border border-border-subtle relative group shadow-lg overflow-hidden">
+            <div className="bg-bg-card border border-border-subtle relative group shadow-lg overflow-hidden flex flex-col">
               <div className="p-1 border-b border-border-subtle bg-bg-void/50 flex flex-col sm:flex-row justify-between items-start sm:items-center px-4 py-2 gap-4">
                 <div className="flex items-center gap-2 text-[9px] font-mono uppercase tracking-[0.3em] text-accent-glitch">
                   <Zap className="w-3 h-3 animate-pulse" />
@@ -344,8 +344,8 @@ export default function ToolView({
                 </span>
               </div>
 
-              <div className="relative bg-bg-void/10 overflow-hidden border-b border-white/5 h-[140px] md:h-[180px]">
-                <div className="absolute inset-0 overflow-auto custom-scrollbar p-4 md:p-6 flex flex-col items-center">
+              <div className="relative bg-bg-void/10 overflow-hidden border-b border-white/5 h-[110px] md:h-[130px]">
+                <div className="absolute inset-0 overflow-auto custom-scrollbar p-2 md:p-3 flex flex-col items-center">
                   {output ? (
                     <textarea
                       readOnly
@@ -370,9 +370,9 @@ export default function ToolView({
             </div>
 
             {/* Tool Details (Desktop Only) */}
-            <div className="hidden lg:grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-5 bg-bg-card/50 border border-border-subtle group hover:border-accent-glitch/10 transition-all duration-300">
-                <h2 className="text-[9px] font-mono text-accent-glitch uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
+            <div className="hidden lg:grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="p-4 bg-bg-card/50 border border-border-subtle group hover:border-accent-glitch/10 transition-all duration-300">
+                <h2 className="text-[9px] font-mono text-accent-glitch uppercase tracking-[0.3em] mb-2 flex items-center gap-2">
                   <Info className="w-3 h-3" />
                   Module_Summary
                 </h2>
@@ -380,8 +380,8 @@ export default function ToolView({
                   {content.about}
                 </p>
               </div>
-              <div className="p-5 bg-bg-card/50 border border-border-subtle group hover:border-accent-glitch/10 transition-all duration-300">
-                <h2 className="text-[9px] font-mono text-accent-glitch uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
+              <div className="p-4 bg-bg-card/50 border border-border-subtle group hover:border-accent-glitch/10 transition-all duration-300">
+                <h2 className="text-[9px] font-mono text-accent-glitch uppercase tracking-[0.3em] mb-2 flex items-center gap-2">
                   <Zap className="w-3 h-3" />
                   Key_Specs
                 </h2>
@@ -402,9 +402,9 @@ export default function ToolView({
           </div>
 
           {/* Sidebar Controls */}
-          <div className="w-full lg:w-[320px] shrink-0 flex flex-col gap-6 lg:sticky lg:top-24">
-            <div className="bg-bg-card border border-border-subtle p-5 md:p-6 relative overflow-hidden group shadow-xl">
-              <div className="flex items-center gap-3 mb-6 md:mb-10">
+          <div className="w-full lg:w-[320px] shrink-0 flex flex-col gap-4 lg:sticky lg:top-24">
+            <div className="bg-bg-card border border-border-subtle p-4 relative overflow-hidden group shadow-xl">
+              <div className="flex items-center gap-3 mb-6 md:mb-8">
                 <div className="w-10 h-10 border border-accent-glitch/20 flex items-center justify-center">
                   <Settings className="w-5 h-5 text-accent-glitch animate-spin-slow" />
                 </div>
@@ -413,7 +413,7 @@ export default function ToolView({
                 </h3>
               </div>
 
-              <div className="flex flex-col gap-6 md:gap-8">
+              <div className="flex flex-col gap-4 md:gap-5">
                 {toolConfig?.controls.map((control: any) => (
                   <div key={control.id} className="flex flex-col gap-4">
                     <div className="flex justify-between items-center font-mono text-[9px] uppercase tracking-widest">
@@ -571,8 +571,8 @@ export default function ToolView({
             </div>
 
             {/* Quick Links */}
-            <div className="p-6 bg-bg-card border border-white/5">
-              <h3 className="text-[10px] font-mono uppercase tracking-[0.3em] text-text-muted mb-6">
+            <div className="p-4 bg-bg-card border border-white/5">
+              <h3 className="text-[10px] font-mono uppercase tracking-[0.3em] text-text-muted mb-4">
                 Related_Modules
               </h3>
               <div className="grid grid-cols-2 gap-2">
@@ -580,7 +580,7 @@ export default function ToolView({
                   <Link
                     key={t.slug}
                     href={`/${category.slug}/${t.slug}`}
-                    className="p-3 border border-border-subtle bg-bg-void text-[9px] font-mono text-text-muted hover:text-accent-glitch hover:border-accent-glitch/30 transition-all uppercase truncate"
+                    className="p-2 border border-border-subtle bg-bg-void text-[9px] font-mono text-text-muted hover:text-accent-glitch hover:border-accent-glitch/30 transition-all uppercase truncate"
                   >
                     {t.name}
                   </Link>
@@ -593,14 +593,14 @@ export default function ToolView({
         {/* FAQs */}
         {!hideFaqs && (
           <div className="mt-16 sm:mt-24">
-            <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-center mb-8 md:mb-12 underline decoration-accent-glitch/20 underline-offset-8">
+            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-center mb-6 md:mb-10 underline decoration-accent-glitch/20 underline-offset-8">
               Matrix_Intel_FAQ
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
               {content.faqs.map((faq, i) => (
                 <div
                   key={i}
-                  className="p-5 md:p-6 bg-bg-card border border-border-subtle group hover:border-accent-glitch/20 transition-all duration-300 shadow-sm"
+                  className="p-4 md:p-5 bg-bg-card border border-border-subtle group hover:border-accent-glitch/20 transition-all duration-300 shadow-sm"
                 >
                   <h4 className="text-[10px] md:text-[11px] font-mono font-black text-accent-glitch uppercase tracking-widest mb-3 flex gap-2">
                     <span className="opacity-50">[Q]</span> {faq.q}

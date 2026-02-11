@@ -18,14 +18,10 @@ export const metadata: Metadata = {
       "Explore the full TypeWarp arsenal of text generators, typography engines, and encoding utilities.",
     url: "https://typewarp.com/arsenal",
     type: "website",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "TypeWarp Arsenal",
-      },
-    ],
+    images: ["/og-image.png"],
+  },
+  other: {
+    "og:updated_time": new Date().toISOString(),
   },
   alternates: { canonical: "https://typewarp.com/arsenal" },
 };

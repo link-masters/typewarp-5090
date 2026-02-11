@@ -17,7 +17,7 @@ export default function CategoryClientView({
   category,
 }: CategoryClientViewProps) {
   return (
-    <div className="min-h-screen bg-bg-void text-text-primary pt-28 pb-20 px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-bg-void text-text-primary pt-20 sm:pt-24 pb-16 px-4 relative overflow-hidden">
       <BackgroundEffect />
 
       <div className="container mx-auto max-w-7xl relative z-10">
@@ -26,7 +26,7 @@ export default function CategoryClientView({
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="flex items-center gap-4 mb-8 font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted"
+          className="flex items-center gap-4 mb-6 font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted"
         >
           <Link
             href="/"
@@ -47,7 +47,7 @@ export default function CategoryClientView({
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-12"
+          className="mb-8"
         >
           <div className="max-w-2xl text-left">
             <h1 className="text-3xl md:text-6xl font-black tracking-tighter uppercase mb-6 leading-tight">
@@ -75,7 +75,7 @@ export default function CategoryClientView({
         </motion.header>
 
         {/* Single Line Category Navigation */}
-        <div className="mb-20 pb-8 border-b border-border-subtle/10 overflow-x-auto no-scrollbar">
+        <div className="mb-12 pb-6 border-b border-border-subtle/10 overflow-x-auto no-scrollbar">
           <div className="flex items-center gap-6">
             <Link
               href="/arsenal"
@@ -103,7 +103,7 @@ export default function CategoryClientView({
         </div>
 
         {/* Tools Grid Section Label */}
-        <div className="flex items-center gap-4 mb-12">
+        <div className="flex items-center gap-4 mb-8">
           <div className="h-px flex-1 bg-border-subtle opacity-20" />
           <div className="text-[10px] font-mono text-text-muted uppercase tracking-[0.5em]">
             AVAILABLE_TRANSFORMATION_MATRICES
@@ -122,7 +122,7 @@ export default function CategoryClientView({
               },
             },
           }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5"
         >
           {category.tools.map((tool: any) => (
             <motion.div
@@ -153,49 +153,6 @@ export default function CategoryClientView({
             </motion.div>
           ))}
         </motion.div>
-
-        {/* About Category */}
-        <div className="mt-32 p-8 md:p-20 bg-bg-card border border-border-subtle relative group shadow-2xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            <div className="lg:col-span-8">
-              <h2 className="text-sm font-mono text-accent-glitch uppercase tracking-[0.5em] mb-8">
-                // SYSTEM_INTEL
-              </h2>
-              <h3 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter uppercase">
-                Pushing the boundaries <br /> of{" "}
-                <span className="text-white/40 group-hover:text-white transition-colors">
-                  expression
-                </span>
-              </h3>
-              <p className="text-text-muted text-lg font-mono leading-relaxed mb-12 max-w-2xl">
-                The {category.name} collection is engineered for peak digital
-                entropy. Whether you're crafting a high-end brand identity or
-                looking for the perfect glitch, our tools provide the technical
-                precision required for modern digital art.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                {["FAST_SYNC", "CROSS_PLATFORM", "ENCRYPTED", "ZERO_LOGS"].map(
-                  (tag) => (
-                    <div
-                      key={tag}
-                      className="px-4 py-2 border border-white/10 text-[9px] font-mono text-text-muted uppercase tracking-widest group-hover:border-accent-glitch/30 transition-colors"
-                    >
-                      {tag}
-                    </div>
-                  ),
-                )}
-              </div>
-            </div>
-            <div className="lg:col-span-4 flex justify-center">
-              <div className="w-64 h-64 bg-bg-void border border-border-subtle flex items-center justify-center text-9xl group-hover:border-accent-glitch group-hover:bg-accent-glitch/5 transition-all duration-500 relative">
-                <span className="relative z-10 group-hover:scale-110 transition-transform duration-500 grayscale opacity-20 group-hover:grayscale-0 group-hover:opacity-100 italic">
-                  {category.icon}
-                </span>
-                <div className="absolute inset-2 border border-dashed border-border-subtle group-hover:border-accent-glitch/20" />
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

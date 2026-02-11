@@ -64,11 +64,11 @@ export default function FeaturedTools() {
   ];
 
   return (
-    <section className="py-12 md:py-40 bg-bg-void relative overflow-hidden border-t border-border-subtle font-mono">
+    <section className="py-12 md:py-28 bg-bg-void relative overflow-hidden border-t border-border-subtle font-mono">
       <div className="container mx-auto max-w-7xl px-4 lg:px-6">
-        <div className="flex flex-col md:flex-row items-end justify-between mb-10 md:mb-20 gap-6 md:gap-8">
+        <div className="flex flex-col md:flex-row items-end justify-between mb-10 md:mb-16 gap-6 md:gap-8">
           <div className="max-w-2xl text-left">
-            <h2 className="text-2xl md:text-6xl font-black tracking-tighter uppercase mb-4 md:mb-6 leading-tight">
+            <h2 className="text-2xl md:text-5xl font-black tracking-tighter uppercase mb-4 md:mb-6 leading-tight">
               High Performance <br />{" "}
               <span className="text-accent-glitch">Warp Matrices</span>
             </h2>
@@ -86,14 +86,14 @@ export default function FeaturedTools() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {featured.map((tool, i) => {
             const Icon = tool.icon;
             return (
               <Link
                 key={tool.slug}
                 href={`/${tool.category}/${tool.slug}`}
-                className="group relative p-6 md:p-12 bg-bg-card border border-border-subtle hover:border-accent-glitch/50 transition-all duration-500 overflow-hidden flex flex-col shadow-sm hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_30px_60px_-15px_rgba(57,255,20,0.1)] hover:-translate-y-2"
+                className="group relative p-6 md:p-8 bg-bg-card border border-border-subtle hover:border-accent-glitch/50 transition-all duration-500 overflow-hidden flex flex-col shadow-sm hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_30px_60px_-15px_rgba(57,255,20,0.1)] hover:-translate-y-2"
               >
                 {/* Blueprint Background */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.04] dark:group-hover:opacity-[0.06] transition-opacity duration-700 pointer-events-none bg-[radial-gradient(var(--accent-glitch)_1px,transparent_1px)] [background-size:24px_24px]" />
@@ -108,22 +108,22 @@ export default function FeaturedTools() {
 
                 {/* Main Content */}
                 <div className="relative z-10 flex flex-col h-full">
-                  <div className="mb-8 md:mb-12 w-12 h-12 md:w-16 md:h-16 border border-border-subtle flex items-center justify-center bg-bg-void group-hover:border-accent-glitch transition-all duration-500 relative rounded-sm">
+                  <div className="mb-6 md:mb-8 w-12 h-12 md:w-14 md:h-14 border border-border-subtle flex items-center justify-center bg-bg-void group-hover:border-accent-glitch transition-all duration-500 relative rounded-sm">
                     <Icon className="w-5 h-5 md:w-7 md:h-7 text-text-muted group-hover:text-accent-glitch transition-all duration-500" />
                     <div className="absolute -inset-2 bg-accent-glitch/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
 
-                  <h3 className="text-xl md:text-3xl font-black text-text-primary uppercase tracking-tighter mb-4 md:mb-6 group-hover:text-accent-glitch transition-colors duration-300">
+                  <h3 className="text-xl md:text-2xl font-black text-text-primary uppercase tracking-tighter mb-3 md:mb-4 group-hover:text-accent-glitch transition-colors duration-300">
                     {tool.name}
                   </h3>
 
-                  <p className="text-[10px] md:text-[11px] font-mono text-text-muted uppercase tracking-[0.1em] leading-relaxed mb-8 md:mb-12 opacity-80 group-hover:opacity-100 line-clamp-2">
+                  <p className="text-[10px] md:text-[11px] font-mono text-text-muted uppercase tracking-[0.1em] leading-relaxed mb-6 md:mb-8 opacity-80 group-hover:opacity-100 line-clamp-2">
                     Initialize high-performance {tool.name.toLowerCase()}{" "}
                     transformation matrix with zero latency.
                   </p>
 
                   {/* Clear Visible Action Button */}
-                  <div className="mt-auto flex items-center justify-between pt-8 border-t border-border-subtle/40">
+                  <div className="mt-auto flex items-center justify-between pt-6 border-t border-border-subtle/40">
                     <div className="flex items-center gap-2 text-accent-glitch font-mono font-black text-[9px] uppercase tracking-[0.3em]">
                       LAUNCH_MODULE
                       <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-2" />
