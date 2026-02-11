@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Terminal, ChevronDown, List } from "lucide-react";
 
 interface TocItem {
   id: string;
@@ -22,7 +23,6 @@ export default function TableOfContents({
   const [isExpanded, setIsExpanded] = useState(true);
   const [progress, setProgress] = useState(0);
 
-  // Extract headings from content if items not provided
   useEffect(() => {
     if (!items && content) {
       const headingRegex = /^#{1,3}\s+(.+)$/gm;
@@ -40,7 +40,6 @@ export default function TableOfContents({
     }
   }, [content, items]);
 
-  // Track active heading on scroll
   useEffect(() => {
     const handleScroll = () => {
       const headings = tocItems.map((item) => document.getElementById(item.id));
@@ -54,7 +53,6 @@ export default function TableOfContents({
         }
       }
 
-      // Calculate reading progress
       const docHeight =
         document.documentElement.scrollHeight - window.innerHeight;
       const scrollProgress = (window.scrollY / docHeight) * 100;
@@ -62,7 +60,7 @@ export default function TableOfContents({
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial check
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [tocItems]);
 
@@ -83,94 +81,94 @@ export default function TableOfContents({
   };
 
   return (
-    <nav className="bg-[var(--card-bg)] backdrop-blur-xl border border-[var(--card-border)] rounded-2xl overflow-hidden sticky top-28 shadow-lg">
-      {/* Progress Bar */}
-      <div className="h-1 bg-[var(--card-border)]">
+    <nav className="bg-bg-card/40 backdrop-blur-md border border-white/5 sticky top-32 overflow-hidden shadow-2xl group transition-all duration-300 hover:border-accent-glitch/20">
+      {/* Terminal Progress Indicator */}
+      <div className="h-[2px] bg-white/5 relative">
         <div
-          className="h-full bg-gradient-to-r from-red-500 to-purple-500 transition-all duration-150"
+          className="h-full bg-accent-glitch shadow-[0_0_10px_var(--accent-glitch)] transition-all duration-300 ease-out"
           style={{ width: `${progress}%` }}
         />
+        <div className="absolute top-0 right-0 h-full w-4 bg-gradient-to-l from-bg-void to-transparent z-10" />
       </div>
 
-      {/* Header */}
+      {/* Module Header */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full p-5 flex items-center justify-between hover:bg-[var(--background)] transition-colors"
+        className="w-full p-5 flex items-center justify-between hover:bg-white/[0.03] transition-all group/header"
       >
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500/20 to-purple-500/20 flex items-center justify-center">
-            <svg
-              className="w-5 h-5 text-red-500"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h7"
-              />
-            </svg>
+        <div className="flex items-center gap-4">
+          <div className="relative">
+            <div className="w-10 h-10 border border-white/10 flex items-center justify-center bg-white/5 transition-all group-hover/header:border-accent-glitch/50 group-hover/header:bg-accent-glitch/10">
+              <List className="w-4 h-4 text-text-muted group-hover/header:text-accent-glitch transition-colors" />
+            </div>
+            <div className="absolute -top-1 -right-1 w-2 h-2 bg-accent-glitch animate-pulse rounded-full shadow-[0_0_5px_var(--accent-glitch)]" />
           </div>
-          <div className="text-left">
-            <h2 className="text-sm font-bold text-[var(--foreground)] uppercase tracking-wider">
-              Contents
+          <div className="text-left font-mono">
+            <h2 className="text-[10px] font-black text-white uppercase tracking-[0.3em] leading-none mb-1.5">
+              Intel_Nodes
             </h2>
-            <span className="text-xs text-[var(--muted)]">
-              {tocItems.length} sections
-            </span>
+            <div className="flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-accent-glitch/50 animate-pulse" />
+              <span className="text-[8px] text-text-muted font-bold uppercase tracking-widest">
+                {tocItems.length}_Active_Sectors
+              </span>
+            </div>
           </div>
         </div>
-        <svg
-          className={`w-5 h-5 text-[var(--muted)] transition-transform duration-300 ${
+        <ChevronDown
+          className={`w-3.5 h-3.5 text-text-muted transition-transform duration-500 ${
             isExpanded ? "rotate-180" : ""
           }`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
+        />
       </button>
 
-      {/* Content */}
+      {/* Navigation Matrix */}
       <div
-        className={`overflow-hidden transition-all duration-300 ${
-          isExpanded ? "max-h-[60vh]" : "max-h-0"
+        className={`overflow-hidden transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) ${
+          isExpanded ? "max-h-[65vh] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="px-5 pb-5 overflow-y-auto max-h-[55vh] scrollbar-thin scrollbar-thumb-[var(--card-border)] scrollbar-track-transparent">
-          <ul className="space-y-1">
+        <div className="px-3 pb-6 overflow-y-auto max-h-[55vh] custom-scrollbar">
+          <ul className="space-y-0.5 font-mono">
             {tocItems.map((item, index) => {
               const isActive = activeId === item.id;
-              const indent = (item.level - 1) * 12;
+              const indent = (item.level - 1) * 8;
 
               return (
                 <li key={item.id} style={{ paddingLeft: `${indent}px` }}>
                   <button
                     onClick={() => scrollToHeading(item.id)}
-                    className={`w-full text-left py-2.5 px-4 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-3 group ${
+                    className={`w-full text-left py-2.5 px-4 text-[9px] font-black transition-all flex items-center gap-4 uppercase tracking-widest relative group/item overflow-hidden ${
                       isActive
-                        ? "bg-red-500/10 text-red-500 border-l-2 border-red-500"
-                        : "text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--background)]"
+                        ? "text-accent-glitch"
+                        : "text-text-muted hover:text-white"
                     }`}
                   >
+                    {/* Active Background Effect */}
+                    {isActive && (
+                      <div className="absolute inset-0 bg-accent-glitch/5 animate-in fade-in duration-500" />
+                    )}
+
+                    {/* Hover Effect */}
+                    <div className="absolute inset-0 bg-white/5 -translate-x-full group-hover/item:translate-x-0 transition-transform duration-300" />
+
                     <span
-                      className={`w-6 h-6 rounded-lg flex items-center justify-center text-xs font-bold shrink-0 transition-colors ${
+                      className={`w-6 h-6 border flex items-center justify-center text-[8px] transition-all shrink-0 relative z-10 ${
                         isActive
-                          ? "bg-red-500 text-white"
-                          : "bg-[var(--card-border)] text-[var(--muted)] group-hover:bg-[var(--muted)] group-hover:text-[var(--background)]"
+                          ? "border-accent-glitch bg-accent-glitch text-black shadow-[0_0_15px_-3px_var(--accent-glitch)] scale-110"
+                          : "border-white/10 text-white/20 group-hover/item:border-white/30 group-hover/item:text-white"
                       }`}
                     >
-                      {index + 1}
+                      {String(index + 1).padStart(2, "0")}
                     </span>
-                    <span className="truncate">{item.text}</span>
+
+                    <span className="relative z-10 truncate block flex-1">
+                      {item.text}
+                    </span>
+
+                    {isActive && (
+                      <div className="absolute left-0 top-0 w-[2px] h-full bg-accent-glitch shadow-[2px_0_10px_var(--accent-glitch)]" />
+                    )}
                   </button>
                 </li>
               );
@@ -178,6 +176,8 @@ export default function TableOfContents({
           </ul>
         </div>
       </div>
+
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
     </nav>
   );
 }

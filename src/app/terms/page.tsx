@@ -1,85 +1,107 @@
 import React from "react";
 import { Metadata } from "next";
+import BackgroundEffect from "@/components/BackgroundEffect";
+import Link from "next/link";
+import { Home, ChevronRight, FileText } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | TypeWarp",
+  title: "Terms of Service | TypeWarp Intel",
   description:
-    "Read our terms of service to understand how you can use TypeWarp.",
-  alternates: {
-    canonical: "https://typewarp.com/terms",
-  },
+    "Read our terms of service to understand how you can use the TypeWarp matrix.",
+  alternates: { canonical: "https://typewarp.com/terms" },
 };
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen pt-32 pb-20 px-6">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-6xl font-black mb-8 text-[var(--foreground)]">
-          Terms of <span className="text-red-500 italic">Service</span>
-        </h1>
-        <div className="prose dark:prose-invert prose-red max-w-none space-y-8 text-zinc-600 dark:text-[var(--muted)]">
-          <section>
-            <h2 className="text-2xl font-bold text-[var(--foreground)]">
-              1. Acceptance of Terms
+    <div className="min-h-screen pt-32 pb-20 bg-bg-void text-text-primary relative overflow-hidden">
+      <BackgroundEffect />
+      <div className="container mx-auto px-4 max-w-4xl relative z-10">
+        <nav className="flex items-center gap-4 mb-16 font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted">
+          <Link
+            href="/"
+            className="hover:text-accent-glitch transition-colors flex items-center gap-2"
+          >
+            <Home className="w-3 h-3" />
+            ROOT
+          </Link>
+          <ChevronRight className="w-3 h-3 opacity-30" />
+          <div className="text-accent-glitch">TERMS_OF_SERVICE</div>
+        </nav>
+
+        <header className="mb-16">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-10 h-10 bg-accent-glitch/10 border border-accent-glitch/20 flex items-center justify-center">
+              <FileText className="w-5 h-5 text-accent-glitch" />
+            </div>
+            <h2 className="text-[10px] font-mono text-accent-glitch uppercase tracking-[0.5em]">
+              // LEGAL_DOCUMENT_01
             </h2>
-            <p className="text-lg leading-relaxed">
-              By accessing and using TypeWarp ("the Website"), you agree to be
-              bound by these Terms of Service. If you do not agree with any part
-              of these terms, you must not use our services.
+          </div>
+          <h1 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter uppercase leading-[0.8]">
+            Service <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-glitch to-white">
+              Protocols.
+            </span>
+          </h1>
+        </header>
+
+        <div
+          className="prose prose-invert max-w-none font-mono text-sm leading-relaxed text-text-muted 
+          prose-headings:uppercase prose-headings:font-black prose-headings:tracking-tighter prose-headings:text-white
+          prose-strong:text-accent-glitch"
+        >
+          <section className="bg-bg-card border border-white/5 p-8 mb-8">
+            <h2 className="text-xl mb-4">1. Acceptance of Terms</h2>
+            <p>
+              By accessing and using TypeWarp ("the Matrix"), you agree to be
+              bound by these Service Protocols. If you do not agree with any
+              part of these terms, you must terminate your session immediately.
             </p>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-bold text-[var(--foreground)]">
-              2. Description of Service
-            </h2>
-            <p className="text-lg leading-relaxed">
-              TypeWarp provides various text transformation tools, including
+          <section className="bg-bg-card border border-white/5 p-8 mb-8">
+            <h2 className="text-xl mb-4">2. Description of Service</h2>
+            <p>
+              TypeWarp provides various text transformation modules, including
               font generators, translators, and stylization tools. These
-              services are provided "as is" and for creative/entertainment
-              purposes only.
+              services are provided "as is" and for creative, technical, and
+              digital entropy purposes.
             </p>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-bold text-[var(--foreground)]">
-              3. User Conduct
-            </h2>
-            <p className="text-lg leading-relaxed">
-              You agree to use the Website only for lawful purposes. You are
+          <section className="bg-bg-card border border-white/5 p-8 mb-8">
+            <h2 className="text-xl mb-4">3. User Conduct</h2>
+            <p>
+              You agree to use the Matrix only for lawful purposes. You are
               prohibited from using the output generated by TypeWarp for
-              harassment, hate speech, or any illegal activities.
+              harassment, hate speech, or any illegal activities. Any misuse of
+              terminal output is the sole responsibility of the user.
             </p>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-bold text-[var(--foreground)]">
-              4. Intellectual Property
-            </h2>
-            <p className="text-lg leading-relaxed">
-              The design, code, and original content of TypeWarp are our
+          <section className="bg-bg-card border border-white/5 p-8 mb-8">
+            <h2 className="text-xl mb-4">4. Intellectual Property</h2>
+            <p>
+              The design, code, and original architecture of TypeWarp are our
               intellectual property. The text transformations provided use
               standard Unicode characters; however, the specific implementation
-              and toolsets are unique to our platform.
+              and mapping schemas are unique to our ecosystem.
             </p>
           </section>
 
-          <section>
-            <h2 className="text-2xl font-bold text-[var(--foreground)]">
-              5. Limitation of Liability
-            </h2>
-            <p className="text-lg leading-relaxed">
-              TypeWarp is not liable for any damages arising out of the use or
-              inability to use the services offered. We do not guarantee 100%
-              uptime or compatibility across all legacy devices.
+          <section className="bg-bg-card border border-white/5 p-8 mb-8">
+            <h2 className="text-xl mb-4">5. Limitation of Liability</h2>
+            <p>
+              TypeWarp is not liable for any data corruption or damages arising
+              out of the use or inability to use the services offered. We do not
+              guarantee 100% uptime or compatibility across all legacy
+              environments.
             </p>
           </section>
 
-          <section>
-            <p className="text-sm border-t border-zinc-200 dark:border-[var(--card-border)] pt-8">
-              Last Updated: February 5, 2026
-            </p>
-          </section>
+          <div className="pt-12 text-[10px] text-white/20 uppercase tracking-[0.2em] font-mono">
+            PROTOCOL_LAST_UPDATED: FEBRUARY 10, 2026
+          </div>
         </div>
       </div>
     </div>

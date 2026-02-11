@@ -1,6 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import {
+  MessageSquare,
+  Heart,
+  Reply,
+  Send,
+  User,
+  Ghost,
+  Terminal,
+} from "lucide-react";
 
 interface Comment {
   id: string;
@@ -12,23 +21,22 @@ interface Comment {
   replies: Comment[];
 }
 
-// Sample comments for demonstration
 const sampleComments: Comment[] = [
   {
     id: "1",
-    author: "Alex Gaming",
+    author: "Alex_Gaming",
     avatar: "A",
     content:
-      "This guide is incredible! I've been using the cursed text generator for my Discord username and everyone always asks how I made it look so cool. TypeWarp is definitely the best tool out there.",
+      "Initialize sequence successful. This guide is incredible! I've been using the cursed text generator for my Discord username and the digital fallout is perfect. TypeWarp is the definitive tool for digital entropy.",
     date: "2 days ago",
     likes: 24,
     replies: [
       {
         id: "1-1",
-        author: "TypeWarp Team",
+        author: "TypeWarp_Team",
         avatar: "T",
         content:
-          "Thanks Alex! We're glad you're enjoying the tool. Stay tuned for more features coming soon! 🔥",
+          "Acknowledgement received, Alex. We're glad the transformation protocols are meeting your requirements. Stay tuned for future module updates. 🔥",
         date: "1 day ago",
         likes: 8,
         replies: [],
@@ -37,22 +45,12 @@ const sampleComments: Comment[] = [
   },
   {
     id: "2",
-    author: "DigitalArtist_",
+    author: "DigitalArtist_01",
     avatar: "D",
     content:
-      "Perfect for my horror game aesthetic. The zalgo text option creates exactly the corrupted look I was going for in my indie game's dialogue system.",
+      "Perfect for my horror game aesthetic. The zalgo mapping creates exactly the corrupted metadata look I was aiming for. High-fidelity glitch.",
     date: "5 days ago",
     likes: 42,
-    replies: [],
-  },
-  {
-    id: "3",
-    author: "SocialMediaPro",
-    avatar: "S",
-    content:
-      "Finally, a comprehensive guide that explains how Unicode actually works! I've been using these tools for years without understanding the technology behind it. Great educational content.",
-    date: "1 week ago",
-    likes: 67,
     replies: [],
   },
 ];
@@ -70,95 +68,71 @@ function CommentCard({
   return (
     <div
       className={`${
-        isReply ? "ml-12 mt-4" : ""
-      } p-5 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl`}
+        isReply ? "ml-8 mt-6 border-l-2 border-accent-glitch/20 pl-6" : ""
+      } p-6 bg-bg-card border border-white/5 relative group`}
     >
       <div className="flex items-start gap-4">
         {/* Avatar */}
         <div
-          className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-white shrink-0 ${
+          className={`w-10 h-10 border flex items-center justify-center font-mono font-black shrink-0 ${
             comment.author.includes("TypeWarp")
-              ? "bg-gradient-to-br from-red-500 to-purple-500"
-              : "bg-gradient-to-br from-zinc-600 to-zinc-800"
+              ? "border-accent-glitch bg-accent-glitch/10 text-accent-glitch"
+              : "border-white/10 bg-white/5 text-white/40"
           }`}
         >
           {comment.avatar}
         </div>
 
         <div className="flex-1 min-w-0">
-          {/* Header */}
-          <div className="flex items-center gap-2 mb-2">
-            <span className="font-bold text-[var(--foreground)]">
+          <div className="flex items-center gap-3 mb-3 font-mono">
+            <span className="text-xs font-black text-white uppercase tracking-widest">
               {comment.author}
             </span>
             {comment.author.includes("TypeWarp") && (
-              <span className="px-2 py-0.5 bg-red-500/10 text-red-500 text-xs font-bold rounded-full">
-                Team
+              <span className="px-2 py-0.5 bg-accent-glitch text-black text-[8px] font-black uppercase tracking-tighter">
+                CORE_ADMIN
               </span>
             )}
-            <span className="text-[var(--muted)] text-sm">{comment.date}</span>
+            <span className="text-[9px] text-text-muted uppercase tracking-widest">
+              {comment.date}
+            </span>
           </div>
 
-          {/* Content */}
-          <p className="text-[var(--muted)] mb-4">{comment.content}</p>
+          <p className="text-text-muted font-mono text-sm leading-relaxed mb-6">
+            {comment.content}
+          </p>
 
-          {/* Actions */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 font-mono">
             <button
               onClick={() => setLiked(!liked)}
-              className={`flex items-center gap-2 text-sm font-medium transition-colors ${
+              className={`flex items-center gap-2 text-[10px] uppercase tracking-widest transition-colors ${
                 liked
-                  ? "text-red-500"
-                  : "text-[var(--muted)] hover:text-[var(--foreground)]"
+                  ? "text-accent-glitch"
+                  : "text-text-muted hover:text-white"
               }`}
             >
-              <svg
-                className="w-4 h-4"
-                fill={liked ? "currentColor" : "none"}
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                />
-              </svg>
+              <Heart className={`w-3 h-3 ${liked ? "fill-current" : ""}`} />
               {comment.likes + (liked ? 1 : 0)}
             </button>
             {!isReply && (
               <button
                 onClick={() => setShowReplyInput(!showReplyInput)}
-                className="flex items-center gap-2 text-sm font-medium text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+                className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-text-muted hover:text-white transition-colors"
               >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
-                  />
-                </svg>
+                <Reply className="w-3 h-3" />
                 Reply
               </button>
             )}
           </div>
 
-          {/* Reply Input */}
           {showReplyInput && (
-            <div className="mt-4 flex gap-3">
+            <div className="mt-6 flex gap-3">
               <input
                 type="text"
-                placeholder="Write a reply..."
-                className="flex-1 px-4 py-3 bg-[var(--background)] border border-[var(--card-border)] rounded-xl text-[var(--foreground)] placeholder:text-[var(--muted)] focus:outline-none focus:ring-2 focus:ring-red-500/50"
+                placeholder="LOAD_REPLY_BUFFER..."
+                className="flex-1 px-4 py-3 bg-bg-void border border-white/10 text-white font-mono text-xs outline-none focus:border-accent-glitch/50"
               />
-              <button className="px-4 py-3 bg-red-500 hover:bg-red-600 text-white font-bold rounded-xl transition-colors">
+              <button className="px-4 py-3 bg-accent-glitch text-black font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">
                 Send
               </button>
             </div>
@@ -166,7 +140,6 @@ function CommentCard({
         </div>
       </div>
 
-      {/* Nested Replies */}
       {comment.replies.map((reply) => (
         <CommentCard key={reply.id} comment={reply} isReply />
       ))}
@@ -180,114 +153,94 @@ export default function Comments({ postSlug }: { postSlug: string }) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would submit to an API
-    alert("Comments will be connected to a backend service. This is a demo.");
+    alert(
+      "COMMS_PROTOCOL: Backend connection pending. Finalizing transmission sequence.",
+    );
     setNewComment("");
   };
 
   return (
-    <section className="mt-16 pt-12 border-t border-[var(--card-border)]">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+    <section className="mt-20 pt-16 border-t border-white/5">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-12 font-mono">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-red-500/20 to-purple-500/20 flex items-center justify-center">
-            <svg
-              className="w-6 h-6 text-red-500"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-              />
-            </svg>
+          <div className="w-12 h-12 border border-accent-glitch/20 bg-accent-glitch/5 flex items-center justify-center">
+            <MessageSquare className="w-6 h-6 text-accent-glitch animate-pulse" />
           </div>
           <div>
-            <h2 className="text-2xl font-black text-[var(--foreground)]">
-              Discussion
+            <h2 className="text-xl font-black text-white uppercase tracking-tighter">
+              Comm_Channel
             </h2>
-            <p className="text-sm text-[var(--muted)]">
-              {sampleComments.length} comments • Join the conversation
+            <p className="text-[9px] text-text-muted uppercase tracking-[0.2em]">
+              {sampleComments.length}_TRANSMISSIONS_DETECTED
             </p>
           </div>
         </div>
 
-        {/* Sort Options */}
-        <div className="flex items-center gap-2 bg-[var(--card-bg)] p-1 rounded-xl border border-[var(--card-border)]">
+        <div className="flex items-center gap-1 p-1 bg-white/5 border border-white/5">
           <button
             onClick={() => setSortBy("popular")}
-            className={`px-4 py-2 text-sm font-bold rounded-lg transition-colors ${
+            className={`px-4 py-2 text-[9px] font-black uppercase tracking-widest transition-all ${
               sortBy === "popular"
-                ? "bg-red-500 text-white"
-                : "text-[var(--muted)] hover:text-[var(--foreground)]"
+                ? "bg-accent-glitch text-black"
+                : "text-text-muted hover:text-white"
             }`}
           >
-            Popular
+            POPULAR
           </button>
           <button
             onClick={() => setSortBy("newest")}
-            className={`px-4 py-2 text-sm font-bold rounded-lg transition-colors ${
+            className={`px-4 py-2 text-[9px] font-black uppercase tracking-widest transition-all ${
               sortBy === "newest"
-                ? "bg-red-500 text-white"
-                : "text-[var(--muted)] hover:text-[var(--foreground)]"
+                ? "bg-accent-glitch text-black"
+                : "text-text-muted hover:text-white"
             }`}
           >
-            Newest
+            NEWEST
           </button>
         </div>
       </div>
 
       {/* Comment Input */}
-      <form onSubmit={handleSubmit} className="mb-8">
-        <div className="p-6 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl">
+      <form onSubmit={handleSubmit} className="mb-12">
+        <div className="p-8 bg-bg-card border border-white/5 group relative">
+          <div className="text-[9px] font-mono text-accent-glitch uppercase tracking-[0.4em] mb-4 flex items-center gap-2">
+            <Terminal className="w-3 h-3" />
+            INPUT_PAYLOAD
+          </div>
           <textarea
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
-            placeholder="Share your thoughts on this article..."
-            className="w-full p-4 bg-[var(--background)] border border-[var(--card-border)] rounded-xl text-[var(--foreground)] placeholder:text-[var(--muted)] focus:outline-none focus:ring-2 focus:ring-red-500/50 resize-none min-h-[120px]"
+            placeholder="ENTER_DATA_TO_TRANSMIT..."
+            className="w-full p-4 bg-bg-void border border-white/10 text-white font-mono text-sm outline-none focus:border-accent-glitch/50 resize-none min-h-[140px]"
           />
-          <div className="flex items-center justify-between mt-4">
-            <p className="text-xs text-[var(--muted)]">
-              💡 Tip: Be constructive and respectful in your discussions.
-            </p>
+          <div className="flex flex-col sm:flex-row items-center justify-between mt-6 gap-4">
+            <div className="text-[9px] font-mono text-text-muted uppercase tracking-widest flex items-center gap-2">
+              <Ghost className="w-3 h-3" />
+              ANONYMOUS_SESSION_ACTIVE
+            </div>
             <button
               type="submit"
               disabled={!newComment.trim()}
-              className="px-6 py-3 bg-gradient-to-r from-red-500 to-purple-500 hover:from-red-600 hover:to-purple-600 text-white font-bold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              className="w-full sm:w-auto px-8 py-4 bg-accent-glitch text-black font-black text-[10px] uppercase tracking-[0.4em] transition-all disabled:opacity-30 flex items-center justify-center gap-3 active:scale-95"
             >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                />
-              </svg>
-              Post Comment
+              <Send className="w-4 h-4" />
+              POST_SIGNAL
             </button>
           </div>
+          <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent-glitch/20 to-transparent" />
         </div>
       </form>
 
-      {/* Comments List */}
-      <div className="space-y-4">
+      <div className="space-y-6">
         {sampleComments.map((comment) => (
           <CommentCard key={comment.id} comment={comment} />
         ))}
       </div>
 
       {/* Load More */}
-      <div className="mt-8 text-center">
-        <button className="px-8 py-4 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl text-[var(--foreground)] font-bold hover:border-red-500/50 transition-all">
-          Load More Comments
+      <div className="mt-12">
+        <button className="w-full py-4 border border-white/10 font-mono text-[9px] text-text-muted uppercase tracking-[0.5em] hover:border-accent-glitch/30 hover:text-white transition-all">
+          LOAD_ADDITIONAL_PACKETS
         </button>
       </div>
     </section>

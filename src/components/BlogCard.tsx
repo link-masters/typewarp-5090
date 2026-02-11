@@ -1,51 +1,58 @@
 import Link from "next/link";
 import Image from "next/image";
 import { BlogPost } from "@/lib/blog";
+import { Calendar, User, ArrowRight } from "lucide-react";
 
 export default function BlogCard({ post }: { post: BlogPost }) {
   return (
     <Link href={`/blog/${post.slug}`} className="group block h-full">
-      <article className="h-full flex flex-col bg-white dark:bg-[var(--card-bg)] backdrop-blur-md border border-zinc-200 dark:border-[var(--card-border)] rounded-[1.5rem] overflow-hidden transition-all duration-300 hover:border-red-500/50 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_8px_30px_rgba(239,68,68,0.15)] dark:hover:shadow-[0_0_30px_rgba(239,68,68,0.2)]">
-        <div className="relative h-48 w-full overflow-hidden">
+      <article className="h-full flex flex-col bg-bg-card border border-white/5 relative overflow-hidden transition-all duration-300 hover:border-accent-glitch/50 group">
+        <div className="relative h-44 md:h-56 w-full overflow-hidden">
           <Image
             src={post.image}
             alt={post.title}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-110"
+            className="object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0 opacity-50 group-hover:opacity-100"
           />
-          <div className="absolute top-4 left-4">
-            <span className="px-3 py-1 text-xs font-semibold bg-red-600 text-white rounded-full">
+          <div className="absolute top-3 md:top-4 left-3 md:left-4">
+            <span className="px-2 md:px-3 py-0.5 md:py-1 text-[8px] md:text-[9px] font-mono font-black bg-accent-glitch text-black uppercase tracking-widest">
               {post.category}
             </span>
           </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-transparent to-transparent opacity-60" />
         </div>
-        <div className="p-6 flex flex-col flex-grow">
-          <div className="text-sm text-[var(--muted)] mb-2">
-            {new Date(post.date).toLocaleDateString()} • {post.author}
+
+        <div className="p-5 md:p-8 flex flex-col flex-grow relative z-10">
+          <div className="flex items-center gap-3 md:gap-4 text-[8px] md:text-[9px] font-mono text-text-muted mb-3 md:mb-4 uppercase tracking-[0.2em]">
+            <span className="flex items-center gap-1.5">
+              <Calendar className="w-3 h-3 text-accent-glitch" />
+              {new Date(post.date).toLocaleDateString()}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <User className="w-3 h-3 text-accent-glitch" />
+              {post.author}
+            </span>
           </div>
-          <h2 className="text-xl font-bold text-[var(--foreground)] mb-3 group-hover:text-red-500 transition-colors">
+
+          <h2 className="text-xl md:text-2xl font-black text-text-primary mb-3 md:mb-4 tracking-tighter uppercase leading-tight group-hover:text-accent-glitch transition-colors">
             {post.title}
           </h2>
-          <p className="text-[var(--muted)] text-sm line-clamp-3 mb-4">
+
+          <p className="text-text-muted font-mono text-[10px] md:text-xs leading-relaxed line-clamp-2 md:line-clamp-3 mb-6 md:mb-8">
             {post.description}
           </p>
-          <div className="mt-auto flex items-center text-red-500 font-semibold text-sm">
-            Read More
-            <svg
-              className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
+
+          <div className="mt-auto flex items-center justify-between">
+            <div className="flex items-center gap-2 text-accent-glitch font-mono font-black text-[9px] uppercase tracking-[0.3em]">
+              ACCESS_INTEL
+              <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-2" />
+            </div>
+            <div className="w-12 h-[1px] bg-white/10 group-hover:bg-accent-glitch/30 group-hover:w-20 transition-all duration-500" />
           </div>
         </div>
+
+        {/* Technical overlay border top */}
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent-glitch/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       </article>
     </Link>
   );

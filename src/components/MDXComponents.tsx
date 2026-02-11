@@ -1,6 +1,22 @@
 import Link from "next/link";
 import Image from "next/image";
 import { categories } from "@/lib/categories";
+import { ToolIcon } from "@/components/ToolIcon";
+import {
+  Terminal,
+  Zap,
+  Info,
+  AlertTriangle,
+  Lightbulb,
+  Flame,
+  ArrowRight,
+  ChevronRight,
+  HelpCircle,
+  Cpu,
+  Shield,
+  Activity,
+  Box,
+} from "lucide-react";
 
 // Internal link component for SEO-optimized linking
 const InternalLink = ({ href, children, ...props }: any) => {
@@ -10,24 +26,12 @@ const InternalLink = ({ href, children, ...props }: any) => {
     return (
       <Link
         href={href}
-        className="text-red-500 hover:text-red-400 font-semibold transition-colors duration-200 inline-flex items-center gap-1"
+        className="text-accent-glitch hover:text-white font-black transition-colors duration-200 inline-flex items-center gap-1 group"
         {...props}
       >
         {children}
         {!href?.startsWith("#") && (
-          <svg
-            className="w-3 h-3 opacity-50"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M13 7l5 5m0 0l-5 5m5-5H6"
-            />
-          </svg>
+          <ArrowRight className="w-3 h-3 opacity-50 group-hover:translate-x-1 transition-transform" />
         )}
       </Link>
     );
@@ -38,23 +42,11 @@ const InternalLink = ({ href, children, ...props }: any) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-red-500 hover:text-red-400 font-semibold transition-colors duration-200 inline-flex items-center gap-1"
+      className="text-accent-glitch hover:text-white font-black transition-colors duration-200 inline-flex items-center gap-1 group"
       {...props}
     >
       {children}
-      <svg
-        className="w-3 h-3 opacity-50"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-        />
-      </svg>
+      <ArrowRight className="w-3 h-3 opacity-50 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
     </a>
   );
 };
@@ -68,33 +60,42 @@ const Callout = ({
   children: React.ReactNode;
 }) => {
   const styles = {
-    info: "bg-blue-500/10 border-blue-500/30 text-blue-400",
-    warning: "bg-yellow-500/10 border-yellow-500/30 text-yellow-400",
-    tip: "bg-green-500/10 border-green-500/30 text-green-400",
-    important: "bg-red-500/10 border-red-500/30 text-red-400",
+    info: "border-blue-500/20 bg-blue-500/5 text-blue-400",
+    warning: "border-yellow-500/20 bg-yellow-500/5 text-yellow-400",
+    tip: "border-accent-glitch/20 bg-accent-glitch/5 text-accent-glitch",
+    important: "border-red-500/20 bg-red-500/5 text-red-400",
   };
 
   const icons = {
-    info: "💡",
-    warning: "⚠️",
-    tip: "✨",
-    important: "🔥",
+    info: <Info className="w-5 h-5" />,
+    warning: <AlertTriangle className="w-5 h-5" />,
+    tip: <Lightbulb className="w-5 h-5" />,
+    important: <Flame className="w-5 h-5" />,
   };
 
   return (
     <div
-      className={`${styles[type]} border rounded-xl p-6 my-8 flex items-start gap-4`}
+      className={`${styles[type]} border p-6 my-8 flex items-start gap-5 font-mono relative overflow-hidden`}
     >
-      <span className="text-2xl">{icons[type]}</span>
-      <div className="flex-1 [&>p]:mb-0 [&>p]:text-[var(--muted)]">
+      <div className="shrink-0">{icons[type]}</div>
+      <div className="flex-1 text-sm leading-relaxed [&>p]:mb-0">
         {children}
+      </div>
+      <div className="absolute top-0 right-0 p-2 opacity-10 text-[9px] uppercase font-black tracking-widest">
+        {type}
       </div>
     </div>
   );
 };
 
 // Tool card for inline tool promotion
-const ToolCard = ({ slug, category }: { slug: string; category: string }) => {
+const InlineToolCard = ({
+  slug,
+  category,
+}: {
+  slug: string;
+  category: string;
+}) => {
   const categoryData = categories.find((c) => c.slug === category);
   const tool = categoryData?.tools.find((t) => t.slug === slug);
 
@@ -103,49 +104,100 @@ const ToolCard = ({ slug, category }: { slug: string; category: string }) => {
   return (
     <Link
       href={`/${category}/${slug}`}
-      className="group block my-8 p-6 bg-gradient-to-br from-red-500/5 to-purple-500/5 border border-[var(--card-border)] rounded-2xl hover:border-red-500/50 transition-all duration-300"
+      className="group block my-8 p-6 bg-bg-card border border-white/5 relative overflow-hidden transition-all duration-300 hover:border-accent-glitch/30"
     >
-      <div className="flex items-center gap-4">
-        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-500/20 to-purple-500/20 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
-          {tool.icon}
+      <div className="flex items-center gap-5 relative z-10">
+        <div className="w-14 h-14 bg-white/5 border border-white/10 flex items-center justify-center text-2xl group-hover:bg-accent-glitch/5 group-hover:border-accent-glitch/20 transition-all">
+          <ToolIcon
+            slug={tool.slug}
+            categorySlug={category}
+            className="w-7 h-7 text-white/10 group-hover:text-accent-glitch group-hover:opacity-100 transition-opacity"
+          />
         </div>
-        <div className="flex-1">
-          <h4 className="text-lg font-bold text-[var(--foreground)] group-hover:text-red-500 transition-colors">
+        <div className="flex-1 font-mono">
+          <div className="text-[8px] text-text-muted/40 uppercase tracking-[0.4em] mb-1.5">
+            INITIALIZE_MODULE
+          </div>
+          <h4 className="text-lg font-black text-white group-hover:text-accent-glitch transition-colors uppercase tracking-widest">
             {tool.name}
           </h4>
-          <p className="text-sm text-[var(--muted)]">
-            Try it now - Free & instant results
-          </p>
         </div>
-        <svg
-          className="w-6 h-6 text-[var(--muted)] group-hover:text-red-500 group-hover:translate-x-1 transition-all"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M17 8l4 4m0 0l-4 4m4-4H3"
-          />
-        </svg>
+        <ChevronRight className="w-6 h-6 text-white/5 group-hover:text-accent-glitch group-hover:translate-x-1 transition-all" />
       </div>
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent-glitch/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
     </Link>
   );
 };
 
+const FAQ = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="my-10 border border-white/5 bg-bg-card relative overflow-hidden group">
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent-glitch/20 to-transparent" />
+      <div className="bg-white/[0.02] px-5 py-3 border-b border-white/5 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Cpu className="w-3.5 h-3.5 text-accent-glitch" />
+          <span className="text-[10px] font-mono uppercase tracking-[0.5em] text-accent-glitch font-black">
+            System_Intelligence_Matrix // FAQ
+          </span>
+        </div>
+        <div className="flex gap-1.5 opacity-30">
+          <div className="w-2.5 h-2.5 rounded-full border border-white/40" />
+          <div className="w-2.5 h-2.5 rounded-full border border-white/40" />
+          <div className="w-2.5 h-2.5 rounded-full border border-white/40" />
+        </div>
+      </div>
+      <div className="p-6 md:p-8 font-mono text-sm leading-relaxed space-y-8">
+        {children}
+      </div>
+      <div className="absolute bottom-0 right-0 p-2 opacity-[0.01] pointer-events-none">
+        <Terminal className="w-20 h-20" />
+      </div>
+    </div>
+  );
+};
+
+const FAQItem = ({ q, children }: { q: string; children: React.ReactNode }) => {
+  return (
+    <div className="space-y-3 relative group/item">
+      <div className="flex gap-4">
+        <div className="shrink-0 w-10 h-10 border border-accent-glitch/15 bg-accent-glitch/5 flex items-center justify-center font-black text-accent-glitch text-[10px]">
+          [Q]
+        </div>
+        <h4 className="text-white font-black uppercase tracking-widest leading-relaxed pt-2.5 flex-1 text-xs md:text-sm">
+          {q}
+        </h4>
+      </div>
+      <div className="flex gap-4">
+        <div className="shrink-0 w-10 h-10 flex items-center justify-center font-black text-white/5 text-[10px]">
+          [A]
+        </div>
+        <div className="text-text-muted flex-1 pt-2.5 leading-relaxed border-l border-white/5 pl-5 ml-5 md:ml-0 text-[13px] md:text-sm">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Professional system intel box
+const SystemIntel = ({ label, value }: { label: string; value: string }) => (
+  <div className="flex items-center gap-4 py-3 border-b border-white/5 font-mono text-[10px] group/intel">
+    <span className="text-text-muted/40 uppercase tracking-[0.2em]">
+      {label}
+    </span>
+    <div className="flex-1 h-[1px] bg-white/[0.03] group-hover/intel:bg-accent-glitch/20 transition-colors" />
+    <span className="text-accent-glitch font-black uppercase tracking-widest">
+      {value}
+    </span>
+  </div>
+);
+
 const MDXComponents = {
-  // Note: h1 in MDX content is rendered as h2 to preserve single H1 per page (the page title)
   h1: (props: any) => (
     <h2
       {...props}
-      id={props.children?.toString().toLowerCase().replace(/\s+/g, "-")}
-      className="text-3xl md:text-4xl font-black text-[var(--foreground)] mt-16 mb-6 scroll-m-24 relative group"
+      className="text-2xl md:text-4xl font-black text-white mt-16 mb-8 tracking-tighter uppercase leading-tight"
     >
-      <span className="absolute -left-6 text-red-500/0 group-hover:text-red-500/50 transition-colors">
-        #
-      </span>
       {props.children}
     </h2>
   ),
@@ -153,9 +205,9 @@ const MDXComponents = {
     <h2
       {...props}
       id={props.children?.toString().toLowerCase().replace(/\s+/g, "-")}
-      className="text-2xl md:text-3xl font-bold text-[var(--foreground)] mt-14 mb-5 scroll-m-24 relative group flex items-center gap-3"
+      className="text-xl md:text-2xl font-black text-white mt-12 mb-6 tracking-tighter uppercase flex items-center gap-4 group"
     >
-      <span className="w-1.5 h-8 bg-gradient-to-b from-red-500 to-purple-500 rounded-full" />
+      <div className="w-1.5 h-6 bg-accent-glitch opacity-0 group-hover:opacity-100 transition-opacity" />
       {props.children}
     </h2>
   ),
@@ -163,106 +215,107 @@ const MDXComponents = {
     <h3
       {...props}
       id={props.children?.toString().toLowerCase().replace(/\s+/g, "-")}
-      className="text-xl md:text-2xl font-bold text-[var(--foreground)] mt-10 mb-4 scroll-m-24 relative group"
+      className="text-lg md:text-xl font-black text-white mt-8 mb-4 tracking-widest uppercase font-mono"
     >
       {props.children}
     </h3>
   ),
-  h4: (props: any) => (
-    <h4
-      {...props}
-      className="text-lg md:text-xl font-semibold text-[var(--foreground)] mt-8 mb-3 scroll-m-24"
-    >
-      {props.children}
-    </h4>
-  ),
   p: (props: any) => (
     <p
       {...props}
-      className="text-[var(--muted)] leading-relaxed mb-6 text-lg"
+      className="text-text-muted font-mono leading-relaxed mb-8 text-base"
     />
   ),
   ul: (props: any) => (
-    <ul {...props} className="mb-6 space-y-3 text-[var(--muted)] ml-0" />
+    <ul
+      {...props}
+      className="mb-10 space-y-4 font-mono text-sm text-text-muted"
+    />
   ),
   ol: (props: any) => (
     <ol
       {...props}
-      className="mb-6 space-y-3 text-[var(--muted)] ml-0 list-none counter-reset-[item]"
+      className="mb-10 space-y-4 font-mono text-sm text-text-muted"
     />
   ),
   li: (props: any) => (
-    <li {...props} className="flex items-start gap-3 pl-0">
-      <span className="mt-2 w-2 h-2 rounded-full bg-red-500/50 shrink-0" />
-      <span className="flex-1">{props.children}</span>
+    <li {...props} className="flex items-start gap-4 group/li py-1">
+      <div className="mt-1.5 w-1.5 h-1.5 bg-accent-glitch shrink-0 opacity-40 group-hover/li:opacity-100 transition-opacity" />
+      <span className="flex-1 transition-colors group-hover/li:text-white">
+        {props.children}
+      </span>
     </li>
   ),
   blockquote: (props: any) => (
     <blockquote
       {...props}
-      className="border-l-4 border-red-500 pl-6 py-4 italic text-[var(--muted)] bg-red-500/5 rounded-r-xl my-8 text-lg"
-    />
+      className="border-l-2 border-accent-glitch p-8 font-mono italic text-text-primary bg-accent-glitch/5 my-12 text-lg relative"
+    >
+      <Terminal className="absolute top-2 right-2 w-4 h-4 text-accent-glitch/20" />
+      {props.children}
+    </blockquote>
   ),
   pre: (props: any) => (
     <pre
       {...props}
-      className="p-0 mb-8 rounded-2xl overflow-hidden shadow-2xl bg-[#0d0d0d] border border-[var(--card-border)]"
+      className="p-8 mb-12 bg-bg-card border border-white/5 font-mono text-xs overflow-x-auto custom-scrollbar"
     />
   ),
   code: (props: any) => (
     <code
       {...props}
-      className="bg-[var(--card-bg)] px-2 py-1 rounded-lg text-red-500 font-mono text-sm border border-[var(--card-border)]"
+      className="bg-white/5 px-1.5 py-0.5 text-accent-glitch font-mono text-xs border border-white/5"
     />
   ),
   a: InternalLink,
   img: (props: any) => (
-    <figure className="my-10">
-      <div className="relative w-full h-[400px] rounded-2xl overflow-hidden shadow-xl border border-[var(--card-border)]">
+    <figure className="my-16 group">
+      <div className="relative w-full aspect-video border border-white/5 overflow-hidden">
         <Image
           {...props}
           fill
-          className="object-cover"
-          alt={props.alt || "Blog image"}
+          className="object-cover grayscale opacity-50 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-1000"
+          alt={props.alt || "Systems Intel Detail"}
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-bg-void/60 to-transparent" />
       </div>
       {props.alt && (
-        <figcaption className="text-center text-sm text-[var(--muted)] mt-4 italic">
-          {props.alt}
+        <figcaption className="text-center text-[10px] font-mono uppercase tracking-[0.4em] text-text-muted mt-6">
+          // {props.alt.replace(" ", "_")}
         </figcaption>
       )}
     </figure>
   ),
   table: (props: any) => (
-    <div className="overflow-x-auto my-8 rounded-2xl border border-[var(--card-border)]">
-      <table {...props} className="w-full text-left" />
+    <div className="overflow-x-auto my-12 border border-white/5 bg-bg-card">
+      <table {...props} className="w-full text-left font-mono text-xs" />
     </div>
   ),
   thead: (props: any) => (
-    <thead
-      {...props}
-      className="bg-[var(--card-bg)] border-b border-[var(--card-border)]"
-    />
+    <thead {...props} className="bg-white/5 border-b border-white/10" />
   ),
   th: (props: any) => (
     <th
       {...props}
-      className="px-6 py-4 font-bold text-[var(--foreground)] text-sm uppercase tracking-wider"
+      className="px-6 py-4 font-black text-white uppercase tracking-widest"
     />
   ),
   td: (props: any) => (
     <td
       {...props}
-      className="px-6 py-4 text-[var(--muted)] border-b border-[var(--card-border)]"
+      className="px-6 py-4 text-text-muted border-b border-white/5"
     />
   ),
   hr: () => (
-    <hr className="my-12 border-0 h-px bg-gradient-to-r from-transparent via-[var(--card-border)] to-transparent" />
+    <hr className="my-24 border-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
   ),
   // Custom components
   Callout,
-  ToolCard,
+  ToolCard: InlineToolCard,
   InternalLink,
+  FAQ,
+  FAQItem,
+  SystemIntel,
 };
 
 export default MDXComponents;

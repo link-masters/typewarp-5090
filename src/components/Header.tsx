@@ -1,484 +1,646 @@
+// Header.tsx
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { categories } from "@/lib/categories";
-import { useTheme } from "@/contexts/ThemeContext";
 import { ToolIcon } from "@/components/ToolIcon";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useMotionValueEvent,
+} from "framer-motion";
+import {
+  Menu,
+  X,
+  Monitor,
+  ChevronDown,
+  ChevronRight,
+  Sparkles,
+  Sun,
+  Moon,
+  Command,
+  LayoutGrid,
+  Zap,
+} from "lucide-react";
 
+/* ------------------------------------------------------------------ */
+/*  Animation presets                                                   */
+/* ------------------------------------------------------------------ */
+const spring = {
+  fast: { type: "spring" as const, damping: 28, stiffness: 380, mass: 0.5 },
+  snappy: { type: "spring" as const, damping: 24, stiffness: 400, mass: 0.4 },
+};
+
+const staggerContainer = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.018, delayChildren: 0.01 } },
+  exit: {},
+};
+
+const staggerItem = {
+  hidden: { opacity: 0, y: 6 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.13, ease: "easeOut" as any },
+  },
+  exit: { opacity: 0, transition: { duration: 0.04 } },
+};
+
+const mobileToolItem = {
+  hidden: { opacity: 0, y: 5 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.12, ease: "easeOut" as any },
+  },
+  exit: { opacity: 0, transition: { duration: 0.04 } },
+};
+
+/* ================================================================== */
+/*  HEADER                                                             */
+/* ================================================================== */
 const Header = () => {
-  const { theme, toggleTheme } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const navRef = useRef<HTMLElement>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [showAllCategories, setShowAllCategories] = useState(false);
+  const leaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, "change", (v) => setIsScrolled(v > 12));
+
+  // How many nav items fit based on screen — show limited, rest in "More" dropdown
+  const VISIBLE_COUNT = 6;
+  const visibleCategories = categories.slice(0, VISIBLE_COUNT);
+  const overflowCategories = categories.slice(VISIBLE_COUNT);
+  const hasOverflow = overflowCategories.length > 0;
+
+  /* body scroll lock */
   useEffect(() => {
-    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "unset";
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+    }
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
     };
   }, [isMobileMenuOpen]);
 
+  /* auto-close mobile on desktop resize */
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (navRef.current && !navRef.current.contains(e.target as Node)) {
-        setActiveCategory(null);
-      }
-    };
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setActiveCategory(null);
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const h = () => {
+      if (mq.matches) {
         setIsMobileMenuOpen(false);
+        setMobileExpanded(null);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleEsc);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleEsc);
-    };
+    mq.addEventListener("change", h);
+    return () => mq.removeEventListener("change", h);
   }, []);
 
-  const handleMouseEnter = (slug: string) => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    setActiveCategory(slug);
-  };
+  /* Close on escape key */
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsMobileMenuOpen(false);
+        setMobileExpanded(null);
+        setActiveCategory(null);
+        setShowAllCategories(false);
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
 
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => setActiveCategory(null), 150);
-  };
-
-  const handleDropdownMouseEnter = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-  };
-
-  const closeAll = () => {
+  const killDropdown = useCallback(() => {
+    if (leaveTimerRef.current) clearTimeout(leaveTimerRef.current);
     setActiveCategory(null);
-    setIsMobileMenuOpen(false);
-  };
+    setShowAllCategories(false);
+  }, []);
 
-  const activeCategoryData = categories.find((c) => c.slug === activeCategory);
+  const handleMouseEnter = useCallback((slug: string) => {
+    if (leaveTimerRef.current) {
+      clearTimeout(leaveTimerRef.current);
+      leaveTimerRef.current = null;
+    }
+    setShowAllCategories(false);
+    setActiveCategory(slug);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    leaveTimerRef.current = setTimeout(() => {
+      setActiveCategory(null);
+      setShowAllCategories(false);
+    }, 120);
+  }, []);
+
+  const handleMoreEnter = useCallback(() => {
+    if (leaveTimerRef.current) {
+      clearTimeout(leaveTimerRef.current);
+      leaveTimerRef.current = null;
+    }
+    setActiveCategory(null);
+    setShowAllCategories(true);
+  }, []);
+
+  const handleMoreLeave = useCallback(() => {
+    leaveTimerRef.current = setTimeout(() => {
+      setShowAllCategories(false);
+    }, 120);
+  }, []);
+
+  const toggleMobileCategory = useCallback((slug: string) => {
+    setMobileExpanded((p) => (p === slug ? null : slug));
+  }, []);
+
+  const closeMobile = useCallback(() => {
+    setIsMobileMenuOpen(false);
+    setMobileExpanded(null);
+  }, []);
+
+  const activeCat = categories.find((c) => c.slug === activeCategory);
 
   return (
-    <>
-      <header className="fixed top-1.5 sm:top-2 left-0 right-0 px-2 sm:px-3 md:px-5 lg:px-6 z-50 w-full animate-fade-in">
-        <div className="max-w-[1600px] mx-auto">
-          <nav
-            ref={navRef}
-            className="relative grid grid-cols-[1fr_auto] lg:grid-cols-[auto_1fr_auto] items-center w-full px-3 sm:px-4 lg:px-5 xl:px-6 py-2.5 sm:py-3 lg:py-3 rounded-xl border border-zinc-200/80 dark:border-[var(--card-border)] shadow-[0_4px_30px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl backdrop-saturate-150 bg-white/92 dark:bg-[var(--background)]/85"
+    <header className="fixed top-0 left-0 right-0 z-50 w-full font-mono">
+      {/* ===== Glass background ===== */}
+      <div
+        className={`absolute inset-0 border-b transition-all duration-500 ease-out ${
+          isScrolled
+            ? "bg-white/92 dark:bg-[#080808]/93 backdrop-blur-2xl border-neutral-200 dark:border-white/[0.07] shadow-[0_1px_8px_rgba(0,0,0,0.06)] dark:shadow-[0_1px_8px_rgba(0,0,0,0.5)]"
+            : "bg-white/60 dark:bg-[#080808]/65 backdrop-blur-xl border-neutral-200/30 dark:border-white/[0.03]"
+        }`}
+      />
+
+      {/* ===== Main navigation bar ===== */}
+      <div className="relative z-50 w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 h-14 sm:h-16 lg:h-[72px] xl:h-[76px] flex items-center justify-between gap-2 sm:gap-3 lg:gap-4">
+        {/* ---- Logo ---- */}
+        <Link
+          href="/"
+          className="group shrink-0"
+          onClick={() => {
+            killDropdown();
+            closeMobile();
+          }}
+        >
+          <motion.span
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            transition={spring.snappy}
+            className="inline-flex items-end text-[19px] sm:text-[22px] md:text-[26px] lg:text-[28px] xl:text-[30px] font-black tracking-tighter text-neutral-900 dark:text-text-primary uppercase select-none"
           >
-            {/* Logo */}
-            <div className="flex items-center shrink-0 mr-2 lg:mr-5">
-              <Link href="/" className="flex items-center shrink-0">
-                <span className="text-lg sm:text-xl lg:text-[22px] font-black tracking-tighter text-[var(--foreground)]">
-                  TYPE
-                  <span className="text-red-500 italic inline-block transform -skew-x-12 ml-0.5">
-                    WARP
-                  </span>
-                </span>
-              </Link>
-            </div>
+            <span className="group-hover:text-emerald-600 dark:group-hover:text-accent-glitch transition-colors duration-300">
+              Type
+            </span>
+            <span className="text-emerald-600 dark:text-accent-glitch group-hover:text-neutral-900 dark:group-hover:text-text-primary transition-colors duration-300">
+              Warp
+            </span>
+          </motion.span>
+        </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center justify-center gap-0.5 xl:gap-1 min-w-0">
-              <Link
-                href="/"
-                className="px-2.5 xl:px-3 py-2 text-[11px] xl:text-[12px] 2xl:text-[13px] font-bold uppercase tracking-wider text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--card-bg)] rounded-lg transition-colors whitespace-nowrap shrink-0"
-              >
-                Home
-              </Link>
-
-              {categories.map((category) => (
-                <div
-                  key={category.slug}
-                  className="relative flex items-center shrink-0"
-                  onMouseEnter={() => handleMouseEnter(category.slug)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <button
-                    onClick={() =>
-                      setActiveCategory(
-                        activeCategory === category.slug ? null : category.slug,
-                      )
-                    }
-                    className={`px-2 xl:px-3 py-2 text-[11px] xl:text-[12px] 2xl:text-[13px] font-bold uppercase tracking-wider rounded-lg flex items-center gap-1 xl:gap-1.5 transition-all duration-200 shrink-0 ${
-                      activeCategory === category.slug
-                        ? "text-[var(--foreground)] bg-[var(--card-bg)]"
-                        : "text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--card-bg)]"
-                    }`}
-                  >
-                    <span className="whitespace-nowrap">{category.name}</span>
-                    <svg
-                      className={`w-2.5 h-2.5 transition-transform duration-200 shrink-0 ${
-                        activeCategory === category.slug ? "rotate-180" : ""
-                      }`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2.5}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              ))}
-
-              <Link
-                href="/blog"
-                className="px-2.5 xl:px-3 py-2 text-[11px] xl:text-[12px] 2xl:text-[13px] font-bold uppercase tracking-wider text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--card-bg)] rounded-lg transition-colors whitespace-nowrap shrink-0"
-              >
-                Blog
-              </Link>
-            </div>
-
-            {/* Actions */}
-            <div className="flex items-center justify-end gap-2 sm:gap-3 shrink-0 ml-2 lg:ml-5">
-              {/* Modern Theme toggle */}
-              <button
-                onClick={toggleTheme}
-                className="relative p-2.5 sm:p-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-[var(--foreground)] hover:bg-zinc-200 dark:hover:bg-zinc-750 transition-all duration-300 group active:scale-90"
-                aria-label="Toggle theme"
-              >
-                <div className="relative z-10 transition-transform duration-500 group-hover:rotate-[20deg] group-hover:scale-110">
-                  {theme === "dark" ? (
-                    <svg
-                      className="w-5 h-5 text-red-500"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                      />
-                    </svg>
-                  ) : (
-                    <svg
-                      className="w-5 h-5 text-amber-500"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                      />
-                    </svg>
-                  )}
-                </div>
-                <div
-                  className={`absolute inset-0 rounded-xl transition-opacity duration-300 opacity-0 group-hover:opacity-10 ${theme === "dark" ? "bg-red-500" : "bg-amber-500"}`}
-                />
-              </button>
-
-              {/* Explore All Button - Simple Hover */}
-              <Link
-                href="/text-tools"
-                className="hidden sm:inline-flex items-center gap-2 group relative px-5 xl:px-6 py-2 xl:py-2.5 rounded-lg bg-red-600 hover:bg-red-700 text-white text-[11px] xl:text-[12px] font-bold uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
-              >
-                <svg
-                  className="w-3.5 h-3.5 xl:w-4 xl:h-4 shrink-0"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <rect x="3" y="3" width="8" height="8" rx="2" />
-                  <rect x="13" y="3" width="8" height="8" rx="2" />
-                  <rect x="3" y="13" width="8" height="8" rx="2" />
-                  <rect x="13" y="13" width="8" height="8" rx="2" />
-                </svg>
-                <span className="whitespace-nowrap">Explore All</span>
-                <svg
-                  className="w-3.5 h-3.5 shrink-0 opacity-0 -ml-1.5 group-hover:opacity-100 group-hover:ml-0 transition-all duration-200"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2.5}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </Link>
-
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden p-2 text-[var(--foreground)] hover:bg-[var(--card-bg)] rounded-lg transition-colors"
-                aria-label="Toggle menu"
-              >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  {isMobileMenuOpen ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  )}
-                </svg>
-              </button>
-            </div>
-
-            {/* Desktop Dropdown */}
-            {activeCategory && activeCategoryData && (
+        {/* ---- Desktop nav ---- */}
+        <nav className="hidden lg:flex items-center justify-center flex-1 mx-4">
+          <div className="flex items-center gap-0.5 xl:gap-1">
+            {visibleCategories.map((category) => (
               <div
-                className="absolute top-full left-0 right-0 pt-2 z-50 hidden lg:block"
-                onMouseEnter={handleDropdownMouseEnter}
+                key={category.slug}
+                className="relative"
+                onMouseEnter={() => handleMouseEnter(category.slug)}
                 onMouseLeave={handleMouseLeave}
               >
-                <div className="w-full p-6 xl:p-8 rounded-2xl border border-[var(--card-border)] bg-[var(--background)]/[0.98] backdrop-blur-2xl shadow-[0_30px_80px_rgba(0,0,0,0.15)] dark:shadow-[0_30px_80px_rgba(0,0,0,0.6)]">
-                  <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5 xl:gap-3.5 max-h-[60vh] overflow-y-auto custom-scrollbar">
-                    {activeCategoryData.tools.map((tool) => (
-                      <Link
-                        key={tool.slug}
-                        href={`/${activeCategoryData.slug}/${tool.slug}`}
-                        onClick={() => setActiveCategory(null)}
-                        className="group flex items-center gap-3.5 px-4.5 py-4 rounded-xl bg-[var(--card-bg)]/50 border border-transparent hover:bg-gradient-to-r hover:from-red-600/10 hover:to-purple-600/10 hover:border-red-500/20 transition-all duration-300"
-                      >
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-600/15 to-purple-600/15 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform shadow-sm">
-                          <ToolIcon
-                            slug={tool.slug}
-                            categorySlug={activeCategoryData.slug}
-                            className="w-5 h-5 text-red-600"
-                          />
+                <Link
+                  href={`/${category.slug}`}
+                  onClick={killDropdown}
+                  className={`group/btn flex items-center gap-1 xl:gap-1.5 px-2.5 xl:px-4 py-2 xl:py-2.5 text-[10px] xl:text-[11px] 2xl:text-[12px] font-bold uppercase tracking-wider transition-all duration-200 rounded-xl relative whitespace-nowrap ${
+                    activeCategory === category.slug
+                      ? "text-emerald-600 dark:text-accent-glitch"
+                      : "text-neutral-500 dark:text-text-muted hover:text-neutral-800 dark:hover:text-text-primary"
+                  }`}
+                >
+                  {activeCategory === category.slug && (
+                    <motion.div
+                      layoutId="desktop-pill"
+                      className="absolute inset-0 bg-emerald-500/[0.07] dark:bg-accent-glitch/10 border border-emerald-500/15 dark:border-accent-glitch/20 rounded-xl"
+                      transition={{
+                        type: "spring",
+                        damping: 35,
+                        stiffness: 400,
+                      }}
+                    />
+                  )}
+                  <span className="relative z-10">{category.name}</span>
+                  <ChevronDown
+                    className={`relative z-10 w-3 h-3 transition-all duration-200 ${
+                      activeCategory === category.slug
+                        ? "rotate-180 opacity-100"
+                        : "opacity-30 group-hover/btn:opacity-50"
+                    }`}
+                  />
+                </Link>
+              </div>
+            ))}
+
+            {/* "More" button for overflow categories */}
+            {hasOverflow && (
+              <div
+                className="relative"
+                onMouseEnter={handleMoreEnter}
+                onMouseLeave={handleMoreLeave}
+              >
+                <button
+                  className={`group/btn flex items-center gap-1.5 px-3 xl:px-4 py-2 xl:py-2.5 text-[10px] xl:text-[11px] 2xl:text-[12px] font-bold uppercase tracking-wider transition-all duration-200 rounded-xl relative whitespace-nowrap ${
+                    showAllCategories
+                      ? "text-emerald-600 dark:text-accent-glitch"
+                      : "text-neutral-500 dark:text-text-muted hover:text-neutral-800 dark:hover:text-text-primary"
+                  }`}
+                >
+                  {showAllCategories && (
+                    <motion.div
+                      layoutId="desktop-pill"
+                      className="absolute inset-0 bg-emerald-500/[0.07] dark:bg-accent-glitch/10 border border-emerald-500/15 dark:border-accent-glitch/20 rounded-xl"
+                      transition={{
+                        type: "spring",
+                        damping: 35,
+                        stiffness: 400,
+                      }}
+                    />
+                  )}
+                  <LayoutGrid className="relative z-10 w-3.5 h-3.5" />
+                  <span className="relative z-10">More</span>
+                  <ChevronDown
+                    className={`relative z-10 w-3 h-3 transition-all duration-200 ${
+                      showAllCategories
+                        ? "rotate-180 opacity-100"
+                        : "opacity-30 group-hover/btn:opacity-50"
+                    }`}
+                  />
+                </button>
+
+                {/* "More" dropdown */}
+                <AnimatePresence>
+                  {showAllCategories && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 4 }}
+                      transition={{ duration: 0.12, ease: "easeOut" }}
+                      className="absolute top-full right-0 pt-2 z-50"
+                      onMouseEnter={handleMoreEnter}
+                      onMouseLeave={handleMoreLeave}
+                    >
+                      <div className="bg-white/[0.97] dark:bg-[#0e0e0e]/[0.97] backdrop-blur-2xl border border-neutral-200 dark:border-white/[0.08] rounded-2xl shadow-[0_20px_60px_-12px_rgba(0,0,0,0.18)] dark:shadow-[0_24px_70px_-12px_rgba(0,0,0,0.6)] overflow-hidden min-w-[220px]">
+                        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 dark:via-accent-glitch/30 to-transparent" />
+
+                        <div className="p-2">
+                          {overflowCategories.map((cat) => (
+                            <Link
+                              key={cat.slug}
+                              href={`/${cat.slug}`}
+                              onClick={killDropdown}
+                              className="group/item flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-emerald-500/[0.05] dark:hover:bg-accent-glitch/[0.08] transition-all duration-150"
+                            >
+                              <div className="w-8 h-8 rounded-lg bg-neutral-100 dark:bg-white/[0.04] border border-neutral-200/50 dark:border-white/[0.06] flex items-center justify-center shrink-0 text-xs font-black text-neutral-400 dark:text-neutral-500 group-hover/item:text-emerald-600 dark:group-hover/item:text-accent-glitch group-hover/item:bg-emerald-500/10 dark:group-hover/item:bg-accent-glitch/10 group-hover/item:border-emerald-500/20 dark:group-hover/item:border-accent-glitch/20 transition-all duration-150">
+                                {cat.name.charAt(0)}
+                              </div>
+                              <div className="min-w-0 flex-1">
+                                <span className="text-[12px] font-bold text-neutral-700 dark:text-neutral-300 group-hover/item:text-neutral-900 dark:group-hover/item:text-white block truncate transition-colors">
+                                  {cat.name}
+                                </span>
+                                <span className="text-[9px] text-neutral-400 dark:text-neutral-600 font-mono">
+                                  {cat.tools.length} tools
+                                </span>
+                              </div>
+                              <ChevronRight className="w-3.5 h-3.5 text-neutral-300 dark:text-neutral-700 shrink-0 opacity-0 group-hover/item:opacity-100 transition-opacity" />
+                            </Link>
+                          ))}
                         </div>
-                        <span className="text-[13px] xl:text-[14px] font-bold text-[var(--foreground)] truncate group-hover:text-red-600 transition-colors uppercase tracking-tight">
-                          {tool.name}
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             )}
-          </nav>
+          </div>
+        </nav>
+
+        {/* ---- Right side actions ---- */}
+        <div className="flex items-center gap-1 sm:gap-1.5 md:gap-2 xl:gap-2.5 shrink-0">
+          <Link
+            href="/arsenal"
+            onClick={killDropdown}
+            className="group hidden sm:flex items-center gap-2.5 px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 bg-emerald-500 dark:bg-accent-glitch text-white dark:text-bg-void font-black text-[10px] sm:text-[11px] md:text-[12px] uppercase tracking-widest transition-all duration-300 rounded-xl shadow-[0_0_20px_-5px_var(--btn-glow)] dark:shadow-[0_0_25px_-5px_var(--btn-glow)] hover:shadow-[0_0_35px_-5px_var(--btn-glow)] active:scale-[0.96] relative overflow-hidden border border-white/20 dark:border-black/10 group-hover:border-white/40 dark:group-hover:border-black/30"
+            style={
+              { "--btn-glow": "rgba(16, 185, 129, 0.5)" } as React.CSSProperties
+            }
+          >
+            {/* Glossy Scanline Effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-[250%] group-hover:translate-x-[250%] transition-transform duration-[800ms] ease-in-out" />
+
+            {/* Icon Wrapper with Glow */}
+            <div className="relative z-10 flex items-center justify-center">
+              <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[15deg]" />
+              <div className="absolute inset-0 bg-white dark:bg-white blur-[8px] opacity-0 group-hover:opacity-40 transition-opacity" />
+            </div>
+
+            <span className="relative z-10 hidden md:inline ml-0.5">
+              Explore All Tools
+            </span>
+            <span className="relative z-10 md:hidden ml-0.5">Explore All</span>
+          </Link>
+
+          {/* Mobile menu toggle */}
+          <motion.button
+            whileTap={{ scale: 0.88 }}
+            transition={spring.snappy}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden p-2 sm:p-2.5 text-neutral-700 dark:text-text-primary hover:bg-neutral-100 dark:hover:bg-white/[0.04] rounded-xl transition-colors"
+            aria-label="Toggle Menu"
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={isMobileMenuOpen ? "close" : "open"}
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.12 }}
+              >
+                {isMobileMenuOpen ? (
+                  <X className="w-5 h-5 sm:w-6 sm:h-6" />
+                ) : (
+                  <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </motion.button>
         </div>
-      </header>
+      </div>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <>
-          <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
-            onClick={() => setIsMobileMenuOpen(false)}
-          />
-          <div className="fixed top-0 right-0 bottom-0 w-full max-w-md bg-[var(--background)] border-l border-[var(--card-border)] z-50 lg:hidden">
-            <div className="flex flex-col h-full">
-              <div className="flex items-center justify-between p-4 sm:p-5 border-b border-[var(--card-border)]">
-                <span className="text-lg font-black tracking-tighter text-[var(--foreground)]">
-                  TYPE
-                  <span className="text-red-500 italic -skew-x-12 inline-block ml-0.5">
-                    WARP
-                  </span>
-                </span>
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={toggleTheme}
-                    className="p-2.5 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl transition-colors"
-                    aria-label="Toggle theme"
+      {/* ===== Desktop mega dropdown for visible categories ===== */}
+      <AnimatePresence mode="wait">
+        {activeCategory && activeCat && (
+          <motion.div
+            key={activeCategory}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 4 }}
+            transition={{ duration: 0.12, ease: "easeOut" }}
+            className="absolute top-full left-0 right-0 z-40 hidden lg:block"
+            onMouseEnter={() => handleMouseEnter(activeCategory)}
+            onMouseLeave={handleMouseLeave}
+          >
+            {/* Invisible bridge */}
+            <div className="h-2" />
+
+            <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8">
+              <div className="bg-white/[0.97] dark:bg-[#0e0e0e]/[0.97] backdrop-blur-2xl border border-neutral-200 dark:border-white/[0.08] rounded-2xl shadow-[0_24px_72px_-12px_rgba(0,0,0,0.18)] dark:shadow-[0_28px_80px_-12px_rgba(0,0,0,0.6)] relative overflow-hidden">
+                {/* Top glow line */}
+                <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-500/50 dark:via-accent-glitch/40 to-transparent" />
+
+                {/* Technical Sub-Module Header Removed per User Request */}
+
+                {/* Tools grid */}
+                <div className="p-5 xl:p-7">
+                  <motion.div
+                    variants={staggerContainer}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    className={`grid gap-1.5 xl:gap-2 ${
+                      activeCat.tools.length <= 4
+                        ? "grid-cols-2"
+                        : activeCat.tools.length <= 8
+                          ? "grid-cols-3"
+                          : "grid-cols-3 xl:grid-cols-4"
+                    }`}
                   >
-                    {theme === "dark" ? (
-                      <svg
-                        className="w-5 h-5 text-red-500"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                        />
-                      </svg>
-                    ) : (
-                      <svg
-                        className="w-5 h-5 text-amber-500"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                        />
-                      </svg>
-                    )}
-                  </button>
-                  <button
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-2 hover:bg-[var(--card-bg)] rounded-lg transition-colors"
-                    aria-label="Close menu"
-                  >
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              <div className="flex-1 overflow-y-auto p-4 sm:p-5 custom-scrollbar">
-                <Link
-                  href="/"
-                  onClick={closeAll}
-                  className="flex items-center gap-3 px-4 py-3 font-semibold text-[var(--foreground)] hover:bg-[var(--card-bg)] rounded-xl mb-1 transition-colors"
-                >
-                  <svg
-                    className="w-5 h-5 text-[var(--muted)] shrink-0"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1h-2z"
-                    />
-                  </svg>
-                  Home
-                </Link>
-
-                {categories.map((category) => (
-                  <div key={category.slug} className="mb-1">
-                    <button
-                      onClick={() =>
-                        setActiveCategory(
-                          activeCategory === category.slug
-                            ? null
-                            : category.slug,
-                        )
-                      }
-                      className={`w-full flex items-center justify-between px-4 py-3 font-semibold rounded-xl transition-colors ${
-                        activeCategory === category.slug
-                          ? "bg-[var(--card-bg)] text-[var(--foreground)]"
-                          : "text-[var(--foreground)] hover:bg-[var(--card-bg)]"
-                      }`}
-                    >
-                      <span>{category.name}</span>
-                      <svg
-                        className={`w-4 h-4 text-[var(--muted)] transition-transform duration-200 ${
-                          activeCategory === category.slug ? "rotate-180" : ""
-                        }`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
-                    </button>
-
-                    {activeCategory === category.slug && (
-                      <div className="mt-2 space-y-1.5 pl-2 pr-1">
-                        {category.tools.map((tool) => (
-                          <Link
-                            key={tool.slug}
-                            href={`/${category.slug}/${tool.slug}`}
-                            onClick={closeAll}
-                            className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[var(--card-bg)]/50 hover:bg-gradient-to-r hover:from-red-500/10 hover:to-purple-500/10 transition-all"
-                          >
-                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-red-500/15 to-purple-500/15 flex items-center justify-center shrink-0">
-                              <ToolIcon
-                                slug={tool.slug}
-                                categorySlug={category.slug}
-                                className="w-4 h-4 text-red-500"
-                              />
-                            </div>
-                            <span className="text-sm font-medium text-[var(--foreground)]">
+                    {activeCat.tools.slice(0, 16).map((tool) => (
+                      <motion.div key={tool.slug} variants={staggerItem}>
+                        <Link
+                          href={`/${activeCat.slug}/${tool.slug}`}
+                          onClick={killDropdown}
+                          className="group/tool flex items-center gap-3 px-3.5 py-3 xl:px-4 xl:py-3.5 rounded-xl border border-transparent hover:border-emerald-500/15 dark:hover:border-accent-glitch/15 hover:bg-emerald-500/[0.03] dark:hover:bg-white/[0.02] transition-all duration-200 relative"
+                        >
+                          <div className="w-8 h-8 xl:w-9 xl:h-9 bg-neutral-100 dark:bg-white/[0.03] border border-neutral-200/60 dark:border-white/[0.07] rounded-xl flex items-center justify-center shrink-0 group-hover/tool:bg-emerald-500/10 dark:group-hover/tool:bg-accent-glitch/10 group-hover/tool:border-emerald-500/25 dark:group-hover/tool:border-accent-glitch/25 transition-all duration-200">
+                            <ToolIcon
+                              slug={tool.slug}
+                              categorySlug={activeCat.slug}
+                              className="w-4 h-4 xl:w-[17px] xl:h-[17px] text-neutral-400 dark:text-neutral-500 group-hover/tool:text-emerald-600 dark:group-hover/tool:text-accent-glitch transition-colors duration-200"
+                            />
+                          </div>
+                          <div className="flex flex-col min-w-0 flex-1">
+                            <span className="text-[11px] xl:text-[12px] font-bold text-neutral-700 dark:text-neutral-200 group-hover/tool:text-neutral-900 dark:group-hover/tool:text-white truncate transition-colors duration-200 leading-tight">
                               {tool.name}
                             </span>
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
+                            <span className="text-[8px] font-mono text-neutral-400 dark:text-neutral-600 uppercase tracking-widest mt-0.5 opacity-0 group-hover/tool:opacity-100 transition-opacity duration-200">
+                              launch →
+                            </span>
+                          </div>
+                          <ChevronRight className="w-3.5 h-3.5 text-emerald-500/50 dark:text-accent-glitch/50 ml-auto shrink-0 opacity-0 group-hover/tool:opacity-100 group-hover/tool:translate-x-0.5 transition-all duration-200" />
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
 
-                <Link
-                  href="/blog"
-                  onClick={closeAll}
-                  className="flex items-center gap-3 px-4 py-3 font-semibold text-[var(--foreground)] hover:bg-[var(--card-bg)] rounded-xl mt-1 transition-colors"
-                >
-                  <svg
-                    className="w-5 h-5 text-[var(--muted)] shrink-0"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
-                    />
-                  </svg>
-                  Blog
-                </Link>
-              </div>
-
-              <div className="p-4 sm:p-5 border-t border-[var(--card-border)]">
-                <Link
-                  href="/text-tools"
-                  onClick={closeAll}
-                  className="flex items-center justify-center gap-2.5 w-full py-4 rounded-xl bg-gradient-to-r from-red-600 to-red-500 text-white font-bold text-sm tracking-wide shadow-[0_4px_16px_rgba(239,68,68,0.3)] transition-all active:scale-[0.98]"
-                >
-                  <svg
-                    className="w-4.5 h-4.5"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <rect x="3" y="3" width="8" height="8" rx="2" />
-                    <rect x="13" y="3" width="8" height="8" rx="2" />
-                    <rect x="3" y="13" width="8" height="8" rx="2" />
-                    <rect x="13" y="13" width="8" height="8" rx="2" />
-                  </svg>
-                  Explore All Tools
-                </Link>
+                {/* Bottom glow */}
+                <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-500/15 dark:via-accent-glitch/10 to-transparent" />
               </div>
             </div>
-          </div>
-        </>
-      )}
-    </>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ===== Mobile drawer ===== */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 z-40 bg-black/20 dark:bg-black/50 backdrop-blur-sm lg:hidden"
+              onClick={closeMobile}
+            />
+
+            {/* Drawer */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={spring.fast}
+              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-[100vw] sm:w-[380px] md:w-[420px] lg:hidden bg-white dark:bg-[#0a0a0a] border-l border-neutral-200 dark:border-white/[0.06] shadow-[-12px_0_40px_rgba(0,0,0,0.1)] dark:shadow-[-16px_0_50px_rgba(0,0,0,0.5)] flex flex-col will-change-transform"
+            >
+              {/* Drawer header */}
+              <div className="flex items-center justify-between px-4 sm:px-5 h-14 sm:h-16 border-b border-neutral-200 dark:border-white/[0.06] shrink-0 bg-white/50 dark:bg-[#0a0a0a]/50 backdrop-blur-xl">
+                <div className="flex items-center gap-2.5">
+                  <span className="text-sm sm:text-[15px] font-black uppercase tracking-wider text-neutral-800 dark:text-text-primary">
+                    Navigation
+                  </span>
+                </div>
+                <motion.button
+                  whileTap={{ scale: 0.88 }}
+                  onClick={closeMobile}
+                  className="p-2 text-neutral-500 dark:text-text-muted hover:text-neutral-800 dark:hover:text-text-primary hover:bg-neutral-100 dark:hover:bg-white/[0.04] rounded-xl transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </motion.button>
+              </div>
+
+              {/* Categories accordion */}
+              <div className="flex-1 overflow-y-auto overscroll-contain px-3 sm:px-4 py-3 sm:py-4">
+                <motion.div
+                  variants={staggerContainer}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  className="space-y-1"
+                >
+                  {categories.map((category) => (
+                    <motion.div
+                      key={category.slug}
+                      variants={staggerItem}
+                      className="rounded-2xl overflow-hidden"
+                    >
+                      {/* Category button */}
+                      <button
+                        onClick={() => toggleMobileCategory(category.slug)}
+                        className={`w-full flex items-center justify-between gap-3 px-3.5 sm:px-4 py-3 sm:py-3.5 text-left rounded-2xl transition-all duration-200 active:scale-[0.99] ${
+                          mobileExpanded === category.slug
+                            ? "bg-emerald-500/[0.06] dark:bg-accent-glitch/[0.08] border border-emerald-500/15 dark:border-accent-glitch/15"
+                            : "hover:bg-neutral-50 dark:hover:bg-white/[0.02] border border-transparent active:bg-neutral-100/60 dark:active:bg-white/[0.04]"
+                        }`}
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <div
+                            className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-xs font-black transition-all duration-200 ${
+                              mobileExpanded === category.slug
+                                ? "bg-emerald-500/15 dark:bg-accent-glitch/15 text-emerald-600 dark:text-accent-glitch border border-emerald-500/20 dark:border-accent-glitch/20"
+                                : "bg-neutral-100 dark:bg-white/[0.04] text-neutral-400 dark:text-neutral-500 border border-neutral-200/50 dark:border-white/[0.06]"
+                            }`}
+                          >
+                            {category.name.charAt(0)}
+                          </div>
+                          <div className="min-w-0">
+                            <span className="text-[13px] font-bold text-neutral-800 dark:text-neutral-200 block truncate leading-tight">
+                              {category.name}
+                            </span>
+                            <span className="text-[10px] text-neutral-400 dark:text-neutral-600 font-mono tracking-wider block mt-0.5">
+                              {category.tools.length} tools
+                            </span>
+                          </div>
+                        </div>
+                        <motion.div
+                          animate={{
+                            rotate: mobileExpanded === category.slug ? 180 : 0,
+                          }}
+                          transition={{ duration: 0.2, ease: "easeOut" }}
+                          className="shrink-0"
+                        >
+                          <ChevronDown
+                            className={`w-4 h-4 transition-colors duration-200 ${
+                              mobileExpanded === category.slug
+                                ? "text-emerald-500 dark:text-accent-glitch"
+                                : "text-neutral-300 dark:text-neutral-600"
+                            }`}
+                          />
+                        </motion.div>
+                      </button>
+
+                      {/* Expanded tools */}
+                      <AnimatePresence initial={false}>
+                        {mobileExpanded === category.slug && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{
+                              height: {
+                                duration: 0.25,
+                                ease: [0.4, 0, 0.2, 1],
+                              },
+                              opacity: { duration: 0.15 },
+                            }}
+                            className="overflow-hidden"
+                          >
+                            <motion.div
+                              variants={staggerContainer}
+                              initial="hidden"
+                              animate="visible"
+                              exit="exit"
+                              className="px-1 sm:px-1.5 pb-2 pt-1 space-y-0.5"
+                            >
+                              {category.tools.map((tool) => (
+                                <motion.div
+                                  key={tool.slug}
+                                  variants={mobileToolItem}
+                                >
+                                  <Link
+                                    href={`/${category.slug}/${tool.slug}`}
+                                    onClick={closeMobile}
+                                    className="group/tool flex items-center gap-3 px-3 py-2.5 sm:py-3 rounded-xl hover:bg-neutral-50 dark:hover:bg-white/[0.03] active:bg-neutral-100/80 dark:active:bg-white/[0.06] transition-colors duration-150 active:scale-[0.99]"
+                                  >
+                                    <div className="w-7 h-7 sm:w-8 sm:h-8 bg-neutral-50 dark:bg-white/[0.03] border border-neutral-200/50 dark:border-white/[0.05] rounded-lg flex items-center justify-center shrink-0 group-hover/tool:border-emerald-500/20 dark:group-hover/tool:border-accent-glitch/20 group-hover/tool:bg-emerald-500/5 dark:group-hover/tool:bg-accent-glitch/5 transition-all duration-150">
+                                      <ToolIcon
+                                        slug={tool.slug}
+                                        categorySlug={category.slug}
+                                        className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-400 dark:text-neutral-500 group-hover/tool:text-emerald-600 dark:group-hover/tool:text-accent-glitch transition-colors duration-150"
+                                      />
+                                    </div>
+                                    <span className="text-[12px] sm:text-[13px] font-medium text-neutral-600 dark:text-neutral-400 group-hover/tool:text-neutral-900 dark:group-hover/tool:text-white truncate transition-colors duration-150 flex-1">
+                                      {tool.name}
+                                    </span>
+                                    <ChevronRight className="w-3.5 h-3.5 text-neutral-300 dark:text-neutral-700 shrink-0 opacity-0 group-hover/tool:opacity-100 transition-opacity duration-150" />
+                                  </Link>
+                                </motion.div>
+                              ))}
+
+                              {/* View all */}
+                              <motion.div variants={mobileToolItem}>
+                                <Link
+                                  href={`/${category.slug}`}
+                                  onClick={closeMobile}
+                                  className="flex items-center justify-center gap-2 mt-1 px-3 py-2.5 rounded-xl border border-dashed border-emerald-500/20 dark:border-accent-glitch/15 hover:border-emerald-500/40 dark:hover:border-accent-glitch/30 hover:bg-emerald-500/[0.03] dark:hover:bg-accent-glitch/[0.03] transition-all duration-200 active:scale-[0.98]"
+                                >
+                                  <span className="text-[10px] font-bold uppercase text-emerald-600 dark:text-accent-glitch tracking-wider">
+                                    View All Modules
+                                  </span>
+                                </Link>
+                              </motion.div>
+                            </motion.div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
+
+              {/* Drawer footer */}
+              <div className="shrink-0 border-t border-neutral-200 dark:border-white/[0.06] px-3 sm:px-4 py-3 sm:py-4 space-y-2 bg-neutral-50/50 dark:bg-white/[0.01]">
+                <div className="flex items-center justify-between pt-1 px-1">
+                  <span className="text-[8px] sm:text-[9px] font-mono text-neutral-400/40 dark:text-neutral-600 uppercase tracking-widest">
+                    TypeWarp v1.0
+                  </span>
+                  <div className="flex items-center gap-1.5 text-[8px] sm:text-[9px] text-neutral-400/40 dark:text-neutral-600">
+                    Online
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </header>
   );
 };
 

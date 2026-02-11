@@ -6,26 +6,42 @@ import JSONLD from "@/components/JSONLD";
 import { ToolIcon } from "@/components/ToolIcon";
 import { getBlogPosts } from "@/lib/blog";
 import BlogCard from "@/components/BlogCard";
+import FeaturedTools from "@/components/FeaturedTools";
+import Testimonials from "@/components/Testimonials";
+import {
+  Skull,
+  Zap,
+  Ghost,
+  Terminal,
+  Shield,
+  Cpu,
+  Activity,
+  ArrowRight,
+  Workflow,
+  Target,
+  Layers,
+} from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "TypeWarp | The Ultimate Text Transformer & Typography Hub",
+  title: "TypeWarp | #1 Cursed Text & Glitch Font Generator Toolkit",
   description:
-    "Transform your text with the world's most advanced text manipulation platform. Generate fancy fonts, cursed text, zalgo, and professional typography instantly.",
+    "Generate the best cursed text, zalgo script, and glitchy fonts instantly. TypeWarp is the ultimate toolkit for digital creators looking to warp their typography for Discord, Twitter, and more.",
   keywords: [
-    "text transformer",
-    "font generator",
-    "fancy text",
-    "cursed text",
-    "zalgo generator",
+    "cursed text generator",
+    "glitch fonts",
+    "zalgo text script",
+    "fancy text generator",
     "typography tools",
+    "digital corruption",
     "typewarp",
   ],
   openGraph: {
-    title: "TypeWarp | The Ultimate Text Transformer",
+    title: "TypeWarp | Ultimate Cursed Text & Glitch Font Toolkit",
     description:
-      "Transform your text into digital masterpieces, fancy scripts, and more with TypeWarp.",
+      "Transform your text into digital masterpieces, glitchy scripts, and more with TypeWarp's high-performance engine.",
     images: ["/og-image.png"],
     url: "https://typewarp.com",
+    type: "website",
   },
   alternates: {
     canonical: "https://typewarp.com",
@@ -42,287 +58,301 @@ export default async function Home() {
     name: "TypeWarp",
     url: "https://typewarp.com",
     description:
-      "Premium text transformation and typography tool for digital creators.",
+      "The professional-grade cursed text and glitchy typography toolkit for digital architects.",
     applicationCategory: "DesignApplication",
     genre: "Typography",
     browserRequirements: "Requires JavaScript",
-    softwareVersion: "1.0.0",
+    softwareVersion: "1.4.0",
     operatingSystem: "All",
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
     },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "1280",
+    },
+    featureList: [
+      "Real-time Cursed Text Generation",
+      "Advanced Zalgo Scripting",
+      "Binary & Morse Translation",
+      "ASCII Art Generative Engine",
+      "Glitch Typography Matrices",
+    ],
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://typewarp.com",
+      },
+    ],
+  };
+
+  const capabilities = [
+    {
+      title: "Cursed Typography",
+      description:
+        "Unleash digital chaos with our proprietary glitch algorithms. From subtle jitters to total corruption.",
+      icon: Ghost,
+    },
+    {
+      title: "Matrix Hardened",
+      description:
+        "Our tools are optimized for flawless rendering across Discord, GitHub, and dark-web forums.",
+      icon: Shield,
+    },
+    {
+      title: "Technical Decoders",
+      description:
+        "Professional-grade converters for Binary, Morse, and Base64. Built for data warriors.",
+      icon: Terminal,
+    },
+    {
+      title: "ASCII Art Core",
+      description:
+        "Generate complex visual structures from raw standard characters using our generative engine.",
+      icon: Cpu,
+    },
+    {
+      title: "Zalgo Protocol",
+      description:
+        "The most advanced Zalgo generator on the market. Multi-level stack controls for maximum dread.",
+      icon: Skull,
+    },
+    {
+      title: "Real-time Warp",
+      description:
+        "High-performance transformation engine that processes text at the speed of light.",
+      icon: Zap,
+    },
+  ];
+
   return (
-    <>
+    <div className="bg-bg-void text-text-primary">
       <JSONLD data={jsonLd} />
+      <JSONLD data={breadcrumbJsonLd} />
 
       <Hero />
 
-      {/* Core Capabilities Section */}
-      <section className="py-20 md:py-32 px-4 relative overflow-hidden bg-[var(--background)]">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-[var(--card-border)] to-transparent" />
+      {/* Featured Tools Section */}
+      <FeaturedTools />
 
-        <div className="container mx-auto max-w-7xl px-4">
-          <div className="text-center mb-16 md:mb-24">
-            <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-6 tracking-tighter text-[var(--foreground)] animate-fade-in-up uppercase">
-              The Art of{" "}
-              <span className="bg-gradient-to-r from-red-600 to-purple-600 bg-clip-text text-transparent">
-                Transformation
-              </span>
+      {/* Capabilities System Grid */}
+      <section className="py-12 md:py-28 px-4 bg-bg-void relative overflow-hidden">
+        <div className="container mx-auto max-w-7xl">
+          <div className="text-center mb-10 md:mb-16">
+            <span className="text-accent-glitch font-mono text-[10px] uppercase tracking-[0.5em] mb-4 inline-block">
+              //_Operational_Capacities
+            </span>
+            <h2 className="text-2xl md:text-6xl font-black tracking-tighter uppercase leading-tight">
+              Engineered for <br />{" "}
+              <span className="text-accent-glitch">Digital Entropy</span>
             </h2>
-            <p className="text-[var(--muted)] text-lg md:text-xl max-w-3xl mx-auto animate-fade-in-up animation-delay-200 font-medium leading-relaxed">
-              TypeWarp is a high-performance typography ecosystem designed for
-              creators who demand more from their digital text. From social
-              media dominance to technical data encoding, we provide the
-              ultimate toolkit for text manipulation.
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Premium Typography",
-                desc: "Elevate your brand with 100+ high-fidelity Unicode font styles. Perfect for professional bio design and high-end creative projects.",
-                icon: (
-                  <svg
-                    className="w-10 h-10"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                    />
-                  </svg>
-                ),
-                color: "from-red-500/10 to-red-600/5",
-                accent: "text-red-500",
-              },
-              {
-                title: "Platform Agnostic",
-                desc: "Our generated assets are optimized for flawless rendering across Instagram, TikTok, Discord, and GitHub without breaking character limits.",
-                icon: (
-                  <svg
-                    className="w-10 h-10"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                    />
-                  </svg>
-                ),
-                color: "from-purple-500/10 to-purple-600/5",
-                accent: "text-purple-500",
-              },
-              {
-                title: "Technical Utilities",
-                desc: "Professional-grade converters for Binary, Morse, and Base64 encoding. Built for developers and technical communicators.",
-                icon: (
-                  <svg
-                    className="w-10 h-10"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                    />
-                  </svg>
-                ),
-                color: "from-blue-500/10 to-blue-600/5",
-                accent: "text-blue-500",
-              },
-              {
-                title: "Encrypted Privacy",
-                desc: "Secure text transformation that respects user data. All processing happens locally or via secure, fleeting connections.",
-                icon: (
-                  <svg
-                    className="w-10 h-10"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                    />
-                  </svg>
-                ),
-                color: "from-emerald-500/10 to-emerald-600/5",
-                accent: "text-emerald-500",
-              },
-              {
-                title: "ASCII Art Engine",
-                desc: "Generative text-art capabilities allowing for complex visual structures created purely from standard characters.",
-                icon: (
-                  <svg
-                    className="w-10 h-10"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    />
-                  </svg>
-                ),
-                color: "from-orange-500/10 to-orange-600/5",
-                accent: "text-orange-500",
-              },
-              {
-                title: "Gamertag Generator",
-                desc: "Specialized algorithms to create unique, available, and stylish handles for competitive gaming platforms.",
-                icon: (
-                  <svg
-                    className="w-10 h-10"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                ),
-                color: "from-pink-500/10 to-pink-600/5",
-                accent: "text-pink-500",
-              },
-            ].map((feature, i) => (
-              <div
-                key={feature.title}
-                className={`group relative p-8 md:p-10 rounded-[1.5rem] bg-white dark:bg-white/[0.03] border border-zinc-200 dark:border-[var(--card-border)] hover:border-zinc-300 dark:hover:border-[var(--foreground)]/20 transition-all duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-none ${
-                  i < 3 ? "animate-slide-in-up" : "animate-fade-in-up"
-                } ${
-                  i % 3 === 0
-                    ? "animation-delay-0"
-                    : i % 3 === 1
-                      ? "animation-delay-200"
-                      : "animation-delay-400"
-                }`}
-              >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[1.5rem]`}
-                />
-
-                <div className="relative z-10">
-                  <div
-                    className={`mb-8 ${feature.accent} group-hover:scale-110 transition-transform duration-500 inline-block`}
-                  >
-                    {feature.icon}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-12">
+            {capabilities.map((cap, i) => {
+              const Icon = cap.icon;
+              return (
+                <div key={i} className="flex flex-col gap-6 group">
+                  <div className="w-12 h-12 flex items-center justify-center border border-border-subtle group-hover:border-accent-glitch transition-colors duration-500 relative">
+                    <Icon className="w-5 h-5 text-text-muted group-hover:text-accent-glitch transition-colors" />
+                    <div className="absolute -inset-2 bg-accent-glitch/5 blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
-                  <h3 className="text-xl font-black mb-4 text-[var(--foreground)] uppercase tracking-wider">
-                    {feature.title}
-                  </h3>
-                  <p className="text-[var(--muted)] text-sm font-bold leading-loose">
-                    {feature.desc}
+                  <div className="space-y-3">
+                    <h3 className="text-xl font-black uppercase tracking-tight group-hover:text-accent-glitch transition-colors">
+                      {cap.title}
+                    </h3>
+                    <p className="text-text-muted text-sm font-mono leading-relaxed group-hover:text-text-primary/70 transition-colors">
+                      {cap.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Core Transformation Pipeline (Organized Info) */}
+      <section className="py-12 md:py-28 px-4 bg-[#050505] relative overflow-hidden border-y border-border-subtle/30">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div>
+              <h2 className="text-2xl md:text-6xl font-black tracking-tighter uppercase mb-4 leading-tight">
+                The <span className="text-accent-glitch">Processing</span>{" "}
+                <br /> Pipeline
+              </h2>
+              <p className="text-text-muted font-mono text-lg mb-8 max-w-xl">
+                How TypeWarp handles complex character substitution and
+                positional offset matrices at scale.
+              </p>
+
+              <div className="space-y-8">
+                {[
+                  {
+                    title: "Input Analysis",
+                    desc: "Our engine maps raw Unicode characters to high-entropy substitutes across 24 localized font maps.",
+                    icon: Target,
+                  },
+                  {
+                    title: "Layering Logic",
+                    desc: "Zalgo and glitch layers are stacked using positional relative matrices for precise visual corruption.",
+                    icon: Layers,
+                  },
+                  {
+                    title: "Output Finalization",
+                    desc: "Final string sets are optimized for maximum compatibility across various digital environments.",
+                    icon: Workflow,
+                  },
+                ].map((step, idx) => (
+                  <div key={idx} className="flex gap-6">
+                    <div className="flex flex-col items-center">
+                      <div className="w-8 h-8 rounded-full border border-accent-glitch/20 flex items-center justify-center text-accent-glitch font-mono text-[10px] shrink-0">
+                        {idx + 1}
+                      </div>
+                      {idx !== 2 && (
+                        <div className="w-px flex-1 bg-gradient-to-b from-accent-glitch/20 to-transparent mt-2" />
+                      )}
+                    </div>
+                    <div>
+                      <h4 className="font-black uppercase tracking-widest text-sm text-text-primary mb-1">
+                        {step.title}
+                      </h4>
+                      <p className="text-text-muted text-xs font-mono">
+                        {step.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative aspect-square bg-bg-void border border-border-subtle p-6 overflow-hidden group">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.05)_0%,transparent_70%)]" />
+              <div className="relative h-full border border-accent-glitch/10 flex flex-col p-8 justify-between">
+                <div className="flex justify-between items-start">
+                  <div className="w-16 h-1 w-accent-glitch bg-accent-glitch/30" />
+                  <Activity className="w-6 h-6 text-accent-glitch opacity-40 animate-pulse" />
+                </div>
+                <div className="font-mono text-[10px] text-text-muted space-y-4">
+                  <div className="text-accent-glitch flex justify-between uppercase tracking-widest">
+                    <span>Status: ACTIVE</span>
+                    <span>Uptime: 99.9%</span>
+                  </div>
+                  <div className="h-[2px] w-full bg-white/5 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-accent-glitch w-2/3" />
+                  </div>
+                  <p className="leading-loose">
+                    FETCHING_CORE_MATRICES... [DONE]
+                    <br />
+                    INITIALIZING_GLITCH_ENGINE... [READY]
+                    <br />
+                    CALIBRATING_ZALGO_LEVELS... [COMPLETE]
+                    <br />
+                    SYSTEM_READY_FOR_INPUT...
                   </p>
                 </div>
+                <div className="aspect-video border border-border-subtle bg-[#080808] relative overflow-hidden">
+                  <div className="absolute inset-x-0 h-px bg-white/5 top-1/2" />
+                  <div className="absolute inset-y-0 w-px bg-white/5 left-1/2" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-24 h-24 rounded-full border border-accent-glitch/20 flex items-center justify-center animate-spin-slow">
+                      <Zap className="w-8 h-8 text-accent-glitch" />
+                    </div>
+                  </div>
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Categories Explorer Section */}
-      <section className="py-24 md:py-40 px-4 bg-[var(--card-bg)] relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
+      <section className="py-12 md:py-28 px-4 bg-bg-card relative overflow-hidden border-b border-border-subtle">
+        <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+
         <div className="container mx-auto max-w-7xl relative z-10">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
-            <div className="max-w-2xl">
-              <span className="text-red-500 text-[10px] font-black uppercase tracking-[0.4em] mb-4 block">
-                The Warp Matrix
-              </span>
-              <h2 className="text-4xl md:text-7xl font-black mb-6 tracking-tighter text-[var(--foreground)] leading-[1.1] md:leading-[0.9]">
-                Choose your <br />{" "}
-                <span className="text-purple-600">Frequency</span>
+          <div className="flex flex-col md:flex-row items-end justify-between mb-8 md:mb-12 gap-6 md:gap-8">
+            <div className="max-w-2xl text-left">
+              <h2 className="text-2xl md:text-6xl font-black tracking-tighter uppercase mb-4 md:mb-6 leading-tight">
+                Archive <br />{" "}
+                <span className="text-accent-glitch">Repositories</span>
               </h2>
-              <p className="text-[var(--muted)] text-lg font-medium">
-                Over {TOTAL_TOOLS_COUNT}+ specialized tools curated for style,
-                platform, and functional precision.
+              <p className="text-text-muted font-mono text-base md:text-lg max-w-xl">
+                Navigate through categorized repositories of specialized text
+                manipulation algorithms and typography engines.
               </p>
             </div>
+
             <Link
-              href="/text-tools"
-              className="px-8 py-4 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] font-bold hover:bg-[var(--card-border)] transition-all flex items-center gap-2"
+              href="/arsenal"
+              className="font-mono text-sm uppercase tracking-[0.3em] text-text-muted hover:text-accent-glitch transition-colors border-b border-border-subtle pb-2 mb-2"
             >
-              Explore All Tools
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
+              INITIALIZE_FULL_DIRECTORY
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categories.map((category, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {categories.map((category) => (
               <Link
                 key={category.slug}
                 href={`/${category.slug}`}
-                className="group relative p-8 md:p-10 rounded-[1.5rem] bg-white dark:bg-[var(--background)] border border-zinc-200 dark:border-[var(--card-border)] hover:border-purple-500/50 transition-all duration-500 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-none"
+                className="group relative p-5 md:p-8 bg-bg-void border border-border-subtle hover:border-accent-glitch/50 transition-all duration-500 overflow-hidden"
               >
-                <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-500/5 rounded-full blur-3xl group-hover:bg-purple-500/10 transition-colors" />
-                <div className="relative z-10">
-                  <div className="mb-8 flex justify-between items-start">
-                    <div className="p-4 rounded-xl bg-zinc-50 dark:bg-[var(--card-bg)] border border-zinc-100 dark:border-[var(--card-border)] group-hover:scale-110 transition-transform duration-500">
+                <div className="absolute top-0 right-0 p-3 md:p-4 font-mono text-[9px] md:text-[10px] text-text-primary/10 group-hover:text-accent-glitch/20 transition-colors">
+                  #{category.count.toString().padStart(2, "0")}
+                </div>
+
+                <div className="relative z-10 h-full flex flex-col">
+                  <div className="mb-4 md:mb-6 flex items-center justify-between">
+                    <div className="p-2 md:p-3 bg-bg-card border border-border-subtle group-hover:border-accent-glitch transition-colors">
                       <ToolIcon
                         slug={category.slug}
                         categorySlug={category.slug}
-                        className="w-10 h-10 text-[var(--foreground)]"
+                        className="w-6 h-6 md:w-8 md:h-8 text-text-primary group-hover:text-accent-glitch transition-colors"
                       />
                     </div>
-                    <span className="text-[10px] font-black text-zinc-400 dark:text-zinc-600 uppercase tracking-widest">
-                      {category.count} Tools
-                    </span>
                   </div>
-                  <h3 className="text-2xl font-black text-[var(--foreground)] mb-4 group-hover:text-purple-600 transition-colors uppercase tracking-tight">
+
+                  <h3 className="text-xl md:text-2xl font-black text-text-primary mb-2 md:mb-3 uppercase tracking-tight group-hover:text-accent-glitch transition-colors">
                     {category.name}
                   </h3>
-                  <div className="flex flex-wrap gap-2 pt-4">
+
+                  <p className="text-text-muted text-sm font-mono mb-6 line-clamp-2">
+                    {category.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-8">
                     {category.tools.slice(0, 3).map((tool) => (
                       <span
                         key={tool.slug}
-                        className="text-[9px] font-black px-4 py-2 rounded-xl bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 uppercase tracking-widest group-hover:text-[var(--foreground)]"
+                        className="text-[9px] font-mono px-2 py-1 bg-white/5 text-text-muted uppercase tracking-wider"
                       >
                         {tool.name.split(" ")[0]}
                       </span>
                     ))}
+                    {category.tools.length > 3 && (
+                      <span className="text-[9px] font-mono px-2 py-1 text-accent-glitch/60 uppercase">
+                        +{category.tools.length - 3} MORE
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="mt-auto pt-6 border-t border-border-subtle/40 flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-accent-glitch font-mono font-black text-[9px] uppercase tracking-[0.3em]">
+                      EXPLORE_CATEGORY
+                      <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-2" />
+                    </div>
+                    <div className="w-12 h-[1px] bg-white/10 group-hover:bg-accent-glitch/30 group-hover:w-20 transition-all duration-500" />
                   </div>
                 </div>
               </Link>
@@ -331,112 +361,80 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <Testimonials />
+
       {/* Latest from Blog Section */}
-      <section className="py-20 md:py-32 px-4 bg-white/[0.02] relative">
+      <section className="py-12 md:py-28 px-4 bg-bg-void relative border-t border-border-subtle/30">
         <div className="container mx-auto max-w-7xl">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
+          <div className="flex flex-col md:flex-row items-end justify-between mb-10 md:mb-12 gap-6 md:gap-8 text-left">
             <div className="max-w-2xl">
-              <h2 className="text-3xl md:text-5xl font-black mb-6 tracking-tighter text-[var(--foreground)]">
-                Latest from the <br />{" "}
-                <span className="text-red-500">Blog</span>
+              <h2 className="text-2xl md:text-6xl font-black tracking-tighter uppercase mb-4 md:mb-6 text-left">
+                Broadcast <br />{" "}
+                <span className="text-accent-glitch">Logs</span>
               </h2>
-              <p className="text-[var(--muted)] text-lg">
-                Stay updated with the latest trends in typography, design, and
-                digital expression.
+              <p className="text-text-muted font-mono text-base md:text-lg max-w-xl text-left">
+                Intelligence on typography, glitch aesthetics, and digital
+                subcultures.
               </p>
             </div>
+
             <Link
               href="/blog"
-              className="px-8 py-4 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] font-bold hover:bg-[var(--card-border)] transition-all flex items-center gap-2"
+              className="font-mono text-sm uppercase tracking-[0.3em] text-text-muted hover:text-text-primary transition-colors border-b border-border-subtle pb-2"
             >
-              Explore All Articles
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
+              Access Archive
             </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {recentPosts.map((post, index) => (
-              <div
-                key={post.slug}
-                className={`animate-fade-in-up ${
-                  index % 3 === 0
-                    ? "animation-delay-0"
-                    : index % 3 === 1
-                      ? "animation-delay-200"
-                      : "animation-delay-400"
-                }`}
-              >
-                <BlogCard post={post} />
-              </div>
+            {recentPosts.map((post) => (
+              <BlogCard key={post.slug} post={post} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Newsletter / CTA Section */}
-      <section className="py-20 px-4 relative overflow-hidden">
-        <div className="container mx-auto max-w-7xl">
-          <div className="relative p-8 md:p-20 rounded-[1.5rem] md:rounded-[2rem] bg-white dark:bg-[var(--card-bg)] border border-zinc-200 dark:border-[var(--card-border)] overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:shadow-2xl">
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-red-500/10 dark:from-red-600/20 to-purple-500/10 dark:to-purple-600/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-blue-500/5 dark:from-blue-600/10 to-transparent rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2" />
+      {/* CTA Section */}
+      <section className="py-12 md:py-32 px-4 relative overflow-hidden bg-bg-void">
+        <div className="container mx-auto max-w-5xl relative z-10">
+          <div className="p-6 md:p-20 bg-bg-card border border-white/10 relative overflow-hidden text-center group">
+            {/* Background Glitch Effect */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-700 bg-accent-glitch/5" />
 
-            <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto">
-              <span className="inline-block px-4 py-2 rounded-full bg-red-500/10 text-red-500 text-xs font-black uppercase tracking-widest mb-8 border border-red-500/20">
-                Join the Revolution
+            <div className="relative z-10">
+              <span className="inline-block px-3 py-1 bg-accent-glitch text-black text-[9px] font-black uppercase tracking-[0.4em] mb-6 md:mb-8">
+                CRITICAL_UPDATE_REQUIRED
               </span>
-              <h2 className="text-5xl md:text-7xl font-black text-[var(--foreground)] mb-8 tracking-tighter leading-tight">
-                Ready to go <br />
-                <span className="bg-gradient-to-r from-red-500 to-purple-600 bg-clip-text text-transparent">
-                  Fully Cursed?
-                </span>
+
+              <h2 className="text-3xl md:text-6xl font-black text-text-primary mb-6 md:mb-8 tracking-tighter leading-tight uppercase">
+                Ready to <br />
+                <span className="text-accent-glitch">Warp Reality?</span>
               </h2>
-              <p className="text-[var(--muted)] text-xl md:text-2xl mb-12 font-medium max-w-2xl leading-relaxed">
-                Join 100,000+ creators who are already pushing the boundaries of
-                digital expression. Stop blending in. Start warping.
+
+              <p className="text-text-muted text-base md:text-lg mb-12 font-mono max-w-xl mx-auto leading-relaxed">
+                Join {TOTAL_TOOLS_COUNT}+ creators breaking the matrix. No
+                limits. No rules. Just pure entropy.
               </p>
-              <div className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto">
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/dark-horror/cursed-text"
-                  className="w-full sm:w-auto px-12 py-6 rounded-xl bg-[var(--foreground)] text-[var(--background)] font-black text-lg hover:scale-105 transition-all active:scale-95 shadow-[0_20px_40px_rgba(0,0,0,0.2)] flex items-center justify-center gap-3"
+                  className="w-full sm:w-auto px-10 py-4 bg-accent-glitch text-black font-black text-sm hover:scale-105 active:scale-95 transition-all uppercase tracking-widest shadow-[0_0_20px_rgba(57,255,20,0.3)]"
                 >
-                  <span className="uppercase">Launch Generator</span>
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2.5}
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    />
-                  </svg>
+                  Launch Core
                 </Link>
                 <Link
-                  href="/text-tools"
-                  className="w-full sm:w-auto px-12 py-6 rounded-xl bg-[var(--card-bg)] text-[var(--foreground)] font-black text-lg border border-[var(--card-border)] hover:bg-[var(--card-border)] transition-all active:scale-95 flex items-center justify-center"
+                  href="/arsenal"
+                  className="w-full sm:w-auto px-10 py-4 border border-border-subtle text-text-primary font-black text-sm hover:bg-text-primary hover:text-bg-void transition-all uppercase tracking-widest"
                 >
-                  VIEW ALL TOOLS
+                  Directory
                 </Link>
               </div>
             </div>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

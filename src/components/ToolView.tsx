@@ -5,6 +5,19 @@ import Link from "next/link";
 import { toolConfigs } from "@/lib/toolConfig";
 import { transformText } from "@/lib/transformers";
 import { ToolIcon } from "@/components/ToolIcon";
+import {
+  Copy,
+  Trash2,
+  Settings,
+  Info,
+  Zap,
+  Terminal,
+  ChevronRight,
+  Home,
+  CheckCircle2,
+} from "lucide-react";
+import BackgroundEffect from "@/components/BackgroundEffect";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface ToolViewProps {
   tool: {
@@ -16,19 +29,25 @@ interface ToolViewProps {
   category: {
     name: string;
     slug: string;
+    tools: any[];
   };
+  hideFaqs?: boolean;
 }
 
 const colors = [
-  { name: "Default", value: "inherit", bg: "bg-zinc-800" },
-  { name: "Red", value: "#ef4444", bg: "bg-red-500" },
-  { name: "Green", value: "#22c55e", bg: "bg-green-500" },
-  { name: "Blue", value: "#3b82f6", bg: "bg-blue-500" },
-  { name: "Purple", value: "#a855f7", bg: "bg-purple-500" },
-  { name: "Yellow", value: "#eab308", bg: "bg-yellow-500" },
+  { name: "Default", value: "inherit", bg: "bg-text-primary/20" },
+  { name: "Acid", value: "#39FF14", bg: "bg-[#39FF14]" },
+  { name: "Neon", value: "#BC13FE", bg: "bg-[#BC13FE]" },
+  { name: "Blood", value: "#FF0000", bg: "bg-[#FF0000]" },
+  { name: "Void", value: "#00E5FF", bg: "bg-[#00E5FF]" },
+  { name: "Gold", value: "#FFD700", bg: "bg-[#FFD700]" },
 ];
 
-export default function ToolView({ tool, category }: ToolViewProps) {
+export default function ToolView({
+  tool,
+  category,
+  hideFaqs = false,
+}: ToolViewProps) {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [isCopied, setIsCopied] = useState(false);
@@ -65,7 +84,6 @@ export default function ToolView({ tool, category }: ToolViewProps) {
     if (!output) return;
 
     if (outputColor !== "inherit") {
-      // Create rich text blob for color support
       const html = `<span style="color: ${outputColor}">${output.replace(/\n/g, "<br>")}</span>`;
       const textBlob = new Blob([output], { type: "text/plain" });
       const htmlBlob = new Blob([html], { type: "text/html" });
@@ -78,7 +96,6 @@ export default function ToolView({ tool, category }: ToolViewProps) {
           }),
         ]);
       } catch (e) {
-        // Fallback for browsers that don't support ClipboardItem
         navigator.clipboard.writeText(output);
       }
     } else {
@@ -97,9 +114,6 @@ export default function ToolView({ tool, category }: ToolViewProps) {
     setInput("");
     setOutput("");
   };
-
-  const btnStyle =
-    "transition-all duration-100 active:scale-90 hover:scale-[1.02]";
 
   const getDynamicContent = () => {
     const name = tool.name;
@@ -179,202 +193,232 @@ export default function ToolView({ tool, category }: ToolViewProps) {
   const content = getDynamicContent();
 
   return (
-    <div className="min-h-screen pt-24 pb-20 px-4 container mx-auto bg-zinc-50 dark:bg-black text-black dark:text-white transition-colors duration-300">
-      <div className="fixed inset-0 overflow-hidden pointer-events-none opacity-30 dark:opacity-20">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-red-500/10 dark:bg-red-600/20 rounded-full blur-[120px] animate-pulse-slow"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-500/10 dark:bg-purple-600/20 rounded-full blur-[120px] animate-pulse-slow"></div>
-      </div>
+    <div className="min-h-screen pt-28 pb-24 px-4 bg-bg-void text-text-primary relative overflow-hidden">
+      <BackgroundEffect />
 
-      <div className="relative z-10 flex flex-col gap-8 max-w-7xl mx-auto px-1 sm:px-0">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 animate-fade-in">
-          <div>
-            <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-red-500 mb-2">
-              <span className="w-8 h-[1px] bg-red-500"></span>
-              {category.name}
-            </div>
-            <h1 className="text-3xl md:text-5xl font-black text-zinc-900 dark:text-white tracking-tighter">
-              {tool.name.split(" ")[0]}{" "}
-              <span className="bg-gradient-to-r from-red-600 to-purple-600 bg-clip-text text-transparent">
-                {tool.name.split(" ").slice(1).join(" ")}
-              </span>
-            </h1>
-          </div>
-          <div className="flex items-center gap-2 sm:gap-4 bg-white dark:bg-white/5 p-1.5 sm:p-2 rounded-2xl border border-zinc-200 dark:border-white/10 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:shadow-none w-full sm:w-auto overflow-x-auto sm:overflow-visible no-scrollbar">
-            <Link
-              href="/"
-              className={`px-3 sm:px-4 py-2 text-[10px] sm:text-xs font-black uppercase tracking-widest text-zinc-400 dark:text-white/50 hover:text-zinc-900 dark:hover:text-white whitespace-nowrap ${btnStyle}`}
-            >
-              Home
-            </Link>
-            <div className="shrink-0 w-[1px] h-4 bg-zinc-200 dark:bg-white/10"></div>
-            <Link
-              href={`/${category.slug}`}
-              className={`px-3 sm:px-4 py-2 text-[10px] sm:text-xs font-black uppercase tracking-widest text-zinc-400 dark:text-white/50 hover:text-zinc-900 dark:hover:text-white whitespace-nowrap ${btnStyle}`}
-            >
-              {category.name}
-            </Link>
+      <div className="container mx-auto max-w-7xl relative z-10">
+        {/* Compact Breadcrumbs */}
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-6 font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted transition-opacity duration-500">
+          <Link
+            href="/"
+            className="hover:text-accent-glitch transition-colors flex items-center gap-1.5 shrink-0"
+          >
+            <Home className="w-2.5 h-2.5" />
+            ROOT
+          </Link>
+          <ChevronRight className="w-2.5 h-2.5 opacity-20 shrink-0" />
+          <Link
+            href={`/${category.slug}`}
+            className="hover:text-accent-glitch transition-colors flex items-center gap-1.5 shrink-0"
+          >
+            <Terminal className="w-2.5 h-2.5" />
+            {category.name}
+          </Link>
+          <ChevronRight className="w-2.5 h-2.5 opacity-20 shrink-0" />
+          <div className="text-accent-glitch opacity-80 truncate max-w-[150px] sm:max-w-none">
+            {tool.name}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-8 flex flex-col gap-6">
-            <div className="group relative overflow-hidden rounded-[1.5rem] bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 transition-all duration-300 hover:border-red-500/50 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-none">
-              <div className="p-4 sm:p-7">
-                <div className="flex justify-between items-center mb-6">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 dark:text-white/30">
-                    Input Buffer
+        <div className="flex flex-col lg:flex-row gap-6 items-start">
+          {/* Main Transformation Area */}
+          <div className="flex-1 w-full flex flex-col gap-4">
+            {/* Optimized Header - Compact Edition */}
+            <div className="bg-bg-card border border-border-subtle p-4 md:p-6 lg:px-8 relative overflow-hidden">
+              <div className="flex flex-col gap-2 relative z-10">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tighter uppercase leading-tight break-words max-w-4xl">
+                  {tool.name}
+                </h1>
+              </div>
+
+              {/* Decorative Background Elements */}
+              <div className="absolute top-0 left-0 w-1 h-full bg-accent-glitch" />
+              <div className="absolute top-0 left-0 w-full h-px bg-white/5" />
+            </div>
+
+            {/* Input Panel */}
+            <div className="bg-bg-card border border-border-subtle relative group shadow-lg">
+              <div className="p-1 border-b border-border-subtle bg-bg-void/50 flex justify-between items-center px-4 py-2">
+                <div className="flex items-center gap-2 text-[9px] font-mono uppercase tracking-[0.3em] text-text-muted">
+                  <Terminal className="w-3 h-3" />
+                  Source_Input
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[9px] font-mono text-text-muted/40 uppercase">
+                    Chars: {input.length}
                   </span>
                   <button
                     onClick={handleClear}
-                    className={`p-2 rounded-lg bg-white dark:bg-white/5 text-zinc-400 dark:text-white/50 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 border border-zinc-100 dark:border-transparent ${btnStyle}`}
+                    className="p-1.5 text-text-muted hover:text-red-500 transition-colors flex items-center gap-1.5 text-[9px] font-mono uppercase tracking-widest"
+                    title="Reset Matrix"
                   >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                      />
-                    </svg>
+                    <Trash2 className="w-3 h-3" />
+                    Reset
                   </button>
                 </div>
+              </div>
+              <div className="p-3 md:p-5">
                 <textarea
-                  id="tool-input-buffer"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Insert text to warp..."
-                  aria-label={`Insert text to transform with ${tool.name}`}
-                  className="w-full h-8 md:h-15 bg-transparent text-lg md:text-2xl font-bold text-zinc-900 dark:text-white placeholder:text-zinc-300 dark:placeholder:text-zinc-800 outline-none resize-none custom-scrollbar"
+                  placeholder="Enter text to transform..."
+                  className="w-full h-24 md:h-32 bg-transparent text-base md:text-2xl font-sans font-medium text-text-primary placeholder:text-text-primary/10 outline-none resize-none custom-scrollbar transition-all"
                   autoFocus
                 />
               </div>
             </div>
 
-            {output && (
-              <div className="animate-slide-in-up">
-                <div
-                  className={`relative p-4 md:p-6 rounded-[1.5rem] bg-white dark:bg-black border-2 border-red-600/50 shadow-xl dark:shadow-[0_0_100px_rgba(239,68,68,0.15)] group overflow-hidden ${options.customSettings?.mockup ? "max-w-md mx-auto aspect-[9/19] rounded-[2.5rem] sm:rounded-[3rem] border-[10px] sm:border-[14px] border-zinc-950 shadow-2xl" : ""}`}
-                >
-                  {options.customSettings?.mockup &&
-                    tool.slug.includes("instagram") && (
-                      <div className="absolute inset-x-0 top-0 h-16 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md flex items-center px-6 justify-between border-b border-zinc-100 dark:border-white/10 z-20">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 p-0.5" />
-                          <span className="text-[10px] font-black text-zinc-900 dark:text-white uppercase">
-                            Your_Avatar
-                          </span>
-                        </div>
-                        <svg
-                          className="w-4 h-4 text-zinc-400 dark:text-white/50"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
+            {/* Output Panel */}
+            <div className="bg-bg-card border border-border-subtle relative group shadow-lg overflow-hidden">
+              <div className="p-1 border-b border-border-subtle bg-bg-void/50 flex flex-col sm:flex-row justify-between items-start sm:items-center px-4 py-2 gap-4">
+                <div className="flex items-center gap-2 text-[9px] font-mono uppercase tracking-[0.3em] text-accent-glitch">
+                  <Zap className="w-3 h-3 animate-pulse" />
+                  Engine_Output
+                </div>
+                <div className="flex items-center justify-between w-full sm:w-auto gap-4">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[9px] font-mono text-text-muted uppercase tracking-widest hidden xs:inline">
+                      Color:
+                    </span>
+                    <div className="flex items-center gap-1.5 p-1 bg-bg-void/50 border border-border-subtle rounded-sm">
+                      {colors.map((c) => (
+                        <button
+                          key={c.name}
+                          onClick={() => setOutputColor(c.value)}
+                          className={`group relative w-4 h-4 sm:w-5 sm:h-5 transition-all duration-500 ${
+                            outputColor === c.value
+                              ? "scale-110 shadow-[0_0_20px_-3px_var(--glow-color)]"
+                              : "hover:scale-110"
+                          }`}
+                          style={
+                            {
+                              "--glow-color":
+                                c.value === "inherit"
+                                  ? "rgba(255,255,255,0.4)"
+                                  : `${c.value}66`,
+                            } as React.CSSProperties
+                          }
+                          title={c.name}
                         >
-                          <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
-                        </svg>
-                      </div>
+                          <div
+                            className={`absolute inset-0 transition-all duration-500 ease-out border border-white/10 ${
+                              outputColor === c.value
+                                ? "rotate-45 scale-90 border-white/40"
+                                : "rotate-0 group-hover:rotate-45 group-hover:scale-90 group-hover:border-white/40"
+                            }`}
+                            style={{
+                              backgroundColor:
+                                c.value === "inherit"
+                                  ? "var(--text-primary)"
+                                  : c.value,
+                              opacity: outputColor === c.value ? 1 : 0.3,
+                            }}
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <button
+                    onClick={handleCopy}
+                    className={`flex items-center justify-center gap-2 px-4 sm:px-6 py-2 bg-accent-glitch text-black font-black uppercase tracking-widest text-[9px] sm:text-[10px] transition-all active:scale-95 shadow-lg min-w-[100px] ${
+                      isCopied
+                        ? "bg-text-primary text-bg-void"
+                        : "hover:translate-y-[-1px] hover:shadow-accent-glitch/20"
+                    }`}
+                  >
+                    {isCopied ? (
+                      <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                    ) : (
+                      <Copy className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                     )}
+                    <span>{isCopied ? "COPIED" : "COPY"}</span>
+                  </button>
+                </div>
+              </div>
 
-                  {tool.slug === "demonic-text" && (
-                    <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
-                      <div className="w-[120%] aspect-square border-[8px] border-red-600 rounded-full animate-spin-slow flex items-center justify-center">
-                        <div className="w-[80%] aspect-square border-[4px] border-dashed border-red-500 rounded-full" />
-                      </div>
+              <div className="bg-accent-glitch/5 px-4 py-1 border-b border-border-subtle flex items-center gap-2">
+                <Info className="w-2.5 h-2.5 text-accent-glitch" />
+                <span className="text-[8px] font-mono text-accent-glitch/70 uppercase tracking-widest">
+                  Note: Colors work in Rich-Text (Email/Docs). Social Media
+                  platforms support Unicode symbols only.
+                </span>
+              </div>
+
+              <div className="relative bg-bg-void/10 overflow-hidden border-b border-white/5 h-[140px] md:h-[180px]">
+                <div className="absolute inset-0 overflow-auto custom-scrollbar p-4 md:p-6 flex flex-col items-center">
+                  {output ? (
+                    <textarea
+                      readOnly
+                      value={output}
+                      className="w-full h-full bg-transparent text-base md:text-2xl font-black break-all leading-[1.2] text-center transition-colors duration-300 relative z-10 py-2 md:py-4 outline-none resize-none custom-scrollbar"
+                      style={{ color: outputColor }}
+                    />
+                  ) : (
+                    <div className="flex-1 flex items-center justify-center">
+                      <p className="text-text-primary/10 font-mono text-[11px] uppercase tracking-[0.2em] animate-pulse">
+                        Awaiting transformation...
+                      </p>
                     </div>
                   )}
+                </div>
 
-                  <div
-                    className={`relative min-h-[50px] md:min-h-[60px] flex items-center ${tool.slug.includes("instagram") || tool.slug.includes("twitter") ? "justify-start text-left" : "justify-center text-center"} z-10 w-full overflow-y-auto custom-scrollbar max-h-[350px]`}
-                  >
-                    <div className="flex flex-col gap-4 w-full">
-                      <p
-                        className="text-xl md:text-2xl font-black break-all leading-snug selection:bg-red-600 selection:text-white whitespace-pre-wrap transition-colors duration-300"
-                        style={{ color: outputColor }}
-                      >
-                        {output}
-                      </p>
+                {/* Decorative Tech Grid */}
+                <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#39FF14_1px,transparent_1px)] [background-size:20px_20px]" />
+              </div>
 
-                      {tool.slug === "character-counter" && input && (
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-zinc-100 dark:border-white/10">
-                          {[
-                            {
-                              l: "Words",
-                              v: input.trim()
-                                ? input.trim().split(/\s+/).length
-                                : 0,
-                            },
-                            {
-                              l: "Sentences",
-                              v: input.split(/[.!?]+/).filter(Boolean).length,
-                            },
-                            {
-                              l: "Read Time",
-                              v: `${Math.ceil(input.length / 1000)}m`,
-                            },
-                            { l: "Complexity", v: "Low" },
-                          ].map((s) => (
-                            <div
-                              key={s.l}
-                              className="bg-white dark:bg-white/5 p-3 rounded-xl border border-zinc-200 dark:border-transparent"
-                            >
-                              <div className="text-[10px] uppercase font-black text-zinc-400 dark:text-zinc-500 mb-1">
-                                {s.l}
-                              </div>
-                              <div className="text-xl font-black text-zinc-900 dark:text-white">
-                                {s.v}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
+              <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent-glitch/10 to-transparent" />
+            </div>
+
+            {/* Tool Details (Desktop Only) */}
+            <div className="hidden lg:grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-5 bg-bg-card/50 border border-border-subtle group hover:border-accent-glitch/10 transition-all duration-300">
+                <h2 className="text-[9px] font-mono text-accent-glitch uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
+                  <Info className="w-3 h-3" />
+                  Module_Summary
+                </h2>
+                <p className="text-text-muted font-mono text-[11px] leading-relaxed line-clamp-4">
+                  {content.about}
+                </p>
+              </div>
+              <div className="p-5 bg-bg-card/50 border border-border-subtle group hover:border-accent-glitch/10 transition-all duration-300">
+                <h2 className="text-[9px] font-mono text-accent-glitch uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
+                  <Zap className="w-3 h-3" />
+                  Key_Specs
+                </h2>
+                <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                  {content.features.slice(0, 4).map((f, i) => (
+                    <div key={i} className="flex flex-col gap-0.5">
+                      <div className="text-[8px] font-mono text-text-primary uppercase tracking-widest truncate">
+                        {f.title}
+                      </div>
+                      <div className="text-[8px] font-mono text-text-muted/60 truncate">
+                        {f.text}
+                      </div>
                     </div>
-                  </div>
-
-                  <div className="flex flex-col md:flex-row gap-3 justify-between items-center mt-4 pt-4 md:mt-8 md:pt-6 border-t border-zinc-100 dark:border-white/5 relative z-20">
-                    <span className="text-[10px] font-black uppercase text-zinc-400 dark:text-zinc-500">
-                      System Ready
-                    </span>
-                    <button
-                      onClick={handleCopy}
-                      className={`flex items-center gap-2.5 px-5 py-2.5 md:px-6 md:py-3 rounded-[2rem] bg-zinc-900 dark:bg-white text-white dark:text-black text-xs font-black uppercase tracking-widest hover:bg-zinc-800 dark:hover:bg-zinc-200 ${btnStyle}`}
-                    >
-                      {isCopied ? "Success" : "Copy Result"}
-                    </button>
-                  </div>
+                  ))}
                 </div>
               </div>
-            )}
+            </div>
           </div>
 
-          <div className="lg:col-span-4 flex flex-col gap-5 lg:sticky lg:top-24">
-            <div className="rounded-[1.5rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 p-5 md:p-7 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-2xl overflow-hidden relative group">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-600 to-purple-700 flex items-center justify-center text-lg shadow-lg">
-                  <ToolIcon
-                    slug={tool.slug}
-                    categorySlug={category.slug}
-                    className="w-5 h-5 text-white"
-                  />
+          {/* Sidebar Controls */}
+          <div className="w-full lg:w-[320px] shrink-0 flex flex-col gap-6 lg:sticky lg:top-24">
+            <div className="bg-bg-card border border-border-subtle p-5 md:p-6 relative overflow-hidden group shadow-xl">
+              <div className="flex items-center gap-3 mb-6 md:mb-10">
+                <div className="w-10 h-10 border border-accent-glitch/20 flex items-center justify-center">
+                  <Settings className="w-5 h-5 text-accent-glitch animate-spin-slow" />
                 </div>
-                <div>
-                  <h3 className="text-[11px] font-black uppercase tracking-widest text-zinc-900 dark:text-white">
-                    Settings
-                  </h3>
-                </div>
+                <h3 className="text-xs font-mono uppercase tracking-[0.3em]">
+                  Matrix_Params
+                </h3>
               </div>
 
-              <div className="flex flex-col gap-5 md:gap-6">
+              <div className="flex flex-col gap-6 md:gap-8">
                 {toolConfig?.controls.map((control: any) => (
-                  <div key={control.id} className="flex flex-col gap-3">
-                    <div className="flex justify-between items-center px-1">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
-                        {control.label}
-                      </span>
-                      <span className="text-xs font-mono text-red-500">
+                  <div key={control.id} className="flex flex-col gap-4">
+                    <div className="flex justify-between items-center font-mono text-[9px] uppercase tracking-widest">
+                      <span className="text-text-muted">{control.label}</span>
+                      <span className="text-accent-glitch">
                         {options.customSettings?.[control.id] ??
                           control.defaultValue}
                       </span>
@@ -399,13 +443,12 @@ export default function ToolView({ tool, category }: ToolViewProps) {
                             },
                           }))
                         }
-                        className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-900 rounded-full appearance-none cursor-pointer accent-red-600"
+                        className="w-full h-1 bg-white/5 rounded-none appearance-none cursor-pointer accent-accent-glitch"
                       />
                     )}
 
                     {control.type === "select" && (
                       <select
-                        id={`control-${control.id}`}
                         value={
                           options.customSettings?.[control.id] ??
                           control.defaultValue
@@ -419,14 +462,13 @@ export default function ToolView({ tool, category }: ToolViewProps) {
                             },
                           }))
                         }
-                        aria-label={`Select ${control.label}`}
-                        className="w-full bg-white dark:bg-zinc-900/50 border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-4 text-[11px] font-black text-zinc-900 dark:text-white outline-none cursor-pointer"
+                        className="w-full bg-bg-void border border-border-subtle px-4 py-3 text-[10px] font-mono text-text-primary outline-none cursor-pointer hover:border-accent-glitch transition-colors"
                       >
                         {control.options?.map((opt: any) => (
                           <option
                             key={opt.value}
                             value={opt.value}
-                            className="bg-zinc-50 dark:bg-zinc-950"
+                            className="bg-bg-card"
                           >
                             {opt.label}
                           </option>
@@ -450,38 +492,19 @@ export default function ToolView({ tool, category }: ToolViewProps) {
                             };
                           });
                         }}
-                        className={`w-full flex items-center justify-between px-4 py-4 rounded-xl border transition-all ${
+                        className={`flex items-center justify-between p-4 border transition-all font-mono text-[10px] uppercase tracking-widest ${
                           (options.customSettings?.[control.id] ??
                           control.defaultValue)
-                            ? "border-red-600/30 dark:border-red-600/50 bg-red-50 dark:bg-red-600/5 text-red-600 dark:text-red-500"
-                            : "border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 text-zinc-400 dark:text-zinc-500"
-                        } ${btnStyle}`}
+                            ? "border-accent-glitch bg-accent-glitch/5 text-accent-glitch"
+                            : "border-border-subtle text-text-muted"
+                        }`}
                       >
-                        <div className="flex flex-col items-start gap-0.5">
-                          <span className="text-[10px] font-black uppercase tracking-widest text-zinc-900 dark:text-white">
-                            {control.label}
-                          </span>
-                          <span className="text-[8px] font-medium uppercase tracking-tighter opacity-70">
-                            {options.customSettings?.[control.id]
-                              ? "Enabled"
-                              : "Disabled"}
-                          </span>
-                        </div>
+                        {control.label}
                         <div
-                          className={`w-7 h-3.5 rounded-full relative transition-colors ${
-                            (options.customSettings?.[control.id] ??
-                            control.defaultValue)
-                              ? "bg-red-600"
-                              : "bg-zinc-200 dark:bg-zinc-800"
-                          }`}
+                          className={`w-8 h-4 border ${(options.customSettings?.[control.id] ?? control.defaultValue) ? "border-accent-glitch" : "border-white/10"} relative`}
                         >
                           <div
-                            className={`absolute top-0.5 w-2.5 h-2.5 rounded-full bg-white transition-all ${
-                              (options.customSettings?.[control.id] ??
-                              control.defaultValue)
-                                ? "right-0.5"
-                                : "left-0.5"
-                            }`}
+                            className={`absolute top-0.5 bottom-0.5 w-3 transition-all ${(options.customSettings?.[control.id] ?? control.defaultValue) ? "right-0.5 bg-accent-glitch" : "left-0.5 bg-text-primary/20"}`}
                           />
                         </div>
                       </button>
@@ -489,172 +512,129 @@ export default function ToolView({ tool, category }: ToolViewProps) {
                   </div>
                 ))}
 
-                <div className="pt-5 border-t border-zinc-100 dark:border-white/5">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 block mb-3 md:mb-4 px-1">
-                    Color
-                  </span>
-                  <div className="grid grid-cols-6 gap-2.5 mb-3">
-                    {colors.map((c) => (
-                      <button
-                        key={c.name}
-                        onClick={() => setOutputColor(c.value)}
-                        className={`aspect-square rounded-lg transition-all duration-100 ${c.bg} ${outputColor === c.value ? "scale-110 ring-2 ring-zinc-300 dark:ring-white/20" : "opacity-30 hover:opacity-100"} ${btnStyle}`}
-                      />
-                    ))}
-                  </div>
-                  <p className="text-[8px] font-medium text-zinc-400 dark:text-zinc-600 leading-relaxed px-1">
-                    * Colors work in docs apps, not social media.
-                  </p>
-                </div>
-
-                <div className="pt-5 border-t border-zinc-100 dark:border-white/5">
+                {/* Global Overrides */}
+                <div className="pt-8 border-t border-white/5 flex flex-col gap-6">
                   <button
                     onClick={() =>
                       setOptions({ ...options, uppercase: !options.uppercase })
                     }
-                    className={`w-full flex items-center justify-between px-4 py-4 rounded-xl border transition-all ${
+                    className={`flex items-center justify-between p-4 border transition-all font-mono text-[10px] uppercase tracking-widest ${
                       options.uppercase
-                        ? "border-purple-600/30 dark:border-purple-600/50 bg-purple-50 dark:bg-purple-600/5 text-purple-600 dark:text-purple-500"
-                        : "border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 text-zinc-400 dark:text-zinc-500"
-                    } ${btnStyle}`}
+                        ? "border-accent-glitch bg-accent-glitch/5 text-accent-glitch"
+                        : "border-white/10 text-text-muted"
+                    }`}
                   >
-                    <div className="flex flex-col items-start gap-0.5">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-zinc-900 dark:text-white">
-                        Caps Lock
-                      </span>
-                      <span className="text-[8px] font-medium uppercase tracking-tighter opacity-70">
-                        {options.uppercase ? "Enabled" : "Disabled"}
-                      </span>
-                    </div>
+                    CAPS_LOCK
                     <div
-                      className={`w-7 h-3.5 rounded-full relative transition-colors ${options.uppercase ? "bg-purple-600" : "bg-zinc-200 dark:bg-zinc-800"}`}
+                      className={`w-8 h-4 border ${options.uppercase ? "border-accent-glitch" : "border-white/10"} relative`}
                     >
                       <div
-                        className={`absolute top-0.5 w-2.5 h-2.5 rounded-full bg-white transition-all ${options.uppercase ? "right-0.5" : "left-0.5"}`}
+                        className={`absolute top-0.5 bottom-0.5 w-3 transition-all ${options.uppercase ? "right-0.5 bg-accent-glitch" : "left-0.5 bg-white/20"}`}
                       />
                     </div>
                   </button>
                 </div>
               </div>
+
+              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent-glitch/30 to-transparent" />
+            </div>
+
+            {/* Tool Details (Mobile Only) */}
+            <div className="grid lg:hidden grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-5 bg-bg-card/50 border border-border-subtle group hover:border-accent-glitch/10 transition-all duration-300">
+                <h2 className="text-[9px] font-mono text-accent-glitch uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
+                  <Info className="w-3 h-3" />
+                  Module_Summary
+                </h2>
+                <p className="text-text-muted font-mono text-[11px] leading-relaxed line-clamp-4">
+                  {content.about}
+                </p>
+              </div>
+              <div className="p-5 bg-bg-card/50 border border-border-subtle group hover:border-accent-glitch/10 transition-all duration-300">
+                <h2 className="text-[9px] font-mono text-accent-glitch uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
+                  <Zap className="w-3 h-3" />
+                  Key_Specs
+                </h2>
+                <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                  {content.features.slice(0, 4).map((f, i) => (
+                    <div key={i} className="flex flex-col gap-0.5">
+                      <div className="text-[8px] font-mono text-text-primary uppercase tracking-widest truncate">
+                        {f.title}
+                      </div>
+                      <div className="text-[8px] font-mono text-text-muted/60 truncate">
+                        {f.text}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div className="p-6 bg-bg-card border border-white/5">
+              <h3 className="text-[10px] font-mono uppercase tracking-[0.3em] text-text-muted mb-6">
+                Related_Modules
+              </h3>
+              <div className="grid grid-cols-2 gap-2">
+                {category.tools.slice(0, 4).map((t) => (
+                  <Link
+                    key={t.slug}
+                    href={`/${category.slug}/${t.slug}`}
+                    className="p-3 border border-border-subtle bg-bg-void text-[9px] font-mono text-text-muted hover:text-accent-glitch hover:border-accent-glitch/30 transition-all uppercase truncate"
+                  >
+                    {t.name}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16 animate-fade-in-up">
-          <div className="p-6 md:p-7 rounded-[1.5rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-xl">
-            <h2 className="text-lg font-black text-zinc-900 dark:text-white uppercase tracking-widest mb-6 flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-red-600"></span>
-              About {tool.name}
+        {/* FAQs */}
+        {!hideFaqs && (
+          <div className="mt-16 sm:mt-24">
+            <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-center mb-8 md:mb-12 underline decoration-accent-glitch/20 underline-offset-8">
+              Matrix_Intel_FAQ
             </h2>
-            <div className="space-y-4">
-              <p className="text-zinc-600 dark:text-zinc-500 leading-relaxed font-medium text-sm">
-                {content.about}
-              </p>
-              <p className="text-zinc-500 dark:text-zinc-600 leading-relaxed font-medium text-xs border-l-2 border-red-600/30 pl-5 italic">
-                {content.moreInfo}
-              </p>
-            </div>
-          </div>
-          <div className="p-6 md:p-7 rounded-[1.5rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-xl">
-            <h2 className="text-lg font-black text-zinc-900 dark:text-white uppercase tracking-widest mb-6 flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-purple-600"></span>
-              Key Features
-            </h2>
-            <div className="grid grid-cols-1 gap-3">
-              {content.features.map((f) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+              {content.faqs.map((faq, i) => (
                 <div
-                  key={f.title}
-                  className="p-3 rounded-xl bg-zinc-50 dark:bg-white/[0.02] border border-zinc-100 dark:border-white/5"
+                  key={i}
+                  className="p-5 md:p-6 bg-bg-card border border-border-subtle group hover:border-accent-glitch/20 transition-all duration-300 shadow-sm"
                 >
-                  <h3 className="text-[11px] font-black text-zinc-900 dark:text-white uppercase tracking-widest mb-1">
-                    {f.title}
-                  </h3>
-                  <p className="text-zinc-500 dark:text-zinc-600 text-[10px] font-medium">
-                    {f.text}
-                  </p>
+                  <h4 className="text-[10px] md:text-[11px] font-mono font-black text-accent-glitch uppercase tracking-widest mb-3 flex gap-2">
+                    <span className="opacity-50">[Q]</span> {faq.q}
+                  </h4>
+                  <div className="flex gap-3">
+                    <span className="text-text-primary/10 text-[10px] md:text-[11px] font-mono font-black shrink-0">
+                      [A]
+                    </span>
+                    <p className="text-text-muted font-mono text-[12px] md:text-sm leading-relaxed">
+                      {faq.a}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
-        </div>
-
-        {/* How to Use Section */}
-        <div className="mt-20 animate-fade-in-up">
-          <h2 className="text-2xl font-black text-zinc-900 dark:text-white uppercase tracking-[0.15em] text-center mb-10">
-            How to use <span className="text-red-600">{tool.name}</span>
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                s: "01",
-                t: "Input Text",
-                d: "Paste or type your content into the generator above.",
-              },
-              {
-                s: "02",
-                t: "Customize",
-                d: "Adjust the style and intensity to your preference.",
-              },
-              {
-                s: "03",
-                t: "Copy & Use",
-                d: "Copy your stylized text and use it anywhere.",
-              },
-            ].map((step) => (
-              <div
-                key={step.s}
-                className="relative p-6 md:p-7 rounded-[1.5rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/5 group hover:border-red-500/30 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-none"
-              >
-                <div className="text-5xl font-black text-zinc-200 dark:text-white/5 absolute top-5 right-5 group-hover:text-red-500/20 dark:group-hover:text-red-500/10 transition-colors">
-                  {step.s}
-                </div>
-                <h3 className="text-base font-black text-zinc-900 dark:text-white uppercase tracking-widest mb-3">
-                  {step.t}
-                </h3>
-                <p className="text-zinc-500 dark:text-zinc-500 text-sm font-medium leading-relaxed">
-                  {step.d}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* FAQs Section */}
-        <div className="mt-20 mb-16 animate-fade-in-up">
-          <h2 className="text-2xl font-black text-zinc-900 dark:text-white uppercase tracking-[0.15em] text-center mb-10">
-            Frequently Asked <span className="text-purple-600">Questions</span>
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {content.faqs.map((faq, i) => (
-              <div
-                key={i}
-                className="p-5 sm:p-7 rounded-[1.5rem] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-none"
-              >
-                <h4 className="text-xs font-black text-zinc-900 dark:text-white uppercase tracking-widest mb-3 flex gap-3">
-                  <span className="text-red-500">Q.</span> {faq.q}
-                </h4>
-                <div className="flex gap-3">
-                  <span className="text-purple-500 text-xs font-black">A.</span>
-                  <p className="text-zinc-600 dark:text-zinc-500 text-sm font-medium leading-relaxed">
-                    {faq.a}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        )}
       </div>
 
-      <div
-        className={`fixed bottom-12 left-1/2 -translate-x-1/2 z-[9999] transition-all duration-300 ${showToast ? "translate-y-0 opacity-100 scale-100" : "translate-y-12 opacity-0 scale-95 pointer-events-none"}`}
-      >
-        <div className="px-8 py-4 rounded-full bg-white text-black shadow-2xl flex items-center gap-4">
-          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-          <span className="text-xs font-black tracking-widest uppercase text-zinc-900">
-            Copied
-          </span>
-        </div>
-      </div>
+      {/* Modern Toast Notification */}
+      <AnimatePresence>
+        {showToast && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            className="fixed bottom-12 left-1/2 -translate-x-1/2 z-[9999]"
+          >
+            <div className="px-8 py-4 bg-accent-glitch text-black font-black text-[10px] uppercase tracking-[0.4em] shadow-[0_0_30px_rgba(57,255,20,0.3)]">
+              DATA_COPIED_SUCCESSFULLY
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
