@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import JSONLD from "@/components/JSONLD";
 import { ToolIcon } from "@/components/ToolIcon";
 import { getBlogPosts } from "@/lib/blog";
-import BlogCard from "@/components/BlogCard";
+import SmallBlogCard from "@/components/SmallBlogCard";
 import FeaturedTools from "@/components/FeaturedTools";
 import Testimonials from "@/components/Testimonials";
 import {
@@ -19,8 +19,6 @@ import {
   ArrowRight,
   Workflow,
   Target,
-  Layers,
-  Radio,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -41,11 +39,11 @@ export const metadata: Metadata = {
     description:
       "Transform your text into glitchy scripts and digital masterpieces with TypeWarp's high-performance engine.",
     images: ["/og-image.png"],
-    url: "https://typewarp.com",
+    url: "https://www.typewarp.com",
     type: "website",
   },
   alternates: {
-    canonical: "https://typewarp.com",
+    canonical: "https://www.typewarp.com",
   },
   other: {
     "og:updated_time": new Date().toISOString(),
@@ -60,7 +58,7 @@ export default async function Home() {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: "TypeWarp",
-    url: "https://typewarp.com",
+    url: "https://www.typewarp.com",
     description:
       "The professional-grade cursed text and glitchy typography toolkit for digital architects.",
     applicationCategory: "DesignApplication",
@@ -95,7 +93,7 @@ export default async function Home() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://typewarp.com",
+        item: "https://www.typewarp.com",
       },
     ],
   };
@@ -143,16 +141,13 @@ export default async function Home() {
     <div className="bg-bg-void text-text-primary">
       <JSONLD data={jsonLd} />
       <JSONLD data={breadcrumbJsonLd} />
-
       <Hero />
-
       {/* Featured Tools Section */}
       <FeaturedTools />
-
       {/* Capabilities System Grid */}
-      <section className="py-12 md:py-28 px-4 bg-bg-void relative overflow-hidden">
+      <section className="py-10 md:py-28 px-4 bg-bg-void relative overflow-hidden">
         <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-10 md:mb-16">
+          <div className="text-center mb-8 md:mb-16">
             <span className="text-accent-glitch font-mono text-[10px] uppercase tracking-[0.5em] mb-4 inline-block">
               //_Operational_Capacities
             </span>
@@ -162,17 +157,16 @@ export default async function Home() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-8 md:gap-y-16 gap-x-6 md:gap-x-12">
             {capabilities.map((cap, i) => {
               const Icon = cap.icon;
               return (
-                <div key={i} className="flex flex-col gap-6 group">
-                  <div className="w-12 h-12 flex items-center justify-center border border-border-subtle group-hover:border-accent-glitch transition-colors duration-500 relative">
-                    <Icon className="w-5 h-5 text-text-muted group-hover:text-accent-glitch transition-colors" />
-                    <div className="absolute -inset-2 bg-accent-glitch/5 blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div key={i} className="flex flex-col gap-4 md:gap-6 group">
+                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center border border-border-subtle group-hover:border-accent-glitch transition-colors duration-500 relative">
+                    <Icon className="w-4 h-4 md:w-5 md:h-5 text-text-muted group-hover:text-accent-glitch transition-colors" />
                   </div>
-                  <div className="space-y-3">
-                    <h3 className="text-xl font-black uppercase tracking-tight group-hover:text-accent-glitch transition-colors">
+                  <div className="space-y-2 md:space-y-3">
+                    <h3 className="text-lg md:text-xl font-black uppercase tracking-tight group-hover:text-accent-glitch transition-colors">
                       {cap.title}
                     </h3>
                     <p className="text-text-muted text-sm font-mono leading-relaxed group-hover:text-text-primary/70 transition-colors">
@@ -185,114 +179,18 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
-      {/* Deep Warp Architecture - Technical Blueprint Section */}
-      <section className="py-24 md:py-32 px-4 bg-bg-void relative overflow-hidden border-y border-border-subtle/20">
-        <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none bg-[linear-gradient(to_right,#888_1px,transparent_1px),linear-gradient(to_bottom,#888_1px,transparent_1px)] bg-[size:50px_50px]" />
-
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            {/* Left: Technical Diagram Visual */}
-            <div className="relative aspect-square max-w-[500px] mx-auto lg:mx-0 group">
-              <div className="absolute inset-0 border border-accent-glitch/20 rounded-full animate-spin-slow" />
-              <div className="absolute inset-10 border border-accent-glitch/10 rounded-full animate-reverse-spin" />
-
-              {/* Inner HUD Core */}
-              <div className="absolute inset-20 bg-bg-card border border-border-subtle flex flex-col items-center justify-center p-8 text-center group-hover:border-accent-glitch/40 transition-colors duration-700">
-                <Cpu className="w-12 h-12 text-accent-glitch mb-4 opacity-50 group-hover:opacity-100 transition-opacity" />
-                <div className="font-mono text-[9px] text-accent-glitch tracking-[0.4em] uppercase mb-2">
-                  System_Core
-                </div>
-                <div className="w-full h-px bg-white/10 mb-2" />
-                <div className="font-mono text-[9px] text-text-muted uppercase">
-                  Latency: 0.04ms
-                </div>
-              </div>
-
-              {/* Data Points (Orbiting) */}
-              {[0, 120, 240].map((angle, i) => (
-                <div
-                  key={i}
-                  className="absolute top-1/2 left-1/2 w-4 h-4 bg-accent-glitch group-hover:shadow-[0_0_15px_#39FF14] transition-all duration-500"
-                  style={{
-                    transform: `translate(-50%, -50%) rotate(${angle}deg) translate(180px) rotate(-${angle}deg)`,
-                  }}
-                />
-              ))}
-
-              {/* Blueprint Labels */}
-              <div className="absolute -top-4 -right-4 font-mono text-[10px] text-text-muted/40 uppercase tracking-widest border border-white/5 p-4 backdrop-blur-sm">
-                SPEC: TW_X_800
-                <br />
-                VER: 1.4.0
-              </div>
-            </div>
-
-            {/* Right: Spec Details */}
-            <div className="space-y-12">
-              <div>
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-1.5 h-1.5 bg-accent-glitch" />
-                  <span className="text-accent-glitch font-mono text-[10px] uppercase tracking-[0.4em]">
-                    Engine_Specifications
-                  </span>
-                </div>
-                <h2 className="text-4xl md:text-7xl font-black tracking-tighter uppercase leading-[0.85] mb-8">
-                  Deep Warp <br />{" "}
-                  <span className="text-accent-glitch">Architecture</span>
-                </h2>
-                <p className="text-text-muted font-mono text-base leading-relaxed max-w-xl">
-                  Unveiling the proprietary layering logic that powers
-                  TypeWarp's digital corruption. High-fidelity rendering meets
-                  extreme character entropy.
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                {[
-                  {
-                    title: "Zalgo-Stack Protocol",
-                    desc: "Multi-threaded vertical character layering with sub-pixel jitter control.",
-                  },
-                  {
-                    title: "Matrix Jitter Engine",
-                    desc: "Pseudo-random positional offsets calibrated for Discord & GitHub rendering.",
-                  },
-                  {
-                    title: "Unicode Mapping 2.0",
-                    desc: "Proprietary substitution matrices mapping 4,000+ unique glyph sets.",
-                  },
-                ].map((spec, idx) => (
-                  <div
-                    key={idx}
-                    className="group border-l border-white/10 pl-8 py-4 hover:border-accent-glitch transition-colors"
-                  >
-                    <h4 className="font-black text-xl uppercase tracking-tighter mb-2 group-hover:text-accent-glitch transition-colors">
-                      {spec.title}
-                    </h4>
-                    <p className="text-sm font-mono text-text-muted leading-relaxed">
-                      {spec.desc}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Categories Explorer Section */}
       <section className="py-12 md:py-28 px-4 bg-bg-card relative overflow-hidden border-b border-border-subtle">
         <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
 
         <div className="container mx-auto max-w-7xl relative z-10">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-8 md:mb-12 gap-6 md:gap-8">
+          <div className="flex flex-col md:flex-row items-end justify-between mb-8 md:mb-12 gap-4 md:gap-8">
             <div className="max-w-2xl text-left">
-              <h2 className="text-2xl md:text-6xl font-black tracking-tighter uppercase mb-4 md:mb-6 leading-tight">
+              <h2 className="text-2xl md:text-6xl font-black tracking-tighter uppercase mb-3 md:mb-6 leading-tight">
                 Archive <br />{" "}
                 <span className="text-accent-glitch">Repositories</span>
               </h2>
-              <p className="text-text-muted font-mono text-base md:text-lg max-w-xl">
+              <p className="text-text-muted font-mono text-sm md:text-lg max-w-xl">
                 Navigate through categorized repositories of specialized text
                 manipulation algorithms and typography engines.
               </p>
@@ -365,20 +263,19 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
       {/* Testimonials Section */}
       <Testimonials />
 
       {/* Latest from Blog Section */}
-      <section className="py-12 md:py-28 px-4 bg-bg-void relative border-t border-border-subtle/30">
+      <section className="py-16 md:py-24 px-4 bg-bg-void relative border-t border-border-subtle/30">
         <div className="container mx-auto max-w-7xl">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-10 md:mb-12 gap-6 md:gap-8 text-left">
+          <div className="flex flex-col md:flex-row items-end justify-between mb-8 md:mb-12 gap-6 md:gap-8 text-left">
             <div className="max-w-2xl">
-              <h2 className="text-2xl md:text-6xl font-black tracking-tighter uppercase mb-4 md:mb-6 text-left">
+              <h2 className="text-2xl md:text-5xl font-black tracking-tighter uppercase mb-3 md:mb-5 text-left leading-tight">
                 Broadcast <br />{" "}
                 <span className="text-accent-glitch">Logs</span>
               </h2>
-              <p className="text-text-muted font-mono text-base md:text-lg max-w-xl text-left">
+              <p className="text-text-muted font-mono text-sm md:text-base max-w-xl text-left uppercase tracking-wider opacity-80">
                 Intelligence on typography, glitch aesthetics, and digital
                 subcultures.
               </p>
@@ -386,20 +283,19 @@ export default async function Home() {
 
             <Link
               href="/blog"
-              className="font-mono text-sm uppercase tracking-[0.3em] text-text-muted hover:text-text-primary transition-colors border-b border-border-subtle pb-2"
+              className="font-mono text-xs uppercase tracking-[0.3em] text-text-muted hover:text-text-primary transition-colors border-b border-border-subtle pb-2 mb-1"
             >
               Access Archive
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             {recentPosts.map((post) => (
-              <BlogCard key={post.slug} post={post} />
+              <SmallBlogCard key={post.slug} post={post} />
             ))}
           </div>
         </div>
       </section>
-
       {/* CTA Section */}
       <section className="py-12 md:py-32 px-4 relative overflow-hidden bg-bg-void">
         <div className="container mx-auto max-w-5xl relative z-10">

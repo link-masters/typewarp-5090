@@ -3,7 +3,7 @@ import { categories } from "@/lib/categories";
 import { getBlogPosts } from "@/lib/blog";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://typewarp.com"; // Replace with your actual domain
+  const baseUrl = "https://www.typewarp.com"; // Replace with your actual domain
 
   // 1. Static Routes
   const staticRoutes = [

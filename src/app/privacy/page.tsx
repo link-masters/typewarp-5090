@@ -7,7 +7,7 @@ import { Home, ChevronRight, ShieldCheck } from "lucide-react";
 export const metadata: Metadata = {
   title: "Privacy Policy | TypeWarp Intel",
   description: "Learn how we protect your data within the TypeWarp matrix.",
-  alternates: { canonical: "https://typewarp.com/privacy" },
+  alternates: { canonical: "https://www.typewarp.com/privacy" },
 };
 
 export default function PrivacyPage() {

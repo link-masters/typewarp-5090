@@ -1455,8 +1455,34 @@ function applyFontStyle(text: string, style: string): string {
 
   // Fallback / Custom Logic
   switch (style) {
+    case "mathBold":
+      return mapChars(text, BOLD_MAP);
+    case "mathItalic":
+      return mapChars(text, ITALIC_MAP);
+    case "mathBoldItalic":
+      return text
+        .split("")
+        .map((c) => {
+          if (c >= "a" && c <= "z")
+            return String.fromCodePoint(0x1d482 + c.charCodeAt(0) - 97);
+          if (c >= "A" && c <= "Z")
+            return String.fromCodePoint(0x1d468 + c.charCodeAt(0) - 65);
+          return c;
+        })
+        .join("");
+    case "serifItalic":
+      return text
+        .split("")
+        .map((c) => {
+          if (c >= "a" && c <= "z")
+            return String.fromCodePoint(0x1d44e + c.charCodeAt(0) - 97);
+          if (c >= "A" && c <= "Z")
+            return String.fromCodePoint(0x1d434 + c.charCodeAt(0) - 65);
+          return c;
+        })
+        .join("");
     case "smallCaps":
-      return mapChars(text.toLowerCase(), UNICODE_MAPS.smallCaps || {}); // Ensure smallCaps is in map or handle here
+      return mapChars(text.toLowerCase(), UNICODE_MAPS.smallCaps || {});
     case "upsideDown":
       return mapChars(text, UPSIDE_DOWN_MAP).split("").reverse().join("");
     case "mirror":
@@ -1485,7 +1511,13 @@ function applyFontStyle(text: string, style: string): string {
         .split("")
         .map((c) => c + "\u0333")
         .join("");
+    case "overline":
+      return text
+        .split("")
+        .map((c) => c + "\u0305")
+        .join("");
     case "shortStrike":
+    case "shortSlash":
       return text
         .split("")
         .map((c) => c + "\u0337")
@@ -1505,6 +1537,781 @@ function applyFontStyle(text: string, style: string): string {
         .split("")
         .map((c) => c + "\u0353")
         .join("");
+
+    // New combining mark styles
+    case "heavyZalgo":
+      return text
+        .split("")
+        .map((c) => {
+          if (c === " ") return c;
+          const up = [
+            "\u030D",
+            "\u030E",
+            "\u0304",
+            "\u0305",
+            "\u033F",
+            "\u0311",
+            "\u0306",
+            "\u0310",
+            "\u0352",
+            "\u0357",
+            "\u0351",
+            "\u0307",
+            "\u0308",
+            "\u030A",
+            "\u0342",
+            "\u0343",
+            "\u0344",
+            "\u034A",
+            "\u034B",
+            "\u034C",
+            "\u0303",
+            "\u0302",
+            "\u030C",
+            "\u0350",
+            "\u0300",
+            "\u0301",
+            "\u030B",
+            "\u030F",
+            "\u0312",
+            "\u0313",
+            "\u0314",
+            "\u033D",
+            "\u0309",
+            "\u0363",
+            "\u0364",
+            "\u0365",
+            "\u0366",
+            "\u0367",
+            "\u0368",
+            "\u0369",
+            "\u036A",
+            "\u036B",
+            "\u036C",
+            "\u036D",
+            "\u036E",
+            "\u036F",
+            "\u0483",
+            "\u0484",
+            "\u0485",
+            "\u0486",
+            "\u0487",
+          ];
+          const mid = [
+            "\u0315",
+            "\u031B",
+            "\u0340",
+            "\u0341",
+            "\u0358",
+            "\u0321",
+            "\u0322",
+            "\u0327",
+            "\u0328",
+            "\u0334",
+            "\u0335",
+            "\u0336",
+            "\u034F",
+            "\u035C",
+            "\u035D",
+            "\u035E",
+            "\u035F",
+            "\u0360",
+            "\u0362",
+            "\u0338",
+            "\u0337",
+          ];
+          const down = [
+            "\u0316",
+            "\u0317",
+            "\u0318",
+            "\u0319",
+            "\u031C",
+            "\u031D",
+            "\u031E",
+            "\u031F",
+            "\u0320",
+            "\u0324",
+            "\u0325",
+            "\u0326",
+            "\u0329",
+            "\u032A",
+            "\u032B",
+            "\u032C",
+            "\u032D",
+            "\u032E",
+            "\u032F",
+            "\u0330",
+            "\u0331",
+            "\u0332",
+            "\u0333",
+            "\u0339",
+            "\u033A",
+            "\u033B",
+            "\u033C",
+            "\u0345",
+            "\u0347",
+            "\u0348",
+            "\u0349",
+            "\u034D",
+            "\u034E",
+            "\u0353",
+            "\u0354",
+            "\u0355",
+            "\u0356",
+            "\u0359",
+            "\u035A",
+            "\u0323",
+          ];
+          let result = c;
+          const count = 6 + Math.floor(Math.random() * 10);
+          for (let i = 0; i < count; i++) {
+            const r = Math.random();
+            if (r < 0.4) result += up[Math.floor(Math.random() * up.length)];
+            else if (r < 0.6)
+              result += mid[Math.floor(Math.random() * mid.length)];
+            else result += down[Math.floor(Math.random() * down.length)];
+          }
+          return result;
+        })
+        .join("");
+    case "heavyCombining":
+      return text
+        .split("")
+        .map((c) => {
+          if (c === " ") return c;
+          const marks = [
+            "\u0300",
+            "\u0301",
+            "\u0302",
+            "\u0303",
+            "\u0304",
+            "\u0305",
+            "\u0306",
+            "\u0307",
+            "\u0308",
+            "\u030A",
+            "\u030B",
+            "\u030C",
+            "\u030D",
+            "\u030E",
+            "\u030F",
+            "\u0310",
+            "\u0311",
+            "\u0312",
+            "\u0313",
+            "\u0314",
+            "\u0316",
+            "\u0317",
+            "\u0318",
+            "\u0319",
+            "\u031C",
+            "\u031D",
+            "\u031E",
+            "\u031F",
+            "\u0320",
+            "\u0321",
+            "\u0322",
+            "\u0324",
+            "\u0325",
+            "\u0326",
+            "\u0327",
+            "\u0328",
+            "\u0329",
+            "\u032A",
+            "\u032B",
+            "\u032C",
+            "\u032D",
+            "\u032E",
+            "\u032F",
+            "\u0330",
+            "\u0331",
+            "\u0332",
+            "\u0333",
+          ];
+          let result = c;
+          const count = 3 + Math.floor(Math.random() * 5);
+          for (let i = 0; i < count; i++) {
+            result += marks[Math.floor(Math.random() * marks.length)];
+          }
+          return result;
+        })
+        .join("");
+    case "hebrewCombining":
+      return text
+        .split("")
+        .map((c) => {
+          if (c === " ") return c;
+          const marks = [
+            "\u0308",
+            "\u0324",
+            "\u0301",
+            "\u0300",
+            "\u0302",
+            "\u030C",
+            "\u030B",
+            "\u030A",
+            "\u0309",
+            "\u0303",
+          ];
+          return (
+            c +
+            marks[Math.floor(Math.random() * marks.length)] +
+            marks[Math.floor(Math.random() * marks.length)]
+          );
+        })
+        .join("");
+
+    // Boxed and bracket styles
+    case "boxed":
+      return text
+        .split("")
+        .map((c) => (c === " " ? c : `[${c.toUpperCase()}]`))
+        .join("");
+    case "lenticular":
+      return text
+        .split("")
+        .map((c) => (c === " " ? c : `【${c.toUpperCase()}】`))
+        .join("");
+    case "regional":
+      return text
+        .toUpperCase()
+        .split("")
+        .map((c) => {
+          if (c >= "A" && c <= "Z")
+            return String.fromCodePoint(0x1f1e6 + c.charCodeAt(0) - 65);
+          return c;
+        })
+        .join("");
+    case "keycap":
+      return text
+        .split("")
+        .map((c) => (c === " " ? c : c + "\uFE0F\u20E3"))
+        .join("");
+    case "negativeCircle":
+      return text
+        .toUpperCase()
+        .split("")
+        .map((c) => {
+          if (c >= "A" && c <= "Z")
+            return String.fromCodePoint(0x1f150 + c.charCodeAt(0) - 65);
+          return c;
+        })
+        .join("");
+
+    // CJK lookalike
+    case "cjk": {
+      const cjkMap: Record<string, string> = {
+        a: "卂",
+        b: "乃",
+        c: "匚",
+        d: "刀",
+        e: "乇",
+        f: "下",
+        g: "厶",
+        h: "卄",
+        i: "工",
+        j: "丁",
+        k: "长",
+        l: "乚",
+        m: "从",
+        n: "几",
+        o: "口",
+        p: "尸",
+        q: "㔿",
+        r: "尺",
+        s: "丂",
+        t: "丅",
+        u: "凵",
+        v: "リ",
+        w: "山",
+        x: "乂",
+        y: "丫",
+        z: "乙",
+      };
+      return text
+        .toLowerCase()
+        .split("")
+        .map((c) => cjkMap[c] || c)
+        .join("");
+    }
+    case "cyrillic": {
+      const cyrMap: Record<string, string> = {
+        a: "Д",
+        b: "Б",
+        c: "Ц",
+        d: "Д",
+        e: "Э",
+        f: "Ф",
+        g: "Г",
+        h: "Н",
+        i: "И",
+        j: "Ј",
+        k: "К",
+        l: "Л",
+        m: "М",
+        n: "И",
+        o: "О",
+        p: "П",
+        q: "Ф",
+        r: "Я",
+        s: "Ѕ",
+        t: "Т",
+        u: "Ц",
+        v: "В",
+        w: "Ш",
+        x: "Х",
+        y: "Ч",
+        z: "З",
+      };
+      return text
+        .toLowerCase()
+        .split("")
+        .map((c) => cyrMap[c] || c)
+        .join("");
+    }
+    case "cherokee": {
+      const cherokeeMap: Record<string, string> = {
+        a: "Ꭺ",
+        b: "Ᏸ",
+        c: "Ꮯ",
+        d: "Ꮷ",
+        e: "Ꮛ",
+        f: "Ꮅ",
+        g: "Ꮆ",
+        h: "Ꮋ",
+        i: "Ꭸ",
+        j: "Ꮰ",
+        k: "Ꮶ",
+        l: "Ꮮ",
+        m: "Ꮇ",
+        n: "Ꮑ",
+        o: "Ꮎ",
+        p: "Ꭾ",
+        q: "Ꮗ",
+        r: "Ꮢ",
+        s: "Ꮪ",
+        t: "Ꮏ",
+        u: "Ꮜ",
+        v: "Ꮙ",
+        w: "Ꮃ",
+        x: "Ꮂ",
+        y: "Ꮍ",
+        z: "Ꮓ",
+      };
+      return text
+        .toLowerCase()
+        .split("")
+        .map((c) => cherokeeMap[c] || c)
+        .join("");
+    }
+    case "ethiopic": {
+      const ethMap: Record<string, string> = {
+        a: "ኣ",
+        b: "ብ",
+        c: "ች",
+        d: "ድ",
+        e: "ኤ",
+        f: "ፍ",
+        g: "ግ",
+        h: "ህ",
+        i: "ኢ",
+        j: "ጅ",
+        k: "ክ",
+        l: "ል",
+        m: "ም",
+        n: "ን",
+        o: "ኦ",
+        p: "ፕ",
+        q: "ቅ",
+        r: "ር",
+        s: "ስ",
+        t: "ት",
+        u: "ኡ",
+        v: "ቭ",
+        w: "ው",
+        x: "ሽ",
+        y: "ይ",
+        z: "ዝ",
+      };
+      return text
+        .toLowerCase()
+        .split("")
+        .map((c) => ethMap[c] || c)
+        .join("");
+    }
+    case "ethiopicCherokee": {
+      const mixMap: Record<string, string> = {
+        a: "ꓮ",
+        b: "ꓐ",
+        c: "ꓚ",
+        d: "ꓓ",
+        e: "ꓰ",
+        f: "ꓝ",
+        g: "ꓖ",
+        h: "ꓧ",
+        i: "ꓲ",
+        j: "ꓙ",
+        k: "ꓘ",
+        l: "ꓡ",
+        m: "ꓟ",
+        n: "ꓠ",
+        o: "ꓳ",
+        p: "ꓑ",
+        q: "ꓘ",
+        r: "ꓣ",
+        s: "ꓢ",
+        t: "ꓔ",
+        u: "ꓴ",
+        v: "ꓦ",
+        w: "ꓪ",
+        x: "ꓫ",
+        y: "ꓬ",
+        z: "ꓜ",
+      };
+      return text
+        .toLowerCase()
+        .split("")
+        .map((c) => mixMap[c] || c)
+        .join("");
+    }
+    case "canadian": {
+      const canMap: Record<string, string> = {
+        a: "ᗩ",
+        b: "ᗷ",
+        c: "ᑕ",
+        d: "ᗪ",
+        e: "ᗴ",
+        f: "ᖴ",
+        g: "ᘜ",
+        h: "ᕼ",
+        i: "ᓰ",
+        j: "ᒎ",
+        k: "ᖽ",
+        l: "ᒪ",
+        m: "ᗰ",
+        n: "ᘉ",
+        o: "ᗝ",
+        p: "ᕈ",
+        q: "ᕴ",
+        r: "ᖇ",
+        s: "ᔕ",
+        t: "ᐪ",
+        u: "ᑌ",
+        v: "ᐯ",
+        w: "ᗯ",
+        x: "᙭",
+        y: "ᖻ",
+        z: "ᗱ",
+      };
+      return text
+        .toLowerCase()
+        .split("")
+        .map((c) => canMap[c] || c)
+        .join("");
+    }
+    case "currency": {
+      const curMap: Record<string, string> = {
+        a: "₳",
+        b: "฿",
+        c: "₵",
+        d: "Ð",
+        e: "€",
+        f: "₣",
+        g: "Ꮆ",
+        h: "Ⱨ",
+        i: "ł",
+        j: "J",
+        k: "₭",
+        l: "Ⱡ",
+        m: "₥",
+        n: "₦",
+        o: "Ø",
+        p: "₱",
+        q: "Q",
+        r: "Ɽ",
+        s: "₴",
+        t: "₮",
+        u: "Ʉ",
+        v: "V",
+        w: "₩",
+        x: "Ӿ",
+        y: "¥",
+        z: "Ⱬ",
+      };
+      return text
+        .toLowerCase()
+        .split("")
+        .map((c) => curMap[c] || c)
+        .join("");
+    }
+    case "thaiLao": {
+      const thaiMap: Record<string, string> = {
+        a: "ꪖ",
+        b: "ꪉ",
+        c: "ꪚ",
+        d: "ꪜ",
+        e: "ꫀ",
+        f: "ꪵ",
+        g: "ꪆ",
+        h: "ꫝ",
+        i: "꪿",
+        j: "ꪊ",
+        k: "ꪗ",
+        l: "ꪶ",
+        m: "ꪑ",
+        n: "ꪙ",
+        o: "ꪮ",
+        p: "ꪐ",
+        q: "ꪆ",
+        r: "ꪹ",
+        s: "ꪫ",
+        t: "ꪻ",
+        u: "ꪊ",
+        v: "ꪜ",
+        w: "ꪡ",
+        x: "ꪒ",
+        y: "ꪗ",
+        z: "ꪻ",
+      };
+      return text
+        .toLowerCase()
+        .split("")
+        .map((c) => thaiMap[c] || c)
+        .join("");
+    }
+    case "taiViet": {
+      const tvMap: Record<string, string> = {
+        a: "ꪀ",
+        b: "ꪉ",
+        c: "ꪊ",
+        d: "ꪙ",
+        e: "ꪫ",
+        f: "ꪵ",
+        g: "ꪆ",
+        h: "ꪚ",
+        i: "ꪎ",
+        j: "ꪊ",
+        k: "ꪗ",
+        l: "ꪶ",
+        m: "ꪑ",
+        n: "ꪙ",
+        o: "ꪮ",
+        p: "ꪐ",
+        q: "ꪆ",
+        r: "ꪹ",
+        s: "ꪫ",
+        t: "ꪻ",
+        u: "ꪊ",
+        v: "ꪜ",
+        w: "ꪡ",
+        x: "ꪒ",
+        y: "ꪗ",
+        z: "ꪻ",
+      };
+      return text
+        .toLowerCase()
+        .split("")
+        .map((c) => tvMap[c] || c)
+        .join("");
+    }
+    case "runic":
+      return mapChars(text.toLowerCase(), RUNIC_MAP);
+    case "wingdingsDingbats":
+      return toWingdings(text);
+    case "matrix": {
+      const mxMap: Record<string, string> = {
+        a: "ᗩ",
+        b: "ᗷ",
+        c: "ᑕ",
+        d: "ᗪ",
+        e: "ᗴ",
+        f: "ᖴ",
+        g: "Ꮆ",
+        h: "ᕼ",
+        i: "I",
+        j: "ᒍ",
+        k: "K",
+        l: "ᒪ",
+        m: "ᗰ",
+        n: "ᑎ",
+        o: "O",
+        p: "ᑭ",
+        q: "ᑫ",
+        r: "ᖇ",
+        s: "Ꮥ",
+        t: "T",
+        u: "ᑌ",
+        v: "ᐯ",
+        w: "ᗯ",
+        x: "᙭",
+        y: "Y",
+        z: "ᘔ",
+      };
+      return text
+        .toLowerCase()
+        .split("")
+        .map((c) => mxMap[c] || c)
+        .join("");
+    }
+
+    // Ransom note: randomly mix different font styles per character
+    case "ransomNote":
+      return text
+        .split("")
+        .map((c, i) => {
+          if (c === " ") return c;
+          const styles = [
+            BOLD_MAP,
+            ITALIC_MAP,
+            GOTHIC_MAP,
+            CURSIVE_MAP,
+            MONOSPACE_MAP,
+            BUBBLE_MAP,
+            SUPERSCRIPT_MAP,
+          ];
+          const maps = [
+            UNICODE_MAPS.fraktur,
+            UNICODE_MAPS.boldFraktur,
+            UNICODE_MAPS.script,
+            UNICODE_MAPS.boldScript,
+            UNICODE_MAPS.doubleStruck,
+            UNICODE_MAPS.monospace,
+            UNICODE_MAPS.sansBold,
+            UNICODE_MAPS.sansItalic,
+          ];
+          const allMaps = [...styles, ...maps.filter(Boolean)];
+          const selectedMap =
+            allMaps[Math.floor(Math.random() * allMaps.length)];
+          return mapChars(c, selectedMap);
+        })
+        .join("");
+
+    // Themed scary/demonic styles (use existing maps + decorations)
+    case "nightmareWhisper":
+      return "꧁ " + mapChars(text.toLowerCase(), UNICODE_MAPS.fraktur) + " ꧂";
+    case "bloodDrip":
+      return (
+        text
+          .split("")
+          .map((c) => (c === " " ? c : mapChars(c, GOTHIC_MAP) + "̣"))
+          .join("") + " 🩸"
+      );
+    case "shadowCrawl":
+      return text
+        .split("")
+        .map((c) =>
+          c === " " ? c : mapChars(c, UNICODE_MAPS.boldFraktur) + "\u0320",
+        )
+        .join("");
+    case "skeletonScript":
+      return "☠ " + mapChars(text, UNICODE_MAPS.monospace) + " ☠";
+    case "phantomOutline":
+      return mapChars(text, UNICODE_MAPS.doubleStruck);
+    case "graveyardGothic":
+      return "⚰ " + mapChars(text, GOTHIC_MAP) + " ⚰";
+    case "witchHex":
+      return "⛤ " + mapChars(text, UNICODE_MAPS.script) + " ⛤";
+    case "vampireFang":
+      return text
+        .split("")
+        .map((c) =>
+          c === " " ? c : mapChars(c, UNICODE_MAPS.boldFraktur) + "\u0335",
+        )
+        .join("");
+    case "ghostWhisper":
+      return mapChars(text.toLowerCase(), UNICODE_MAPS.sansItalic);
+    case "zombieDecay":
+      return corruptText(mapChars(text, GOTHIC_MAP), 4);
+    case "demonScript":
+      return (
+        "⛧ " + corruptText(mapChars(text, UNICODE_MAPS.boldFraktur), 3) + " ⛧"
+      );
+    case "hauntedHouse":
+      return "🏚 " + mapChars(text, UNICODE_MAPS.fraktur) + " 🏚";
+    case "voodooMarks":
+      return text
+        .split("")
+        .map((c) =>
+          c === " " ? c : mapChars(c, UNICODE_MAPS.fraktur) + "\u0323\u0353",
+        )
+        .join("");
+    case "skullBones":
+      return "☠ " + mapChars(text, UNICODE_MAPS.serifBold) + " ☠";
+    case "werewolfClaw":
+      return text
+        .split("")
+        .map((c) =>
+          c === " " ? c : mapChars(c, UNICODE_MAPS.sansBold) + "\u0337",
+        )
+        .join("");
+    case "evilEye":
+      return "👁 " + mapChars(text, UNICODE_MAPS.boldScript) + " 👁";
+    case "digitalGlitch":
+      return corruptText(text, 8);
+
+    // Demonic themed styles
+    case "shadowRealm":
+      return text
+        .split("")
+        .map((c) =>
+          c === " "
+            ? c
+            : mapChars(c, UNICODE_MAPS.boldFraktur) + "\u0316\u0332",
+        )
+        .join("");
+    case "bloodRunes":
+      return mapChars(text.toLowerCase(), RUNIC_MAP)
+        .split("")
+        .map((c) => (c === " " ? c : c + "\u0323"))
+        .join("");
+    case "lucifersHand":
+      return "⛧ " + mapChars(text, UNICODE_MAPS.boldScript) + " ⛧";
+    case "beelzebub":
+      return corruptText(mapChars(text, UNICODE_MAPS.boldFraktur), 5);
+    case "baphomet":
+      return "⛤ " + mapChars(text, UNICODE_MAPS.fraktur) + " ⛤";
+    case "necronomicon":
+      return text
+        .split("")
+        .map((c) => (c === " " ? c : mapChars(c, GOTHIC_MAP) + "\u0300\u0316"))
+        .join("");
+    case "pentagram":
+      return "⛧⛤ " + mapChars(text, UNICODE_MAPS.boldFraktur) + " ⛤⛧";
+    case "azazel":
+      return corruptText(mapChars(text, UNICODE_MAPS.fraktur), 7);
+    case "lilith":
+      return "♱ " + mapChars(text, UNICODE_MAPS.script) + " ♱";
+    case "abaddon":
+      return text
+        .split("")
+        .map((c) =>
+          c === " "
+            ? c
+            : mapChars(c, UNICODE_MAPS.boldFraktur) + "\u0334\u0300",
+        )
+        .join("");
+    case "mammon":
+      return mapChars(text.toLowerCase(), UNICODE_MAPS.doubleStruck);
+    case "leviathan":
+      return "🐍 " + corruptText(mapChars(text, GOTHIC_MAP), 3) + " 🐍";
+
+    // Gothic themed styles
+    case "victorian":
+      return "❦ " + mapChars(text, UNICODE_MAPS.script) + " ❦";
+    case "cathedralStone":
+      return "⛪ " + mapChars(text, UNICODE_MAPS.fraktur) + " ⛪";
+
+    // Heavy/Block styles
+    case "heavyBlock":
+      return text
+        .split("")
+        .map((c) => (c === " " ? c : "█" + c.toUpperCase() + "█"))
+        .join("");
+    case "boldWide":
+      return mapChars(text, BOLD_MAP).split("").join(" ");
+    case "sansSpaced":
+      return mapChars(text, UNICODE_MAPS.sansBold).split("").join(" ");
+
     case "hearts":
       return text.split("").join(" ♥ ");
     case "sparkle":
@@ -1529,7 +2336,7 @@ function applyFontStyle(text: string, style: string): string {
     case "retro_joy":
     case "retro_arcade":
     case "scifi_elec":
-    case "scifi_exo": // exo is sans italic usually
+    case "scifi_exo":
     case "game_mine":
     case "game_cod":
       return mapChars(text, MONOSPACE_MAP);
@@ -1551,7 +2358,7 @@ function applyFontStyle(text: string, style: string): string {
       return mapChars(text, UNICODE_MAPS.doubleStruck);
 
     case "esports_industry":
-      return mapChars(text, ITALIC_MAP); // Industry is techy
+      return mapChars(text, ITALIC_MAP);
 
     case "scifi_orb":
     case "scifi_audio":
@@ -2008,24 +2815,28 @@ export function transformText(
       const darkness = customSettings.darkness || 5;
       const addCross = customSettings.invertedCross !== false;
 
-      let result = "";
-      if (demonicStyle === "hellfire") {
-        result = corruptText(
-          mapChars(workingText, GOTHIC_MAP),
-          Math.ceil(darkness / 2),
-        );
-      } else if (demonicStyle === "abyss") {
-        result = corruptText(workingText, darkness);
-      } else {
-        result = mapChars(workingText, GOTHIC_MAP);
+      // Apply the selected demonic style via applyFontStyle
+      let result = applyFontStyle(workingText, demonicStyle);
+
+      // Special cases that need additional corruption
+      if (
+        demonicStyle === "hellfire" ||
+        demonicStyle === "abyss" ||
+        demonicStyle === "azazel" ||
+        demonicStyle === "beelzebub"
+      ) {
+        result = corruptText(result, Math.ceil(darkness / 2));
+      } else if (darkness > 5) {
+        // Apply corruption at higher darkness levels
+        result = corruptText(result, Math.ceil((darkness - 5) / 3));
       }
 
       if (addCross) {
-        const symbols = ["†", "‡", "⛧", "☠", "⚰"];
+        const symbols = ["†", "‡", "⛧", "☠", "⚰", "♱", "⛤", "☥", "⸸"];
         result = result
           .split("")
           .map((c, i) =>
-            i % Math.max(8 - Math.floor(darkness / 2), 3) === 0 && c !== " "
+            i % Math.max(8 - Math.floor(darkness / 2), 2) === 0 && c !== " "
               ? c + symbols[Math.floor(Math.random() * symbols.length)]
               : c,
           )
@@ -2034,27 +2845,55 @@ export function transformText(
       return result;
     }
     case "scary-text": {
+      const fontStyle = customSettings.fontStyle || "fraktur";
       const fear = customSettings.fear || 5;
-      return corruptText(
-        mapChars(workingText, GOTHIC_MAP),
-        Math.ceil(fear / 2),
-      );
+
+      // Apply the selected scary font style
+      let result = applyFontStyle(workingText, fontStyle);
+
+      // Apply corruption based on fear level
+      if (fear > 2) {
+        result = corruptText(result, Math.ceil(fear / 2));
+      }
+
+      // At high fear levels, add extra dread symbols
+      if (fear > 10) {
+        const dreadSymbols = ["̷", "̸", "̶", "̵", "̴"];
+        result = result
+          .split("")
+          .map((c) => {
+            if (c === " ") return c;
+            if (Math.random() < (fear - 10) / 15) {
+              return (
+                c +
+                dreadSymbols[Math.floor(Math.random() * dreadSymbols.length)]
+              );
+            }
+            return c;
+          })
+          .join("");
+      }
+
+      return result;
     }
     case "gothic-font": {
       const gothicStyle = customSettings.gothicStyle || "fraktur";
       const addOrnaments = customSettings.ornaments === true;
 
-      let result = "";
-      if (gothicStyle === "boldFraktur") {
-        result = mapChars(workingText, UNICODE_MAPS.boldFraktur || GOTHIC_MAP);
-      } else if (gothicStyle === "medieval") {
-        result = mapChars(workingText, UNICODE_MAPS.fraktur || GOTHIC_MAP);
-      } else {
-        result = mapChars(workingText, GOTHIC_MAP);
-      }
+      // Use applyFontStyle for all gothic styles
+      let result = applyFontStyle(workingText, gothicStyle);
 
       if (addOrnaments) {
-        result = "༺ " + result + " ༻";
+        const ornamentPairs = [
+          ["༺ ", " ༻"],
+          ["❦ ", " ❦"],
+          ["꧁ ", " ꧂"],
+          ["⚜ ", " ⚜"],
+          ["✦ ", " ✦"],
+        ];
+        const pair =
+          ornamentPairs[Math.floor(Math.random() * ornamentPairs.length)];
+        result = pair[0] + result + pair[1];
       }
       return result;
     }
@@ -2133,14 +2972,30 @@ export function transformText(
 
     // STYLE & FANCY TOOLS
     case "fancy-font": {
+      const fontStyle = customSettings.fontStyle || "script";
       const fancyLevel = customSettings.fancy_level || 5;
       const density = customSettings.density || 2;
 
-      // Use script/cursive base with decorative symbols
-      let result = mapChars(workingText, CURSIVE_MAP);
+      let result = applyFontStyle(workingText, fontStyle);
 
-      const decorSymbols = ["✧", "✦", "★", "☆", "❋", "❊", "❉", "❈", "✿", "❀"];
-      const insertFreq = Math.max(8 - Math.floor(density), 2);
+      const decorSymbols = [
+        "✧",
+        "✦",
+        "★",
+        "☆",
+        "❋",
+        "❊",
+        "❉",
+        "❈",
+        "✿",
+        "❀",
+        "⚜",
+        "♔",
+        "♕",
+        "༒",
+        "❧",
+      ];
+      const insertFreq = Math.max(8 - Math.floor(density), 1);
 
       if (fancyLevel >= 3) {
         result = result
@@ -2158,72 +3013,104 @@ export function transformText(
           .join("");
       }
 
-      // Add frame for high fancy level
       if (fancyLevel >= 7) {
-        result = "༺ " + result + " ༻";
+        const frames = [
+          ["༺ ", " ༻"],
+          ["❮ ", " ❯"],
+          ["❰ ", " ❱"],
+          ["«« ", "»»"],
+          ["╔═ ", " ═╗"],
+          ["✦ ", " ✦"],
+          ["⊱ ", " ⊰"],
+        ];
+        const frame = frames[Math.floor(Math.random() * frames.length)];
+        result = frame[0] + result + frame[1];
       }
 
       return result;
     }
     case "aesthetic-font": {
+      const fontStyle = customSettings.fontStyle || "script";
       const vibe = customSettings.vibe || "vaporwave";
 
-      if (vibe === "soft") {
-        // Use bubble text with soft symbols
-        const result = mapChars(workingText, BUBBLE_MAP);
-        return "☁️ " + result + " ☁️";
-      } else if (vibe === "grunge") {
-        // Use gothic/fraktur with corruption
-        return corruptText(mapChars(workingText, GOTHIC_MAP), 2);
-      } else if (vibe === "dark") {
-        return mapChars(workingText, GOTHIC_MAP);
-      } else {
-        // vaporwave - fullwidth with spaces
-        return workingText
-          .split("")
-          .map((c) => {
-            const code = c.charCodeAt(0);
-            return code >= 33 && code <= 126
-              ? String.fromCharCode(code + 0xfee0)
-              : c;
-          })
-          .join(" ");
-      }
+      let result = applyFontStyle(workingText, fontStyle);
+
+      const vibeDecorations: Record<
+        string,
+        { prefix: string; suffix: string }
+      > = {
+        vaporwave: { prefix: "✧˚₊ ", suffix: " ₊˚✧" },
+        soft: { prefix: "☁️ ", suffix: " ☁️" },
+        grunge: { prefix: "✗ ", suffix: " ✗" },
+        dark: { prefix: "☾ ", suffix: " ☾" },
+        celestial: { prefix: "☆.。.:* ", suffix: " *:.。.☆" },
+        cottagecore: { prefix: "🌿🍄 ", suffix: " 🍄🌿" },
+        y2k: { prefix: "✰⋆ ", suffix: " ⋆✰" },
+        kawaii: { prefix: "♡✧˚ ", suffix: " ˚✧♡" },
+        cyberpunk: { prefix: "⟨⌈ ", suffix: " ⌉⟩" },
+        fairycore: { prefix: "✦˚⁺ ", suffix: " ⁺˚✦" },
+        royalcore: { prefix: "♔⚜ ", suffix: " ⚜♔" },
+        angelcore: { prefix: "♡✰ ", suffix: " ✰♡" },
+        witchcore: { prefix: "☽⛤ ", suffix: " ⛤☽" },
+        minimal: { prefix: "", suffix: "" },
+      };
+
+      const decoration = vibeDecorations[vibe] || vibeDecorations.vaporwave;
+      return decoration.prefix + result + decoration.suffix;
     }
     case "stylish-font": {
-      const stylishStyle = customSettings.stylishStyle || "script";
+      const fontStyle = customSettings.fontStyle || "script";
       const addDecorations = customSettings.decorations !== false;
 
-      let result = "";
-      if (stylishStyle === "serifBold") {
-        result = mapChars(workingText, UNICODE_MAPS.serifBold || BOLD_MAP);
-      } else if (stylishStyle === "sansBold") {
-        result = mapChars(workingText, BOLD_MAP);
-      } else if (stylishStyle === "doubleStruck") {
-        result = mapChars(workingText, UNICODE_MAPS.doubleStruck || BOLD_MAP);
-      } else {
-        result = mapChars(workingText, CURSIVE_MAP);
-      }
+      let result = applyFontStyle(workingText, fontStyle);
 
       if (addDecorations) {
-        const decorSymbols = ["♔", "♕", "✧", "★"];
-        result = decorSymbols[0] + " " + result + " " + decorSymbols[1];
+        const decorPairs = [
+          ["♔ ", " ♕"],
+          ["✧ ", " ✧"],
+          ["★ ", " ★"],
+          ["❖ ", " ❖"],
+          ["⚜ ", " ⚜"],
+          ["♛ ", " ♛"],
+          ["✦ ", " ✦"],
+          ["❧ ", " ❧"],
+          ["༺ ", " ༻"],
+          ["❮ ", " ❯"],
+          ["❰ ", " ❱"],
+        ];
+        const pair = decorPairs[Math.floor(Math.random() * decorPairs.length)];
+        result = pair[0] + result + pair[1];
       }
 
       return result;
     }
     case "cute-font": {
+      const fontStyle = customSettings.fontStyle || "bubble";
       const cuteStyle = customSettings.cuteStyle || "kawaii";
       const addEmoticons = customSettings.emoticons !== false;
 
-      // Use bubble/outlined text for cute appearance
-      let result = mapChars(workingText, BUBBLE_MAP);
+      let result =
+        fontStyle === "bubble"
+          ? mapChars(workingText, BUBBLE_MAP)
+          : applyFontStyle(workingText, fontStyle);
 
       const cuteEmoticons: Record<string, string[]> = {
-        kawaii: ["(◕‿◕)", "(◕ᴗ◕✿)", "✿", "❀", "🌸"],
-        bubbly: ["•ᴗ•", "◦‿◦", "○", "◎", "⚪"],
-        sweet: ["♡", "♥", "❤", "💕", "🍬"],
-        sparkle: ["✨", "⋆", "✧", "★", "💫"],
+        kawaii: ["(◕‿◕)", "(◕ᴗ◕✿)", "✿", "❀", "🌸", "(◠‿◠)", "♡"],
+        bubbly: ["•ᴗ•", "◦‿◦", "○", "◎", "⚪", "⊙", "◯"],
+        sweet: ["♡", "♥", "❤", "💕", "🍬", "🍭", "💗"],
+        sparkle: ["✨", "⋆", "✧", "★", "💫", "✦", "⭐"],
+        flower: ["🌸", "✿", "❀", "🌺", "🌻", "🌹", "💐"],
+        star: ["⭐", "★", "☆", "✦", "✧", "🌟", "✯"],
+        heart: ["💕", "💗", "💖", "💘", "💝", "💞", "♡"],
+        cloud: ["☁️", "✧", "˚", "⋆", "☁", "⋅", "·"],
+        moon: ["🌙", "☽", "✧", "˚", "⋆", "☾", "✦"],
+        rainbow: ["🌈", "✧", "⋆", "˚", "★", "☆", "✦"],
+        candy: ["🍭", "🍬", "🍩", "🧁", "🍰", "🎂", "🍪"],
+        bear: ["ʕ•ᴥ•ʔ", "ʕ ᵔᴥᵔ ʔ", "ʕ♥ᴥ♥ʔ", "(◕ᴗ◕)"],
+        bunny: ["(ㅇㅅㅇ)", "(\\ /)", "🐰", "🐇"],
+        cat: ["(=^・^=)", "ᓚᘏᗢ", "🐱", "(=^◡^=)"],
+        butterfly: ["🦋", "✧", "✦", "˚", "⋆", "·"],
+        unicorn: ["🦄", "✨", "🌈", "⭐", "💫", "✧"],
       };
 
       const emoticons = cuteEmoticons[cuteStyle] || cuteEmoticons.kawaii;
@@ -2237,310 +3124,129 @@ export function transformText(
       return result;
     }
     case "calligraphy-font": {
-      const calliStyle = customSettings.calligraphyStyle || "script";
+      const fontStyle = customSettings.fontStyle || "script";
       const addFlourishes = customSettings.flourishes === true;
 
-      let result = "";
-      if (calliStyle === "boldScript") {
-        result = mapChars(workingText, UNICODE_MAPS.boldScript || CURSIVE_MAP);
-      } else if (calliStyle === "serifItalic") {
-        result = mapChars(workingText, ITALIC_MAP);
-      } else if (calliStyle === "brush") {
-        // Use a combination of script with gothic flair
-        result = mapChars(workingText, CURSIVE_MAP);
-      } else {
-        result = mapChars(workingText, CURSIVE_MAP);
-      }
+      let result = applyFontStyle(workingText, fontStyle);
 
       if (addFlourishes) {
-        result = "❧ " + result + " ❧";
+        const flourishPairs = [
+          ["❧ ", " ❧"],
+          ["☙ ", " ❧"],
+          ["⁕ ", " ⁕"],
+          ["❦ ", " ❦"],
+          ["✿ ", " ✿"],
+          ["✾ ", " ✾"],
+          ["❋ ", " ❋"],
+          ["⊱ ", " ⊰"],
+        ];
+        const pair =
+          flourishPairs[Math.floor(Math.random() * flourishPairs.length)];
+        result = pair[0] + result + pair[1];
       }
 
       return result;
     }
     case "cursive-font": {
-      const cursiveStyle = customSettings.cursiveStyle || "script";
-
-      if (cursiveStyle === "boldScript") {
-        return mapChars(workingText, UNICODE_MAPS.boldScript || CURSIVE_MAP);
-      } else if (cursiveStyle === "serifItalic") {
-        return mapChars(workingText, ITALIC_MAP);
-      } else if (cursiveStyle === "handwritten") {
-        // Handwritten style - use script with slight variation
-        return mapChars(workingText, CURSIVE_MAP);
-      } else {
-        return mapChars(workingText, CURSIVE_MAP);
-      }
+      const fontStyle = customSettings.fontStyle || "script";
+      return applyFontStyle(workingText, fontStyle);
     }
 
     // TEXT TOOLS
     case "bold-text": {
-      const intensity = customSettings.intensity || "medium";
+      const fontStyle = customSettings.fontStyle || "serifBold";
       const combineItalic = customSettings.italic === true;
 
-      let selectedMap = UNICODE_MAPS.serifBold || BOLD_MAP;
-
-      if (intensity === "extra")
-        selectedMap = UNICODE_MAPS.sansBold || BOLD_MAP;
-      if (intensity === "ultra")
-        selectedMap = UNICODE_MAPS.boldFraktur || BOLD_MAP;
-
-      let result = mapChars(workingText, selectedMap);
-
       if (combineItalic) {
-        if (intensity === "extra" && UNICODE_MAPS.sansBoldItalic) {
-          return mapChars(workingText, UNICODE_MAPS.sansBoldItalic);
+        // Bold + Italic combos
+        if (fontStyle === "sansBold" || fontStyle === "sansItalic") {
+          return applyFontStyle(workingText, "sansBoldItalic");
         }
-        // Bold Italic uses different unicode range
-        const boldItalicMap: Record<string, string> = {
-          a: "𝒂",
-          b: "𝒃",
-          c: "𝒄",
-          d: "𝒅",
-          e: "𝒆",
-          f: "𝒇",
-          g: "𝒈",
-          h: "𝒉",
-          i: "𝒊",
-          j: "𝒋",
-          k: "𝒌",
-          l: "𝒍",
-          m: "𝒎",
-          n: "𝒏",
-          o: "𝒐",
-          p: "𝒑",
-          q: "𝒒",
-          r: "𝒓",
-          s: "𝒔",
-          t: "𝒕",
-          u: "𝒖",
-          v: "𝒗",
-          w: "𝒘",
-          x: "𝒙",
-          y: "𝒚",
-          z: "𝒛",
-          A: "𝑨",
-          B: "𝑩",
-          C: "𝑪",
-          D: "𝑫",
-          E: "𝑬",
-          F: "𝑭",
-          G: "𝑮",
-          H: "𝑯",
-          I: "𝑰",
-          J: "𝑱",
-          K: "𝑲",
-          L: "𝑳",
-          M: "𝑴",
-          N: "𝑵",
-          O: "𝑶",
-          P: "𝑷",
-          Q: "𝑸",
-          R: "𝑹",
-          S: "𝑺",
-          T: "𝑻",
-          U: "𝑼",
-          V: "𝑽",
-          W: "𝑾",
-          X: "𝑿",
-          Y: "𝒀",
-          Z: "𝒁",
-        };
-        result = workingText
-          .split("")
-          .map((c) => boldItalicMap[c] || c)
-          .join("");
+        return applyFontStyle(workingText, "mathBoldItalic");
       }
 
-      return result;
+      return applyFontStyle(workingText, fontStyle);
     }
     case "italic-text": {
-      const style = customSettings.style || "standard";
+      const fontStyle = customSettings.fontStyle || "serifItalic";
       const combineBold = customSettings.bold === true;
 
       if (combineBold) {
-        if (style === "sans" && UNICODE_MAPS.sansBoldItalic) {
-          return mapChars(workingText, UNICODE_MAPS.sansBoldItalic);
+        if (fontStyle === "sansItalic" || fontStyle === "sansBold") {
+          return applyFontStyle(workingText, "sansBoldItalic");
         }
-        const boldItalicMap: Record<string, string> = {
-          a: "𝒂",
-          b: "𝒃",
-          c: "𝒄",
-          d: "𝒅",
-          e: "𝒆",
-          f: "𝒇",
-          g: "𝒈",
-          h: "𝒉",
-          i: "𝒊",
-          j: "𝒋",
-          k: "𝒌",
-          l: "𝒍",
-          m: "𝒎",
-          n: "𝒏",
-          o: "𝒐",
-          p: "𝒑",
-          q: "𝒒",
-          r: "𝒓",
-          s: "𝒔",
-          t: "𝒕",
-          u: "𝒖",
-          v: "𝒗",
-          w: "𝒘",
-          x: "𝒙",
-          y: "𝒚",
-          z: "𝒛",
-          A: "𝑨",
-          B: "𝑩",
-          C: "𝑪",
-          D: "𝑫",
-          E: "𝑬",
-          F: "𝑭",
-          G: "𝑮",
-          H: "𝑯",
-          I: "𝑰",
-          J: "𝑱",
-          K: "𝑲",
-          L: "𝑳",
-          M: "𝑴",
-          N: "𝑵",
-          O: "𝑶",
-          P: "𝑷",
-          Q: "𝑸",
-          R: "𝑹",
-          S: "𝑺",
-          T: "𝑻",
-          U: "𝑼",
-          V: "𝑽",
-          W: "𝑾",
-          X: "𝑿",
-          Y: "𝒀",
-          Z: "𝒁",
-        };
-        return workingText
-          .split("")
-          .map((c) => boldItalicMap[c] || c)
-          .join("");
+        return applyFontStyle(workingText, "mathBoldItalic");
       }
 
-      if (style === "serif") {
-        // Serif italic
-        return mapChars(workingText, ITALIC_MAP);
-      } else if (style === "sans") {
-        // Sans-serif italic
-        const sansItalicMap: Record<string, string> = {
-          a: "𝘢",
-          b: "𝘣",
-          c: "𝘤",
-          d: "𝘥",
-          e: "𝘦",
-          f: "𝘧",
-          g: "𝘨",
-          h: "𝘩",
-          i: "𝘪",
-          j: "𝘫",
-          k: "𝘬",
-          l: "𝘭",
-          m: "𝘮",
-          n: "𝘯",
-          o: "𝘰",
-          p: "𝘱",
-          q: "𝘲",
-          r: "𝘳",
-          s: "𝘴",
-          t: "𝘵",
-          u: "𝘶",
-          v: "𝘷",
-          w: "𝘸",
-          x: "𝘹",
-          y: "𝘺",
-          z: "𝘻",
-          A: "𝘈",
-          B: "𝘉",
-          C: "𝘊",
-          D: "𝘋",
-          E: "𝘌",
-          F: "𝘍",
-          G: "𝘎",
-          H: "𝘏",
-          I: "𝘐",
-          J: "𝘑",
-          K: "𝘒",
-          L: "𝘓",
-          M: "𝘔",
-          N: "𝘕",
-          O: "𝘖",
-          P: "𝘗",
-          Q: "𝘘",
-          R: "𝘙",
-          S: "𝘚",
-          T: "𝘛",
-          U: "𝘜",
-          V: "𝘝",
-          W: "𝘞",
-          X: "𝘟",
-          Y: "𝘠",
-          Z: "𝘡",
-        };
-        return workingText
-          .split("")
-          .map((c) => sansItalicMap[c] || c)
-          .join("");
-      }
-
-      return mapChars(workingText, ITALIC_MAP);
+      return applyFontStyle(workingText, fontStyle);
     }
     case "underline-text": {
+      const fontStyle = customSettings.fontStyle || "none";
       const style = customSettings.style || "single";
 
-      if (style === "double") {
-        return workingText
-          .split("")
-          .map((c) => c + "\u0333")
-          .join("");
-      } else if (style === "wavy") {
-        return workingText
-          .split("")
-          .map((c) => c + "\u0330")
-          .join("");
-      }
-      return workingText
-        .split("")
-        .map((c) => c + "\u0332")
-        .join("");
+      let base =
+        fontStyle !== "none"
+          ? applyFontStyle(workingText, fontStyle)
+          : workingText;
+
+      const underlineChars: Record<string, string> = {
+        single: "\u0332",
+        double: "\u0333",
+        wavy: "\u0330",
+        diaeresis: "\u0324",
+        ring: "\u0325",
+        caron: "\u032C",
+        bridge: "\u032A",
+        invertedBridge: "\u033A",
+        seagull: "\u033C",
+        verticalLine: "\u0329",
+      };
+
+      const char = underlineChars[style] || underlineChars.single;
+      return [...base].map((c) => c + char).join("");
     }
     case "strikethrough-text": {
+      const fontStyle = customSettings.fontStyle || "none";
       const position = customSettings.position || "center";
       const doubleStrike = customSettings.double === true;
 
-      let strikeChar = "\u0336"; // center
-      if (position === "high") {
-        strikeChar = "\u0305"; // overline
-      } else if (position === "low") {
-        strikeChar = "\u0332"; // underline
-      }
+      let base =
+        fontStyle !== "none"
+          ? applyFontStyle(workingText, fontStyle)
+          : workingText;
+
+      const strikeChars: Record<string, string> = {
+        center: "\u0336",
+        high: "\u0305",
+        low: "\u0332",
+        short: "\u0335",
+        diagonal: "\u0338",
+        tilde: "\u0334",
+        x: "\u20E6",
+        slash: "\u0337",
+      };
+
+      const char = strikeChars[position] || strikeChars.center;
 
       if (doubleStrike) {
-        return workingText
-          .split("")
-          .map((c) => c + strikeChar + strikeChar)
-          .join("");
+        return [...base].map((c) => c + char + char).join("");
       }
-      return workingText
-        .split("")
-        .map((c) => c + strikeChar)
-        .join("");
+      return [...base].map((c) => c + char).join("");
     }
     case "upside-down-text": {
+      const fontStyle = customSettings.fontStyle || "none";
       const angle = customSettings.angle || "180";
       const mirrorCombo = customSettings.mirror === true;
 
-      if (angle === "90") return workingText.split("").join("\n");
-      if (angle === "270") return workingText.split("").reverse().join("\n");
+      let text =
+        fontStyle !== "none"
+          ? applyFontStyle(workingText, fontStyle)
+          : workingText;
 
-      let result = mapChars(workingText, UPSIDE_DOWN_MAP)
-        .split("")
-        .reverse()
-        .join("");
+      if (angle === "90") return text.split("").join("\n");
+      if (angle === "270") return text.split("").reverse().join("\n");
+
+      let result = mapChars(text, UPSIDE_DOWN_MAP).split("").reverse().join("");
 
       if (mirrorCombo) {
         result = mapChars(result, FLIP_TEXT_MAP);
@@ -2549,80 +3255,129 @@ export function transformText(
       return result;
     }
     case "mirror-text": {
+      const fontStyle = customSettings.fontStyle || "none";
       const direction = customSettings.direction || "horizontal";
 
+      let text =
+        fontStyle !== "none"
+          ? applyFontStyle(workingText, fontStyle)
+          : workingText;
+
       if (direction === "vertical") {
-        let result = mapChars(workingText, FLIP_TEXT_MAP);
-        return mapChars(result, UPSIDE_DOWN_MAP);
+        return mapChars(mapChars(text, FLIP_TEXT_MAP), UPSIDE_DOWN_MAP);
       } else if (direction === "both") {
-        return mapChars(workingText, UPSIDE_DOWN_MAP)
-          .split("")
-          .reverse()
-          .join("");
+        return mapChars(text, UPSIDE_DOWN_MAP).split("").reverse().join("");
+      } else if (direction === "wordReverse") {
+        return text.split(" ").reverse().join(" ");
+      } else if (direction === "lineReverse") {
+        return text.split("\n").reverse().join("\n");
       }
-      return mapChars(workingText, FLIP_TEXT_MAP).split("").reverse().join("");
+      return mapChars(text, FLIP_TEXT_MAP).split("").reverse().join("");
     }
     case "small-text": {
-      const mode = customSettings.mode || "tiny";
+      const fontStyle = customSettings.fontStyle || "none";
+      const mode = customSettings.mode || "super";
+
+      let text =
+        fontStyle !== "none"
+          ? applyFontStyle(workingText, fontStyle)
+          : workingText;
 
       if (mode === "sub") {
-        return mapChars(workingText, SUBSCRIPT_MAP);
-      } else if (mode === "super") {
-        return mapChars(workingText, SUPERSCRIPT_MAP);
-      }
-      // Tiny uses small caps from UNICODE_MAPS if available
-      return mapChars(workingText, SUPERSCRIPT_MAP);
-    }
-    case "tiny-text": {
-      const tinyType = customSettings.type || "super";
-
-      if (tinyType === "sub") {
-        return mapChars(workingText, SUBSCRIPT_MAP);
-      } else if (tinyType === "smallcaps") {
-        const smallCapsMap: Record<string, string> = {
-          a: "ᴀ",
-          b: "ʙ",
-          c: "ᴄ",
-          d: "ᴅ",
-          e: "ᴇ",
-          f: "ғ",
-          g: "ɢ",
-          h: "ʜ",
-          i: "ɪ",
-          j: "ᴊ",
-          k: "ᴋ",
-          l: "ʟ",
-          m: "ᴍ",
-          n: "ɴ",
-          o: "ᴏ",
-          p: "ᴘ",
-          q: "ǫ",
-          r: "ʀ",
-          s: "s",
-          t: "ᴛ",
-          u: "ᴜ",
-          v: "ᴠ",
-          w: "ᴡ",
-          x: "x",
-          y: "ʏ",
-          z: "ᴢ",
-        };
-        return workingText
-          .toLowerCase()
-          .split("")
-          .map((c) => smallCapsMap[c] || c)
+        return mapChars(text, SUBSCRIPT_MAP);
+      } else if (mode === "smallcaps") {
+        return applyFontStyle(text, "smallCaps");
+      } else if (mode === "superSmall") {
+        // Alternate words: superscript then small caps
+        return text
+          .split(" ")
+          .map((word, i) =>
+            i % 2 === 0
+              ? mapChars(word, SUPERSCRIPT_MAP)
+              : applyFontStyle(word, "smallCaps"),
+          )
+          .join(" ");
+      } else if (mode === "subSmall") {
+        return text
+          .split(" ")
+          .map((word, i) =>
+            i % 2 === 0
+              ? mapChars(word, SUBSCRIPT_MAP)
+              : applyFontStyle(word, "smallCaps"),
+          )
+          .join(" ");
+      } else if (mode === "alternate") {
+        return [...text]
+          .map((c, i) =>
+            i % 2 === 0 ? SUPERSCRIPT_MAP[c] || c : SUBSCRIPT_MAP[c] || c,
+          )
           .join("");
       }
-      return mapChars(workingText, SUPERSCRIPT_MAP);
+      return mapChars(text, SUPERSCRIPT_MAP);
     }
-    case "superscript":
-      return mapChars(workingText, SUPERSCRIPT_MAP);
+    case "tiny-text": {
+      const fontStyle = customSettings.fontStyle || "none";
+      const tinyType = customSettings.type || "super";
+
+      let text =
+        fontStyle !== "none"
+          ? applyFontStyle(workingText, fontStyle)
+          : workingText;
+
+      if (tinyType === "sub") {
+        return mapChars(text, SUBSCRIPT_MAP);
+      } else if (tinyType === "smallcaps") {
+        return applyFontStyle(text, "smallCaps");
+      } else if (tinyType === "alternate") {
+        return [...text]
+          .map((c, i) =>
+            i % 2 === 0 ? SUPERSCRIPT_MAP[c] || c : SUBSCRIPT_MAP[c] || c,
+          )
+          .join("");
+      } else if (tinyType === "superCaps") {
+        return mapChars(text.toUpperCase(), SUPERSCRIPT_MAP);
+      } else if (tinyType === "subCaps") {
+        return mapChars(text.toUpperCase(), SUBSCRIPT_MAP);
+      }
+      return mapChars(text, SUPERSCRIPT_MAP);
+    }
+    case "superscript": {
+      const fontStyle = customSettings.fontStyle || "none";
+      const mode = customSettings.mode || "super";
+
+      let text =
+        fontStyle !== "none"
+          ? applyFontStyle(workingText, fontStyle)
+          : workingText;
+
+      if (mode === "sub") {
+        return mapChars(text, SUBSCRIPT_MAP);
+      } else if (mode === "alternate") {
+        return [...text]
+          .map((c, i) =>
+            i % 2 === 0 ? SUPERSCRIPT_MAP[c] || c : SUBSCRIPT_MAP[c] || c,
+          )
+          .join("");
+      } else if (mode === "wordAlternate") {
+        return text
+          .split(" ")
+          .map((word, i) =>
+            i % 2 === 0
+              ? mapChars(word, SUPERSCRIPT_MAP)
+              : mapChars(word, SUBSCRIPT_MAP),
+          )
+          .join(" ");
+      }
+      return mapChars(text, SUPERSCRIPT_MAP);
+    }
     case "big-text": {
+      const fontStyle = customSettings.fontStyle || "none";
       const gap = customSettings.gap || 1;
       const bigStyle = customSettings.style || "upper";
 
       let result = workingText;
 
+      // Apply case style first
       if (bigStyle === "upper") {
         result = result.toUpperCase();
       } else if (bigStyle === "bold") {
@@ -2638,21 +3393,54 @@ export function transformText(
               : c;
           })
           .join("");
+      } else if (bigStyle === "lower") {
+        result = result.toLowerCase();
+      } else if (bigStyle === "alternating") {
+        result = result
+          .split("")
+          .map((c, i) => (i % 2 === 0 ? c.toLowerCase() : c.toUpperCase()))
+          .join("");
+      } else if (bigStyle === "random") {
+        result = result
+          .split("")
+          .map((c) => (Math.random() > 0.5 ? c.toUpperCase() : c.toLowerCase()))
+          .join("");
+      } else if (bigStyle === "title") {
+        result = result.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+      }
+
+      // Apply font style
+      if (fontStyle !== "none") {
+        result = applyFontStyle(result, fontStyle);
       }
 
       return result.split("").join(" ".repeat(gap));
     }
     case "space-remover": {
+      const fontStyle = customSettings.fontStyle || "none";
       const mode = customSettings.mode || "all";
 
+      let result = workingText;
+
       if (mode === "extra") {
-        return workingText.replace(/\s+/g, " ");
+        result = result.replace(/\s+/g, " ");
       } else if (mode === "trim") {
-        return workingText.trim();
+        result = result.trim();
+      } else if (mode === "dash") {
+        result = result.replace(/\s+/g, "-");
+      } else if (mode === "underscore") {
+        result = result.replace(/\s+/g, "_");
+      } else {
+        result = result.replace(/\s/g, "");
       }
-      return workingText.replace(/\s/g, "");
+
+      if (fontStyle !== "none") {
+        result = applyFontStyle(result, fontStyle);
+      }
+      return result;
     }
     case "text-cleaner": {
+      const fontStyle = customSettings.fontStyle || "none";
       const cleanType = customSettings.cleanType || "special";
       const preserveSpaces = customSettings.preserveSpaces !== false;
 
@@ -2663,69 +3451,124 @@ export function transformText(
       } else if (cleanType === "numbers") {
         result = result.replace(/[0-9]/g, "");
       } else if (cleanType === "punctuation") {
-        result = result.replace(/[.,!?;:'"()-]/g, "");
+        result = result.replace(/[.,!?;:'"()\-\[\]{}]/g, "");
       } else if (cleanType === "all") {
         result = result.replace(/[^a-zA-Z\s]/g, "");
+      } else if (cleanType === "emojis") {
+        result = result.replace(
+          /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2702}-\u{27B0}\u{24C2}-\u{1F251}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu,
+          "",
+        );
+      } else if (cleanType === "html") {
+        result = result.replace(/<[^>]*>/g, "");
+      } else if (cleanType === "urls") {
+        result = result.replace(/https?:\/\/[^\s]+/g, "");
+      } else if (cleanType === "whitespace") {
+        result = result.replace(/\s+/g, " ").trim();
+      } else if (cleanType === "diacritics") {
+        result = result.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      } else if (cleanType === "nonascii") {
+        result = result.replace(/[^\x00-\x7F]/g, "");
       }
 
       if (!preserveSpaces) {
         result = result.replace(/\s/g, "");
       }
 
+      if (fontStyle !== "none") {
+        result = applyFontStyle(result, fontStyle);
+      }
+
       return result;
     }
     case "sentence-case": {
+      const fontStyle = customSettings.fontStyle || "none";
       const caseType = customSettings.caseType || "sentence";
 
+      let result = workingText;
+
       if (caseType === "sentence") {
-        return workingText
+        result = result
           .toLowerCase()
           .replace(/(^\s*\w|[.!?]\s*\w)/g, (c) => c.toUpperCase());
       } else if (caseType === "title") {
-        return workingText
-          .toLowerCase()
-          .replace(/\b\w/g, (c) => c.toUpperCase());
+        result = result.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
       } else if (caseType === "lower") {
-        return workingText.toLowerCase();
+        result = result.toLowerCase();
       } else if (caseType === "upper") {
-        return workingText.toUpperCase();
+        result = result.toUpperCase();
       } else if (caseType === "alternating") {
-        return workingText
+        result = result
           .split("")
           .map((c, i) => (i % 2 === 0 ? c.toLowerCase() : c.toUpperCase()))
           .join("");
+      } else if (caseType === "inverse") {
+        result = result
+          .split("")
+          .map((c) =>
+            c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase(),
+          )
+          .join("");
+      } else if (caseType === "random") {
+        result = result
+          .split("")
+          .map((c) => (Math.random() > 0.5 ? c.toUpperCase() : c.toLowerCase()))
+          .join("");
+      } else if (caseType === "camel") {
+        result = result
+          .toLowerCase()
+          .replace(/[^a-zA-Z0-9]+(.)/g, (_, c) => c.toUpperCase());
+      }
+
+      if (fontStyle !== "none") {
+        result = applyFontStyle(result, fontStyle);
+      }
+
+      return result;
+    }
+    case "character-counter": {
+      const fontStyle = customSettings.fontStyle || "none";
+      if (fontStyle !== "none") {
+        return applyFontStyle(workingText, fontStyle);
       }
       return workingText;
     }
-    case "character-counter":
-      // This returns the text as-is, the component handles the counting display
-      return workingText;
     case "invisible-character": {
+      const fontStyle = customSettings.fontStyle || "none";
       const charType = customSettings.charType || "zwsp";
       const count = customSettings.count || 1;
 
       const invisibleChars: Record<string, string> = {
-        zwsp: "\u200B", // Zero Width Space
-        zwj: "\u200D", // Zero Width Joiner
-        hair: "\u200A", // Hair Space
-        separator: "\u2063", // Invisible Separator
+        zwsp: "\u200B",
+        zwj: "\u200D",
+        zwnj: "\u200C",
+        hair: "\u200A",
+        thin: "\u2009",
+        sixPerEm: "\u2006",
+        separator: "\u2063",
+        wordJoiner: "\u2060",
       };
 
       const invisChar = invisibleChars[charType] || invisibleChars.zwsp;
       const padding = invisChar.repeat(count);
 
-      if (!workingText) return padding;
-      return workingText.split("").join(padding);
+      let text =
+        fontStyle !== "none"
+          ? applyFontStyle(workingText, fontStyle)
+          : workingText;
+
+      if (!text) return padding;
+      return text.split("").join(padding);
     }
     case "reverse-text":
       return reverseText(workingText);
     case "bubble-text": {
       const bubbleType = customSettings.type || "out";
+      const fontStyle = customSettings.fontStyle || "none";
 
       // Different bubble character sets
       const bubbleMaps: Record<string, Record<string, string>> = {
         out: {
-          // Outlined circled letters
           a: "ⓐ",
           b: "ⓑ",
           c: "ⓒ",
@@ -2790,7 +3633,6 @@ export function transformText(
           "9": "⑨",
         },
         fill: {
-          // Filled/negative circled letters
           a: "🅐",
           b: "🅑",
           c: "🅒",
@@ -2855,7 +3697,6 @@ export function transformText(
           "9": "❾",
         },
         "3d": {
-          // Square/3D style letters
           a: "🄰",
           b: "🄱",
           c: "🄲",
@@ -2919,153 +3760,7 @@ export function transformText(
           "8": "8️⃣",
           "9": "9️⃣",
         },
-      };
-
-      const selectedMap = bubbleMaps[bubbleType] || bubbleMaps.out;
-      return workingText
-        .split("")
-        .map((c) => selectedMap[c] || c)
-        .join("");
-    }
-    case "wide-text": {
-      const widthVal = customSettings.width || 1;
-      const useFullwidth = customSettings.fullwidth !== false;
-      const wideSpace = " ".repeat(widthVal);
-
-      if (useFullwidth) {
-        return workingText
-          .split("")
-          .map((c) => {
-            const code = c.charCodeAt(0);
-            return code >= 33 && code <= 126
-              ? String.fromCharCode(code + 0xfee0)
-              : c;
-          })
-          .join(wideSpace);
-      } else {
-        // Just add spacing without fullwidth conversion
-        return workingText.split("").join(wideSpace);
-      }
-    }
-    case "vaporwave-text": {
-      const widthVal = customSettings.width || 1;
-      const usePalette = customSettings.palette !== false;
-      const wideSpace = " ".repeat(widthVal);
-
-      // Convert to fullwidth characters
-      let result = workingText
-        .split("")
-        .map((c) => {
-          const code = c.charCodeAt(0);
-          return code >= 33 && code <= 126
-            ? String.fromCharCode(code + 0xfee0)
-            : c;
-        })
-        .join(wideSpace);
-
-      // Add 80s/90s aesthetic decorations if palette is enabled
-      if (usePalette) {
-        const vaporSymbols = ["☆", "★", "✧", "✦", "♡", "☯", "✿", "❀"];
-        result =
-          vaporSymbols[Math.floor(Math.random() * vaporSymbols.length)] +
-          " " +
-          result +
-          " " +
-          vaporSymbols[Math.floor(Math.random() * vaporSymbols.length)];
-      }
-
-      return result;
-    }
-    case "aesthetic-text": {
-      const widthVal = customSettings.width || 1;
-      const aestheticStyle = customSettings.aestheticStyle || "vaporwave";
-      const wideSpace = " ".repeat(widthVal);
-
-      // Convert to fullwidth characters
-      let result = workingText
-        .split("")
-        .map((c) => {
-          const code = c.charCodeAt(0);
-          return code >= 33 && code <= 126
-            ? String.fromCharCode(code + 0xfee0)
-            : c;
-        })
-        .join(wideSpace);
-
-      // Apply style-specific decorations
-      if (aestheticStyle === "vaporwave") {
-        result = "☆彡 " + result + " 彡☆";
-      } else if (aestheticStyle === "soft") {
-        result = "✿ " + result + " ✿";
-      } else if (aestheticStyle === "grunge") {
-        result = "× " + result + " ×";
-      }
-
-      return result;
-    }
-
-    // Dark & Horror - Extra tools
-    case "extra-thicc-text": {
-      const thiccStyle = customSettings.thiccStyle || "serifBold";
-      const letterSpacing = customSettings.spacing || 1;
-
-      let result = "";
-      if (thiccStyle === "serifBold") {
-        result = mapChars(workingText, UNICODE_MAPS.serifBold || BOLD_MAP);
-      } else if (thiccStyle === "sansBold") {
-        result = mapChars(workingText, BOLD_MAP);
-      } else if (thiccStyle === "fullwidth") {
-        result = workingText
-          .split("")
-          .map((c) => {
-            const code = c.charCodeAt(0);
-            return code >= 33 && code <= 126
-              ? String.fromCharCode(code + 0xfee0)
-              : c;
-          })
-          .join("");
-      } else if (thiccStyle === "doubleStruck") {
-        result = mapChars(workingText, UNICODE_MAPS.doubleStruck || BOLD_MAP);
-      } else {
-        result = mapChars(workingText, BOLD_MAP);
-      }
-
-      if (letterSpacing > 0) {
-        result = result.split("").join(" ".repeat(letterSpacing));
-      }
-      return result;
-    }
-    case "glitter-text": {
-      const glitterStyle = customSettings.glitterStyle || "sparkle";
-      const glitterIntensity = customSettings.intensity || 2;
-
-      const glitterSymbols: Record<string, string[]> = {
-        sparkle: ["✨", "✧", "⋆", "˚", "✦"],
-        stars: ["⭐", "★", "☆", "✪", "✯"],
-        diamonds: ["💎", "◇", "◆", "♦", "✧"],
-        rainbow: ["🌈", "✨", "💫", "⭐", "🌟"],
-      };
-
-      const symbols = glitterSymbols[glitterStyle] || glitterSymbols.sparkle;
-      const insertFreq = Math.max(6 - glitterIntensity, 2);
-
-      return workingText
-        .split("")
-        .map((c, i) => {
-          if (c === " ") return c;
-          if (i % insertFreq === 0) {
-            return c + symbols[Math.floor(Math.random() * symbols.length)];
-          }
-          return c;
-        })
-        .join("");
-    }
-    case "square-text": {
-      const squareStyle = customSettings.squareStyle || "outlined";
-
-      if (squareStyle === "filled") {
-        // Negative squared Latin letters (filled/white on black)
-        const FILLED_SQUARE_MAP: Record<string, string> = {
+        filledSquare: {
           a: "🅰",
           b: "🅱",
           c: "🅲",
@@ -3118,68 +3813,327 @@ export function transformText(
           X: "🆇",
           Y: "🆈",
           Z: "🆉",
-        };
-        return mapChars(workingText, FILLED_SQUARE_MAP);
-      } else if (squareStyle === "negative") {
-        // Negative circled (inverted)
-        const NEGATIVE_SQUARE_MAP: Record<string, string> = {
-          a: "🄰",
-          b: "🄱",
-          c: "🄲",
-          d: "🄳",
-          e: "🄴",
-          f: "🄵",
-          g: "🄶",
-          h: "🄷",
-          i: "🄸",
-          j: "🄹",
-          k: "🄺",
-          l: "🄻",
-          m: "🄼",
-          n: "🄽",
-          o: "🄾",
-          p: "🄿",
-          q: "🅀",
-          r: "🅁",
-          s: "🅂",
-          t: "🅃",
-          u: "🅄",
-          v: "🅅",
-          w: "🅆",
-          x: "🅇",
-          y: "🅈",
-          z: "🅉",
-          A: "🄰",
-          B: "🄱",
-          C: "🄲",
-          D: "🄳",
-          E: "🄴",
-          F: "🄵",
-          G: "🄶",
-          H: "🄷",
-          I: "🄸",
-          J: "🄹",
-          K: "🄺",
-          L: "🄻",
-          M: "🄼",
-          N: "🄽",
-          O: "🄾",
-          P: "🄿",
-          Q: "🅀",
-          R: "🅁",
-          S: "🅂",
-          T: "🅃",
-          U: "🅄",
-          V: "🅅",
-          W: "🅆",
-          X: "🅇",
-          Y: "🅈",
-          Z: "🅉",
-        };
-        return mapChars(workingText, NEGATIVE_SQUARE_MAP);
+        },
+        parenthesized: {
+          a: "⒜",
+          b: "⒝",
+          c: "⒞",
+          d: "⒟",
+          e: "⒠",
+          f: "⒡",
+          g: "⒢",
+          h: "⒣",
+          i: "⒤",
+          j: "⒥",
+          k: "⒦",
+          l: "⒧",
+          m: "⒨",
+          n: "⒩",
+          o: "⒪",
+          p: "⒫",
+          q: "⒬",
+          r: "⒭",
+          s: "⒮",
+          t: "⒯",
+          u: "⒰",
+          v: "⒱",
+          w: "⒲",
+          x: "⒳",
+          y: "⒴",
+          z: "⒵",
+          A: "⒜",
+          B: "⒝",
+          C: "⒞",
+          D: "⒟",
+          E: "⒠",
+          F: "⒡",
+          G: "⒢",
+          H: "⒣",
+          I: "⒤",
+          J: "⒥",
+          K: "⒦",
+          L: "⒧",
+          M: "⒨",
+          N: "⒩",
+          O: "⒪",
+          P: "⒫",
+          Q: "⒬",
+          R: "⒭",
+          S: "⒮",
+          T: "⒯",
+          U: "⒰",
+          V: "⒱",
+          W: "⒲",
+          X: "⒳",
+          Y: "⒴",
+          Z: "⒵",
+          "1": "⑴",
+          "2": "⑵",
+          "3": "⑶",
+          "4": "⑷",
+          "5": "⑸",
+          "6": "⑹",
+          "7": "⑺",
+          "8": "⑻",
+          "9": "⑼",
+        },
+      };
+
+      // For bracket/corner types, wrap each character
+      if (bubbleType === "bracket") {
+        const base =
+          fontStyle !== "none"
+            ? applyFontStyle(workingText, fontStyle)
+            : workingText;
+        return [...base]
+          .map((c) => (c === " " ? " " : "【" + c + "】"))
+          .join("");
+      }
+      if (bubbleType === "corner") {
+        const base =
+          fontStyle !== "none"
+            ? applyFontStyle(workingText, fontStyle)
+            : workingText;
+        return [...base]
+          .map((c) => (c === " " ? " " : "『" + c + "』"))
+          .join("");
+      }
+      if (bubbleType === "negativeCircle") {
+        // Use the filled circle map (same as fill)
+        const selectedMap = bubbleMaps.fill;
+        return workingText
+          .split("")
+          .map((c) => selectedMap[c] || c)
+          .join("");
+      }
+
+      const selectedMap = bubbleMaps[bubbleType] || bubbleMaps.out;
+      return workingText
+        .split("")
+        .map((c) => selectedMap[c] || c)
+        .join("");
+    }
+    case "wide-text": {
+      const fontStyle = customSettings.fontStyle || "fullwidth";
+      const widthVal = customSettings.width || 1;
+      const useFullwidth = customSettings.fullwidth !== false;
+      const wideSpace = " ".repeat(widthVal);
+
+      if (fontStyle === "fullwidth" && useFullwidth) {
+        return workingText
+          .split("")
+          .map((c) => {
+            const code = c.charCodeAt(0);
+            return code >= 33 && code <= 126
+              ? String.fromCharCode(code + 0xfee0)
+              : c;
+          })
+          .join(wideSpace);
+      } else if (fontStyle !== "fullwidth") {
+        return applyFontStyle(workingText, fontStyle).split("").join(wideSpace);
       } else {
-        // Default: outlined squares
-        return mapChars(workingText, SQUARE_MAP);
+        return workingText.split("").join(wideSpace);
+      }
+    }
+    case "vaporwave-text": {
+      const fontStyle = customSettings.fontStyle || "fullwidth";
+      const widthVal = customSettings.width || 1;
+      const usePalette = customSettings.palette !== false;
+      const wideSpace = " ".repeat(widthVal);
+
+      let result: string;
+      if (fontStyle === "fullwidth") {
+        result = workingText
+          .split("")
+          .map((c) => {
+            const code = c.charCodeAt(0);
+            return code >= 33 && code <= 126
+              ? String.fromCharCode(code + 0xfee0)
+              : c;
+          })
+          .join(wideSpace);
+      } else {
+        result = applyFontStyle(workingText, fontStyle)
+          .split("")
+          .join(wideSpace);
+      }
+
+      if (usePalette) {
+        const wrapPairs = [
+          ["☆ ", " ☆"],
+          ["★ ", " ★"],
+          ["✧ ", " ✧"],
+          ["✦ ", " ✦"],
+          ["♡ ", " ♡"],
+          ["☯ ", " ☯"],
+          ["✿ ", " ✿"],
+          ["❀ ", " ❀"],
+          ["☆彡 ", " 彡☆"],
+          ["✧˚₊ ", " ₊˚✧"],
+          ["⊹₊ ", " ₊⊹"],
+        ];
+        const wrap = wrapPairs[Math.floor(Math.random() * wrapPairs.length)];
+        result = wrap[0] + result + wrap[1];
+      }
+
+      return result;
+    }
+    case "aesthetic-text": {
+      const fontStyle = customSettings.fontStyle || "fullwidth";
+      const widthVal = customSettings.width || 1;
+      const aestheticStyle = customSettings.aestheticStyle || "vaporwave";
+      const wideSpace = " ".repeat(widthVal);
+
+      let result: string;
+      if (fontStyle === "fullwidth") {
+        result = workingText
+          .split("")
+          .map((c) => {
+            const code = c.charCodeAt(0);
+            return code >= 33 && code <= 126
+              ? String.fromCharCode(code + 0xfee0)
+              : c;
+          })
+          .join(wideSpace);
+      } else {
+        result = applyFontStyle(workingText, fontStyle)
+          .split("")
+          .join(wideSpace);
+      }
+
+      const styleWraps: Record<string, [string, string]> = {
+        vaporwave: ["☆彡 ", " 彡☆"],
+        soft: ["✿ ", " ✿"],
+        grunge: ["× ", " ×"],
+        celestial: ["☆.。.:* ", " *:.。.☆"],
+        cottagecore: ["🌿 ", " 🌿"],
+        y2k: ["✰⋆ ", " ⋆✰"],
+        kawaii: ["♡˚₊ ", " ₊˚♡"],
+        cyberpunk: ["⟨⌈ ", " ⌉⟩"],
+        witchy: ["☽⛤ ", " ⛤☽"],
+        minimal: ["", ""],
+      };
+
+      const wrap = styleWraps[aestheticStyle] || styleWraps.vaporwave;
+      result = wrap[0] + result + wrap[1];
+
+      return result;
+    }
+
+    // Dark & Horror - Extra tools
+    case "extra-thicc-text": {
+      const thiccStyle = customSettings.thiccStyle || "serifBold";
+      const letterSpacing = customSettings.spacing || 1;
+
+      // Use applyFontStyle for all thicc styles
+      let result = applyFontStyle(workingText, thiccStyle);
+
+      // Apply letter spacing
+      if (letterSpacing > 0) {
+        result = result.split("").join(" ".repeat(letterSpacing));
+      }
+      return result;
+    }
+    case "glitter-text": {
+      const glitterStyle = customSettings.glitterStyle || "sparkle";
+      const fontStyle = customSettings.fontStyle || "serifBold";
+      const glitterIntensity = customSettings.intensity || 2;
+
+      const glitterSymbols: Record<string, string[]> = {
+        sparkle: ["✨", "✧", "⋆", "˚", "✦"],
+        stars: ["⭐", "★", "☆", "✪", "✯"],
+        diamonds: ["💎", "◇", "◆", "♦", "✧"],
+        rainbow: ["🌈", "✨", "💫", "⭐", "🌟"],
+        moonGlow: ["🌙", "☽", "✦", "˚", "⋆"],
+        sunBurst: ["☀", "✧", "⚡", "★", "✦"],
+        cosmicDust: ["🌌", "✨", "⋆", "˚", "✧"],
+        firefly: ["✦", "˚", "⋆", "✧", "·"],
+        aurora: ["🌌", "🌈", "✨", "💫", "⋆"],
+        neonGlow: ["⚡", "✧", "★", "✦", "⋆"],
+        crystalShimmer: ["💎", "✧", "⋆", "˚", "✦"],
+        goldDust: ["✦", "⭐", "✧", "★", "˚"],
+        silverMoon: ["☆", "✧", "⋆", "˚", "☽"],
+        pixieDust: ["✨", "˚", "✧", "⋆", "★"],
+        unicorn: ["🦄", "✨", "🌈", "⭐", "💫"],
+        galaxy: ["🌌", "⭐", "✨", "💫", "☆"],
+        ocean: ["🌊", "✧", "⋆", "˚", "🐚"],
+        snowflake: ["❄", "✧", "⋆", "˚", "❅"],
+        cherry: ["🌸", "✧", "⋆", "˚", "❀"],
+        lightning: ["⚡", "✧", "⋆", "✦", "★"],
+      };
+
+      // Apply font style first
+      let styledText = applyFontStyle(workingText, fontStyle);
+
+      const symbols = glitterSymbols[glitterStyle] || glitterSymbols.sparkle;
+      const insertFreq = Math.max(6 - glitterIntensity, 1);
+
+      return styledText
+        .split("")
+        .map((c, i) => {
+          if (c === " ") return c;
+          if (i % insertFreq === 0) {
+            return c + symbols[Math.floor(Math.random() * symbols.length)];
+          }
+          return c;
+        })
+        .join("");
+    }
+    case "square-text": {
+      const squareStyle = customSettings.squareStyle || "outlined";
+
+      // Map square styles to appropriate implementations
+      switch (squareStyle) {
+        case "filled":
+          return mapChars(workingText, UNICODE_MAPS.invertedSquared || {});
+        case "negative":
+          return mapChars(workingText, UNICODE_MAPS.squared || {});
+        case "circled":
+          return mapChars(workingText, UNICODE_MAPS.circled || {});
+        case "negativeCircle":
+          return applyFontStyle(workingText, "negativeCircle");
+        case "boxBrackets":
+          return applyFontStyle(workingText, "boxed");
+        case "lenticular":
+          return applyFontStyle(workingText, "lenticular");
+        case "fullBlock":
+          return applyFontStyle(workingText, "heavyBlock");
+        case "regional":
+          return applyFontStyle(workingText, "regional");
+        case "keycap":
+          return applyFontStyle(workingText, "keycap");
+        case "parenthesized":
+          return workingText
+            .split("")
+            .map((c) => (c === " " ? c : `(${c.toUpperCase()})`))
+            .join("");
+        case "curlyBraces":
+          return workingText
+            .split("")
+            .map((c) => (c === " " ? c : `{${c.toUpperCase()}}`))
+            .join("");
+        case "angleBrackets":
+          return workingText
+            .split("")
+            .map((c) => (c === " " ? c : `<${c.toUpperCase()}>`))
+            .join("");
+        case "doubleBrackets":
+          return workingText
+            .split("")
+            .map((c) => (c === " " ? c : `⟦${c.toUpperCase()}⟧`))
+            .join("");
+        case "tortoise":
+          return workingText
+            .split("")
+            .map((c) => (c === " " ? c : `〔${c.toUpperCase()}〕`))
+            .join("");
+        case "whiteCorner":
+          return workingText
+            .split("")
+            .map((c) => (c === " " ? c : `『${c.toUpperCase()}』`))
+            .join("");
+        default:
+          return mapChars(workingText, SQUARE_MAP);
       }
     }
     case "special-text": {
@@ -3191,11 +4145,43 @@ export function transformText(
         sparkle: ["✨", "✧", "⋆", "˚", "✦", "★"],
         stars: ["★", "☆", "✪", "✯", "⭐", "✦"],
         hearts: ["♥", "♡", "❤", "💕", "💗", "💖"],
+        crown: ["👑", "✦", "⚜", "✧", "★"],
+        weather: ["☀", "☁", "🌙", "⚡", "❄", "🌈"],
+        zodiac: [
+          "♈",
+          "♉",
+          "♊",
+          "♋",
+          "♌",
+          "♍",
+          "♎",
+          "♏",
+          "♐",
+          "♑",
+          "♒",
+          "♓",
+        ],
+        music: ["♪", "♫", "♬", "🎵", "🎶", "🎼"],
+        cards: ["♠", "♣", "♥", "♦", "🂡", "🃏"],
+        chess: ["♔", "♕", "♖", "♗", "♘", "♙"],
+        dice: ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"],
+        arrows: ["→", "←", "↑", "↓", "↗", "↘", "↙", "↖"],
+        flowers: ["✿", "❀", "❁", "🌸", "🌺", "🌻", "🌹", "🌷"],
+        ocean: ["🌊", "🐚", "🐠", "🐟", "🦐", "🐙"],
+        space: ["🌌", "⭐", "🌙", "☄", "🪐", "🚀"],
+        food: ["🍕", "🍔", "🍟", "🌮", "🍩", "🍪"],
+        animals: ["🐱", "🐶", "🐰", "🦊", "🐻", "🐼"],
+        tech: ["⌨", "🖥", "💻", "📱", "🔌", "💡"],
+        fire: ["🔥", "💥", "⚡", "✧", "★", "✦"],
+        ice: ["❄", "❅", "❆", "✧", "⋆", "˚"],
+        japanese: ["の", "は", "を", "に", "で", "が"],
+        runes: ["ᚱ", "ᚢ", "ᚦ", "ᚨ", "ᚱ", "ᚲ", "ᚷ", "ᚹ"],
       };
 
       const symbols = styleSymbols[specialStyle] || styleSymbols.mixed;
-      const insertFreq = Math.max(6 - density, 2);
+      const insertFreq = Math.max(6 - density, 1);
 
+      // Apply bold font as base
       const transformed = mapChars(workingText, BOLD_MAP);
 
       return transformed
@@ -3412,9 +4398,29 @@ export function transformText(
       }
     }
     case "hex-code": {
+      const hexMode = customSettings.mode || "encode";
       const isUpper = customSettings.uppercase !== false;
       const showPrefix = customSettings.prefix === true;
       const sep = customSettings.separator ?? " ";
+      const format = customSettings.format || "raw";
+
+      if (hexMode === "decode") {
+        try {
+          const cleanHex = workingText
+            .replace(/0x/gi, "")
+            .replace(/%/g, "")
+            .replace(/\\x/gi, "")
+            .replace(/&#x/gi, "")
+            .replace(/;/g, "")
+            .replace(/[^0-9a-fA-F\s]/g, "");
+          const bytes = cleanHex.match(/.{1,2}/g) || [];
+          return bytes
+            .map((b) => String.fromCharCode(parseInt(b, 16)))
+            .join("");
+        } catch {
+          return "Invalid Hex Input";
+        }
+      }
 
       return workingText
         .split("")
@@ -3422,141 +4428,482 @@ export function transformText(
           let hex = char.charCodeAt(0).toString(16);
           if (isUpper) hex = hex.toUpperCase();
           if (hex.length === 1) hex = "0" + hex;
+
+          if (format === "cssColor") return "#" + hex;
+          if (format === "htmlEntity") return "&#x" + hex + ";";
+          if (format === "urlEncoded") return "%" + hex;
+          if (format === "cStyle") return "\\x" + hex;
           return (showPrefix ? "0x" : "") + hex;
         })
         .join(sep);
     }
     case "base64": {
       const mode = customSettings.mode || "encode";
+      const variant = customSettings.variant || "standard";
       const urlSafe = customSettings.urlSafe === true;
       const usePadding = customSettings.padding !== false;
+      const lineBreaks = customSettings.lineBreaks === true;
 
       if (mode === "decode") {
         try {
+          if (variant === "base32") {
+            const base32Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+            const clean = workingText.toUpperCase().replace(/[^A-Z2-7]/g, "");
+            let bits = "";
+            for (const c of clean) {
+              bits += base32Chars.indexOf(c).toString(2).padStart(5, "0");
+            }
+            let out = "";
+            for (let i = 0; i + 8 <= bits.length; i += 8) {
+              out += String.fromCharCode(parseInt(bits.substr(i, 8), 2));
+            }
+            return out;
+          }
+          if (variant === "urlEncode") return decodeURIComponent(workingText);
           return atob(workingText);
-        } catch (e) {
-          return "Invalid Base64 Input";
+        } catch {
+          return "Invalid Input";
         }
       }
 
-      let result = btoa(workingText);
-      if (urlSafe) {
-        result = result.replace(/\+/g, "-").replace(/\//g, "_");
+      let result = "";
+      if (variant === "base32") {
+        const base32Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+        let bits = "";
+        for (const c of workingText) {
+          bits += c.charCodeAt(0).toString(2).padStart(8, "0");
+        }
+        while (bits.length % 5 !== 0) bits += "0";
+        for (let i = 0; i < bits.length; i += 5) {
+          result += base32Chars[parseInt(bits.substr(i, 5), 2)];
+        }
+        if (usePadding) {
+          while (result.length % 8 !== 0) result += "=";
+        }
+      } else if (variant === "urlEncode") {
+        result = encodeURIComponent(workingText);
+      } else if (variant === "ascii85") {
+        const encode85 = (data: string) => {
+          let out = "<~";
+          for (let i = 0; i < data.length; i += 4) {
+            let val = 0;
+            const chunk = data.slice(i, i + 4);
+            for (let j = 0; j < 4; j++)
+              val = val * 256 + (chunk.charCodeAt(j) || 0);
+            if (val === 0 && chunk.length === 4) {
+              out += "z";
+              continue;
+            }
+            const chars = [];
+            for (let j = 4; j >= 0; j--) {
+              chars[j] = String.fromCharCode((val % 85) + 33);
+              val = Math.floor(val / 85);
+            }
+            out += chars.join("").substring(0, chunk.length + 1);
+          }
+          return out + "~>";
+        };
+        result = encode85(workingText);
+      } else {
+        result = btoa(workingText);
+        if (urlSafe) result = result.replace(/\+/g, "-").replace(/\//g, "_");
+        if (!usePadding) result = result.replace(/=+$/, "");
       }
-      if (!usePadding) {
-        result = result.replace(/=+$/, "");
+
+      if (lineBreaks && result.length > 76) {
+        result = result.match(/.{1,76}/g)?.join("\n") || result;
       }
       return result;
     }
     case "reverse-text": {
+      const fontStyle = customSettings.fontStyle || "none";
       const mode = customSettings.mode || "entire";
+
+      let text =
+        fontStyle !== "none"
+          ? applyFontStyle(workingText, fontStyle)
+          : workingText;
+
       if (mode === "words") {
-        return workingText
+        return text
           .split(" ")
           .map((w) => w.split("").reverse().join(""))
           .join(" ");
       } else if (mode === "vertical") {
-        return mapChars(workingText, UPSIDE_DOWN_MAP);
+        return mapChars(text, UPSIDE_DOWN_MAP);
+      } else if (mode === "lines") {
+        return text.split("\n").reverse().join("\n");
+      } else if (mode === "sentences") {
+        return text
+          .split(/([.!?]+\s*)/)
+          .reverse()
+          .join("");
       }
-      return workingText.split("").reverse().join("");
+      return text.split("").reverse().join("");
     }
     case "caesar-cipher": {
+      const fontStyle = customSettings.fontStyle || "none";
       const shift = customSettings.shift || 3;
       const direction = customSettings.direction || "encode";
-      const actualShift = direction === "encode" ? shift : 26 - (shift % 26);
+      const alphabet = customSettings.alphabet || "standard";
 
-      return workingText
-        .split("")
-        .map((char) => {
-          if (char.match(/[a-z]/i)) {
+      let result = "";
+
+      if (alphabet === "ascii") {
+        const actualShift = direction === "encode" ? shift : 95 - (shift % 95);
+        result = workingText
+          .split("")
+          .map((char) => {
             const code = char.charCodeAt(0);
-            const base = code >= 97 ? 97 : 65;
-            return String.fromCharCode(
-              ((code - base + actualShift) % 26) + base,
-            );
-          }
-          return char;
-        })
-        .join("");
+            if (code >= 32 && code <= 126) {
+              return String.fromCharCode(((code - 32 + actualShift) % 95) + 32);
+            }
+            return char;
+          })
+          .join("");
+      } else if (alphabet === "alphanumeric") {
+        const chars =
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        const actualShift =
+          direction === "encode"
+            ? shift
+            : chars.length - (shift % chars.length);
+        result = workingText
+          .split("")
+          .map((char) => {
+            const idx = chars.indexOf(char);
+            if (idx >= 0) return chars[(idx + actualShift) % chars.length];
+            return char;
+          })
+          .join("");
+      } else {
+        const actualShift = direction === "encode" ? shift : 26 - (shift % 26);
+        result = workingText
+          .split("")
+          .map((char) => {
+            if (char.match(/[a-z]/i)) {
+              const code = char.charCodeAt(0);
+              const base = code >= 97 ? 97 : 65;
+              return String.fromCharCode(
+                ((code - base + actualShift) % 26) + base,
+              );
+            }
+            return char;
+          })
+          .join("");
+      }
+
+      if (fontStyle !== "none") result = applyFontStyle(result, fontStyle);
+      return result;
     }
     case "rot13": {
-      return workingText
-        .split("")
-        .map((char) => {
-          if (char.match(/[a-z]/i)) {
+      const fontStyle = customSettings.fontStyle || "none";
+      const variant = customSettings.variant || "rot13";
+
+      let result = "";
+
+      if (variant === "rot5") {
+        result = workingText
+          .split("")
+          .map((char) => {
+            if (char.match(/[0-9]/)) {
+              return String.fromCharCode(
+                ((char.charCodeAt(0) - 48 + 5) % 10) + 48,
+              );
+            }
+            return char;
+          })
+          .join("");
+      } else if (variant === "rot18") {
+        result = workingText
+          .split("")
+          .map((char) => {
+            if (char.match(/[a-z]/i)) {
+              const code = char.charCodeAt(0);
+              const base = code >= 97 ? 97 : 65;
+              return String.fromCharCode(((code - base + 13) % 26) + base);
+            }
+            if (char.match(/[0-9]/)) {
+              return String.fromCharCode(
+                ((char.charCodeAt(0) - 48 + 5) % 10) + 48,
+              );
+            }
+            return char;
+          })
+          .join("");
+      } else if (variant === "rot47") {
+        result = workingText
+          .split("")
+          .map((char) => {
             const code = char.charCodeAt(0);
-            const base = code >= 97 ? 97 : 65;
-            return String.fromCharCode(((code - base + 13) % 26) + base);
-          }
-          return char;
-        })
-        .join("");
+            if (code >= 33 && code <= 126) {
+              return String.fromCharCode(((code - 33 + 47) % 94) + 33);
+            }
+            return char;
+          })
+          .join("");
+      } else {
+        result = workingText
+          .split("")
+          .map((char) => {
+            if (char.match(/[a-z]/i)) {
+              const code = char.charCodeAt(0);
+              const base = code >= 97 ? 97 : 65;
+              return String.fromCharCode(((code - base + 13) % 26) + base);
+            }
+            return char;
+          })
+          .join("");
+      }
+
+      if (fontStyle !== "none") result = applyFontStyle(result, fontStyle);
+      return result;
     }
     case "nato-phonetic": {
-      const nato: Record<string, string> = {
-        a: "Alpha",
-        b: "Bravo",
-        c: "Charlie",
-        d: "Delta",
-        e: "Echo",
-        f: "Foxtrot",
-        g: "Golf",
-        h: "Hotel",
-        i: "India",
-        j: "Juliett",
-        k: "Kilo",
-        l: "Lima",
-        m: "Mike",
-        n: "November",
-        o: "Oscar",
-        p: "Papa",
-        q: "Quebec",
-        r: "Romeo",
-        s: "Sierra",
-        t: "Tango",
-        u: "Uniform",
-        v: "Victor",
-        w: "Whiskey",
-        x: "X-ray",
-        y: "Yankee",
-        z: "Zulu",
-        "0": "Zero",
-        "1": "One",
-        "2": "Two",
-        "3": "Three",
-        "4": "Four",
-        "5": "Five",
-        "6": "Six",
-        "7": "Seven",
-        "8": "Eight",
-        "9": "Nine",
+      const fontStyle = customSettings.fontStyle || "none";
+      const alphabetType = customSettings.alphabet || "nato";
+      const showOriginal = customSettings.showOriginal === true;
+
+      const natoAlphabets: Record<string, Record<string, string>> = {
+        nato: {
+          a: "Alpha",
+          b: "Bravo",
+          c: "Charlie",
+          d: "Delta",
+          e: "Echo",
+          f: "Foxtrot",
+          g: "Golf",
+          h: "Hotel",
+          i: "India",
+          j: "Juliett",
+          k: "Kilo",
+          l: "Lima",
+          m: "Mike",
+          n: "November",
+          o: "Oscar",
+          p: "Papa",
+          q: "Quebec",
+          r: "Romeo",
+          s: "Sierra",
+          t: "Tango",
+          u: "Uniform",
+          v: "Victor",
+          w: "Whiskey",
+          x: "X-ray",
+          y: "Yankee",
+          z: "Zulu",
+          "0": "Zero",
+          "1": "One",
+          "2": "Two",
+          "3": "Three",
+          "4": "Four",
+          "5": "Five",
+          "6": "Six",
+          "7": "Seven",
+          "8": "Eight",
+          "9": "Nine",
+        },
+        usmilitary: {
+          a: "Able",
+          b: "Baker",
+          c: "Charlie",
+          d: "Dog",
+          e: "Easy",
+          f: "Fox",
+          g: "George",
+          h: "How",
+          i: "Item",
+          j: "Jig",
+          k: "King",
+          l: "Love",
+          m: "Mike",
+          n: "Nan",
+          o: "Oboe",
+          p: "Peter",
+          q: "Queen",
+          r: "Roger",
+          s: "Sugar",
+          t: "Tare",
+          u: "Uncle",
+          v: "Victor",
+          w: "William",
+          x: "X-ray",
+          y: "Yoke",
+          z: "Zebra",
+          "0": "Zero",
+          "1": "One",
+          "2": "Two",
+          "3": "Three",
+          "4": "Four",
+          "5": "Five",
+          "6": "Six",
+          "7": "Seven",
+          "8": "Eight",
+          "9": "Niner",
+        },
+        royalnavy: {
+          a: "Acre",
+          b: "Beer",
+          c: "Charlie",
+          d: "Dover",
+          e: "Edward",
+          f: "Fredrick",
+          g: "George",
+          h: "Harry",
+          i: "Ink",
+          j: "Johnnie",
+          k: "King",
+          l: "London",
+          m: "Monkey",
+          n: "Nuts",
+          o: "Orange",
+          p: "Pudding",
+          q: "Queenie",
+          r: "Robert",
+          s: "Sugar",
+          t: "Tommy",
+          u: "Uncle",
+          v: "Vinegar",
+          w: "William",
+          x: "Xerxes",
+          y: "Yellow",
+          z: "Zebra",
+          "0": "Zero",
+          "1": "One",
+          "2": "Two",
+          "3": "Three",
+          "4": "Four",
+          "5": "Five",
+          "6": "Six",
+          "7": "Seven",
+          "8": "Eight",
+          "9": "Nine",
+        },
+        westernunion: {
+          a: "Adams",
+          b: "Boston",
+          c: "Chicago",
+          d: "Denver",
+          e: "Easy",
+          f: "Frank",
+          g: "George",
+          h: "Henry",
+          i: "Ida",
+          j: "John",
+          k: "King",
+          l: "Lincoln",
+          m: "Mary",
+          n: "New York",
+          o: "Ocean",
+          p: "Peter",
+          q: "Queen",
+          r: "Roger",
+          s: "Sugar",
+          t: "Thomas",
+          u: "Union",
+          v: "Victor",
+          w: "William",
+          x: "X-ray",
+          y: "Young",
+          z: "Zero",
+          "0": "Zero",
+          "1": "One",
+          "2": "Two",
+          "3": "Three",
+          "4": "Four",
+          "5": "Five",
+          "6": "Six",
+          "7": "Seven",
+          "8": "Eight",
+          "9": "Nine",
+        },
+        german: {
+          a: "Anton",
+          b: "Berta",
+          c: "Cäsar",
+          d: "Dora",
+          e: "Emil",
+          f: "Friedrich",
+          g: "Gustav",
+          h: "Heinrich",
+          i: "Ida",
+          j: "Julius",
+          k: "Kaufmann",
+          l: "Ludwig",
+          m: "Martha",
+          n: "Nordpol",
+          o: "Otto",
+          p: "Paula",
+          q: "Quelle",
+          r: "Richard",
+          s: "Samuel",
+          t: "Theodor",
+          u: "Ulrich",
+          v: "Viktor",
+          w: "Wilhelm",
+          x: "Xanthippe",
+          y: "Ypsilon",
+          z: "Zacharias",
+          "0": "Null",
+          "1": "Eins",
+          "2": "Zwei",
+          "3": "Drei",
+          "4": "Vier",
+          "5": "Fünf",
+          "6": "Sechs",
+          "7": "Sieben",
+          "8": "Acht",
+          "9": "Neun",
+        },
       };
+
+      const phoneticMap = natoAlphabets[alphabetType] || natoAlphabets.nato;
       const sep = customSettings.separator || "-";
-      return workingText
+
+      let result = workingText
         .toLowerCase()
         .split("")
-        .map((c) => nato[c] || c)
+        .map((c) => {
+          const word = phoneticMap[c];
+          if (word) {
+            return showOriginal ? `${c.toUpperCase()}=${word}` : word;
+          }
+          return c;
+        })
         .join(sep);
+
+      if (fontStyle !== "none") result = applyFontStyle(result, fontStyle);
+      return result;
     }
     case "atbash": {
-      const maintainCase = customSettings.maintainCase !== false;
-      return workingText
+      const fontStyle = customSettings.fontStyle || "none";
+      const includeNumbers = customSettings.includeNumbers === true;
+
+      let result = workingText
         .split("")
         .map((char) => {
           if (char.match(/[a-z]/i)) {
             const code = char.charCodeAt(0);
-            if (code >= 97 && code <= 122) {
+            if (code >= 97 && code <= 122)
               return String.fromCharCode(122 - (code - 97));
-            } else if (code >= 65 && code <= 90) {
+            if (code >= 65 && code <= 90)
               return String.fromCharCode(90 - (code - 65));
-            }
+          }
+          if (includeNumbers && char.match(/[0-9]/)) {
+            return String.fromCharCode(57 - (char.charCodeAt(0) - 48));
           }
           return char;
         })
         .join("");
+
+      if (fontStyle !== "none") result = applyFontStyle(result, fontStyle);
+      return result;
     }
     case "leetspeak": {
+      const fontStyle = customSettings.fontStyle || "none";
       const level = customSettings.level || "basic";
+      const capsMode = customSettings.capsMode || "lower";
+
       const basic: Record<string, string> = {
         a: "4",
         e: "3",
@@ -3580,20 +4927,81 @@ export function transformText(
         f: "ph",
         h: "|-|",
         k: "|<",
-        m: "|\\/|",
+        m: "\\/\\/|",
         n: "|\\|",
         r: "|2",
         u: "|_|",
         v: "\\/",
         w: "\\/\\/",
       };
-      const map =
-        level === "elite" ? elite : level === "advanced" ? advanced : basic;
-      return workingText
-        .toLowerCase()
+      const ultra: Record<string, string> = {
+        ...elite,
+        a: "/-\\",
+        b: "!3",
+        c: "[",
+        d: "cl",
+        e: "[-",
+        g: "C-",
+        h: "]-[",
+        i: "][",
+        j: ",_|",
+        k: "|{",
+        l: "|_",
+        m: "|V|",
+        n: "/\\/",
+        o: "()",
+        p: "|*",
+        q: "(_,)",
+        r: "|?",
+        s: "$",
+        t: "+",
+        u: "(_)",
+        v: "\\/",
+        w: "\\_|_/",
+        x: "}{",
+        y: "`/",
+        z: "2",
+      };
+
+      let map: Record<string, string>;
+      if (level === "random") {
+        const maps = [basic, advanced, elite, ultra];
+        map = {};
+        "abcdefghijklmnopqrstuvwxyz".split("").forEach((c) => {
+          const randomMap = maps[Math.floor(Math.random() * maps.length)];
+          map[c] = randomMap[c] || c;
+        });
+      } else {
+        map =
+          level === "ultra"
+            ? ultra
+            : level === "elite"
+              ? elite
+              : level === "advanced"
+                ? advanced
+                : basic;
+      }
+
+      let text = workingText.toLowerCase();
+      let result = text
         .split("")
         .map((c) => map[c] || c)
         .join("");
+
+      if (capsMode === "upper") result = result.toUpperCase();
+      else if (capsMode === "alternating")
+        result = result
+          .split("")
+          .map((c, i) => (i % 2 === 0 ? c : c.toUpperCase()))
+          .join("");
+      else if (capsMode === "random")
+        result = result
+          .split("")
+          .map((c) => (Math.random() > 0.5 ? c.toUpperCase() : c))
+          .join("");
+
+      if (fontStyle !== "none") result = applyFontStyle(result, fontStyle);
+      return result;
     }
     case "wingdings": {
       const style = customSettings.style || "classic";
@@ -4709,52 +6117,184 @@ export function transformText(
 
     // Weird and Creepy text tools with proper customization
     case "weird-text": {
+      const fontStyle = customSettings.fontStyle || "ransomNote";
       const level = customSettings.level || 5;
-      const mixFonts = customSettings.mix !== false;
+      const mixFonts = customSettings.mix === true;
 
-      // Multiple font maps to mix from
-      const fontMaps = [GOTHIC_MAP, BOLD_MAP, ITALIC_MAP, CURSIVE_MAP];
+      // Apply the selected font style first
+      let styledText = applyFontStyle(workingText, fontStyle);
 
       if (mixFonts) {
-        // Mix different fonts based on level
-        return workingText
+        // Mix different fonts based on level - more random with higher level
+        const fontMaps = [
+          GOTHIC_MAP,
+          BOLD_MAP,
+          ITALIC_MAP,
+          CURSIVE_MAP,
+          MONOSPACE_MAP,
+          BUBBLE_MAP,
+        ];
+        styledText = workingText
           .split("")
           .map((c, i) => {
             if (c === " ") return c;
-            // Higher level = more random font switching
             const fontIndex =
               (i + Math.floor(Math.random() * level)) % fontMaps.length;
             return mapChars(c, fontMaps[fontIndex]);
           })
           .join("");
-      } else {
-        // Use a single weird font based on level
-        const selectedFont =
-          fontMaps[Math.min(level - 1, fontMaps.length - 1) % fontMaps.length];
-        return mapChars(workingText, selectedFont);
       }
+
+      // Apply weirdness effects based on level (visible changes)
+      if (level > 3) {
+        const combiningMarks = [
+          "\u0300",
+          "\u0301",
+          "\u0302",
+          "\u0303",
+          "\u0304",
+          "\u0305",
+          "\u0306",
+          "\u0307",
+          "\u0308",
+          "\u030A",
+          "\u030B",
+          "\u030C",
+          "\u0316",
+          "\u0317",
+          "\u0318",
+          "\u0319",
+          "\u031C",
+          "\u031D",
+          "\u031E",
+          "\u031F",
+          "\u0320",
+          "\u0324",
+          "\u0325",
+          "\u0326",
+          "\u0329",
+          "\u032A",
+          "\u032B",
+          "\u032C",
+          "\u032D",
+          "\u032E",
+          "\u032F",
+          "\u0330",
+          "\u0331",
+          "\u0332",
+          "\u0333",
+        ];
+        const markCount = Math.floor((level - 3) / 2);
+        styledText = styledText
+          .split("")
+          .map((c) => {
+            if (c === " " || c.charCodeAt(0) < 32) return c;
+            let result = c;
+            for (let i = 0; i < markCount; i++) {
+              if (Math.random() < level / 20) {
+                result +=
+                  combiningMarks[
+                    Math.floor(Math.random() * combiningMarks.length)
+                  ];
+              }
+            }
+            return result;
+          })
+          .join("");
+      }
+
+      // At high levels, randomly insert weird symbols between chars
+      if (level > 10) {
+        const weirdSymbols = [
+          "̷",
+          "̸",
+          "̶",
+          "̵",
+          "̴",
+          "͜",
+          "͝",
+          "͠",
+          "ͅ",
+          "̩",
+          "̡",
+          "̢",
+          "̧",
+          "̨",
+        ];
+        styledText = styledText
+          .split("")
+          .map((c) => {
+            if (c === " ") return c;
+            if (Math.random() < (level - 10) / 20) {
+              return (
+                c +
+                weirdSymbols[Math.floor(Math.random() * weirdSymbols.length)]
+              );
+            }
+            return c;
+          })
+          .join("");
+      }
+
+      return styledText;
     }
     case "creepy-text": {
+      const fontStyle = customSettings.fontStyle || "gothic";
       const creepiness = customSettings.creepiness || 5;
       const addShadow = customSettings.shadow === true;
 
-      // Creepy symbols to insert
-      const creepySymbols = ["̷", "̸", "̶", "̵", "̴"];
+      // Apply creepy font style
+      let styledText = applyFontStyle(workingText, fontStyle);
+
+      // Creepy symbols to insert based on creepiness level
+      const creepySymbols = ["\u0337", "\u0338", "\u0336", "\u0335", "\u0334"];
+      const heavyMarks = [
+        "\u0300",
+        "\u0301",
+        "\u0302",
+        "\u0303",
+        "\u0316",
+        "\u0317",
+        "\u0324",
+        "\u0325",
+        "\u0330",
+        "\u0331",
+        "\u0332",
+        "\u0333",
+      ];
       const shadowChars = ["░", "▒", "▓", "█", "▄", "▀"];
 
-      let result = workingText
+      // Scale effect intensity with creepiness
+      const numEffects = Math.max(1, Math.floor(creepiness / 3));
+      styledText = styledText
         .split("")
         .map((c, i) => {
           if (c === " ") return c;
-
-          // Apply gothic font for creepy look
-          let char = mapChars(c, GOTHIC_MAP);
+          let char = c;
 
           // Add zalgo-like effects based on creepiness
-          const numEffects = Math.floor(creepiness / 3);
           for (let j = 0; j < numEffects; j++) {
-            char +=
-              creepySymbols[Math.floor(Math.random() * creepySymbols.length)];
+            if (Math.random() < creepiness / 15) {
+              char +=
+                creepySymbols[Math.floor(Math.random() * creepySymbols.length)];
+            }
+          }
+
+          // At higher creepiness, add heavy combining marks
+          if (creepiness > 8) {
+            const extraMarks = Math.floor((creepiness - 8) / 2);
+            for (let j = 0; j < extraMarks; j++) {
+              char += heavyMarks[Math.floor(Math.random() * heavyMarks.length)];
+            }
+          }
+
+          // At max creepiness, full chaos
+          if (creepiness > 15) {
+            if (Math.random() < 0.3) {
+              char +=
+                heavyMarks[Math.floor(Math.random() * heavyMarks.length)] +
+                heavyMarks[Math.floor(Math.random() * heavyMarks.length)];
+            }
           }
 
           return char;
@@ -4763,11 +6303,11 @@ export function transformText(
 
       // Add shadow characters if enabled
       if (addShadow) {
-        result = result
+        styledText = styledText
           .split("")
           .map((c, i) => {
             if (c === " ") return c;
-            if (i % 3 === 0) {
+            if (i % Math.max(4 - Math.floor(creepiness / 5), 2) === 0) {
               return (
                 shadowChars[Math.floor(Math.random() * shadowChars.length)] + c
               );
@@ -4777,7 +6317,7 @@ export function transformText(
           .join("");
       }
 
-      return result;
+      return styledText;
     }
 
     // SYMBOLS TOOLS
@@ -4801,8 +6341,38 @@ export function transformText(
           "⬅",
           "⬆",
           "⬇",
+          "↗",
+          "↘",
+          "↙",
+          "↖",
+          "⤴",
+          "⤵",
+          "↪",
+          "↩",
+          "⟶",
+          "⟵",
         ],
-        stars: ["★", "☆", "✦", "✧", "✪", "✫", "✬", "✭", "✮", "✯", "⭐", "🌟"],
+        stars: [
+          "★",
+          "☆",
+          "✦",
+          "✧",
+          "✪",
+          "✫",
+          "✬",
+          "✭",
+          "✮",
+          "✯",
+          "⭐",
+          "🌟",
+          "✰",
+          "⋆",
+          "✵",
+          "✶",
+          "✷",
+          "✸",
+          "✹",
+        ],
         hearts: [
           "♥",
           "♡",
@@ -4816,9 +6386,291 @@ export function transformText(
           "💝",
           "💞",
           "💟",
+          "❤️‍🔥",
+          "🩷",
+          "🩵",
+          "🩶",
+          "💜",
+          "🧡",
+          "💛",
+          "💚",
         ],
-        math: ["±", "×", "÷", "≠", "≤", "≥", "∞", "∑", "∏", "√", "∫", "π", "Ω"],
-        currency: ["$", "€", "£", "¥", "₹", "₽", "₿", "¢", "₩", "₪", "₮", "₱"],
+        math: [
+          "±",
+          "×",
+          "÷",
+          "≠",
+          "≤",
+          "≥",
+          "∞",
+          "∑",
+          "∏",
+          "√",
+          "∫",
+          "π",
+          "Ω",
+          "∂",
+          "∆",
+          "∇",
+          "∈",
+          "∉",
+          "⊂",
+          "⊃",
+          "∪",
+          "∩",
+          "∧",
+          "∨",
+        ],
+        currency: [
+          "$",
+          "€",
+          "£",
+          "¥",
+          "₹",
+          "₽",
+          "₿",
+          "¢",
+          "₩",
+          "₪",
+          "₮",
+          "₱",
+          "₸",
+          "₫",
+          "₵",
+          "₡",
+          "₢",
+          "₣",
+          "₤",
+          "₥",
+          "₦",
+        ],
+        dividers: [
+          "─",
+          "═",
+          "║",
+          "◈",
+          "━",
+          "┃",
+          "╌",
+          "╍",
+          "┄",
+          "┅",
+          "┈",
+          "┉",
+          "╴",
+          "╵",
+          "╶",
+          "╷",
+          "―",
+          "⸺",
+          "⸻",
+        ],
+        flowers: [
+          "✿",
+          "❀",
+          "❁",
+          "✾",
+          "✽",
+          "❃",
+          "💐",
+          "🌸",
+          "🌹",
+          "🌺",
+          "🌻",
+          "🌼",
+          "🌷",
+          "🏵",
+          "💮",
+          "🌺",
+        ],
+        music: [
+          "♩",
+          "♪",
+          "♫",
+          "♬",
+          "🎵",
+          "🎶",
+          "🎼",
+          "𝄞",
+          "𝄢",
+          "♭",
+          "♮",
+          "♯",
+          "🎸",
+          "🎹",
+          "🎷",
+          "🎺",
+          "🥁",
+        ],
+        weather: [
+          "☀",
+          "☁",
+          "⛅",
+          "🌤",
+          "🌥",
+          "🌦",
+          "🌧",
+          "⛈",
+          "🌩",
+          "🌪",
+          "❄",
+          "⚡",
+          "🌈",
+          "🌊",
+          "💧",
+          "☃",
+          "⛄",
+        ],
+        zodiac: [
+          "♈",
+          "♉",
+          "♊",
+          "♋",
+          "♌",
+          "♍",
+          "♎",
+          "♏",
+          "♐",
+          "♑",
+          "♒",
+          "♓",
+        ],
+        chess: ["♔", "♕", "♖", "♗", "♘", "♙", "♚", "♛", "♜", "♝", "♞", "♟"],
+        dice: ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"],
+        cards: [
+          "♠",
+          "♣",
+          "♥",
+          "♦",
+          "🂡",
+          "🂢",
+          "🂣",
+          "🂤",
+          "🂥",
+          "🂦",
+          "🂧",
+          "🂨",
+          "🃏",
+        ],
+        animals: [
+          "🐱",
+          "🐶",
+          "🐰",
+          "🦊",
+          "🐻",
+          "🐼",
+          "🐨",
+          "🦁",
+          "🐯",
+          "🐸",
+          "🐵",
+          "🐙",
+          "🦋",
+          "🐝",
+          "🐞",
+          "🦄",
+          "🐺",
+          "🦇",
+        ],
+        food: [
+          "🍕",
+          "🍔",
+          "🍟",
+          "🌮",
+          "🍩",
+          "🍪",
+          "🧁",
+          "🍰",
+          "🎂",
+          "🍭",
+          "🍫",
+          "🍬",
+          "🍦",
+          "🍓",
+          "🍎",
+          "🍌",
+          "🍇",
+          "🍉",
+        ],
+        geometric: [
+          "◆",
+          "●",
+          "■",
+          "▲",
+          "◇",
+          "○",
+          "□",
+          "△",
+          "▶",
+          "◀",
+          "▼",
+          "▽",
+          "⬠",
+          "⬡",
+          "⬢",
+          "⬣",
+          "⬤",
+          "⬥",
+          "⬦",
+        ],
+        boxDrawing: [
+          "┌",
+          "┐",
+          "└",
+          "┘",
+          "├",
+          "┤",
+          "┬",
+          "┴",
+          "┼",
+          "═",
+          "║",
+          "╔",
+          "╗",
+          "╚",
+          "╝",
+          "╠",
+          "╣",
+          "╦",
+          "╩",
+          "╬",
+        ],
+        braille: [
+          "⠁",
+          "⠃",
+          "⠇",
+          "⠏",
+          "⠟",
+          "⠿",
+          "⡿",
+          "⣿",
+          "⠉",
+          "⠊",
+          "⠋",
+          "⠌",
+          "⠍",
+          "⠎",
+          "⠑",
+          "⠒",
+        ],
+        religious: [
+          "✝",
+          "☪",
+          "✡",
+          "☸",
+          "☯",
+          "☦",
+          "⛩",
+          "🕉",
+          "🛐",
+          "⸸",
+          "☥",
+          "♱",
+        ],
+        planets: ["☿", "♀", "♂", "♃", "♄", "♅", "♆", "⚳", "⚴", "⚵", "⚶", "⚷"],
+        crosses: ["✚", "✝", "✞", "✟", "†", "‡", "♱", "♰", "☩", "⸸"],
+        snowflakes: ["❄", "❅", "❆", "✻", "✼", "✽", "✾", "❊", "❋"],
+        bullets: ["•", "◦", "‣", "⁃", "▪", "▫", "⊙", "⊚", "✦", "✧", "⬩", "⬪"],
         all: [
           "★",
           "♥",
@@ -4836,11 +6688,19 @@ export function transformText(
           "○",
           "□",
           "△",
+          "✿",
+          "❀",
+          "♪",
+          "♫",
+          "⚡",
+          "❄",
+          "☀",
+          "☁",
         ],
       };
 
       const symbols = symbolSets[category] || symbolSets.all;
-      const insertFreq = Math.max(11 - density, 2);
+      const insertFreq = Math.max(11 - density, 1);
 
       return workingText
         .split("")
@@ -4854,7 +6714,7 @@ export function transformText(
         .join("");
     }
     case "aesthetic-symbols": {
-      const style = customSettings.style || "sparkle";
+      const aestheticStyle = customSettings.style || "sparkle";
       const wrap = customSettings.wrap !== false;
 
       const styleSets: Record<
@@ -4881,9 +6741,194 @@ export function transformText(
           prefix: "⋆｡˚✩",
           suffix: "✩˚｡⋆",
         },
+        ocean: {
+          symbols: ["🌊", "✧", "˚", "⋆", "🐚"],
+          prefix: "🌊✧˚",
+          suffix: "˚✧🌊",
+        },
+        butterfly: {
+          symbols: ["🦋", "✧", "˚", "⋆", "✦"],
+          prefix: "🦋·✧",
+          suffix: "✧·🦋",
+        },
+        crystal: {
+          symbols: ["💎", "✧", "˚", "⋆", "✦"],
+          prefix: "💎✧˚",
+          suffix: "˚✧💎",
+        },
+        moonlight: {
+          symbols: ["🌙", "☽", "✧", "˚", "⋆"],
+          prefix: "🌙☽·",
+          suffix: "·☽🌙",
+        },
+        sunrise: {
+          symbols: ["🌅", "✧", "˚", "⋆", "☀"],
+          prefix: "🌅✧˚",
+          suffix: "˚✧🌅",
+        },
+        aurora: {
+          symbols: ["🌌", "✧", "˚", "⋆", "✦"],
+          prefix: "🌌·✧",
+          suffix: "✧·🌌",
+        },
+        garden: {
+          symbols: ["🌺", "🌸", "✿", "❀", "🌻"],
+          prefix: "🌸✿❀",
+          suffix: "❀✿🌸",
+        },
+        starryNight: {
+          symbols: ["⭐", "🌟", "✦", "☆", "★"],
+          prefix: "⭐🌟✦",
+          suffix: "✦🌟⭐",
+        },
+        cottagecore: {
+          symbols: ["🌿", "🍄", "🌻", "🧺", "🌾"],
+          prefix: "🌿🍄·",
+          suffix: "·🍄🌿",
+        },
+        darkAcademia: {
+          symbols: ["📚", "🖋", "☾", "✧", "⋆"],
+          prefix: "📚☾·",
+          suffix: "·☾📚",
+        },
+        kawaii: {
+          symbols: ["♡", "✧", "˚", "₊", "⁎"],
+          prefix: "♡˚₊·",
+          suffix: "·₊˚♡",
+        },
+        vaporwave: {
+          symbols: ["✧", "˚", "₊", "⁺", "⋆"],
+          prefix: "✧˚₊·",
+          suffix: "·₊˚✧",
+        },
+        y2k: {
+          symbols: ["✰", "⋆", "✧", "˚", "★"],
+          prefix: "✰⋆·",
+          suffix: "·⋆✰",
+        },
+        fairy: {
+          symbols: ["✦", "˚", "⁺", "⋆", "✧"],
+          prefix: "✦˚⁺·",
+          suffix: "·⁺˚✦",
+        },
+        royal: {
+          symbols: ["♔", "✦", "⚜", "✧", "★"],
+          prefix: "♔⚜✦",
+          suffix: "✦⚜♔",
+        },
+        minimalist: {
+          symbols: ["⸰", "·", "˚", "⋅", "∘"],
+          prefix: "· · ·",
+          suffix: "· · ·",
+        },
+        boho: {
+          symbols: ["☽", "✧", "⋆", "˚", "✦"],
+          prefix: "☽✧⋆",
+          suffix: "⋆✧☽",
+        },
+        celestialDark: {
+          symbols: ["☆", "✧", "⋆", "★", "✦"],
+          prefix: "★☆✧",
+          suffix: "✧☆★",
+        },
+        pastelDream: {
+          symbols: ["🧸", "✧", "˚", "⋆", "♡"],
+          prefix: "🧸✧˚",
+          suffix: "˚✧🧸",
+        },
+        witchy: {
+          symbols: ["☽", "⛤", "✧", "⋆", "⚗"],
+          prefix: "☽⛤·",
+          suffix: "·⛤☽",
+        },
+        retro: {
+          symbols: ["✰", "★", "☆", "✵", "✷"],
+          prefix: "✰★☆",
+          suffix: "☆★✰",
+        },
+        cyberpunk: {
+          symbols: ["⟨", "⟩", "⌈", "⌉", "⌊", "⌋"],
+          prefix: "⟨⌈⌊",
+          suffix: "⌋⌉⟩",
+        },
+        steampunk: {
+          symbols: ["⚙", "⛭", "⚗", "⚒", "⛏"],
+          prefix: "⚙⛭·",
+          suffix: "·⛭⚙",
+        },
+        gothic: {
+          symbols: ["☠", "⚰", "✞", "☾", "⛤"],
+          prefix: "☠✞☾",
+          suffix: "☾✞☠",
+        },
+        angel: {
+          symbols: ["♡", "✰", "✧", "⋆", "☁"],
+          prefix: "♡✰✧",
+          suffix: "✧✰♡",
+        },
+        demon: {
+          symbols: ["⛧", "⛤", "⸸", "☠", "†"],
+          prefix: "⛧⛤⸸",
+          suffix: "⸸⛤⛧",
+        },
+        sakura: {
+          symbols: ["🌸", "❀", "✿", "🏵", "💮"],
+          prefix: "🌸❀✿",
+          suffix: "✿❀🌸",
+        },
+        snow: {
+          symbols: ["❄", "❅", "❆", "˚", "⋆"],
+          prefix: "❄❅❆",
+          suffix: "❆❅❄",
+        },
+        fire: {
+          symbols: ["🔥", "✧", "⋆", "˚", "💫"],
+          prefix: "🔥✧˚",
+          suffix: "˚✧🔥",
+        },
+        ice: {
+          symbols: ["❄", "✧", "⋆", "˚", "💎"],
+          prefix: "❄✧˚",
+          suffix: "˚✧❄",
+        },
+        thunder: {
+          symbols: ["⚡", "✧", "⋆", "˚", "★"],
+          prefix: "⚡✧˚",
+          suffix: "˚✧⚡",
+        },
+        rainbow: {
+          symbols: ["🌈", "✧", "⋆", "˚", "★"],
+          prefix: "🌈✧˚",
+          suffix: "˚✧🌈",
+        },
+        vintage: {
+          symbols: ["❦", "✧", "⋆", "˚", "❧"],
+          prefix: "❦✧˚",
+          suffix: "˚✧❦",
+        },
+        grunge: {
+          symbols: ["✗", "✘", "✕", "☒", "✖"],
+          prefix: "✗✘✕",
+          suffix: "✕✘✗",
+        },
+        ethereal: {
+          symbols: ["✧", "⋆", "˚", "⁺", "·"],
+          prefix: "✧⋆˚",
+          suffix: "˚⋆✧",
+        },
+        dreamcore: {
+          symbols: ["☁", "✧", "⋆", "˚", "💫"],
+          prefix: "☁✧˚",
+          suffix: "˚✧☁",
+        },
+        softGirl: {
+          symbols: ["🧸", "🌸", "♡", "✧", "˚"],
+          prefix: "🧸🌸♡",
+          suffix: "♡🌸🧸",
+        },
       };
 
-      const styleConfig = styleSets[style] || styleSets.sparkle;
+      const styleConfig = styleSets[aestheticStyle] || styleSets.sparkle;
       let result = workingText
         .split("")
         .map((c, i) => {
@@ -4923,6 +6968,355 @@ export function transformText(
         technical: ["⌘", "⌥", "⇧", "⌃", "⎋", "⏎", "⌫", "⇥", "⌧", "⏏"],
         legal: ["©", "®", "™", "℠", "℗", "§", "¶", "№", "℃", "℉"],
         musical: ["♩", "♪", "♫", "♬", "𝄞", "𝄢", "𝄫", "𝄪", "♭", "♮", "♯"],
+        mathematical: [
+          "∑",
+          "∏",
+          "∫",
+          "√",
+          "∂",
+          "∆",
+          "∇",
+          "∈",
+          "∉",
+          "⊂",
+          "⊃",
+          "∪",
+          "∩",
+          "∧",
+          "∨",
+          "∀",
+          "∃",
+          "∄",
+        ],
+        greek: [
+          "α",
+          "β",
+          "γ",
+          "δ",
+          "ε",
+          "ζ",
+          "η",
+          "θ",
+          "ι",
+          "κ",
+          "λ",
+          "μ",
+          "ν",
+          "ξ",
+          "π",
+          "ρ",
+          "σ",
+          "τ",
+          "υ",
+          "φ",
+          "χ",
+          "ψ",
+          "ω",
+        ],
+        punctuation: [
+          "¿",
+          "¡",
+          "‽",
+          "※",
+          "⁑",
+          "⁂",
+          "‼",
+          "⁇",
+          "⁈",
+          "⁉",
+          "‥",
+          "…",
+          "·",
+        ],
+        typography: [
+          "«",
+          "»",
+          "‹",
+          "›",
+          "„",
+          "‟",
+          "\u2018",
+          "\u2019",
+          "‚",
+          "‛",
+          "\u201C",
+          "\u201D",
+          "‐",
+          "‑",
+          "–",
+          "—",
+        ],
+        phonetic: [
+          "ɑ",
+          "ɛ",
+          "ɪ",
+          "ɒ",
+          "ʌ",
+          "ə",
+          "ʊ",
+          "ɔ",
+          "æ",
+          "ð",
+          "θ",
+          "ʃ",
+          "ʒ",
+          "ŋ",
+          "ɹ",
+          "ɾ",
+          "ɽ",
+        ],
+        dingbats: ["✂", "✉", "✏", "✐", "✑", "✒", "✓", "✔", "✕", "✖", "✗", "✘"],
+        arrows: [
+          "⬆",
+          "⬇",
+          "⬅",
+          "➡",
+          "↕",
+          "↔",
+          "↗",
+          "↘",
+          "↙",
+          "↖",
+          "⤴",
+          "⤵",
+          "↩",
+          "↪",
+        ],
+        boxDrawing: [
+          "╔",
+          "╗",
+          "╚",
+          "╝",
+          "╠",
+          "╣",
+          "╦",
+          "╩",
+          "╬",
+          "║",
+          "═",
+          "╒",
+          "╓",
+          "╕",
+          "╖",
+        ],
+        blockElements: [
+          "▀",
+          "▄",
+          "█",
+          "▌",
+          "▐",
+          "░",
+          "▒",
+          "▓",
+          "▐",
+          "▕",
+          "▖",
+          "▗",
+          "▘",
+          "▙",
+          "▚",
+          "▛",
+        ],
+        astronomical: ["☀", "☽", "☾", "★", "☆", "☄", "⊙", "⊛", "⊕", "⊗"],
+        currency: [
+          "₿",
+          "₹",
+          "₩",
+          "₽",
+          "₸",
+          "₫",
+          "₵",
+          "₡",
+          "₢",
+          "₣",
+          "₤",
+          "₥",
+          "₦",
+          "₧",
+          "₨",
+        ],
+        chess: ["♔", "♕", "♖", "♗", "♘", "♙", "♚", "♛", "♜", "♝", "♞", "♟"],
+        cards: [
+          "♠",
+          "♣",
+          "♥",
+          "♦",
+          "🂡",
+          "🂢",
+          "🂣",
+          "🂤",
+          "🂥",
+          "🂦",
+          "🂧",
+          "🂨",
+          "🃏",
+        ],
+        dice: ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"],
+        zodiac: [
+          "♈",
+          "♉",
+          "♊",
+          "♋",
+          "♌",
+          "♍",
+          "♎",
+          "♏",
+          "♐",
+          "♑",
+          "♒",
+          "♓",
+        ],
+        religious: ["✝", "☪", "✡", "☸", "☯", "☦", "⛩", "🕉", "🛐", "⸸"],
+        hazard: ["☢", "☣", "⚠", "⚡", "☠", "⛔", "🚫", "⚠️"],
+        recycling: ["♲", "♳", "♴", "♵", "♶", "♷", "♸", "♹", "♺", "♻"],
+        gender: ["♂", "♀", "⚥", "⚧", "⚤", "⚢", "⚣"],
+        weather: [
+          "☀",
+          "☁",
+          "☂",
+          "☃",
+          "⛅",
+          "🌤",
+          "🌥",
+          "🌦",
+          "🌧",
+          "⛈",
+          "🌩",
+          "🌪",
+        ],
+        communication: ["☎", "✆", "✉", "✈", "📱", "💻", "📧", "📞", "📠", "📡"],
+        hands: [
+          "☞",
+          "☛",
+          "☜",
+          "☚",
+          "👆",
+          "👇",
+          "👈",
+          "👉",
+          "🤙",
+          "✋",
+          "🤚",
+          "👌",
+          "✌",
+        ],
+        smileys: ["☺", "☻", "☹", "㋡", "ッ", "ツ", "〠", "ꆜ"],
+        crosses: ["✚", "✜", "✝", "✞", "✟", "†", "‡", "♱", "♰", "☩"],
+        stars: [
+          "✦",
+          "✧",
+          "✩",
+          "✪",
+          "✫",
+          "✬",
+          "✭",
+          "✮",
+          "✯",
+          "✰",
+          "✵",
+          "✶",
+          "✷",
+          "✸",
+          "✹",
+        ],
+        snowflakes: ["❄", "❅", "❆", "✻", "✼", "✽", "✾", "❊", "❋"],
+        hearts: [
+          "❤",
+          "❦",
+          "❧",
+          "♡",
+          "♥",
+          "💔",
+          "💕",
+          "💖",
+          "💗",
+          "💘",
+          "💝",
+          "💞",
+          "💟",
+        ],
+        flowers: [
+          "✿",
+          "❀",
+          "❁",
+          "✽",
+          "✾",
+          "❃",
+          "💐",
+          "🌸",
+          "🌹",
+          "🌺",
+          "🌻",
+          "🌼",
+          "🌷",
+        ],
+        japanese: [
+          "㊀",
+          "㊁",
+          "㊂",
+          "㊃",
+          "㊄",
+          "㊅",
+          "㊆",
+          "㊇",
+          "㊈",
+          "㊉",
+          "㊊",
+          "㊋",
+          "㊌",
+          "㊍",
+        ],
+        braille: [
+          "⠁",
+          "⠃",
+          "⠇",
+          "⠏",
+          "⠟",
+          "⠿",
+          "⡿",
+          "⣿",
+          "⠉",
+          "⠊",
+          "⠋",
+          "⠌",
+          "⠍",
+          "⠎",
+        ],
+        dominos: ["🁣", "🁤", "🁥", "🁦", "🁧", "🁨", "🁩", "🁪", "🁫", "🁬"],
+        planets: ["☿", "♀", "♂", "♃", "♄", "♅", "♆", "⚳", "⚴", "⚵", "⚶", "⚷"],
+        alchemical: [
+          "🜁",
+          "🜂",
+          "🜃",
+          "🜄",
+          "🜍",
+          "🜎",
+          "🜏",
+          "🜐",
+          "🜑",
+          "🜒",
+          "🜓",
+          "🜔",
+        ],
+        geometric: [
+          "◆",
+          "◇",
+          "○",
+          "●",
+          "◎",
+          "◉",
+          "□",
+          "■",
+          "△",
+          "▽",
+          "▷",
+          "◁",
+          "⬠",
+          "⬡",
+          "⬢",
+        ],
+        ornamental: ["❖", "❧", "❦", "❡", "❝", "❞", "❛", "❜", "⁜", "⁕", "⁖"],
+        ballot: ["☐", "☑", "☒", "✓", "✔", "✕", "✖", "✗", "✘", "⍻"],
       };
 
       const chars = charSets[charType] || charSets.decorative;
@@ -4958,6 +7352,97 @@ export function transformText(
         ],
         cute: ["ʕ•ᴥ•ʔ", "(=^・^=)", "ฅ^•ﻌ•^ฅ", "ʕ ᵔᴥᵔ ʔ", "(◕ᴗ◕✿)", "UwU"],
         shrug: ["¯\\_(ツ)_/¯", "┐(´д`)┌", "╮(︶▽︶)╭", "ヽ(。_°)ノ"],
+        love: [
+          "♡(ᐢ ᴗ ᐢ)♡",
+          "(♥ω♥*)",
+          "(*♡∀♡)",
+          "(◍•ᴗ•◍)❤",
+          "(灬♥ω♥灬)",
+          "( ˘ ³˘)♥",
+        ],
+        excited: [
+          "ヽ(>∀<)ﾉ",
+          "\\(★ω★)/",
+          "ヽ(★ω★)ノ",
+          "(ﾉ≧∀≦)ﾉ",
+          "٩(◕‿◕)۶",
+          "\\(^o^)/",
+        ],
+        sleepy: [
+          "(´-ω-`)",
+          "(∪.∪ )...zzz",
+          "(-ω-) zzZ",
+          "(￣o￣) zzZZ",
+          "(´～`)",
+        ],
+        confused: [
+          "(?_?)",
+          "(・_・?)",
+          "(⊙_⊙)?",
+          "(◎_◎;)",
+          "(=_=)",
+          "(´-ω-`)?",
+        ],
+        cool: ["(⌐■_■)", "(•_•) ( •_•)>⌐■-■", "B-)", "(▀̿Ĺ̯▀̿ ̿)", "ᕙ(▀̿ĺ̯▀̿ ̿)ᕗ"],
+        crying: [
+          "(ᗒᗣᗕ)՞",
+          "(っ˘̩╭╮˘̩)っ",
+          "(;´༎ຶД༎ຶ`)",
+          "(ノД`)・゜・。",
+          "(;ω;)",
+        ],
+        laughing: ["(≧▽≦)", "ᕕ( ᐛ )ᕗ", "(^▽^)", "(ᗒᗨᗕ)", "(≧◡≦)", "━(゚∀゚)━"],
+        winking: ["(^_~)", "(^_-)", "( ̄▽ ̄)", "(¬‿¬)", "(~_^)"],
+        surprised: ["Σ(°△°)", "(⊙_⊙)", "Σ(ﾟДﾟ)", "( ꒪Д꒪)ノ", "(°ロ°) !"],
+        nervous: ["(°▽°;)", "(；一_一)", "(⊙﹏⊙)", "(゜-゜)", "(ーー;)"],
+        disappointed: ["(◞‸◟)", "(._.)", "(；⌣̀_⌣́)", "(´-ε-`)", "(-_-;)・・・"],
+        scared: [
+          "Σ(ﾟдﾟ)",
+          "(((( ;°Д°))))",
+          "(ꏿ﹏ꏿ;)",
+          "(°△°|||)",
+          "!!!(⊃Д)⊃",
+        ],
+        evil: ["(ψ`∇´)ψ", "(▼∀▼)", "ψ(｀∇´)ψ", "( ◉◞ ◉)", "(ꐦ°᷄д°᷅)"],
+        cat: [
+          "(=^・ω・^=)",
+          "(=^‥^=)",
+          "(=^◡^=)",
+          "ᓚᘏᗢ",
+          "ฅ(^•ﻌ•^ฅ)",
+          "(ꆤ.ꆤ)",
+        ],
+        dog: ["∪・ᴥ・∪", "(ᵔᴥᵔ)", "▼・ᴥ・▼", "U ´ᴥ` U", "(◕ᴥ◕ʋ)"],
+        bear: ["ʕ •ᴥ• ʔ", "ʕ·ᴥ·ʔ", "ʕ ᵔᴥᵔ ʔ", "ʕ ≧ᴥ≦ ʔ", "ʕ♥ᴥ♥ʔ"],
+        bunny: ["(\\ /) ( . .) ( >🥕", "(\\(\\  (=':'=) (\\'')_(''))", "ᡕᠵ᠊ᡃ"],
+        spider: ["/╲/( •̀ ω •́ )\\╱\\"],
+        fish: ["><(((°>", "<°)))><", "ᛦ><((((°ᛦ>"],
+        wizard: ["(∩`-´)⊃━☆ﾟ.*", "(∩ ͡° ͜ʖ ͡°)⊃━☆ﾟ.*", "⊂( ・ ̫・)⊃━☆ﾟ.*"],
+        warrior: ["╰(▔∀▔)╯", "ᕦ(ò_óˇ)ᕤ", "(ง •̀_•́)ง"],
+        king: ["♛(ᴗ‿ᴗ)♛", "♔(˘‿˘)♔"],
+        music: ["♪♫•*¨*•♫♪", "♪(´ε` )", "♫♪♬"],
+        dance: ["♪(^∇^*)", "♪(・ω・)ノ", "┌(★o☆)┘♪"],
+        flex: ["ᕦ(ò_óˇ)ᕤ", "ᕙ(⇀‸↼‶)ᕗ", "ᕙ(▀̿ĺ̯▀̿ ̿)ᕗ"],
+        disapproval: ["ಠ╭╮ಠ", "ಠ_ಠ", "(ಠ_ಠ)"],
+        blushing: ["(⁄ ⁄>⁄ ▽ ⁄<⁄ ⁄)", "(*ﾉωﾉ)", "(⁄⁄⁄ ⁄ ⁄⁄⁄)"],
+        sparkles: ["(ﾉ◕ヮ◕)ﾉ*:·ﾟ✧", "ﾟ+.ﾟ(´▽`人)ﾟ+.ﾟ"],
+        hugging: ["(つ≧▽≦)つ", "(⊃ • ʖ̫ • )⊃", "(⊃｡•́‿•̀｡)⊃"],
+        tableFlip: ["(╯°□°)╯︵ ┻━┻", "(ノಠ益ಠ)ノ彡┻━┻", "(ﾉ≧∇≦)ﾉ ﾐ ┻━┻"],
+        putBack: ["┬─┬ノ( º _ ºノ)", "┬──┬◡ﾉ(° -°ﾉ)"],
+        running: ["ε=ε=ε=┌(;*´Д`)ﾉ", "ε=ε=ε=(ﾉ≧∇≦)ﾉ"],
+        shooting: ["(╭☞ ͡° ͜ʖ ͡° )╭☞", "(☞ﾟ∀ﾟ)☞", "☞(⌐■_■)☞"],
+        peek: ["┬┴┬┴┤ ͜ʖ ͡°) ├┬┴┬┴", "┬┴┬┴┤(・_├┬┴┬┴"],
+        zombie: ["[¬º-°]¬", "ε/̵͇̿̿/'̿'̿ ̿(◡︵◡)"],
+        robot: ["{•̃_•̃}", "[•̀ᴗ•́]و", "⟨•_•⟩"],
+        alien: ["ꉺ_ꉺ", "⊛ठ̃⊝ठ̃⊛", "(◣_◢)"],
+        ghost: ["⊂(◉‿◉)つ", "(⊃ ◉ ‿ ◉ )⊃", "ε(´סּ︵סּ`)з"],
+        pirate: ["☠ᕕ( ᐛ )ᕗ☠", "⚓ᕕ( ᐛ )ᕗ⚓"],
+        ninja: ["(⌒_⌒;)", "(¬‿¬)", "ᕕ( ᐛ )ᕗ"],
+        pensive: ["(._. )", "(._.)", "(´._.`)"],
+        content: ["(◡‿◡✿)", "(◠‿◠✿)", "(◕‿◕✿)"],
+        determined: ["(ง'̀-'́)ง", "(ง •̀_•́)ง", "ᕦ(ò_óˇ)ᕤ"],
+        suspicious: ["(¬‿¬)", "(¬_¬)", "(͡ ° ͜ʖ ͡ °)"],
+        celebration: ["☆*:.｡.o(≧▽≦)o.｡.:*☆", "✲ﾟ*｡✧٩(・ω・)و✧｡*ﾟ✲"],
       };
 
       const emoticonList = emoticons[mood] || emoticons.happy;
@@ -4980,6 +7465,51 @@ export function transformText(
         wink: "( ͡~ ͜ʖ ͡°)",
         flipped: "( ͜。 ͡ʖ ͜。)",
         bear: "ʕ ͡° ͜ʖ ͡°ʔ",
+        strong: "ᕦ( ͡° ͜ʖ ͡°)ᕤ",
+        sparkle: "( ͡° ͜ʖ ͡°)✧",
+        fight: "(ง ͡° ͜ʖ ͡°)ง",
+        mustache: "( ͡° ͜ʖ ͡°)ﾉ⌐■-■",
+        sad: "( ͡° ʖ̯ ͡°)",
+        angry: "( ͠° ͟ʖ ͡°)",
+        disapproval: "ಠ_ಠ",
+        dealWithIt: "(⌐■_■)",
+        suspicious: "( ͡ʘ ͜ʖ ͡ʘ)",
+        tableLenny: "┬┴┬┴┤ ͡° ͜ʖ ͡°)├┬┴┬┴",
+        spider: "/╲/( ͡° ͡° ͜ʖ ͡° ͡°)/\\╱\\",
+        donger: "ヽ༼ ͡° ͜ʖ ͡° ༽ﾉ",
+        magic: "(☞ ͡° ͜ʖ ͡°)☞",
+        double: "͡° ͜ʖ ͡ –",
+        wizard: "(∩ ͡° ͜ʖ ͡°)⊃━☆ﾟ",
+        running: "ε=ε=( ͡° ͜ʖ ͡°)",
+        heart: "( ͡° ͜ʖ ͡°)ﾉ♡",
+        musicLenny: "♪( ͡° ͜ʖ ͡°)♪",
+        gun: "╾━╤デ╦︻( ͡° ͜ʖ ͡°)",
+        wave: "~( ͡° ͜ʖ ͡°)~",
+        shrug: "¯\\( ͡° ͜ʖ ͡°)/¯",
+        uwu: "( ͡UwU)",
+        owo: "( ͡OwO)",
+        sniper: "▄︻̷̿┻̿═━一( ͡° ͜ʖ ͡°)",
+        angel: "☜( ͡° ͜ʖ ͡°☜)",
+        devil: "ψ( ͡° ͜ʖ ͡°)ψ",
+        sword: "(ง ͡° ͜ʖ ͡°)ง⚔",
+        crown: "♛( ͡° ͜ʖ ͡°)♛",
+        starsLenny: "★( ͡° ͜ʖ ͡°)★",
+        cool: "( ͡° ͜ʖ ͡°)>⌐■-■",
+        flex: "ᕙ( ͡° ͜ʖ ͡°)ᕗ",
+        ghostLenny: "( ͡° ͜ʖ ͡°)⊃━☆ﾟ.*",
+        faceSwap: "( ° ͜ ʖ °)",
+        tiny: "( ͡°ᴥ ͡°)",
+        confusedLenny: "( ° ͜ʖ °)",
+        evilNest: "( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)",
+        pointing: "☞( ͡° ͜ʖ ͡°)☞",
+        hug: "⊂( ͡° ͜ʖ ͡°)⊃",
+        doubleEyes: "( ͡◉ ͜ʖ ͡◉)",
+        mega: "( ͡⊙ ͜ʖ ͡⊙)",
+        cryLenny: "( ͡ಥ ͜ʖ ͡ಥ)",
+        derp: "( ͡ ͡° ͜ ʖ ͡ ͡°)",
+        concerned: "( ͡° ʖ̯ ͡°)",
+        blank: "( ͡ ͜ʖ ͡ )",
+        money: "[̲̅$̲̅(̲̅ ͡° ͜ʖ ͡°̲̅)̲̅$̲̅]",
       };
 
       const lenny = lennies[lennyStyle] || lennies.classic;
@@ -4991,6 +7521,11 @@ export function transformText(
           return workingText + " " + lenny;
         case "both":
           return lenny + " " + workingText + " " + lenny;
+        case "eachWord":
+          return workingText
+            .split(" ")
+            .map((word) => word + " " + lenny)
+            .join(" ");
         default:
           return workingText + " " + lenny;
       }

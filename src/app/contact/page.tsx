@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Contact | TypeWarp Intel",
   description: "Establish a direct link with the TypeWarp development matrix.",
   alternates: {
-    canonical: "https://typewarp.com/contact",
+    canonical: "https://www.typewarp.com/contact",
   },
 };
 
@@ -20,7 +20,7 @@ export default function ContactPage() {
     "@type": "ContactPage",
     name: "Contact Us",
     description: "Send us a message through our contact form.",
-    url: "https://typewarp.com/contact",
+    url: "https://www.typewarp.com/contact",
   };
 
   return (

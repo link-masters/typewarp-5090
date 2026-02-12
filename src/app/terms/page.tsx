@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Terms of Service | TypeWarp Intel",
   description:
     "Read our terms of service to understand how you can use the TypeWarp matrix.",
-  alternates: { canonical: "https://typewarp.com/terms" },
+  alternates: { canonical: "https://www.typewarp.com/terms" },
 };
 
 export default function TermsPage() {

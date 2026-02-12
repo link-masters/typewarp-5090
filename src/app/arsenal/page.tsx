@@ -16,14 +16,14 @@ export const metadata: Metadata = {
     title: "The Arsenal | TypeWarp",
     description:
       "Explore the full TypeWarp arsenal of text generators, typography engines, and encoding utilities.",
-    url: "https://typewarp.com/arsenal",
+    url: "https://www.typewarp.com/arsenal",
     type: "website",
     images: ["/og-image.png"],
   },
   other: {
     "og:updated_time": new Date().toISOString(),
   },
-  alternates: { canonical: "https://typewarp.com/arsenal" },
+  alternates: { canonical: "https://www.typewarp.com/arsenal" },
 };
 
 export default function TextToolsPage() {

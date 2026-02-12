@@ -28,10 +28,10 @@ export async function generateMetadata({
       title: `${category.name} | TypeWarp`,
       description: category.description,
       images: ["/og-image.png"],
-      url: `https://typewarp.com/${categorySlug}`,
+      url: `https://www.typewarp.com/${categorySlug}`,
     },
     alternates: {
-      canonical: `https://typewarp.com/${categorySlug}`,
+      canonical: `https://www.typewarp.com/${categorySlug}`,
     },
   };
 }

@@ -29,14 +29,14 @@ export const metadata: Metadata = {
     title: "Systems Intel | TypeWarp Blog",
     description:
       "Deep dives into the art of text manipulation, typography trends, and digital entropy.",
-    url: "https://typewarp.com/blog",
+    url: "https://www.typewarp.com/blog",
     type: "website",
     images: ["/og-image.png"],
   },
   other: {
     "og:updated_time": new Date().toISOString(),
   },
-  alternates: { canonical: "https://typewarp.com/blog" },
+  alternates: { canonical: "https://www.typewarp.com/blog" },
 };
 
 export default async function BlogPage() {
@@ -48,7 +48,7 @@ export default async function BlogPage() {
     "@type": "Blog",
     name: "TypeWarp Blog",
     description: "Technical guides on text transformation and digital entropy",
-    url: "https://typewarp.com/blog",
+    url: "https://www.typewarp.com/blog",
   };
 
   return (

@@ -56,11 +56,11 @@ export async function generateMetadata({
         description:
           toolContent.meta.description ||
           `Premium ${tool.name.toLowerCase()} tool. Best for ${category.name.toLowerCase()}.`,
-        url: `https://typewarp.com/${categorySlug}/${toolSlug}`,
+        url: `https://www.typewarp.com/${categorySlug}/${toolSlug}`,
         type: "website",
       },
       alternates: {
-        canonical: `https://typewarp.com/${categorySlug}/${toolSlug}`,
+        canonical: `https://www.typewarp.com/${categorySlug}/${toolSlug}`,
       },
     };
   }
@@ -80,11 +80,11 @@ export async function generateMetadata({
     openGraph: {
       title: `${tool.name} | TypeWarp`,
       description: `Premium ${tool.name.toLowerCase()} tool. Best for ${category.name.toLowerCase()}.`,
-      url: `https://typewarp.com/${categorySlug}/${toolSlug}`,
+      url: `https://www.typewarp.com/${categorySlug}/${toolSlug}`,
       type: "website",
     },
     alternates: {
-      canonical: `https://typewarp.com/${categorySlug}/${toolSlug}`,
+      canonical: `https://www.typewarp.com/${categorySlug}/${toolSlug}`,
     },
   };
 }
@@ -125,7 +125,7 @@ export default async function ToolPage({
     description: `Online tool to generate ${tool.name.toLowerCase()} for ${category.name.toLowerCase()}.`,
     applicationCategory: "DesignApplication",
     operatingSystem: "All",
-    url: `https://typewarp.com/${categorySlug}/${toolSlug}`,
+    url: `https://www.typewarp.com/${categorySlug}/${toolSlug}`,
     offers: {
       "@type": "Offer",
       price: "0",

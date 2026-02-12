@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Cookie Policy | TypeWarp",
   description: "Understand our use of cookies at TypeWarp.",
   alternates: {
-    canonical: "https://typewarp.com/cookies",
+    canonical: "https://www.typewarp.com/cookies",
   },
 };
 

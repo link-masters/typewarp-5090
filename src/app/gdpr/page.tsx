@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "GDPR Compliance | TypeWarp",
   description: "Our commitment to GDPR and data protection standards.",
   alternates: {
-    canonical: "https://typewarp.com/gdpr",
+    canonical: "https://www.typewarp.com/gdpr",
   },
 };
 

@@ -22,7 +22,7 @@ const jetbrainsMono = JetBrains_Mono({
   preload: true,
 });
 
-const SITE_URL = "https://typewarp.com";
+const SITE_URL = "https://www.typewarp.com";
 
 const siteJsonLd = {
   "@context": "https://schema.org",

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { toolConfigs } from "@/lib/toolConfig";
 import { transformText } from "@/lib/transformers";
@@ -15,6 +15,10 @@ import {
   ChevronRight,
   Home,
   CheckCircle2,
+  BarChart3,
+  Shuffle,
+  X,
+  ChevronDown,
 } from "lucide-react";
 import BackgroundEffect from "@/components/BackgroundEffect";
 import { motion, AnimatePresence } from "framer-motion";
@@ -43,6 +47,25 @@ const colors = [
   { name: "Gold", value: "#FFD700", bg: "bg-[#FFD700]" },
 ];
 
+const platformLimits = [
+  { name: "Twitter/X", limit: 280, icon: "𝕏" },
+  { name: "Instagram Bio", limit: 150, icon: "📸" },
+  { name: "Instagram Caption", limit: 2200, icon: "📝" },
+  { name: "Discord Message", limit: 2000, icon: "💬" },
+  { name: "TikTok Bio", limit: 80, icon: "🎵" },
+  { name: "TikTok Caption", limit: 2200, icon: "🎶" },
+  { name: "YouTube Title", limit: 100, icon: "▶" },
+  { name: "Facebook Post", limit: 63206, icon: "📘" },
+  { name: "LinkedIn Post", limit: 3000, icon: "💼" },
+  { name: "WhatsApp Status", limit: 139, icon: "📱" },
+  { name: "Reddit Title", limit: 300, icon: "🔴" },
+];
+
+interface CopyHistoryItem {
+  text: string;
+  timestamp: number;
+}
+
 export default function ToolView({
   tool,
   category,
@@ -51,8 +74,14 @@ export default function ToolView({
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [isCopied, setIsCopied] = useState(false);
-  const [showToast, setShowToast] = useState(false);
   const [outputColor, setOutputColor] = useState("inherit");
+  const [showPlatformLimits, setShowPlatformLimits] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const outputRef = useRef<HTMLTextAreaElement>(null);
+  const copyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [options, setOptions] = useState({
     intensity: 5,
     spacing: 1,
@@ -80,35 +109,140 @@ export default function ToolView({
     setOutput(result);
   }, [input, tool.slug, options]);
 
-  const handleCopy = () => {
-    if (!output) return;
-
-    if (outputColor !== "inherit") {
-      const html = `<span style="color: ${outputColor}">${output.replace(/\n/g, "<br>")}</span>`;
-      const textBlob = new Blob([output], { type: "text/plain" });
-      const htmlBlob = new Blob([html], { type: "text/html" });
-
-      try {
-        navigator.clipboard.write([
-          new ClipboardItem({
-            "text/plain": textBlob,
-            "text/html": htmlBlob,
-          }),
-        ]);
-      } catch (e) {
-        navigator.clipboard.writeText(output);
+  // Handle clicking outside of dropdowns
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setOpenDropdown(null);
       }
-    } else {
-      navigator.clipboard.writeText(output);
-    }
+    };
 
-    setIsCopied(true);
-    setShowToast(true);
-    setTimeout(() => {
-      setIsCopied(false);
-      setShowToast(false);
-    }, 2000);
-  };
+    if (openDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openDropdown]);
+
+  // Prevent scroll chaining when interacting with the dropdown
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el || !openDropdown) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      const { scrollTop, scrollHeight, clientHeight } = el;
+      const delta = e.deltaY;
+      const isScrollingUp = delta < 0;
+      const isScrollingDown = delta > 0;
+
+      // When we're at the top and trying to scroll up, OR at the bottom and trying to scroll down,
+      // prevent the event from reaching the document/body
+      if (
+        (isScrollingUp && scrollTop <= 0) ||
+        (isScrollingDown && scrollTop + clientHeight >= scrollHeight - 1)
+      ) {
+        e.preventDefault();
+      }
+      e.stopPropagation();
+    };
+
+    el.addEventListener("wheel", handleWheel, { passive: false });
+    return () => {
+      el.removeEventListener("wheel", handleWheel);
+    };
+  }, [openDropdown]);
+
+  // Prevent scroll chaining for input and output textareas
+  useEffect(() => {
+    const refs = [inputRef, outputRef];
+    const cleanups: (() => void)[] = [];
+
+    refs.forEach((ref) => {
+      const el = ref.current;
+      if (!el) return;
+
+      const handleWheel = (e: WheelEvent) => {
+        const { scrollTop, scrollHeight, clientHeight } = el;
+        const delta = e.deltaY;
+        const isScrollingUp = delta < 0;
+        const isScrollingDown = delta > 0;
+
+        if (
+          (isScrollingUp && scrollTop <= 0) ||
+          (isScrollingDown && scrollTop + clientHeight >= scrollHeight - 1)
+        ) {
+          if (scrollHeight > clientHeight) {
+            e.preventDefault();
+          }
+        }
+        e.stopPropagation();
+      };
+
+      el.addEventListener("wheel", handleWheel, { passive: false });
+      cleanups.push(() => el.removeEventListener("wheel", handleWheel));
+    });
+
+    return () => cleanups.forEach((c) => c());
+  }, [output]);
+
+  const lockBodyScroll = useCallback(() => {
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflowX = "hidden";
+  }, []);
+
+  const unlockBodyScroll = useCallback(() => {
+    document.body.style.overflow = "";
+    document.documentElement.style.overflowX = "";
+  }, []);
+
+  // Lock body scroll and prevent horizontal overflow when any customization dropdown is open
+  useEffect(() => {
+    if (openDropdown) {
+      lockBodyScroll();
+      return () => {
+        unlockBodyScroll();
+      };
+    }
+  }, [openDropdown, lockBodyScroll, unlockBodyScroll]);
+
+  const handleCopy = useCallback(
+    (textToCopy?: string) => {
+      const text = textToCopy || output;
+      if (!text) return;
+
+      if (outputColor !== "inherit" && !textToCopy) {
+        const html = `<span style="color: ${outputColor}">${text.replace(/\n/g, "<br>")}</span>`;
+        const textBlob = new Blob([text], { type: "text/plain" });
+        const htmlBlob = new Blob([html], { type: "text/html" });
+
+        try {
+          navigator.clipboard.write([
+            new ClipboardItem({
+              "text/plain": textBlob,
+              "text/html": htmlBlob,
+            }),
+          ]);
+        } catch (e) {
+          navigator.clipboard.writeText(text);
+        }
+      } else {
+        navigator.clipboard.writeText(text);
+      }
+
+      // Clear any existing timer to prevent stacking
+      if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+
+      setIsCopied(true);
+      copyTimerRef.current = setTimeout(() => {
+        setIsCopied(false);
+      }, 1500);
+    },
+    [output, outputColor],
+  );
 
   const handleClear = () => {
     setInput("");
@@ -257,12 +391,17 @@ export default function ToolView({
                   </button>
                 </div>
               </div>
-              <div className="p-2 md:p-3">
+              <div
+                className="p-0"
+                onMouseEnter={lockBodyScroll}
+                onMouseLeave={unlockBodyScroll}
+              >
                 <textarea
+                  ref={inputRef}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Enter text to transform..."
-                  className="w-full h-24 md:h-32 bg-transparent text-base md:text-2xl font-sans font-medium text-text-primary placeholder:text-text-primary/10 outline-none resize-none custom-scrollbar transition-all"
+                  className="w-full min-h-[140px] md:min-h-[180px] bg-transparent text-lg md:text-3xl font-black text-text-primary placeholder:text-text-primary/10 outline-none resize-none custom-scrollbar transition-all overscroll-contain p-4 md:p-6 text-left"
                   autoFocus
                 />
               </div>
@@ -319,7 +458,7 @@ export default function ToolView({
                     </div>
                   </div>
                   <button
-                    onClick={handleCopy}
+                    onClick={() => handleCopy()}
                     className={`flex items-center justify-center gap-2 px-4 sm:px-6 py-2 bg-accent-glitch text-black font-black uppercase tracking-widest text-[9px] sm:text-[10px] transition-all active:scale-95 shadow-lg min-w-[100px] ${
                       isCopied
                         ? "bg-text-primary text-bg-void"
@@ -344,13 +483,18 @@ export default function ToolView({
                 </span>
               </div>
 
-              <div className="relative bg-bg-void/10 overflow-hidden border-b border-white/5 h-[110px] md:h-[130px]">
-                <div className="absolute inset-0 overflow-auto custom-scrollbar p-2 md:p-3 flex flex-col items-center">
+              <div
+                className="relative bg-bg-void/10 overflow-hidden border-b border-white/5"
+                onMouseEnter={lockBodyScroll}
+                onMouseLeave={unlockBodyScroll}
+              >
+                <div className="min-h-[140px] md:min-h-[180px]">
                   {output ? (
                     <textarea
+                      ref={outputRef}
                       readOnly
                       value={output}
-                      className="w-full h-full bg-transparent text-base md:text-2xl font-black break-all leading-[1.2] text-center transition-colors duration-300 relative z-10 py-2 md:py-4 outline-none resize-none custom-scrollbar"
+                      className="w-full min-h-[140px] md:min-h-[180px] bg-transparent text-lg md:text-3xl font-black break-all leading-[1.2] transition-colors duration-300 relative z-10 outline-none resize-none overflow-y-auto custom-scrollbar overscroll-contain p-4 md:p-6 text-left"
                       style={{ color: outputColor }}
                     />
                   ) : (
@@ -403,7 +547,7 @@ export default function ToolView({
 
           {/* Sidebar Controls */}
           <div className="w-full lg:w-[320px] shrink-0 flex flex-col gap-4 lg:sticky lg:top-24">
-            <div className="bg-bg-card border border-border-subtle p-4 relative overflow-hidden group shadow-xl">
+            <div className="bg-bg-card border border-border-subtle p-4 relative group shadow-xl">
               <div className="flex items-center gap-3 mb-6 md:mb-8">
                 <div className="w-10 h-10 border border-accent-glitch/20 flex items-center justify-center">
                   <Settings className="w-5 h-5 text-accent-glitch animate-spin-slow" />
@@ -448,32 +592,72 @@ export default function ToolView({
                     )}
 
                     {control.type === "select" && (
-                      <select
-                        value={
-                          options.customSettings?.[control.id] ??
-                          control.defaultValue
-                        }
-                        onChange={(e) =>
-                          setOptions((prev) => ({
-                            ...prev,
-                            customSettings: {
-                              ...prev.customSettings,
-                              [control.id]: e.target.value,
-                            },
-                          }))
-                        }
-                        className="w-full bg-bg-void border border-border-subtle px-4 py-3 text-[10px] font-mono text-text-primary outline-none cursor-pointer hover:border-accent-glitch transition-colors"
+                      <div
+                        className="relative"
+                        ref={openDropdown === control.id ? containerRef : null}
                       >
-                        {control.options?.map((opt: any) => (
-                          <option
-                            key={opt.value}
-                            value={opt.value}
-                            className="bg-bg-card"
-                          >
-                            {opt.label}
-                          </option>
-                        ))}
-                      </select>
+                        <button
+                          onClick={() =>
+                            setOpenDropdown(
+                              openDropdown === control.id ? null : control.id,
+                            )
+                          }
+                          className="w-full bg-bg-void border border-border-subtle hover:border-accent-glitch transition-all px-4 py-3 flex items-center justify-between group"
+                        >
+                          <span className="text-[10px] font-mono text-text-primary uppercase tracking-widest">
+                            {control.options?.find(
+                              (opt: any) =>
+                                opt.value ===
+                                (options.customSettings?.[control.id] ??
+                                  control.defaultValue),
+                            )?.label || "Select Option"}
+                          </span>
+                          <ChevronDown
+                            className={`w-3 h-3 text-text-muted group-hover:text-accent-glitch transition-all ${
+                              openDropdown === control.id ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+
+                        <AnimatePresence>
+                          {openDropdown === control.id && (
+                            <motion.div
+                              ref={scrollRef}
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -10 }}
+                              transition={{ duration: 0.15, ease: "easeOut" }}
+                              onMouseEnter={lockBodyScroll}
+                              onMouseLeave={unlockBodyScroll}
+                              className="absolute top-[calc(100%+4px)] left-0 right-0 bg-bg-card border border-accent-glitch shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-[70] max-h-[240px] overflow-y-auto overscroll-contain custom-scrollbar select-none"
+                            >
+                              {control.options?.map((opt: any) => (
+                                <button
+                                  key={opt.value}
+                                  onClick={() => {
+                                    setOptions((prev) => ({
+                                      ...prev,
+                                      customSettings: {
+                                        ...prev.customSettings,
+                                        [control.id]: opt.value,
+                                      },
+                                    }));
+                                    setOpenDropdown(null);
+                                  }}
+                                  className={`w-full text-left px-4 py-3 text-[10px] font-mono uppercase tracking-widest transition-all hover:bg-accent-glitch hover:text-black ${
+                                    (options.customSettings?.[control.id] ??
+                                      control.defaultValue) === opt.value
+                                      ? "text-accent-glitch bg-accent-glitch/5"
+                                      : "text-text-muted"
+                                  }`}
+                                >
+                                  {opt.label}
+                                </button>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
                     )}
 
                     {control.type === "toggle" && (
@@ -513,7 +697,10 @@ export default function ToolView({
                 ))}
 
                 {/* Global Overrides */}
-                <div className="pt-8 border-t border-white/5 flex flex-col gap-6">
+                <div className="pt-8 border-t border-white/5 flex flex-col gap-4">
+                  <div className="text-[8px] font-mono uppercase tracking-[0.3em] text-text-muted/50 mb-1">
+                    Global_Overrides
+                  </div>
                   <button
                     onClick={() =>
                       setOptions({ ...options, uppercase: !options.uppercase })
@@ -533,6 +720,73 @@ export default function ToolView({
                       />
                     </div>
                   </button>
+
+                  {/* Platform Limits */}
+                  <button
+                    onClick={() => setShowPlatformLimits(!showPlatformLimits)}
+                    className={`flex items-center justify-between p-4 border transition-all font-mono text-[10px] uppercase tracking-widest ${
+                      showPlatformLimits
+                        ? "border-accent-glitch bg-accent-glitch/5 text-accent-glitch"
+                        : "border-white/10 text-text-muted"
+                    }`}
+                  >
+                    <span className="flex items-center gap-2">
+                      <BarChart3 className="w-3 h-3" />
+                      PLATFORM_LIMITS
+                    </span>
+                    <div
+                      className={`w-8 h-4 border ${showPlatformLimits ? "border-accent-glitch" : "border-white/10"} relative`}
+                    >
+                      <div
+                        className={`absolute top-0.5 bottom-0.5 w-3 transition-all ${showPlatformLimits ? "right-0.5 bg-accent-glitch" : "left-0.5 bg-white/20"}`}
+                      />
+                    </div>
+                  </button>
+
+                  <AnimatePresence>
+                    {showPlatformLimits && output && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="flex flex-col gap-1">
+                          {platformLimits.map((platform) => {
+                            const len = output.length;
+                            const pct = Math.min(
+                              100,
+                              (len / platform.limit) * 100,
+                            );
+                            const isOver = len > platform.limit;
+                            return (
+                              <div
+                                key={platform.name}
+                                className="p-2 border border-white/5"
+                              >
+                                <div className="flex items-center justify-between mb-1">
+                                  <span className="text-[8px] font-mono text-text-muted flex items-center gap-1">
+                                    <span>{platform.icon}</span> {platform.name}
+                                  </span>
+                                  <span
+                                    className={`text-[8px] font-mono ${isOver ? "text-red-500" : "text-accent-glitch/70"}`}
+                                  >
+                                    {len}/{platform.limit}
+                                  </span>
+                                </div>
+                                <div className="w-full h-1 bg-white/5 relative overflow-hidden">
+                                  <div
+                                    className={`h-full transition-all duration-500 ${isOver ? "bg-red-500" : "bg-accent-glitch/60"}`}
+                                    style={{ width: `${pct}%` }}
+                                  />
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
 
@@ -619,18 +873,18 @@ export default function ToolView({
           </div>
         )}
       </div>
-
-      {/* Modern Toast Notification */}
       <AnimatePresence>
-        {showToast && (
+        {isCopied && (
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            className="fixed bottom-12 left-1/2 -translate-x-1/2 z-[9999]"
+            initial={{ opacity: 0, y: 20, x: "-50%" }}
+            animate={{ opacity: 1, y: 0, x: "-50%" }}
+            exit={{ opacity: 0, y: 20, x: "-50%" }}
+            className="fixed bottom-12 left-1/2 z-[100] pointer-events-none hidden md:block"
           >
-            <div className="px-8 py-4 bg-accent-glitch text-black font-black text-[10px] uppercase tracking-[0.4em] shadow-[0_0_30px_rgba(57,255,20,0.3)]">
-              DATA_COPIED_SUCCESSFULLY
+            <div className="bg-accent-glitch text-black px-4 py-1.5 shadow-[0_0_20px_rgba(57,255,20,0.4)] flex items-center gap-2">
+              <span className="text-[10px] font-mono font-black uppercase tracking-[0.2em]">
+                COPIED
+              </span>
             </div>
           </motion.div>
         )}

@@ -5,7 +5,16 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import GlitchButton from "./ui/GlitchButton";
 import BackgroundEffect from "./BackgroundEffect";
-import { Terminal, Shield, Cpu, Activity } from "lucide-react";
+import {
+  Terminal,
+  Shield,
+  Cpu,
+  Activity,
+  ArrowRight,
+  Zap,
+  Boxes,
+} from "lucide-react";
+import { useSpring, useMotionValue } from "framer-motion";
 
 const CHARS = "!@#$%^&*()_+{}:<>?|ABCD0123456789";
 
@@ -22,7 +31,6 @@ const ScrambleText = ({
 
   useEffect(() => {
     setMounted(true);
-    // Initial scramble once mounted on client to hide real text before reveal
     setDisplayValue(
       text
         .split("")
@@ -64,115 +72,115 @@ const ScrambleText = ({
     return () => clearInterval(interval);
   }, [text, isAnimating, mounted]);
 
-  // Before mount, we show the real text so server and client match exactly (improving CLS/Hydration)
-  // After mount, we immediately scramble and start the reveal process
   return <span>{displayValue}</span>;
 };
 
 export default function Hero() {
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const y1 = useTransform(scrollY, [0, 500], [0, 100]);
+  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
+
+  // Mouse tracking logic for interaction
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 25, stiffness: 150 };
+  const smoothMouseX = useSpring(mouseX, springConfig);
+  const smoothMouseY = useSpring(mouseY, springConfig);
+
+  const rotateX = useTransform(smoothMouseY, [-300, 300], [10, -10]);
+  const rotateY = useTransform(smoothMouseX, [-300, 300], [-10, 10]);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const { clientX, clientY } = e;
+    const { innerWidth, innerHeight } = window;
+    mouseX.set(clientX - innerWidth / 2);
+    mouseY.set(clientY - innerHeight / 2);
+  };
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-20 px-6 bg-bg-void">
+    <section
+      onMouseMove={handleMouseMove}
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-20 px-4 md:px-6 bg-bg-void perspective-1000"
+    >
       <BackgroundEffect />
 
-      {/* Subtle Scanning Line */}
-      <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden opacity-10">
-        <motion.div
-          animate={{ top: ["-10%", "110%"] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "linear" as any }}
-          className="absolute left-0 w-full h-[1px] bg-accent-glitch shadow-[0_0_15px_#39FF14]"
-        />
-      </div>
-
-      {/* Decorative Grid Overlay - Reduced Opacity */}
-      <div className="absolute inset-0 z-[1] opacity-[0.03] pointer-events-none bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px]" />
-
-      {/* Core Engine Visual - More Subtle */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none z-0 opacity-40">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 80, repeat: Infinity, ease: "linear" as any }}
-          className="absolute inset-0 border border-accent-glitch/5 rounded-full"
-        />
-        <motion.div
-          animate={{ scale: [1, 1.05, 1] }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut" as any,
-          }}
-          className="absolute inset-40 bg-accent-glitch/[0.03] rounded-full blur-[80px]"
-        />
-      </div>
+      {/* Dynamic Grid - Responds to mouse */}
+      <motion.div
+        style={{
+          x: useTransform(smoothMouseX, (v) => v * 0.05),
+          y: useTransform(smoothMouseY, (v) => v * 0.05),
+        }}
+        className="absolute inset-x-[-10%] inset-y-[-10%] z-[1] opacity-[0.05] pointer-events-none bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:60px_60px]"
+      />
 
       {/* Hero Content */}
       <motion.div
-        style={{ y: y1, opacity }}
+        style={{
+          y: y1,
+          opacity,
+          rotateX,
+          rotateY,
+        }}
         className="relative z-10 flex flex-col items-center text-center max-w-5xl mx-auto"
       >
-        <h1 className="flex flex-col items-center font-black select-none transition-all duration-700 mb-10">
-          <span className="text-[clamp(3rem,10vw,10rem)] text-text-primary leading-[0.8] tracking-[-0.05em]">
-            <ScrambleText text="TYPEWARP" />
-          </span>
-          <span className="text-[clamp(0.875rem,2.5vw,2rem)] text-accent-glitch mt-2 tracking-[0.4em] uppercase opacity-80">
-            <ScrambleText text="Cursed Text Generator" delay={0.4} />
-          </span>
-        </h1>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="mb-8"
+        >
+          <h1 className="flex flex-col items-center select-none">
+            <span className="text-[clamp(3.5rem,14vw,11rem)] text-text-primary font-black leading-[0.85] tracking-[-0.05em] drop-shadow-2xl">
+              <ScrambleText text="TYPEWARP" />
+            </span>
+            <span className="text-[clamp(0.75rem,2.5vw,1.5rem)] text-accent-glitch mt-4 tracking-[0.4em] uppercase font-black opacity-80 flex items-center gap-3">
+              <ScrambleText text="Elite Typography Suite" delay={0.4} />
+            </span>
+          </h1>
+        </motion.div>
 
         <motion.p
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="text-text-muted text-base md:text-xl max-w-xl font-mono mb-12 px-4 leading-relaxed tracking-tight"
+          transition={{ delay: 0.6, duration: 0.8 }}
+          className="text-text-muted text-base md:text-xl max-w-2xl font-sans mb-10 md:mb-14 px-4 leading-relaxed tracking-tight"
         >
-          The Premium <span className="text-text-primary">Cursed Text</span>{" "}
-          Toolkit.
-          <br className="hidden md:block" />
-          Warp your typography across the digital matrix.
+          Transform your digital identity with the world's most powerful{" "}
+          <span className="text-accent-glitch font-bold">Cursed Text</span>{" "}
+          generator. Universal compatibility across all social platforms.
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.6, duration: 0.4 }}
-          className="flex flex-col sm:flex-row gap-5 w-full md:w-auto px-4 sm:px-0"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+          className="flex flex-row flex-wrap justify-center gap-4 w-full px-4"
         >
           <Link
             href="/dark-horror/cursed-text"
-            className="w-full sm:w-auto max-w-[280px] sm:max-w-none mx-auto"
+            className="shrink-0 flex-1 sm:flex-none"
           >
             <GlitchButton
               variant="primary"
-              className="w-full px-10 py-4 text-sm"
+              className="w-full sm:w-[220px] py-4 md:py-5 text-sm font-black"
             >
               START_WARPING
             </GlitchButton>
           </Link>
-          <Link
-            href="/arsenal"
-            className="w-full sm:w-auto max-w-[280px] sm:max-w-none mx-auto"
-          >
+          <Link href="/arsenal" className="shrink-0 flex-1 sm:flex-none">
             <GlitchButton
               variant="secondary"
-              className="w-full px-10 py-4 text-sm"
+              className="w-full sm:w-[220px] py-4 md:py-5 text-sm font-black"
             >
-              VIEW_TOOLS
+              EXPLORE_ALL
             </GlitchButton>
           </Link>
         </motion.div>
       </motion.div>
 
-      {/* Minimal Scroll indicator */}
-      <motion.div
-        animate={{ y: [0, 8, 0], opacity: [0.1, 0.3, 0.1] }}
-        transition={{ duration: 3, repeat: Infinity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:block"
-      >
-        <div className="w-[1px] h-8 bg-white/20" />
-      </motion.div>
+      {/* Mobile-only background flare */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(57,255,20,0.03)_0%,transparent_70%)] pointer-events-none" />
     </section>
   );
 }

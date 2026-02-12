@@ -28,13 +28,13 @@ export const metadata: Metadata = {
     title: "About TypeWarp | Mission & Intel",
     description:
       "Discover how TypeWarp blends advanced Unicode engineering with bold digital expression.",
-    url: "https://typewarp.com/about",
+    url: "https://www.typewarp.com/about",
     type: "website",
     images: [
       { url: "/og-image.png", width: 1200, height: 630, alt: "About TypeWarp" },
     ],
   },
-  alternates: { canonical: "https://typewarp.com/about" },
+  alternates: { canonical: "https://www.typewarp.com/about" },
 };
 
 const AboutPage = () => {
