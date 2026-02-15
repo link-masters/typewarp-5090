@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { sendEmail } from "@/app/actions/email";
 import { motion } from "framer-motion";
-import { Terminal, Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<{
@@ -30,18 +30,17 @@ export default function ContactForm() {
   }
 
   const inputClasses =
-    "w-full bg-bg-void border border-white/10 px-6 py-5 text-text-primary outline-none focus:border-accent-glitch/50 transition-all font-mono text-sm placeholder:text-white/5";
+    "w-full bg-bg-void/40 border border-white/10 px-4 py-3 text-sm text-text-primary outline-none focus:border-accent-glitch/50 transition-all placeholder:text-white/20 rounded-xl";
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="space-y-6">
+        <div className="text-left">
           <label
             htmlFor="contact-name"
-            className="text-[10px] font-mono font-black uppercase tracking-[0.4em] text-accent-glitch flex items-center gap-2"
+            className="text-[10px] text-text-muted mb-1.5 block font-mono uppercase tracking-wider font-bold"
           >
-            <Terminal className="w-3 h-3" />
-            FIELD: FULL_NAME
+            First Name
           </label>
           <input
             type="text"
@@ -50,16 +49,16 @@ export default function ContactForm() {
             required
             disabled={isPending}
             className={inputClasses}
-            placeholder="NAME_REQUIRED"
+            placeholder="John"
           />
         </div>
-        <div className="space-y-4">
+
+        <div className="text-left">
           <label
             htmlFor="contact-email"
-            className="text-[10px] font-mono font-black uppercase tracking-[0.4em] text-accent-glitch flex items-center gap-2"
+            className="text-[10px] text-text-muted mb-1.5 block font-mono uppercase tracking-wider font-bold"
           >
-            <Terminal className="w-3 h-3" />
-            FIELD: EMAIL_ADDRESS
+            Email Address
           </label>
           <input
             type="email"
@@ -68,59 +67,64 @@ export default function ContactForm() {
             required
             disabled={isPending}
             className={inputClasses}
-            placeholder="ADDRESS_REQUIRED"
+            placeholder="you@example.com"
           />
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="text-left">
         <label
           htmlFor="contact-message"
-          className="text-[10px] font-mono font-black uppercase tracking-[0.4em] text-accent-glitch flex items-center gap-2"
+          className="text-[10px] text-text-muted mb-1.5 block font-mono uppercase tracking-wider font-bold"
         >
-          <Terminal className="w-3 h-3" />
-          FIELD: MESSAGE_PAYLOAD
+          Message
         </label>
         <textarea
           id="contact-message"
           name="message"
           required
           disabled={isPending}
-          className={`${inputClasses} h-48 resize-none`}
-          placeholder="ENTER_DATA_HERE..."
+          rows={5}
+          className={`${inputClasses} resize-none`}
+          placeholder="How can we help?"
         ></textarea>
       </div>
 
       {status.message && (
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          role="alert"
-          className={`p-6 border font-mono text-[10px] uppercase tracking-widest flex items-center gap-4 ${
+          initial={{ opacity: 0, y: -5 }}
+          animate={{ opacity: 1, y: 0 }}
+          className={`p-4 rounded-xl text-xs flex items-center gap-3 ${
             status.type === "success"
-              ? "border-accent-glitch/30 bg-accent-glitch/5 text-accent-glitch"
-              : "border-red-500/30 bg-red-500/5 text-red-500"
+              ? "bg-accent-glitch/10 text-accent-glitch border border-accent-glitch/20"
+              : "bg-red-500/10 text-red-500 border border-red-500/20"
           }`}
         >
           {status.type === "success" ? (
-            <CheckCircle2 className="w-4 h-4" />
+            <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
           ) : (
-            <AlertCircle className="w-4 h-4" />
+            <AlertCircle className="w-4 h-4 flex-shrink-0" />
           )}
-          {status.message}
+          <span>{status.message}</span>
         </motion.div>
       )}
 
       <button
         type="submit"
         disabled={isPending}
-        className="group relative inline-flex items-center gap-4 bg-accent-glitch text-black px-12 py-5 font-black text-xs uppercase tracking-[0.3em] active:scale-95 transition-all disabled:opacity-50 overflow-hidden"
+        className="w-full sm:w-auto h-12 flex items-center justify-center gap-3 bg-accent-glitch text-black px-8 text-xs font-bold uppercase tracking-widest rounded-xl hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-accent-glitch/10"
       >
-        <span className="relative z-10">
-          {isPending ? "TRANSMITTING..." : "SUBMIT_SIGNAL"}
-        </span>
-        <Send className="w-4 h-4 relative z-10 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-        <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity" />
+        {isPending ? (
+          <>
+            <Loader2 className="w-4 h-4 animate-spin" />
+            Sending...
+          </>
+        ) : (
+          <>
+            Send Message
+            <Send className="w-4 h-4" />
+          </>
+        )}
       </button>
     </form>
   );

@@ -30,7 +30,7 @@ export default function ArsenalClientView({
         >
           <div className="max-w-2xl text-left">
             <h1 className="text-3xl md:text-6xl font-black tracking-tighter uppercase mb-6 leading-tight">
-              The <span className="text-accent-glitch">Arsenal</span>
+              Explore <span className="text-accent-glitch">Tools</span>
             </h1>
             <p className="text-text-muted font-mono text-lg max-w-xl">
               Initialize any module from the complete TypeWarp architecture. Our

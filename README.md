@@ -1,8 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TypeWarp
+
+> The professional-grade cursed text and glitchy typography toolkit for digital architects.
+
+TypeWarp is a comprehensive text transformation platform offering **66+ tools** across 6 categories. Generate cursed text, Zalgo script, glitchy fonts, fancy text styles, and encode/decode text in various formats.
+
+![TypeWarp](public/og-image.png)
+
+## Features
+
+### Dark & Horror (13 tools)
+
+Unleash chaos with cursed, zalgo, and glitch text generators. Perfect for creating eerie, corrupted, or unsettling typography.
+
+### Social Fonts (7 tools)
+
+Perfect fonts for Instagram, Discord, TikTok, Twitter, Facebook, and gaming platforms. Stand out on social media with unique text styles.
+
+### Style & Fancy (10 tools)
+
+Aesthetic, vaporwave, and stylish text designs. Create beautiful calligraphy, cursive, bubble text, and more.
+
+### Text Tools (15 tools)
+
+Essential text formatting and manipulation tools including bold, italic, underline, strikethrough, small text, mirror text, and character counters.
+
+### Symbols (5 tools)
+
+Special characters, emoticons, aesthetic symbols, and the famous Lenny Face generator.
+
+### Translators (16 tools)
+
+Convert text to Morse code, binary, braille, Base64, hex, and more. Includes cipher tools like Caesar cipher, ROT13, and Atbash.
+
+## Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 4
+- **Animations**: Framer Motion
+- **Content**: MDX with syntax highlighting (Shiki)
+- **Icons**: Lucide React & Heroicons
+- **Smooth Scrolling**: Lenis
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/typewarp.git
+cd typewarp
+
+# Install dependencies
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+### Development
 
 ```bash
 npm run dev
@@ -16,21 +80,70 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+  app/                    # Next.js App Router pages
+    [category]/           # Dynamic category pages
+    [category]/[tool]/    # Dynamic tool pages
+    about/                # About page
+    arsenal/              # All tools overview
+    blog/                 # Blog section
+    contact/              # Contact page
+    privacy/              # Privacy policy
+    terms/                # Terms of service
+  components/             # React components
+    ui/                   # UI components (ToolCard, CyberInput, etc.)
+    BackgroundEffect.tsx  # Animated background
+    Footer.tsx            # Site footer
+    Header.tsx            # Navigation header
+    Hero.tsx              # Homepage hero section
+    ToolView.tsx          # Tool interface component
+  content/
+    blog/                 # MDX blog posts
+    tools/                # MDX tool content
+  lib/                    # Utility functions
+    categories.ts         # Tool categories & definitions
+    tools.ts              # Tool content loader
+    blog.ts               # Blog content loader
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Adding New Tools
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Create a new MDX file in `src/content/tools/your-tool-slug.mdx`
+2. Add frontmatter with tool metadata:
+   ```mdx
+   ---
+   title: "Your Tool Name"
+   description: "Tool description"
+   category: "category-slug"
+   ---
+   ```
+3. Add the tool definition in `src/lib/categories.ts`
+
+## Features Highlights
+
+- **Real-time Preview**: See transformations instantly as you type
+- **Copy to Clipboard**: One-click copy functionality
+- **Dark Theme**: Cyberpunk-inspired design with glitch aesthetics
+- **Responsive**: Fully responsive design for all devices
+- **SEO Optimized**: Structured data, Open Graph, and Twitter cards
+- **Blog Section**: Guides and tutorials for text transformation
+
+## License
+
+This project is private and proprietary.
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
