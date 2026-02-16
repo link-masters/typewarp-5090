@@ -60,7 +60,7 @@ export default async function Home() {
     name: "TypeWarp",
     url: "https://www.typewarp.com",
     description:
-      "The professional-grade cursed text and glitchy typography toolkit for digital architects.",
+      "The professional-grade text effects and typography toolkit for digital creators.",
     applicationCategory: "DesignApplication",
     genre: "Typography",
     browserRequirements: "Requires JavaScript",
@@ -77,11 +77,11 @@ export default async function Home() {
       reviewCount: "1280",
     },
     featureList: [
-      "Real-time Cursed Text Generation",
-      "Advanced Zalgo Scripting",
-      "Binary & Morse Translation",
-      "ASCII Art Generative Engine",
-      "Glitch Typography Matrices",
+      "Real-time Text Generation",
+      "Advanced Zalgo Styles",
+      "Binary & Morse Tools",
+      "ASCII Art Generator",
+      "Typography Effects",
     ],
   };
 
@@ -100,39 +100,39 @@ export default async function Home() {
 
   const capabilities = [
     {
-      title: "Cursed Typography",
+      title: "Unique Styles",
       description:
-        "Unleash digital chaos with our proprietary glitch algorithms. From subtle jitters to total corruption.",
+        "Stand out with unique text effects designed to look great on any platform.",
       icon: Ghost,
     },
     {
-      title: "Matrix Hardened",
+      title: "Platform Ready",
       description:
-        "Our tools are optimized for flawless rendering across Discord, GitHub, and dark-web forums.",
+        "Verified to work perfectly across Discord, Instagram, and more.",
       icon: Shield,
     },
     {
-      title: "Technical Decoders",
+      title: "Universal Tools",
       description:
-        "Professional-grade converters for Binary, Morse, and Base64. Built for data warriors.",
+        "Simple and effective converters for Binary, Morse, and Base64.",
       icon: Terminal,
     },
     {
-      title: "ASCII Art Core",
+      title: "Creative Art",
       description:
-        "Generate complex visual structures from raw standard characters using our generative engine.",
+        "Create complex visual designs using only standard characters.",
       icon: Cpu,
     },
     {
-      title: "Zalgo Protocol",
+      title: "Classic Effects",
       description:
-        "The most advanced Zalgo generator on the market. Multi-level stack controls for maximum dread.",
+        "Access a huge variety of stylized text effects for your profile.",
       icon: Skull,
     },
     {
-      title: "Real-time Warp",
+      title: "Instant Results",
       description:
-        "High-performance transformation engine that processes text at the speed of light.",
+        "Our high-speed engine generates your text effects in real-time.",
       icon: Zap,
     },
   ];
@@ -144,32 +144,33 @@ export default async function Home() {
       <Hero />
       {/* Featured Tools Section */}
       <FeaturedTools />
-      {/* Capabilities System Grid */}
-      <section className="py-10 md:py-28 px-4 bg-bg-void relative overflow-hidden">
+
+      {/* Capabilities Section */}
+      <section className="py-24 md:py-32 px-4 bg-[#080808] relative overflow-hidden">
         <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-8 md:mb-16">
-            <span className="text-accent-glitch font-mono text-[10px] uppercase tracking-[0.5em] mb-4 inline-block">
-              //_Operational_Capacities
+          <div className="text-center mb-20 md:mb-28">
+            <span className="text-white/30 font-mono text-[10px] uppercase tracking-[0.5em] mb-4 inline-block">
+              Built for Creators
             </span>
-            <h2 className="text-2xl md:text-6xl font-black tracking-tighter uppercase leading-tight">
-              Engineered for <br />{" "}
-              <span className="text-accent-glitch">Digital Entropy</span>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tighter uppercase leading-[0.9]">
+              Modern <span className="text-accent-glitch">Design Tools</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-8 md:gap-y-16 gap-x-6 md:gap-x-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-12 md:gap-y-24 gap-x-12">
             {capabilities.map((cap, i) => {
               const Icon = cap.icon;
               return (
-                <div key={i} className="flex flex-col gap-4 md:gap-6 group">
-                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center border border-border-subtle group-hover:border-accent-glitch transition-colors duration-500 relative">
-                    <Icon className="w-4 h-4 md:w-5 md:h-5 text-text-muted group-hover:text-accent-glitch transition-colors" />
+                <div key={i} className="flex flex-col gap-6 group">
+                  <div className="w-14 h-14 flex items-center justify-center bg-[#0c0c0c] border border-white/5 rounded-2xl group-hover:scale-110 group-hover:border-accent-glitch/20 transition-all duration-500 relative overflow-hidden">
+                    <Icon className="w-6 h-6 text-white/30 group-hover:text-accent-glitch transition-all duration-500" />
+                    <div className="absolute inset-0 bg-accent-glitch/[0.02] opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
-                  <div className="space-y-2 md:space-y-3">
-                    <h3 className="text-lg md:text-xl font-black uppercase tracking-tight group-hover:text-accent-glitch transition-colors">
+                  <div className="space-y-4">
+                    <h3 className="text-2xl font-black uppercase tracking-tight text-white group-hover:text-accent-glitch transition-all duration-500">
                       {cap.title}
                     </h3>
-                    <p className="text-text-muted text-sm font-mono leading-relaxed group-hover:text-text-primary/70 transition-colors">
+                    <p className="text-white/40 text-base leading-relaxed group-hover:text-white/60 transition-colors duration-500">
                       {cap.description}
                     </p>
                   </div>
@@ -180,27 +181,25 @@ export default async function Home() {
         </div>
       </section>
       {/* Categories Explorer Section */}
-      <section className="py-12 md:py-28 px-4 bg-bg-card relative overflow-hidden border-b border-border-subtle">
-        <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
-
+      <section className="py-20 md:py-32 px-4 bg-[#080808] relative overflow-hidden">
         <div className="container mx-auto max-w-7xl relative z-10">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-8 md:mb-12 gap-4 md:gap-8">
+          <div className="flex flex-col md:flex-row items-end justify-between mb-12 md:mb-16 gap-6 md:gap-8">
             <div className="max-w-2xl text-left">
-              <h2 className="text-2xl md:text-6xl font-black tracking-tighter uppercase mb-3 md:mb-6 leading-tight">
-                Archive <br />{" "}
-                <span className="text-accent-glitch">Repositories</span>
+              <h2 className="text-3xl md:text-5xl font-black tracking-tighter uppercase mb-4 md:mb-6 leading-tight">
+                Creative <span className="text-accent-glitch">Collections</span>
               </h2>
-              <p className="text-text-muted font-mono text-sm md:text-lg max-w-xl">
-                Navigate through categorized repositories of specialized text
-                manipulation algorithms and typography engines.
+              <p className="text-white/40 font-mono text-base md:text-lg max-w-xl">
+                Browse our curated categories to find the perfect look for your
+                social profiles.
               </p>
             </div>
 
             <Link
               href="/arsenal"
-              className="font-mono text-sm uppercase tracking-[0.3em] text-text-muted hover:text-accent-glitch transition-colors border-b border-border-subtle pb-2 mb-2"
+              className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 hover:text-accent-glitch transition-colors flex items-center gap-3 border-b border-white/10 pb-2 mb-2"
             >
-              INITIALIZE_FULL_DIRECTORY
+              View All Tools
+              <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
@@ -209,53 +208,40 @@ export default async function Home() {
               <Link
                 key={category.slug}
                 href={`/${category.slug}`}
-                className="group relative p-5 md:p-6 bg-bg-void border border-border-subtle hover:border-accent-glitch/50 transition-all duration-500 overflow-hidden"
+                className="group relative p-8 bg-[#0c0c0c] border border-white/5 hover:border-accent-glitch/20 transition-all duration-500 overflow-hidden flex flex-col rounded-xl"
               >
-                <div className="absolute top-0 right-0 p-3 md:p-4 font-mono text-[9px] md:text-[10px] text-text-primary/10 group-hover:text-accent-glitch/20 transition-colors">
-                  #{category.count.toString().padStart(2, "0")}
-                </div>
+                {/* Unique Refined Hover Glimmer */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
 
                 <div className="relative z-10 h-full flex flex-col">
-                  <div className="mb-4 md:mb-6 flex items-center justify-between">
-                    <div className="p-2 md:p-3 bg-bg-card border border-border-subtle group-hover:border-accent-glitch transition-colors">
+                  <div className="mb-8 flex items-center justify-between">
+                    <div className="w-14 h-14 bg-[#111] border border-white/10 flex items-center justify-center group-hover:scale-110 group-hover:border-accent-glitch/30 transition-all duration-500 rounded-lg overflow-hidden relative">
                       <ToolIcon
                         slug={category.slug}
                         categorySlug={category.slug}
-                        className="w-6 h-6 md:w-8 md:h-8 text-text-primary group-hover:text-accent-glitch transition-colors"
+                        className="w-7 h-7 text-white/30 group-hover:text-accent-glitch transition-all duration-500"
                       />
+                      <div className="absolute inset-0 bg-accent-glitch/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <div className="font-mono text-[10px] text-white/10 group-hover:text-accent-glitch/20 transition-colors">
+                      {category.count.toString().padStart(2, "0")} TOOLS
                     </div>
                   </div>
 
-                  <h3 className="text-xl md:text-2xl font-black text-text-primary mb-2 md:mb-3 uppercase tracking-tight group-hover:text-accent-glitch transition-colors">
+                  <h3 className="text-2xl font-black text-white/90 mb-3 uppercase tracking-tighter group-hover:tracking-widest group-hover:text-white transition-all duration-500">
                     {category.name}
                   </h3>
 
-                  <p className="text-text-muted text-sm font-mono mb-6 line-clamp-2">
+                  <p className="text-white/40 text-[13px] leading-relaxed mb-8 group-hover:text-white/60 transition-colors">
                     {category.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-2 mb-8">
-                    {category.tools.slice(0, 3).map((tool) => (
-                      <span
-                        key={tool.slug}
-                        className="text-[9px] font-mono px-2 py-1 bg-white/5 text-text-muted uppercase tracking-wider"
-                      >
-                        {tool.name.split(" ")[0]}
-                      </span>
-                    ))}
-                    {category.tools.length > 3 && (
-                      <span className="text-[9px] font-mono px-2 py-1 text-accent-glitch/60 uppercase">
-                        +{category.tools.length - 3} MORE
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="mt-auto pt-6 border-t border-border-subtle/40 flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-accent-glitch font-mono font-black text-[9px] uppercase tracking-[0.3em]">
-                      EXPLORE_CATEGORY
-                      <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-2" />
+                  <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
+                    <div className="flex items-center gap-3 text-white/20 group-hover:text-accent-glitch font-mono font-bold text-[10px] uppercase tracking-[0.2em] transition-colors duration-300">
+                      See More
+                      <div className="w-8 h-[1px] bg-current transition-all duration-500 group-hover:w-12" />
                     </div>
-                    <div className="w-12 h-[1px] bg-white/10 group-hover:bg-accent-glitch/30 group-hover:w-20 transition-all duration-500" />
+                    <ArrowRight className="w-4 h-4 text-white/20 group-hover:text-accent-glitch group-hover:translate-x-1 transition-all" />
                   </div>
                 </div>
               </Link>
@@ -270,22 +256,20 @@ export default async function Home() {
       <section className="py-16 md:py-24 px-4 bg-bg-void relative border-t border-border-subtle/30">
         <div className="container mx-auto max-w-7xl">
           <div className="flex flex-col md:flex-row items-end justify-between mb-8 md:mb-12 gap-6 md:gap-8 text-left">
-            <div className="max-w-2xl">
-              <h2 className="text-2xl md:text-5xl font-black tracking-tighter uppercase mb-3 md:mb-5 text-left leading-tight">
-                Broadcast <br />{" "}
-                <span className="text-accent-glitch">Logs</span>
+            <div className="max-w-2xl text-left">
+              <h2 className="text-4xl md:text-5xl font-black tracking-tighter uppercase mb-3 md:mb-5 text-left leading-[0.9]">
+                Recent <span className="text-accent-glitch">Articles</span>
               </h2>
-              <p className="text-text-muted font-mono text-sm md:text-base max-w-xl text-left uppercase tracking-wider opacity-80">
-                Intelligence on typography, glitch aesthetics, and digital
-                subcultures.
+              <p className="text-white/40 font-mono text-[10px] md:text-base max-w-xl text-left uppercase tracking-[0.3em]">
+                Deep dives into design, typography, and creative text effects.
               </p>
             </div>
 
             <Link
               href="/blog"
-              className="font-mono text-xs uppercase tracking-[0.3em] text-text-muted hover:text-text-primary transition-colors border-b border-border-subtle pb-2 mb-1"
+              className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40 hover:text-white transition-colors border-b border-white/10 pb-2 mb-1 shrink-0"
             >
-              Access Archive
+              Our Blog
             </Link>
           </div>
 
@@ -297,39 +281,41 @@ export default async function Home() {
         </div>
       </section>
       {/* CTA Section */}
-      <section className="py-12 md:py-32 px-4 relative overflow-hidden bg-bg-void">
-        <div className="container mx-auto max-w-5xl relative z-10">
-          <div className="p-6 md:p-20 bg-bg-card border border-white/10 relative overflow-hidden text-center group">
-            {/* Background Glitch Effect */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-700 bg-accent-glitch/5" />
+      <section className="py-24 md:py-40 px-4">
+        <div className="container mx-auto max-w-5xl relative">
+          <div className="relative p-8 md:p-24 bg-[#0c0c0c] border border-white/5 rounded-[32px] md:rounded-[40px] text-center overflow-hidden">
+            {/* Ambient Background Glow */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(57,255,20,0.02)_0%,transparent_70%)] pointer-events-none" />
 
             <div className="relative z-10">
-              <span className="inline-block px-3 py-1 bg-accent-glitch text-black text-[9px] font-black uppercase tracking-[0.4em] mb-6 md:mb-8">
-                CRITICAL_UPDATE_REQUIRED
+              <span className="inline-block px-4 py-1.5 bg-accent-glitch/10 text-accent-glitch text-[10px] font-bold uppercase tracking-[0.4em] mb-6 md:mb-8 rounded-full border border-accent-glitch/20">
+                Ready to Start
               </span>
 
-              <h2 className="text-3xl md:text-6xl font-black text-text-primary mb-6 md:mb-8 tracking-tighter leading-tight uppercase">
-                Ready to <br />
-                <span className="text-accent-glitch">Warp Reality?</span>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-6 md:mb-8 tracking-tighter leading-[0.9] uppercase">
+                Start <span className="text-accent-glitch">Creating</span>
               </h2>
 
-              <p className="text-text-muted text-base md:text-lg mb-12 font-mono max-w-xl mx-auto leading-relaxed">
-                Join {TOTAL_TOOLS_COUNT}+ creators breaking the matrix. No
-                limits. No rules. Just pure entropy.
+              <p className="text-white/40 text-sm md:text-xl mb-10 md:mb-14 max-w-xl mx-auto leading-relaxed">
+                Join thousands of creators using our tools to build their brand
+                and express themselves online.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 w-full max-w-md mx-auto">
                 <Link
-                  href="/dark-horror/cursed-text"
-                  className="w-full sm:w-auto px-10 py-4 bg-accent-glitch text-black font-black text-sm hover:scale-105 active:scale-95 transition-all uppercase tracking-widest shadow-[0_0_20px_rgba(57,255,20,0.3)]"
+                  href="/arsenal"
+                  className="group relative w-full sm:w-auto px-10 py-4 md:py-5 bg-white text-black font-black text-xs md:text-sm rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_20px_40px_-10px_rgba(255,255,255,0.2)]"
                 >
-                  Launch Core
+                  <span className="relative z-10 uppercase tracking-widest text-center block">
+                    Try Now
+                  </span>
+                  <div className="absolute inset-0 bg-accent-glitch opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
                 <Link
                   href="/arsenal"
-                  className="w-full sm:w-auto px-10 py-4 border border-border-subtle text-text-primary font-black text-sm hover:bg-text-primary hover:text-bg-void transition-all uppercase tracking-widest"
+                  className="w-full sm:w-auto px-10 py-4 md:py-5 border border-white/10 text-white font-black text-xs md:text-sm rounded-full hover:border-white/20 hover:bg-white/5 transition-all uppercase tracking-widest text-center"
                 >
-                  Directory
+                  Browse Tools
                 </Link>
               </div>
             </div>

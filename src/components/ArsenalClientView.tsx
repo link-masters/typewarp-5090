@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Zap, Activity } from "lucide-react";
+import { Zap, Activity, Home, ChevronRight, LayoutGrid } from "lucide-react";
 import { ToolIcon } from "@/components/ToolIcon";
 import ToolCard from "@/components/ui/ToolCard";
 import BackgroundEffect from "@/components/BackgroundEffect";
@@ -18,36 +18,59 @@ export default function ArsenalClientView({
   totalCount,
 }: ArsenalClientViewProps) {
   return (
-    <div className="min-h-screen pt-20 sm:pt-24 pb-16 bg-bg-void text-text-primary relative overflow-hidden">
-      <BackgroundEffect />
+    <div className="min-h-screen pt-24 pb-24 bg-[#080808] text-white relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="fixed top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-10%,rgba(57,255,20,0.03)_0%,transparent_50%)] pointer-events-none" />
 
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
+        {/* Breadcrumbs */}
+        <motion.div
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center gap-3 mb-10 font-mono text-[10px] uppercase tracking-[0.2em] text-white/30"
+        >
+          <Link
+            href="/"
+            className="hover:text-accent-glitch transition-colors flex items-center gap-2"
+          >
+            <Home className="w-3 h-3" />
+            HOME
+          </Link>
+          <ChevronRight className="w-3 h-3 opacity-20" />
+          <div className="flex items-center gap-2 text-accent-glitch/80">
+            <LayoutGrid className="w-3 h-3" />
+            ARSENAL
+          </div>
+        </motion.div>
         <motion.header
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-12"
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="mb-16 md:mb-24"
         >
           <div className="max-w-2xl text-left">
-            <h1 className="text-3xl md:text-6xl font-black tracking-tighter uppercase mb-6 leading-tight">
-              Explore <span className="text-accent-glitch">Tools</span>
+            <h1 className="text-4xl md:text-5xl font-black tracking-tighter uppercase mb-6 leading-[0.9] flex flex-col md:block items-start md:items-baseline">
+              <span className="whitespace-nowrap">Our</span>{" "}
+              <span className="text-accent-glitch whitespace-nowrap">
+                Collection
+              </span>
             </h1>
-            <p className="text-text-muted font-mono text-lg max-w-xl">
-              Initialize any module from the complete TypeWarp architecture. Our
-              arsenal is engineered for high-performance typographic
-              transformation and digital entropy.
+            <p className="text-white/40 font-mono text-base md:text-lg max-w-xl">
+              Browse our complete collection of typography tools. Designed to
+              help you create unique designs and standout text for any platform.
             </p>
           </div>
         </motion.header>
 
-        {/* Single Line Category Filter */}
-        <div className="mb-16 pb-8 border-b border-border-subtle/10">
-          <div className="flex items-center gap-6 overflow-x-auto pb-4 no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+        {/* Categories Bar */}
+        <div className="mb-16">
+          <div className="flex items-center gap-4 overflow-x-auto pb-4 no-scrollbar">
             <Link
               href="/arsenal"
-              className="px-6 py-2 border border-accent-glitch bg-accent-glitch/10 text-accent-glitch text-[10px] font-black uppercase tracking-[0.3em] whitespace-nowrap shadow-[0_5px_20px_-5px_var(--accent-glitch)] transition-all"
+              className="px-8 py-3 bg-white text-black text-[10px] font-bold uppercase tracking-[0.2em] whitespace-nowrap rounded-full hover:scale-105 transition-transform"
             >
-              All_Systems
+              All Tools
             </Link>
             {allTools
               .reduce((acc: any[], tool) => {
@@ -60,7 +83,7 @@ export default function ArsenalClientView({
                 <Link
                   key={cat.slug}
                   href={`/${cat.slug}`}
-                  className="px-6 py-2 border border-border-subtle text-text-muted text-[10px] font-black uppercase tracking-[0.3em] whitespace-nowrap hover:border-accent-glitch/50 hover:text-text-primary transition-all"
+                  className="px-8 py-3 border border-white/10 text-white/40 text-[10px] font-bold uppercase tracking-[0.2em] whitespace-nowrap hover:border-white/20 hover:text-white transition-all rounded-full"
                 >
                   {cat.name.replace("&", "+")}
                 </Link>
@@ -74,7 +97,7 @@ export default function ArsenalClientView({
           variants={{
             visible: {
               transition: {
-                staggerChildren: 0.02,
+                staggerChildren: 0.05,
               },
             },
           }}
@@ -84,7 +107,7 @@ export default function ArsenalClientView({
             <motion.div
               key={`${tool.category.slug}-${tool.slug}`}
               variants={{
-                hidden: { opacity: 0, y: 10 },
+                hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0 },
               }}
             >
@@ -94,15 +117,15 @@ export default function ArsenalClientView({
               >
                 <ToolCard
                   title={tool.name}
-                  description={`Module: ${tool.category.name.toUpperCase()}`}
+                  description={tool.category.name}
                   icon={
                     <ToolIcon
                       slug={tool.slug}
                       categorySlug={tool.category.slug}
-                      className="w-6 h-6 text-text-muted group-hover:text-accent-glitch transition-colors"
+                      className="w-7 h-7 text-white/30 group-hover:text-accent-glitch transition-all duration-500"
                     />
                   }
-                  className="h-full border border-border-subtle bg-bg-card hover:border-accent-glitch/50 shadow-sm hover:shadow-[0_20px_50px_-10px_rgba(57,255,20,0.1)] transition-all duration-500"
+                  className="h-full"
                 />
               </Link>
             </motion.div>

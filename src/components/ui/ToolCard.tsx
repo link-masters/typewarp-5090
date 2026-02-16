@@ -19,58 +19,44 @@ export default function ToolCard({
 }: ToolCardProps) {
   return (
     <motion.div
-      whileHover={{ y: -5 }}
       className={`
-        relative p-6 px-7 bg-bg-card border border-border-subtle
-        flex flex-col gap-4 group cursor-pointer
-        transition-all duration-500 overflow-hidden
-        hover:border-accent-glitch/40 hover:shadow-[0_20px_50px_-10px_rgba(57,255,20,0.1)]
+        group relative p-8 bg-[#0c0c0c] border border-white/5
+        flex flex-col rounded-xl overflow-hidden
+        transition-all duration-500 cursor-pointer
+        hover:border-accent-glitch/20
         ${className}
       `}
     >
-      {/* Blueprint Pattern Background */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.05] transition-opacity duration-700 pointer-events-none bg-[radial-gradient(var(--accent-glitch)_1px,transparent_1px)] [background-size:20px_20px]" />
+      {/* Unique Refined Hover Glimmer */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
 
-      {/* Technical Corner Accents */}
-      <div className="absolute top-0 right-0 w-8 h-8 opacity-0 group-hover:opacity-100 transition-opacity">
-        <div className="absolute top-2 right-2 w-px h-3 bg-accent-glitch/50" />
-        <div className="absolute top-2 right-2 w-3 h-px bg-accent-glitch/50" />
-      </div>
-
-      <div className="relative z-10">
-        <div className="w-12 h-12 flex items-center justify-center bg-bg-void border border-border-subtle group-hover:border-accent-glitch group-hover:bg-accent-glitch/5 transition-all duration-500 rounded-sm">
+      <div className="relative z-10 flex flex-col h-full">
+        <div className="mb-8 w-14 h-14 bg-[#111] border border-white/10 flex items-center justify-center group-hover:scale-110 group-hover:border-accent-glitch/30 transition-all duration-500 rounded-lg overflow-hidden relative">
           <div className="relative">
             {icon}
-            <div className="absolute -inset-2 bg-accent-glitch/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute inset-0 bg-accent-glitch/5 opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
         </div>
 
-        <div className="mt-6">
-          <h3 className="font-mono text-xl md:text-2xl font-black uppercase tracking-tight text-text-primary group-hover:text-accent-glitch transition-colors duration-300">
+        <div>
+          <h3 className="text-xl font-black text-white/90 uppercase tracking-tighter mb-4 group-hover:text-white transition-all duration-500 whitespace-nowrap overflow-hidden text-ellipsis">
             {title}
           </h3>
-          <p className="text-text-muted text-[12px] font-mono leading-relaxed mt-3 opacity-70 group-hover:opacity-100 transition-opacity">
+          <p className="text-white/40 text-[12px] font-mono leading-relaxed mb-8 group-hover:text-white/60 transition-colors">
             {description}
           </p>
         </div>
-      </div>
 
-      {/* Decorative footer element */}
-      <div className="mt-auto pt-6 flex justify-between items-end relative z-10">
-        <div className="flex flex-col gap-1">
-          <div className="text-[8px] font-mono text-accent-glitch opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0 uppercase tracking-[0.3em]">
-            // MODULE_LOADED
+        {/* Clean Action Footer */}
+        <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
+          <div className="flex items-center gap-3 text-white/20 group-hover:text-accent-glitch font-mono font-bold text-[10px] uppercase tracking-[0.2em] transition-colors duration-300">
+            Try Now
+            <div className="w-8 h-[1px] bg-current transition-all duration-500 group-hover:w-12" />
           </div>
-          <div className="text-[8px] font-mono text-text-muted/30 uppercase tracking-widest">
-            STABLE_REL_1.0
+          <div className="text-[9px] font-mono text-white/10 group-hover:text-white/20 transition-colors uppercase tracking-widest">
+            Ready to Use
           </div>
         </div>
-        <div className="w-10 h-10 border-r border-b border-border-subtle group-hover:border-accent-glitch/50 transition-all duration-500 group-hover:w-12 group-hover:h-12" />
-      </div>
-
-      {/* Bottom Glitch Line */}
-      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-border-subtle group-hover:h-[2px] transition-all overflow-hidden">
-        <div className="absolute inset-0 bg-accent-glitch -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-out" />
       </div>
     </motion.div>
   );

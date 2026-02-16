@@ -52,6 +52,8 @@
   --text-primary: #ededed;
   --text-muted: #888888;
   --accent-glitch: #39ff14; /* Acid Green */
+  --accent-glitch-rgb: 57, 255, 20;
+  --accent-gradient: linear-gradient(135deg, #39ff14 0%, #32cd32 100%);
   --border-subtle: rgba(255, 255, 255, 0.1);
 
   --background: var(--bg-void);
@@ -86,7 +88,7 @@ body {
 
 /* GPU-accelerate fixed/animated elements */
 canvas,
-.fixed {
+canvas {
   will-change: transform;
   transform: translateZ(0);
 }

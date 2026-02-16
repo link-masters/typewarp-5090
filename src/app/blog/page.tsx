@@ -52,77 +52,80 @@ export default async function BlogPage() {
   };
 
   return (
-    <div className="min-h-screen pt-32 pb-20 px-4 bg-bg-void text-text-primary relative overflow-hidden">
-      <BackgroundEffect />
+    <div className="min-h-screen pt-32 pb-24 px-6 bg-[#080808] text-white relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="fixed top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-10%,rgba(57,255,20,0.02)_0%,transparent_50%)] pointer-events-none" />
       <JSONLD data={jsonLd} />
 
       <div className="container mx-auto max-w-7xl relative z-10">
-        {/* Technical Breadcrumbs */}
-        <div className="flex items-center gap-4 mb-6 font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted">
+        {/* Breadcrumbs */}
+        <div className="flex items-center gap-3 mb-10 font-mono text-[10px] uppercase tracking-[0.2em] text-white/30">
           <Link
             href="/"
             className="hover:text-accent-glitch transition-colors flex items-center gap-2"
           >
             <Home className="w-3 h-3" />
-            ROOT
+            HOME
           </Link>
-          <ChevronRight className="w-3 h-3 opacity-30" />
-          <div className="text-accent-glitch">INTEL_FEED</div>
+          <ChevronRight className="w-3 h-3 opacity-20" />
+          <div className="text-accent-glitch/80">BLOG</div>
         </div>
 
-        <header className="mb-12">
+        <header className="mb-20">
           <div className="max-w-2xl text-left">
-            <h1 className="text-3xl md:text-6xl font-black tracking-tighter uppercase mb-6 leading-tight">
-              Systems <span className="text-accent-glitch">Intel</span>
+            <h1 className="text-4xl md:text-7xl font-black tracking-tighter uppercase mb-6 leading-tight">
+              Our <span className="text-accent-glitch">Articles</span>
             </h1>
-            <p className="text-text-muted font-mono text-lg max-w-xl">
-              Deep dives into Unicode manipulation, digital entropy, and the
-              mechanics of the glitch. Access critical insights for modern
-              digital typography.
+            <p className="text-white/40 font-mono text-base md:text-lg max-w-xl">
+              Tips and guides on digital typography, social media trends, and
+              creating unique designs.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-2 mt-12 pb-8 border-b border-border-subtle/10">
-            <div className="px-4 py-2 bg-accent-glitch/10 border border-accent-glitch text-accent-glitch font-mono font-black text-[10px] uppercase tracking-widest shadow-[0_5px_20px_-5px_var(--accent-glitch)]">
-              ALL_TRANSMISSIONS ({posts.length})
-            </div>
+          <div className="flex flex-wrap gap-4 mt-16 pb-12 border-b border-white/5">
+            <button className="px-8 py-3 bg-white text-black font-bold text-[10px] uppercase tracking-[0.2em] rounded-full">
+              All Posts ({posts.length})
+            </button>
             {postCategories.map((cat) => (
               <Link
                 key={cat}
                 href={`/blog?category=${encodeURIComponent(cat)}`}
-                className="px-4 py-2 border border-border-subtle font-mono text-text-muted hover:text-text-primary hover:border-accent-glitch/50 text-[10px] uppercase tracking-widest transition-all"
+                className="px-8 py-3 border border-white/10 text-white/40 hover:text-white hover:border-white/20 font-bold text-[10px] uppercase tracking-[0.2em] transition-all rounded-full"
               >
-                {cat.replace(" ", "_")}
+                {cat}
               </Link>
             ))}
           </div>
         </header>
 
         {/* All Posts Grid */}
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5 border border-white/10">
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
           {posts.map((post) => (
             <BlogCard key={post.slug} post={post} />
           ))}
         </section>
 
         {/* CTA Section */}
-        <section className="mt-20 p-12 md:p-20 bg-bg-card border border-white/5 text-center relative overflow-hidden group">
-          <div className="absolute inset-0 bg-accent-glitch/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+        {/* CTA Section */}
+        <section className="relative p-8 md:p-24 bg-[#0c0c0c] border border-white/5 rounded-[32px] md:rounded-[40px] text-center overflow-hidden">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(57,255,20,0.02)_0%,transparent_70%)] pointer-events-none" />
+
           <div className="relative z-10">
-            <h2 className="text-4xl md:text-6xl font-black text-text-primary mb-8 tracking-tighter uppercase leading-[0.8]">
-              Ready to initialize <br />
-              <span className="text-accent-glitch">Transformation?</span>
+            <h2 className="text-4xl md:text-6xl font-black text-white mb-6 md:mb-8 tracking-tighter uppercase leading-[0.9]">
+              Explore Our <span className="text-accent-glitch">Collection</span>
             </h2>
-            <p className="text-text-muted font-mono mb-12 max-w-2xl mx-auto leading-relaxed">
-              Access the complete suite of {TOTAL_TOOLS_COUNT}+ modules.
-              Engineered for peak performance across all digital environments.
+            <p className="text-white/40 font-mono text-sm md:text-lg mb-10 md:mb-14 max-w-2xl mx-auto leading-relaxed">
+              Discover {TOTAL_TOOLS_COUNT}+ tools for your creative projects.
             </p>
-            <div className="flex flex-wrap justify-center gap-6">
+            <div className="flex justify-center flex-col sm:flex-row gap-4">
               <Link
                 href="/arsenal"
-                className="px-10 py-4 bg-accent-glitch text-black font-black text-xs uppercase tracking-widest hover:bg-white transition-all active:scale-95"
+                className="group relative px-12 py-5 bg-white text-black font-bold text-sm rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_20px_40px_-10px_rgba(255,255,255,0.2)]"
               >
-                ACCESS_ALL_TOOLS
+                <span className="relative z-10 uppercase tracking-[0.2em] text-center block w-full">
+                  Explore All Tools
+                </span>
+                <div className="absolute inset-0 bg-accent-glitch opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
             </div>
           </div>

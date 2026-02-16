@@ -2424,7 +2424,7 @@ export function transformText(
     return applyFontStyle(workingText, customSettings.style || "sansBold");
   }
 
-  if (s === "gaming-font") {
+  if (s === "gaming-font" || s === "clan-tag") {
     return applyFontStyle(workingText, customSettings.game || "game_fort");
   }
 
@@ -2446,7 +2446,7 @@ export function transformText(
     return result;
   }
 
-  if (s === "gaming-font") {
+  if (s === "gaming-font" || s === "clan-tag") {
     const gameStyle = customSettings.game || "game_fort";
     return applyFontStyle(workingText, gameStyle);
   }
@@ -3153,6 +3153,10 @@ export function transformText(
     }
 
     // TEXT TOOLS
+    case "typewriter-font":
+    case "monospace-text":
+      return mapChars(workingText, MONOSPACE_MAP);
+
     case "bold-text": {
       const fontStyle = customSettings.fontStyle || "serifBold";
       const combineItalic = customSettings.italic === true;
@@ -3205,6 +3209,7 @@ export function transformText(
       const char = underlineChars[style] || underlineChars.single;
       return [...base].map((c) => c + char).join("");
     }
+    case "slashed-text":
     case "strikethrough-text": {
       const fontStyle = customSettings.fontStyle || "none";
       const position = customSettings.position || "center";
@@ -4034,6 +4039,7 @@ export function transformText(
       }
       return result;
     }
+    case "sparkle-text":
     case "glitter-text": {
       const glitterStyle = customSettings.glitterStyle || "sparkle";
       const fontStyle = customSettings.fontStyle || "serifBold";
@@ -4079,6 +4085,7 @@ export function transformText(
         })
         .join("");
     }
+    case "box-text":
     case "square-text": {
       const squareStyle = customSettings.squareStyle || "outlined";
 

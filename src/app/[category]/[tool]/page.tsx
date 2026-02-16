@@ -37,11 +37,10 @@ export async function generateMetadata({
   if (toolContent?.meta) {
     return {
       title:
-        toolContent.meta.title ||
-        `${tool.name} | No.1 ${category.name} Generator - TypeWarp`,
+        toolContent.meta.title || `${tool.name} | ${category.name} Generator`,
       description:
         toolContent.meta.description ||
-        `Generate ${tool.name.toLowerCase()} instantly. High-quality ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok & Gaming. Free, fast and mobile friendly.`,
+        `Generate ${tool.name.toLowerCase()} instantly. Best ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok & Gaming.`,
       keywords: toolContent.meta.keywords || [
         tool.name,
         category.name,
@@ -66,8 +65,8 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${tool.name} | No.1 ${category.name} Generator - TypeWarp`,
-    description: `Generate ${tool.name.toLowerCase()} instantly. High-quality ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok & Gaming. Free, fast and mobile friendly.`,
+    title: `${tool.name} | ${category.name} Generator`,
+    description: `Generate ${tool.name.toLowerCase()} instantly. Best ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok & Gaming.`,
     keywords: [
       tool.name,
       category.name,
@@ -133,111 +132,109 @@ export default async function ToolPage({
     },
   };
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `Is the ${tool.name} free?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Yes, the ${tool.name} is completely free to use.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `Can I use ${tool.name} output on social media?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Yes, the output is standard Unicode and works on Instagram, TikTok, Discord, and Twitter/X.`,
+        },
+      },
+    ],
+  };
+
   return (
     <>
       <JSONLD data={jsonLd} />
+      <JSONLD data={faqJsonLd} />
       <ToolView category={category} tool={tool} hideFaqs={!!toolContent} />
 
       {toolContent && (
-        <div className="bg-bg-void pt-12 pb-24 border-t border-white/5">
-          <div className="container mx-auto max-w-7xl px-4">
-            <div className="flex flex-col lg:flex-row gap-10">
-              {/* Sticky TOC Sidebar */}
-              <aside className="hidden lg:block w-72 shrink-0 sticky top-32 h-fit">
-                <div className="border border-white/5 bg-bg-card p-5 shadow-2xl">
-                  <div className="flex items-center gap-4 mb-6">
-                    <Activity className="w-4 h-4 text-accent-glitch animate-pulse" />
-                    <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-text-muted font-black">
-                      System_Index
-                    </span>
-                  </div>
-                  <nav className="flex flex-col">
-                    {headings.map((h, i) => (
-                      <a
-                        key={i}
-                        href={`#${h.id}`}
-                        className="group flex items-start gap-4 py-3 border-b border-white/[0.03] last:border-0 hover:bg-white/[0.01] px-1 -mx-1 transition-all"
-                      >
-                        <span className="text-[9px] font-mono text-white/30 group-hover:text-accent-glitch transition-colors tabular-nums mt-0.5">
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        <span className="text-[10px] font-mono uppercase tracking-[0.15em] font-black group-hover:text-white transition-colors leading-relaxed">
-                          {h.title}
-                        </span>
-                      </a>
-                    ))}
-                  </nav>
-                  <div className="mt-12 pt-6 border-t border-white/5 flex flex-col gap-3">
-                    <div className="flex items-center gap-4">
-                      <Shield className="w-3 h-3 text-accent-glitch/60" />
-                      <span className="text-[9px] font-mono text-text-muted/60 uppercase tracking-[0.3em]">
-                        Verified_Safe
-                      </span>
-                    </div>
-                    <div className="text-[8px] font-mono text-text-muted/30 uppercase tracking-[0.4em] px-0.5">
-                      Build_Ref: TW-2026-X4
-                    </div>
-                  </div>
-                </div>
-              </aside>
+        <div className="bg-[#080808] py-20 border-t border-white/5 relative overflow-hidden">
+          {/* Subtle Ambient Glow */}
+          <div className="absolute top-0 left-0 w-full h-96 bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_100%)] pointer-events-none" />
 
-              {/* Main MDX Content */}
-              <div className="flex-1 min-w-0">
-                {/* Module Intel Header */}
-                <div className="mb-8 p-6 border border-white/5 bg-bg-card/30 relative overflow-hidden group shadow-xl">
-                  <div className="absolute top-0 right-0 p-4 opacity-[0.03] pointer-events-none">
-                    <Box className="w-48 h-48" />
-                  </div>
-                  <div className="flex items-center gap-4 mb-6 relative z-10">
-                    <div className="p-2 border border-accent-glitch/20 bg-accent-glitch/5">
-                      <Shield className="w-5 h-5 text-accent-glitch" />
-                    </div>
-                    <span className="text-[11px] font-mono uppercase tracking-[0.5em] text-white font-black">
-                      Official_Module_Intelligence_Report
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 relative z-10">
-                    <MDXComponents.SystemIntel
-                      label="Module"
-                      value={tool.name}
-                    />
-                    <MDXComponents.SystemIntel
-                      label="Encryption"
-                      value="AES_256_Unicode"
-                    />
-                    <MDXComponents.SystemIntel
-                      label="Latency"
-                      value="< 0.8ms"
-                    />
-                    <MDXComponents.SystemIntel
-                      label="Status"
-                      value="Fully Operational"
-                    />
-                    <MDXComponents.SystemIntel
-                      label="Region"
-                      value="Global Node"
-                    />
-                    <MDXComponents.SystemIntel
-                      label="Integrity"
-                      value="100.0% Verified"
-                    />
-                  </div>
-                </div>
+          <div className="container mx-auto max-w-7xl px-6 relative z-10">
+            {/* Simplified Details Section */}
+            <div className="mb-12">
+              <div className="flex items-center gap-6 mb-8">
+                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/40">
+                  Tool Overview
+                </span>
+                <div className="flex-1 h-[1px] bg-white/5" />
+              </div>
 
-                <div
-                  className="prose prose-invert max-w-none 
-                  prose-h2:mt-8 prose-h2:mb-3 prose-h3:mt-6 prose-h3:mb-2
-                  prose-p:font-mono prose-p:text-text-muted prose-p:leading-relaxed prose-p:text-base prose-p:my-2
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10">
+                <div className="flex flex-col gap-2">
+                  <span className="text-[10px] text-white/30 uppercase tracking-widest font-bold">
+                    Encoding
+                  </span>
+                  <span className="text-sm font-bold text-white">Unicode</span>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <span className="text-[10px] text-white/30 uppercase tracking-widest font-bold">
+                    Performance
+                  </span>
+                  <span className="text-sm font-bold text-white">Instant</span>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <span className="text-[10px] text-white/30 uppercase tracking-widest font-bold">
+                    Availability
+                  </span>
+                  <span className="text-sm font-bold text-accent-glitch">
+                    Live
+                  </span>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="text-[10px] text-text-muted uppercase tracking-wider">
+                    Availability
+                  </span>
+                  <span className="text-sm font-bold text-white">Global</span>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="text-[10px] text-text-muted uppercase tracking-wider">
+                    Safety
+                  </span>
+                  <span className="text-sm font-bold text-white">Verified</span>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="text-[10px] text-text-muted uppercase tracking-wider">
+                    Type
+                  </span>
+                  <span className="text-sm font-bold text-white">Static</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Main Content Area */}
+            <div className="max-w-4xl mx-auto">
+              <div
+                className="prose prose-invert max-w-none
+                  prose-h2:mt-4 prose-h2:mb-1 prose-h3:mt-3 prose-h3:mb-1
+                  prose-p:font-mono prose-p:text-text-muted prose-p:leading-relaxed prose-p:text-base prose-p:my-1
+                  prose-hr:my-2
+                  prose-ul:my-1 prose-ol:my-1
                   prose-a:text-accent-glitch prose-a:no-underline hover:prose-a:underline
                   prose-strong:text-white prose-strong:font-black
                   prose-ul:list-none prose-ol:list-none
                   prose-li:p-0 prose-li:m-0"
-                >
-                  <MDXRemote
-                    source={toolContent.content}
-                    components={MDXComponents}
-                  />
-                </div>
+              >
+                <MDXRemote
+                  source={toolContent.content}
+                  components={MDXComponents}
+                />
               </div>
             </div>
           </div>

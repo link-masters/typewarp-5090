@@ -17,82 +17,72 @@ export default function CategoryClientView({
   category,
 }: CategoryClientViewProps) {
   return (
-    <div className="min-h-screen bg-bg-void text-text-primary pt-20 sm:pt-24 pb-16 px-4 relative overflow-hidden">
-      <BackgroundEffect />
+    <div className="min-h-screen bg-[#080808] text-white pt-24 pb-24 px-6 relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="fixed top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-10%,rgba(57,255,20,0.02)_0%,transparent_50%)] pointer-events-none" />
 
       <div className="container mx-auto max-w-7xl relative z-10">
-        {/* Technical Breadcrumbs */}
+        {/* Breadcrumbs */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="flex items-center gap-4 mb-6 font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted"
+          transition={{ duration: 0.5 }}
+          className="flex items-center gap-3 mb-10 font-mono text-[10px] uppercase tracking-[0.2em] text-white/30"
         >
           <Link
             href="/"
             className="hover:text-accent-glitch transition-colors flex items-center gap-2"
           >
             <Home className="w-3 h-3" />
-            ROOT
+            HOME
           </Link>
-          <ChevronRight className="w-3 h-3 opacity-30" />
-          <div className="flex items-center gap-2 text-accent-glitch">
+          <ChevronRight className="w-3 h-3 opacity-20" />
+          <div className="flex items-center gap-2 text-accent-glitch/80">
             <Terminal className="w-3 h-3" />
             {category.name}
           </div>
         </motion.div>
 
-        {/* Optimized Category Header */}
+        {/* Category Header */}
         <motion.header
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-8"
+          transition={{ duration: 0.8 }}
+          className="mb-16"
         >
           <div className="max-w-2xl text-left">
-            <h1 className="text-3xl md:text-6xl font-black tracking-tighter uppercase mb-6 leading-tight">
-              {category.name.includes("&") ? (
-                <>
-                  {category.name.split("&")[0].trim()} &{" "}
-                  <span className="text-accent-glitch">
-                    {category.name.split("&")[1].trim()}
-                  </span>
-                </>
-              ) : (
-                <>
-                  {category.name.split(" ")[0]}{" "}
-                  <span className="text-accent-glitch">
-                    {category.name.split(" ").slice(1).join(" ")}
-                  </span>
-                </>
-              )}
+            <h1 className="text-4xl md:text-5xl font-black tracking-tighter uppercase mb-6 leading-[0.9] flex flex-col md:block items-start md:items-baseline">
+              <span className="whitespace-nowrap">{category.name}</span>{" "}
+              <span className="text-accent-glitch whitespace-nowrap">
+                Tools
+              </span>
             </h1>
-            <p className="text-text-muted font-mono text-lg max-w-xl">
-              {category.description}. Engineered for maximum cryptographic
-              impact and seamless integration across digital platforms.
+            <p className="text-white/40 font-mono text-base md:text-lg max-w-xl">
+              {category.description}. Designed for high-impact social media
+              posts and creative projects.
             </p>
           </div>
         </motion.header>
 
-        {/* Single Line Category Navigation */}
-        <div className="mb-12 pb-6 border-b border-border-subtle/10 overflow-x-auto no-scrollbar">
-          <div className="flex items-center gap-6">
+        {/* Category Navigation */}
+        <div className="mb-16 overflow-x-auto no-scrollbar">
+          <div className="flex items-center gap-4">
             <Link
               href="/arsenal"
-              className="px-6 py-2 border border-border-subtle text-text-muted text-[10px] font-black uppercase tracking-[0.3em] whitespace-nowrap hover:border-accent-glitch/50 hover:text-text-primary transition-all"
+              className="px-8 py-3 border border-white/10 text-white/40 text-[10px] font-bold uppercase tracking-[0.2em] whitespace-nowrap hover:border-white/20 hover:text-white transition-all rounded-full"
             >
-              All_Systems
+              All Tools
             </Link>
-            <div className="h-4 w-px bg-border-subtle/20" />
+            <div className="h-4 w-px bg-white/5 shrink-0" />
             <div className="flex items-center gap-4">
               {categories.map((cat) => (
                 <Link
                   key={cat.slug}
                   href={`/${cat.slug}`}
-                  className={`px-4 py-2 border text-[9px] font-black uppercase tracking-[0.3em] whitespace-nowrap transition-all ${
+                  className={`px-8 py-3 text-[10px] font-bold uppercase tracking-[0.2em] whitespace-nowrap transition-all rounded-full border ${
                     cat.slug === category.slug
-                      ? "border-accent-glitch bg-accent-glitch/5 text-accent-glitch shadow-[0_5px_15px_-5px_var(--accent-glitch)]"
-                      : "border-border-subtle text-text-muted hover:border-accent-glitch/30 hover:text-text-primary"
+                      ? "bg-white text-black border-white"
+                      : "border-white/10 text-white/40 hover:border-white/20 hover:text-white"
                   }`}
                 >
                   {cat.name.replace("&", "+")}
@@ -102,13 +92,12 @@ export default function CategoryClientView({
           </div>
         </div>
 
-        {/* Tools Grid Section Label */}
-        <div className="flex items-center gap-4 mb-8">
-          <div className="h-px flex-1 bg-border-subtle opacity-20" />
-          <div className="text-[10px] font-mono text-text-muted uppercase tracking-[0.5em]">
-            AVAILABLE_TRANSFORMATION_MATRICES
+        {/* Section Label */}
+        <div className="flex items-center gap-6 mb-12">
+          <div className="text-[10px] font-mono text-white/20 uppercase tracking-[0.4em] whitespace-nowrap">
+            Our {category.name} Collection
           </div>
-          <div className="h-px w-20 bg-border-subtle opacity-20" />
+          <div className="h-[1px] flex-1 bg-white/5" />
         </div>
 
         {/* Tools Grid */}
@@ -122,7 +111,7 @@ export default function CategoryClientView({
               },
             },
           }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {category.tools.map((tool: any) => (
             <motion.div
@@ -139,15 +128,15 @@ export default function CategoryClientView({
               >
                 <ToolCard
                   title={tool.name}
-                  description={`Initialize ${tool.name.toLowerCase()} for high-impact typography manipulation.`}
+                  description={category.name}
                   icon={
                     <ToolIcon
                       slug={tool.slug}
                       categorySlug={category.slug}
-                      className="w-6 h-6 text-text-muted group-hover:text-accent-glitch transition-colors"
+                      className="w-7 h-7 text-white/30 group-hover:text-accent-glitch transition-all duration-500"
                     />
                   }
-                  className="h-full border border-border-subtle bg-bg-card hover:border-accent-glitch/50 shadow-sm hover:shadow-[0_20px_50px_-10px_rgba(57,255,20,0.1)] transition-all duration-500"
+                  className="h-full"
                 />
               </Link>
             </motion.div>

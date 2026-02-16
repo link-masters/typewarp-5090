@@ -327,18 +327,19 @@ export default function ToolView({
   const content = getDynamicContent();
 
   return (
-    <div className="min-h-screen pt-20 sm:pt-24 pb-12 px-4 bg-bg-void text-text-primary relative overflow-hidden">
-      <BackgroundEffect />
+    <div className="min-h-screen pt-24 pb-24 bg-[#080808] text-white relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="fixed top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-10%,rgba(57,255,20,0.02)_0%,transparent_50%)] pointer-events-none" />
 
-      <div className="container mx-auto max-w-7xl relative z-10">
+      <div className="container mx-auto max-w-7xl relative z-10 px-6">
         {/* Compact Breadcrumbs */}
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted transition-opacity duration-500">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-8 font-mono text-[10px] uppercase tracking-[0.2em] text-white/30">
           <Link
             href="/"
             className="hover:text-accent-glitch transition-colors flex items-center gap-1.5 shrink-0"
           >
             <Home className="w-2.5 h-2.5" />
-            ROOT
+            HOME
           </Link>
           <ChevronRight className="w-2.5 h-2.5 opacity-20 shrink-0" />
           <Link
@@ -375,7 +376,7 @@ export default function ToolView({
               <div className="p-1 border-b border-border-subtle bg-bg-void/50 flex justify-between items-center px-4 py-2">
                 <div className="flex items-center gap-2 text-[9px] font-mono uppercase tracking-[0.3em] text-text-muted">
                   <Terminal className="w-3 h-3" />
-                  Source_Input
+                  Input
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-[9px] font-mono text-text-muted/40 uppercase">
@@ -401,7 +402,7 @@ export default function ToolView({
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Enter text to transform..."
-                  className="w-full min-h-[140px] md:min-h-[180px] bg-transparent text-lg md:text-3xl font-black text-text-primary placeholder:text-text-primary/10 outline-none resize-none custom-scrollbar transition-all overscroll-contain p-4 md:p-6 text-left"
+                  className="w-full min-h-[140px] md:min-h-[180px] bg-[#0c0c0c] text-lg md:text-2xl font-medium tracking-normal text-text-primary placeholder:text-text-primary/20 outline-none resize-none custom-scrollbar transition-all overscroll-contain p-4 md:p-6 text-left border-none focus:ring-1 focus:ring-accent-glitch/20"
                   autoFocus
                 />
               </div>
@@ -411,48 +412,41 @@ export default function ToolView({
             <div className="bg-bg-card border border-border-subtle relative group shadow-lg overflow-hidden flex flex-col">
               <div className="p-1 border-b border-border-subtle bg-bg-void/50 flex flex-col sm:flex-row justify-between items-start sm:items-center px-4 py-2 gap-4">
                 <div className="flex items-center gap-2 text-[9px] font-mono uppercase tracking-[0.3em] text-accent-glitch">
-                  <Zap className="w-3 h-3 animate-pulse" />
-                  Engine_Output
+                  <Zap className="w-3 h-3" />
+                  Preview
                 </div>
                 <div className="flex items-center justify-between w-full sm:w-auto gap-4">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[9px] font-mono text-text-muted uppercase tracking-widest hidden xs:inline">
-                      Color:
-                    </span>
-                    <div className="flex items-center gap-1.5 p-1 bg-bg-void/50 border border-border-subtle rounded-sm">
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 p-1.5 bg-bg-void/40 border border-white/5 rounded-full backdrop-blur-sm">
                       {colors.map((c) => (
                         <button
                           key={c.name}
                           onClick={() => setOutputColor(c.value)}
-                          className={`group relative w-4 h-4 sm:w-5 sm:h-5 transition-all duration-500 ${
+                          className={`group relative w-6 h-6 rounded-full transition-all duration-300 ${
                             outputColor === c.value
-                              ? "scale-110 shadow-[0_0_20px_-3px_var(--glow-color)]"
-                              : "hover:scale-110"
+                              ? "scale-105 ring-1 ring-accent-glitch ring-offset-1 ring-offset-[#0c0c0c]"
+                              : "hover:scale-110 hover:ring-1 hover:ring-white/20 hover:ring-offset-1 hover:ring-offset-[#0c0c0c]"
                           }`}
-                          style={
-                            {
-                              "--glow-color":
-                                c.value === "inherit"
-                                  ? "rgba(255,255,255,0.4)"
-                                  : `${c.value}66`,
-                            } as React.CSSProperties
-                          }
                           title={c.name}
                         >
-                          <div
-                            className={`absolute inset-0 transition-all duration-500 ease-out border border-white/10 ${
-                              outputColor === c.value
-                                ? "rotate-45 scale-90 border-white/40"
-                                : "rotate-0 group-hover:rotate-45 group-hover:scale-90 group-hover:border-white/40"
-                            }`}
+                          <span
+                            className="absolute inset-0 rounded-full"
                             style={{
                               backgroundColor:
-                                c.value === "inherit"
-                                  ? "var(--text-primary)"
-                                  : c.value,
-                              opacity: outputColor === c.value ? 1 : 0.3,
+                                c.value === "inherit" ? "#ffffff" : c.value,
+                              opacity:
+                                c.value === "inherit" &&
+                                outputColor !== "inherit"
+                                  ? 0.3
+                                  : 1,
                             }}
-                          />
+                          >
+                            {c.value === "inherit" && (
+                              <span className="absolute inset-0 flex items-center justify-center">
+                                <span className="w-full h-px bg-red-500/50 -rotate-45" />
+                              </span>
+                            )}
+                          </span>
                         </button>
                       ))}
                     </div>
@@ -477,7 +471,7 @@ export default function ToolView({
 
               <div className="bg-accent-glitch/5 px-4 py-1 border-b border-border-subtle flex items-center gap-2">
                 <Info className="w-2.5 h-2.5 text-accent-glitch" />
-                <span className="text-[8px] font-mono text-accent-glitch/70 uppercase tracking-widest">
+                <span className="text-[10px] font-sans text-accent-glitch/80 font-medium uppercase tracking-wider">
                   Note: Colors work in Rich-Text (Email/Docs). Social Media
                   platforms support Unicode symbols only.
                 </span>
@@ -494,13 +488,13 @@ export default function ToolView({
                       ref={outputRef}
                       readOnly
                       value={output}
-                      className="w-full min-h-[140px] md:min-h-[180px] bg-transparent text-lg md:text-3xl font-black break-all leading-[1.2] transition-colors duration-300 relative z-10 outline-none resize-none overflow-y-auto custom-scrollbar overscroll-contain p-4 md:p-6 text-left"
+                      className="w-full min-h-[140px] md:min-h-[180px] bg-[#0c0c0c]/80 text-lg md:text-2xl font-medium tracking-normal break-all leading-relaxed transition-colors duration-300 relative z-10 outline-none resize-none overflow-y-auto custom-scrollbar overscroll-contain p-4 md:p-6 text-left"
                       style={{ color: outputColor }}
                     />
                   ) : (
                     <div className="flex-1 flex items-center justify-center">
-                      <p className="text-text-primary/10 font-mono text-[11px] uppercase tracking-[0.2em] animate-pulse">
-                        Awaiting transformation...
+                      <p className="text-text-primary/10 font-mono text-[11px] uppercase tracking-[0.2em]">
+                        Waiting for text...
                       </p>
                     </div>
                   )}
@@ -518,16 +512,16 @@ export default function ToolView({
               <div className="p-4 bg-bg-card/50 border border-border-subtle group hover:border-accent-glitch/10 transition-all duration-300">
                 <h2 className="text-[9px] font-mono text-accent-glitch uppercase tracking-[0.3em] mb-2 flex items-center gap-2">
                   <Info className="w-3 h-3" />
-                  Module_Summary
+                  About this Tool
                 </h2>
-                <p className="text-text-muted font-mono text-[11px] leading-relaxed line-clamp-4">
+                <p className="text-text-muted font-sans text-[13px] leading-[1.6] line-clamp-4">
                   {content.about}
                 </p>
               </div>
               <div className="p-4 bg-bg-card/50 border border-border-subtle group hover:border-accent-glitch/10 transition-all duration-300">
                 <h2 className="text-[9px] font-mono text-accent-glitch uppercase tracking-[0.3em] mb-2 flex items-center gap-2">
                   <Zap className="w-3 h-3" />
-                  Key_Specs
+                  Features
                 </h2>
                 <div className="grid grid-cols-2 gap-x-4 gap-y-2">
                   {content.features.slice(0, 4).map((f, i) => (
@@ -546,14 +540,14 @@ export default function ToolView({
           </div>
 
           {/* Sidebar Controls */}
-          <div className="w-full lg:w-[320px] shrink-0 flex flex-col gap-4 lg:sticky lg:top-24">
+          <div className="w-full lg:w-[320px] shrink-0 flex flex-col gap-4">
             <div className="bg-bg-card border border-border-subtle p-4 relative group shadow-xl">
               <div className="flex items-center gap-3 mb-6 md:mb-8">
                 <div className="w-10 h-10 border border-accent-glitch/20 flex items-center justify-center">
-                  <Settings className="w-5 h-5 text-accent-glitch animate-spin-slow" />
+                  <Settings className="w-5 h-5 text-accent-glitch" />
                 </div>
                 <h3 className="text-xs font-mono uppercase tracking-[0.3em]">
-                  Matrix_Params
+                  Settings
                 </h3>
               </div>
 
@@ -629,31 +623,37 @@ export default function ToolView({
                               transition={{ duration: 0.15, ease: "easeOut" }}
                               onMouseEnter={lockBodyScroll}
                               onMouseLeave={unlockBodyScroll}
-                              className="absolute top-[calc(100%+4px)] left-0 right-0 bg-bg-card border border-accent-glitch shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-[70] max-h-[240px] overflow-y-auto overscroll-contain custom-scrollbar select-none"
+                              className="absolute top-[calc(100%+8px)] left-0 right-0 bg-[#0e0e0e] border border-accent-glitch/30 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] z-[70] max-h-[280px] overflow-y-auto overscroll-contain custom-scrollbar select-none rounded-lg"
                             >
-                              {control.options?.map((opt: any) => (
-                                <button
-                                  key={opt.value}
-                                  onClick={() => {
-                                    setOptions((prev) => ({
-                                      ...prev,
-                                      customSettings: {
-                                        ...prev.customSettings,
-                                        [control.id]: opt.value,
-                                      },
-                                    }));
-                                    setOpenDropdown(null);
-                                  }}
-                                  className={`w-full text-left px-4 py-3 text-[10px] font-mono uppercase tracking-widest transition-all hover:bg-accent-glitch hover:text-black ${
-                                    (options.customSettings?.[control.id] ??
-                                      control.defaultValue) === opt.value
-                                      ? "text-accent-glitch bg-accent-glitch/5"
-                                      : "text-text-muted"
-                                  }`}
-                                >
-                                  {opt.label}
-                                </button>
-                              ))}
+                              <div className="p-1.5 flex flex-col gap-1">
+                                {control.options?.map((opt: any) => (
+                                  <button
+                                    key={opt.value}
+                                    onClick={() => {
+                                      setOptions((prev) => ({
+                                        ...prev,
+                                        customSettings: {
+                                          ...prev.customSettings,
+                                          [control.id]: opt.value,
+                                        },
+                                      }));
+                                      setOpenDropdown(null);
+                                    }}
+                                    className={`w-full text-left px-4 py-2.5 text-[10px] font-mono uppercase tracking-[0.2em] transition-all rounded-md flex items-center justify-between group/opt ${
+                                      (options.customSettings?.[control.id] ??
+                                        control.defaultValue) === opt.value
+                                        ? "text-accent-glitch bg-accent-glitch/10 font-bold"
+                                        : "text-text-muted hover:bg-white/5 hover:text-text-primary"
+                                    }`}
+                                  >
+                                    {opt.label}
+                                    {(options.customSettings?.[control.id] ??
+                                      control.defaultValue) === opt.value && (
+                                      <CheckCircle2 className="w-3 h-3 text-accent-glitch" />
+                                    )}
+                                  </button>
+                                ))}
+                              </div>
                             </motion.div>
                           )}
                         </AnimatePresence>
@@ -699,7 +699,7 @@ export default function ToolView({
                 {/* Global Overrides */}
                 <div className="pt-8 border-t border-white/5 flex flex-col gap-4">
                   <div className="text-[8px] font-mono uppercase tracking-[0.3em] text-text-muted/50 mb-1">
-                    Global_Overrides
+                    General Settings
                   </div>
                   <button
                     onClick={() =>
@@ -732,7 +732,7 @@ export default function ToolView({
                   >
                     <span className="flex items-center gap-2">
                       <BarChart3 className="w-3 h-3" />
-                      PLATFORM_LIMITS
+                      Character Guide
                     </span>
                     <div
                       className={`w-8 h-4 border ${showPlatformLimits ? "border-accent-glitch" : "border-white/10"} relative`}

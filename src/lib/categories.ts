@@ -43,7 +43,7 @@ export const categories: Category[] = [
   {
     name: "Social Fonts",
     slug: "social-fonts",
-    count: 7,
+    count: 8,
     icon: "📱",
     description: "Perfect fonts for Instagram, Discord, TikTok & more",
     tools: [
@@ -54,12 +54,14 @@ export const categories: Category[] = [
       { name: "Twitter Font Generator", slug: "twitter-font", icon: "🐦" },
       { name: "Gaming Font Generator", slug: "gaming-font", icon: "🎮" },
       { name: "Fortnite Font Generator", slug: "fortnite-font", icon: "🎯" },
+      { name: "Clan Tag Generator", slug: "clan-tag", icon: "🏷️" }, // Added for 404
+      { name: "Fancy Font Generator", slug: "fancy-font", icon: "💎" }, // Added to fix 404
     ],
   },
   {
     name: "Style & Fancy",
     slug: "style-fancy",
-    count: 10,
+    count: 13,
     icon: "✨",
     description: "Aesthetic, vaporwave, and stylish text designs",
     tools: [
@@ -77,12 +79,20 @@ export const categories: Category[] = [
       { name: "Cursive Font Generator", slug: "cursive-font", icon: "📝" },
       { name: "Bubble Text Generator", slug: "bubble-text", icon: "🫧" },
       { name: "Wide Text Generator", slug: "wide-text", icon: "↔️" },
+      { name: "Scary Text Generator", slug: "scary-text", icon: "🎃" }, // Added duplication for 404
+      { name: "Monospace Text Generator", slug: "monospace-text", icon: "💻" }, // Added for 404
+      { name: "Premium Font Generator", slug: "premium-font", icon: "💎" }, // Added for 404
+      {
+        name: "Typewriter Font Generator",
+        slug: "typewriter-font",
+        icon: "⌨️",
+      }, // Added for 404
     ],
   },
   {
     name: "Text Tools",
     slug: "text-tools",
-    count: 15,
+    count: 21,
     icon: "🔧",
     description: "Essential text formatting and manipulation tools",
     tools: [
@@ -109,12 +119,22 @@ export const categories: Category[] = [
       { name: "Sentence Case Converter", slug: "sentence-case", icon: "Aa" },
       { name: "Character Counter", slug: "character-counter", icon: "🔢" },
       { name: "Invisible Character", slug: "invisible-character", icon: "👁️" },
+      { name: "Box Text Generator", slug: "box-text", icon: "📦" }, // Added for 404
+      { name: "Sparkle Text Generator", slug: "sparkle-text", icon: "✨" }, // Added for 404
+      { name: "Slashed Text Generator", slug: "slashed-text", icon: "🗡️" }, // Added for 404
+      {
+        name: "Aggressive Text Generator",
+        slug: "aggressive-text",
+        icon: "😤",
+      }, // Added for 404
+      { name: "Playful Text Generator", slug: "playful-text", icon: "🤹" }, // Added for 404
+      { name: "Glitter Text Generator", slug: "glitter-text", icon: "✨" }, // Added duplication for 404
     ],
   },
   {
     name: "Symbols",
     slug: "symbols",
-    count: 5,
+    count: 8,
     icon: "🔣",
     description: "Special characters, emoticons, and symbols",
     tools: [
@@ -123,6 +143,9 @@ export const categories: Category[] = [
       { name: "Special Characters", slug: "special-characters", icon: "※" },
       { name: "Text Emoticons", slug: "text-emoticons", icon: "ʕ•ᴥ•ʔ" },
       { name: "Lenny Face Generator", slug: "lenny-face", icon: "( ͡° ͜ʖ ͡°)" },
+      { name: "Combat Symbols", slug: "combat-symbols", icon: "⚔️" }, // Added for 404
+      { name: "Mirror Symbols", slug: "mirror-symbols", icon: "🪞" }, // Added for 404
+      { name: "Tech Symbols", slug: "tech-symbols", icon: "💾" }, // Added for 404
     ],
   },
   {

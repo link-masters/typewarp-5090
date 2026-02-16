@@ -31,7 +31,7 @@ const legalLinks = [
 const socialLinks = [
   { Icon: Twitter, href: "#", label: "Twitter" },
   { Icon: Github, href: "#", label: "GitHub" },
-  { Icon: Mail, href: "#", label: "Email" },
+  { Icon: Mail, href: "mailto:community@typewarp.com", label: "Email" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -130,7 +130,7 @@ const Footer = () => {
             {/* System status */}
             <div className="space-y-2.5">
               <div className="text-[9px] text-neutral-400/50 dark:text-text-muted/30 uppercase tracking-[0.25em]">
-                Deployment_Node
+                Status
               </div>
               <div className="flex items-center gap-2">
                 <span className="relative flex h-1.5 w-1.5">
@@ -138,7 +138,7 @@ const Footer = () => {
                   <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500 dark:bg-accent-glitch" />
                 </span>
                 <span className="text-[10px] text-emerald-600 dark:text-accent-glitch font-bold uppercase tracking-[0.2em]">
-                  TW-PROD-01.GLOBAL
+                  Platform Online
                 </span>
               </div>
             </div>
@@ -335,7 +335,7 @@ const Footer = () => {
           {/* Right */}
           <div className="flex items-center gap-3 sm:gap-4 md:gap-6 shrink-0">
             <span className="text-[8px] sm:text-[9px] text-neutral-400/40 dark:text-neutral-700 font-mono uppercase tracking-wider hidden md:inline">
-              v1.0.4-stable
+              Verified Stable
             </span>
 
             <motion.button
