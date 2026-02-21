@@ -2,7 +2,7 @@ import React from "react";
 import { Metadata } from "next";
 import ContactForm from "@/components/ContactForm";
 import JSONLD from "@/components/JSONLD";
-import BackgroundEffect from "@/components/BackgroundEffect";
+import BackgroundEffect from "@/components/CanvasEffect";
 import { Mail, Clock, HelpCircle } from "lucide-react";
 
 export const metadata: Metadata = {

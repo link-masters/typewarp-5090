@@ -6,8 +6,7 @@ import JSONLD from "@/components/JSONLD";
 import { ToolIcon } from "@/components/ToolIcon";
 import { getBlogPosts } from "@/lib/blog";
 import SmallBlogCard from "@/components/SmallBlogCard";
-import FeaturedTools from "@/components/FeaturedTools";
-import Testimonials from "@/components/Testimonials";
+import dynamic from "next/dynamic";
 import {
   Skull,
   Zap,
@@ -20,6 +19,13 @@ import {
   Workflow,
   Target,
 } from "lucide-react";
+
+const FeaturedTools = dynamic(() => import("@/components/FeaturedTools"), {
+  loading: () => <div className="min-h-[400px]" />,
+});
+const Testimonials = dynamic(() => import("@/components/Testimonials"), {
+  loading: () => <div className="min-h-[300px]" />,
+});
 
 export const metadata: Metadata = {
   title: "TypeWarp | #1 Cursed Text & Glitch Font Generator Toolkit",

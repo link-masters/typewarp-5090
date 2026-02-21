@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import BackgroundEffect from "@/components/BackgroundEffect";
+import BackgroundEffect from "@/components/CanvasEffect";
 import { AlertTriangle, Home, RotateCcw } from "lucide-react";
 
 export default function NotFound() {

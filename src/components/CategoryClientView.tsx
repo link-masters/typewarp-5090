@@ -7,7 +7,7 @@ import { Home, ChevronRight, Terminal, Activity } from "lucide-react";
 import { categories } from "@/lib/categories";
 import { ToolIcon } from "@/components/ToolIcon";
 import ToolCard from "@/components/ui/ToolCard";
-import BackgroundEffect from "@/components/BackgroundEffect";
+import BackgroundEffect from "@/components/CanvasEffect";
 
 interface CategoryClientViewProps {
   category: any;

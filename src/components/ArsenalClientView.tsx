@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Zap, Activity, Home, ChevronRight, LayoutGrid } from "lucide-react";
 import { ToolIcon } from "@/components/ToolIcon";
 import ToolCard from "@/components/ui/ToolCard";
-import BackgroundEffect from "@/components/BackgroundEffect";
+import BackgroundEffect from "@/components/CanvasEffect";
 
 interface ArsenalClientViewProps {
   allTools: any[];

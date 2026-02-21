@@ -14,7 +14,7 @@ import { categories } from "@/lib/categories";
 import { ToolIcon } from "@/components/ToolIcon";
 import TableOfContents from "@/components/TableOfContents";
 import Comments from "@/components/Comments";
-import BackgroundEffect from "@/components/BackgroundEffect";
+import BackgroundEffect from "@/components/CanvasEffect";
 import {
   Calendar,
   User,

@@ -6,7 +6,6 @@ import { Metadata } from "next";
 import { getToolContent } from "@/lib/tools";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import MDXComponents from "@/components/MDXComponents";
-import { Shield, Activity, Box, Terminal as TerminalIcon } from "lucide-react";
 
 export function generateStaticParams() {
   const params: { category: string; tool: string }[] = [];
@@ -162,72 +161,16 @@ export default async function ToolPage({
       <ToolView category={category} tool={tool} hideFaqs={!!toolContent} />
 
       {toolContent && (
-        <div className="bg-[#080808] py-20 border-t border-white/5 relative overflow-hidden">
+        <div className="bg-[#080808] py-16 md:py-24 border-t border-white/5 relative overflow-hidden">
           {/* Subtle Ambient Glow */}
           <div className="absolute top-0 left-0 w-full h-96 bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_100%)] pointer-events-none" />
 
           <div className="container mx-auto max-w-7xl px-6 relative z-10">
-            {/* Simplified Details Section */}
-            <div className="mb-12">
-              <div className="flex items-center gap-6 mb-8">
-                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/40">
-                  Tool Overview
-                </span>
-                <div className="flex-1 h-[1px] bg-white/5" />
-              </div>
-
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10">
-                <div className="flex flex-col gap-2">
-                  <span className="text-[10px] text-white/30 uppercase tracking-widest font-bold">
-                    Encoding
-                  </span>
-                  <span className="text-sm font-bold text-white">Unicode</span>
-                </div>
-                <div className="flex flex-col gap-2">
-                  <span className="text-[10px] text-white/30 uppercase tracking-widest font-bold">
-                    Performance
-                  </span>
-                  <span className="text-sm font-bold text-white">Instant</span>
-                </div>
-                <div className="flex flex-col gap-2">
-                  <span className="text-[10px] text-white/30 uppercase tracking-widest font-bold">
-                    Availability
-                  </span>
-                  <span className="text-sm font-bold text-accent-glitch">
-                    Live
-                  </span>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <span className="text-[10px] text-text-muted uppercase tracking-wider">
-                    Availability
-                  </span>
-                  <span className="text-sm font-bold text-white">Global</span>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <span className="text-[10px] text-text-muted uppercase tracking-wider">
-                    Safety
-                  </span>
-                  <span className="text-sm font-bold text-white">Verified</span>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <span className="text-[10px] text-text-muted uppercase tracking-wider">
-                    Type
-                  </span>
-                  <span className="text-sm font-bold text-white">Static</span>
-                </div>
-              </div>
-            </div>
-
             {/* Main Content Area */}
             <div className="max-w-4xl mx-auto">
               <div
                 className="prose prose-invert max-w-none
-                  prose-h2:mt-4 prose-h2:mb-1 prose-h3:mt-3 prose-h3:mb-1
-                  prose-p:font-mono prose-p:text-text-muted prose-p:leading-relaxed prose-p:text-base prose-p:my-1
-                  prose-hr:my-2
-                  prose-ul:my-1 prose-ol:my-1
-                  prose-a:text-accent-glitch prose-a:no-underline hover:prose-a:underline
-                  prose-strong:text-white prose-strong:font-black
+                  prose-strong:text-white prose-strong:font-bold
                   prose-ul:list-none prose-ol:list-none
                   prose-li:p-0 prose-li:m-0"
               >

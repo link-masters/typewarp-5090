@@ -3,18 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import GlitchButton from "./ui/GlitchButton";
-import BackgroundEffect from "./BackgroundEffect";
-import {
-  Terminal,
-  Shield,
-  Cpu,
-  Activity,
-  ArrowRight,
-  Zap,
-  Boxes,
-} from "lucide-react";
-import { useSpring, useMotionValue } from "framer-motion";
+import BackgroundEffect from "./CanvasEffect";
 
 const CHARS = "!@#$%^&*()_+{}:<>?|ABCD0123456789";
 

@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { toolConfigs } from "@/lib/toolConfig";
 import { transformText } from "@/lib/transformers";
-import { ToolIcon } from "@/components/ToolIcon";
 import {
   Copy,
   Trash2,
@@ -19,8 +18,18 @@ import {
   Shuffle,
   X,
   ChevronDown,
+  Activity,
+  RotateCcw,
+  Sparkles,
+  Smartphone,
+  Type,
+  Power,
+  RefreshCw,
+  Box,
+  Layers,
+  Fingerprint,
 } from "lucide-react";
-import BackgroundEffect from "@/components/BackgroundEffect";
+import BackgroundEffect from "@/components/CanvasEffect";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface ToolViewProps {
@@ -105,6 +114,13 @@ export default function ToolView({
   }, [tool.slug, toolConfig]);
 
   useEffect(() => {
+    if (input.length > 500) {
+      const timer = setTimeout(() => {
+        const result = transformText(input, tool.slug, options);
+        setOutput(result);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
     const result = transformText(input, tool.slug, options);
     setOutput(result);
   }, [input, tool.slug, options]);
@@ -404,6 +420,9 @@ export default function ToolView({
                   placeholder="Enter text to transform..."
                   className="w-full min-h-[140px] md:min-h-[180px] bg-[#0c0c0c] text-lg md:text-2xl font-medium tracking-normal text-text-primary placeholder:text-text-primary/20 outline-none resize-none custom-scrollbar transition-all overscroll-contain p-4 md:p-6 text-left border-none focus:ring-1 focus:ring-accent-glitch/20"
                   autoFocus
+                  spellCheck="false"
+                  data-gramm="false"
+                  suppressHydrationWarning
                 />
               </div>
             </div>
@@ -508,32 +527,65 @@ export default function ToolView({
             </div>
 
             {/* Tool Details (Desktop Only) */}
-            <div className="hidden lg:grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="p-4 bg-bg-card/50 border border-border-subtle group hover:border-accent-glitch/10 transition-all duration-300">
-                <h2 className="text-[9px] font-mono text-accent-glitch uppercase tracking-[0.3em] mb-2 flex items-center gap-2">
-                  <Info className="w-3 h-3" />
-                  About this Tool
-                </h2>
-                <p className="text-text-muted font-sans text-[13px] leading-[1.6] line-clamp-4">
-                  {content.about}
-                </p>
-              </div>
-              <div className="p-4 bg-bg-card/50 border border-border-subtle group hover:border-accent-glitch/10 transition-all duration-300">
-                <h2 className="text-[9px] font-mono text-accent-glitch uppercase tracking-[0.3em] mb-2 flex items-center gap-2">
-                  <Zap className="w-3 h-3" />
-                  Features
-                </h2>
-                <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-                  {content.features.slice(0, 4).map((f, i) => (
-                    <div key={i} className="flex flex-col gap-0.5">
-                      <div className="text-[8px] font-mono text-text-primary uppercase tracking-widest truncate">
-                        {f.title}
-                      </div>
-                      <div className="text-[8px] font-mono text-text-muted/60 truncate">
-                        {f.text}
-                      </div>
+            <div className="hidden lg:grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* About This Tool Card */}
+              <div className="p-6 bg-[#0c0c0c] border border-white/5 rounded-xl group hover:border-accent-glitch/20 transition-all duration-500 relative overflow-hidden">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-10 h-10 bg-[#111] border border-white/10 rounded-lg flex items-center justify-center group-hover:border-accent-glitch/30 group-hover:scale-105 transition-all duration-500">
+                      <Info className="w-5 h-5 text-white/30 group-hover:text-accent-glitch transition-colors duration-500" />
                     </div>
-                  ))}
+                    <div>
+                      <h2 className="text-sm font-black uppercase tracking-wider text-white">
+                        About This Tool
+                      </h2>
+                      <p className="text-[10px] font-mono text-white/20 uppercase tracking-widest">
+                        Overview
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-white/50 font-mono text-[13px] leading-[1.8] group-hover:text-white/70 transition-colors duration-500">
+                    {content.about}
+                  </p>
+                </div>
+              </div>
+
+              {/* Features Card */}
+              <div className="p-6 bg-[#0c0c0c] border border-white/5 rounded-xl group hover:border-accent-glitch/20 transition-all duration-500 relative overflow-hidden">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-10 h-10 bg-[#111] border border-white/10 rounded-lg flex items-center justify-center group-hover:border-accent-glitch/30 group-hover:scale-105 transition-all duration-500">
+                      <Zap className="w-5 h-5 text-white/30 group-hover:text-accent-glitch transition-colors duration-500" />
+                    </div>
+                    <div>
+                      <h2 className="text-sm font-black uppercase tracking-wider text-white">
+                        Key Features
+                      </h2>
+                      <p className="text-[10px] font-mono text-white/20 uppercase tracking-widest">
+                        Capabilities
+                      </p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-4">
+                    {content.features.slice(0, 4).map((f, i) => (
+                      <div
+                        key={i}
+                        className="flex items-start gap-3 group/feat"
+                      >
+                        <div className="mt-0.5 w-1.5 h-1.5 rounded-full bg-accent-glitch/40 shrink-0 group-hover/feat:bg-accent-glitch transition-colors" />
+                        <div className="flex-1 min-w-0">
+                          <div className="text-xs font-black text-white uppercase tracking-wide mb-0.5">
+                            {f.title}
+                          </div>
+                          <div className="text-[11px] font-mono text-white/40 leading-relaxed">
+                            {f.text}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -590,69 +642,85 @@ export default function ToolView({
                         className="relative"
                         ref={openDropdown === control.id ? containerRef : null}
                       >
-                        <button
+                        <motion.button
+                          whileTap={{ scale: 0.97 }}
                           onClick={() =>
                             setOpenDropdown(
                               openDropdown === control.id ? null : control.id,
                             )
                           }
-                          className="w-full bg-bg-void border border-border-subtle hover:border-accent-glitch transition-all px-4 py-3 flex items-center justify-between group"
+                          className={`w-full bg-[#0a0a0a] border transition-all duration-150 px-4 py-3 flex items-center justify-between group rounded-lg ${
+                            openDropdown === control.id
+                              ? "border-accent-glitch/60 ring-1 ring-accent-glitch/20 shadow-[0_0_15px_rgba(57,255,20,0.08)]"
+                              : "border-white/10 hover:border-white/25 hover:bg-[#111]"
+                          }`}
                         >
-                          <span className="text-[10px] font-mono text-text-primary uppercase tracking-widest">
-                            {control.options?.find(
-                              (opt: any) =>
-                                opt.value ===
-                                (options.customSettings?.[control.id] ??
-                                  control.defaultValue),
-                            )?.label || "Select Option"}
-                          </span>
+                          <div className="flex items-center gap-2.5">
+                            <span className="text-[11px] font-mono text-text-primary uppercase tracking-widest font-bold">
+                              {control.options?.find(
+                                (opt: any) =>
+                                  opt.value ===
+                                  (options.customSettings?.[control.id] ??
+                                    control.defaultValue),
+                              )?.label || "Select style..."}
+                            </span>
+                          </div>
                           <ChevronDown
-                            className={`w-3 h-3 text-text-muted group-hover:text-accent-glitch transition-all ${
-                              openDropdown === control.id ? "rotate-180" : ""
+                            className={`w-4 h-4 transition-all duration-150 ${
+                              openDropdown === control.id
+                                ? "rotate-180 text-accent-glitch"
+                                : "text-text-muted group-hover:text-white/40"
                             }`}
                           />
-                        </button>
+                        </motion.button>
 
                         <AnimatePresence>
                           {openDropdown === control.id && (
                             <motion.div
                               ref={scrollRef}
-                              initial={{ opacity: 0, y: -10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: -10 }}
-                              transition={{ duration: 0.15, ease: "easeOut" }}
+                              initial={{ opacity: 0, y: 4, scale: 0.98 }}
+                              animate={{ opacity: 1, y: 0, scale: 1 }}
+                              exit={{ opacity: 0, y: 4, scale: 0.98 }}
+                              transition={{
+                                duration: 0.1,
+                                ease: "easeOut",
+                              }}
                               onMouseEnter={lockBodyScroll}
                               onMouseLeave={unlockBodyScroll}
-                              className="absolute top-[calc(100%+8px)] left-0 right-0 bg-[#0e0e0e] border border-accent-glitch/30 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] z-[70] max-h-[280px] overflow-y-auto overscroll-contain custom-scrollbar select-none rounded-lg"
+                              className="absolute top-[calc(100%+6px)] left-0 right-0 bg-[#0a0a0a] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_20px_rgba(57,255,20,0.03)] z-[70] max-h-[300px] overflow-hidden rounded-xl"
                             >
-                              <div className="p-1.5 flex flex-col gap-1">
-                                {control.options?.map((opt: any) => (
-                                  <button
-                                    key={opt.value}
-                                    onClick={() => {
-                                      setOptions((prev) => ({
-                                        ...prev,
-                                        customSettings: {
-                                          ...prev.customSettings,
-                                          [control.id]: opt.value,
-                                        },
-                                      }));
-                                      setOpenDropdown(null);
-                                    }}
-                                    className={`w-full text-left px-4 py-2.5 text-[10px] font-mono uppercase tracking-[0.2em] transition-all rounded-md flex items-center justify-between group/opt ${
+                              <div className="overflow-y-auto max-h-[300px] custom-scrollbar p-1 flex flex-col gap-0.5 overscroll-contain">
+                                {control.options?.map(
+                                  (opt: any, idx: number) => {
+                                    const isActive =
                                       (options.customSettings?.[control.id] ??
-                                        control.defaultValue) === opt.value
-                                        ? "text-accent-glitch bg-accent-glitch/10 font-bold"
-                                        : "text-text-muted hover:bg-white/5 hover:text-text-primary"
-                                    }`}
-                                  >
-                                    {opt.label}
-                                    {(options.customSettings?.[control.id] ??
-                                      control.defaultValue) === opt.value && (
-                                      <CheckCircle2 className="w-3 h-3 text-accent-glitch" />
-                                    )}
-                                  </button>
-                                ))}
+                                        control.defaultValue) === opt.value;
+                                    return (
+                                      <button
+                                        key={opt.value}
+                                        onClick={() => {
+                                          setOptions((prev) => ({
+                                            ...prev,
+                                            customSettings: {
+                                              ...prev.customSettings,
+                                              [control.id]: opt.value,
+                                            },
+                                          }));
+                                          setOpenDropdown(null);
+                                        }}
+                                        className={`w-full text-left px-3 py-2.5 text-[11px] font-mono uppercase tracking-wider transition-all duration-75 rounded-lg flex items-center justify-between group/opt ${
+                                          isActive
+                                            ? "bg-accent-glitch/10 border border-accent-glitch/30 text-accent-glitch font-black shadow-[inset_0_0_12px_rgba(57,255,20,0.05)]"
+                                            : "border border-transparent text-white/50 hover:bg-white/[0.04] hover:text-white/80 hover:border-white/[0.08]"
+                                        }`}
+                                      >
+                                        <div className="flex items-center">
+                                          <span>{opt.label}</span>
+                                        </div>
+                                      </button>
+                                    );
+                                  },
+                                )}
                               </div>
                             </motion.div>
                           )}
@@ -661,7 +729,8 @@ export default function ToolView({
                     )}
 
                     {control.type === "toggle" && (
-                      <button
+                      <motion.button
+                        whileTap={{ y: 1 }}
                         onClick={() => {
                           setOptions((prev) => {
                             const current =
@@ -676,22 +745,105 @@ export default function ToolView({
                             };
                           });
                         }}
-                        className={`flex items-center justify-between p-4 border transition-all font-mono text-[10px] uppercase tracking-widest ${
+                        className={`group relative flex items-center gap-3 p-3 border transition-all duration-300 overflow-hidden rounded-md cursor-pointer select-none ${
                           (options.customSettings?.[control.id] ??
                           control.defaultValue)
-                            ? "border-accent-glitch bg-accent-glitch/5 text-accent-glitch"
-                            : "border-border-subtle text-text-muted"
+                            ? "border-accent-glitch/40 bg-accent-glitch/5 shadow-[0_2px_10px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.05)]"
+                            : "border-white/5 bg-[#111]/50 hover:border-white/10 shadow-[inner_0_1px_10px_rgba(0,0,0,0.2)]"
                         }`}
                       >
-                        {control.label}
+                        {/* Compact Icon */}
                         <div
-                          className={`w-8 h-4 border ${(options.customSettings?.[control.id] ?? control.defaultValue) ? "border-accent-glitch" : "border-white/10"} relative`}
+                          className={`p-1.5 rounded-sm transition-all duration-500 ${
+                            (options.customSettings?.[control.id] ??
+                            control.defaultValue)
+                              ? "bg-accent-glitch text-black shadow-[0_0_10px_rgba(57,255,20,0.3)]"
+                              : "bg-white/5 text-text-muted group-hover:bg-white/10"
+                          }`}
                         >
-                          <div
-                            className={`absolute top-0.5 bottom-0.5 w-3 transition-all ${(options.customSettings?.[control.id] ?? control.defaultValue) ? "right-0.5 bg-accent-glitch" : "left-0.5 bg-text-primary/20"}`}
-                          />
+                          {(() => {
+                            const iconMap: Record<string, any> = {
+                              randomize: Shuffle,
+                              animate: Activity,
+                              chaos: Zap,
+                              scanlines: Terminal,
+                              mix: Layers,
+                              shadow: Box,
+                              recursive: RefreshCw,
+                              shake: Activity,
+                              invertedCross: X,
+                              ornaments: Sparkles,
+                              mockup: Smartphone,
+                            };
+                            const Icon = iconMap[control.id] || Fingerprint;
+                            return <Icon className="w-3.5 h-3.5" />;
+                          })()}
                         </div>
-                      </button>
+
+                        {/* Label & Status */}
+                        <div className="flex flex-col items-start gap-0 min-w-0">
+                          <span
+                            className={`text-[10px] font-mono uppercase tracking-[0.05em] transition-colors duration-300 truncate w-full ${
+                              (options.customSettings?.[control.id] ??
+                              control.defaultValue)
+                                ? "text-white font-black"
+                                : "text-text-muted/80 group-hover:text-text-primary"
+                            }`}
+                          >
+                            {control.label}
+                          </span>
+                          <span
+                            className={`text-[7px] font-mono tracking-widest mt-0.5 transition-opacity duration-300 ${
+                              (options.customSettings?.[control.id] ??
+                              control.defaultValue)
+                                ? "text-accent-glitch/80"
+                                : "text-white/10"
+                            }`}
+                          >
+                            {(options.customSettings?.[control.id] ??
+                            control.defaultValue)
+                              ? "SYS_LINKED"
+                              : "SYS_POWER_OFF"}
+                          </span>
+                        </div>
+
+                        {/* High-Tech Toggle Switch */}
+                        <div className="ml-auto flex items-center shrink-0">
+                          <div
+                            className={`w-8 h-4 rounded-full border transition-all duration-300 relative ${
+                              (options.customSettings?.[control.id] ??
+                              control.defaultValue)
+                                ? "bg-accent-glitch/20 border-accent-glitch/50"
+                                : "bg-black/40 border-white/10"
+                            }`}
+                          >
+                            <motion.div
+                              initial={false}
+                              animate={{
+                                x:
+                                  (options.customSettings?.[control.id] ??
+                                  control.defaultValue)
+                                    ? 16
+                                    : 2,
+                              }}
+                              className={`absolute top-0.5 w-2.5 h-2.5 rounded-full shadow-lg ${
+                                (options.customSettings?.[control.id] ??
+                                control.defaultValue)
+                                  ? "bg-accent-glitch shadow-[0_0_8px_rgba(57,255,20,0.8)]"
+                                  : "bg-white/20"
+                              }`}
+                            />
+                          </div>
+                        </div>
+
+                        {/* Metallic Edge Highlight */}
+                        <div className="absolute top-0 left-0 w-full h-[1px] bg-white/5" />
+
+                        {(options.customSettings?.[control.id] ??
+                          control.defaultValue) && (
+                          <div className="absolute inset-0 bg-accent-glitch/5 animate-pulse pointer-events-none" />
+                        )}
+                      </motion.button>
                     )}
                   </div>
                 ))}
@@ -701,47 +853,135 @@ export default function ToolView({
                   <div className="text-[8px] font-mono uppercase tracking-[0.3em] text-text-muted/50 mb-1">
                     General Settings
                   </div>
-                  <button
+                  <motion.button
+                    whileTap={{ y: 1 }}
                     onClick={() =>
                       setOptions({ ...options, uppercase: !options.uppercase })
                     }
-                    className={`flex items-center justify-between p-4 border transition-all font-mono text-[10px] uppercase tracking-widest ${
+                    className={`group relative flex items-center gap-3 p-3 border transition-all duration-300 overflow-hidden rounded-md cursor-pointer select-none ${
                       options.uppercase
-                        ? "border-accent-glitch bg-accent-glitch/5 text-accent-glitch"
-                        : "border-white/10 text-text-muted"
+                        ? "border-accent-glitch/40 bg-accent-glitch/5 shadow-[0_2px_10px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.05)]"
+                        : "border-white/5 bg-[#111]/50 hover:border-white/10 shadow-[inner_0_1px_10px_rgba(0,0,0,0.2)]"
                     }`}
                   >
-                    CAPS_LOCK
                     <div
-                      className={`w-8 h-4 border ${options.uppercase ? "border-accent-glitch" : "border-white/10"} relative`}
+                      className={`p-1.5 rounded-sm transition-all duration-500 ${
+                        options.uppercase
+                          ? "bg-accent-glitch text-black shadow-[0_0_10px_rgba(57,255,20,0.3)]"
+                          : "bg-white/5 text-text-muted group-hover:bg-white/10"
+                      }`}
                     >
-                      <div
-                        className={`absolute top-0.5 bottom-0.5 w-3 transition-all ${options.uppercase ? "right-0.5 bg-accent-glitch" : "left-0.5 bg-white/20"}`}
-                      />
+                      <Type className="w-3.5 h-3.5" />
                     </div>
-                  </button>
 
-                  {/* Platform Limits */}
-                  <button
+                    <div className="flex flex-col items-start gap-0 min-w-0">
+                      <span
+                        className={`text-[10px] font-mono uppercase tracking-[0.05em] transition-colors duration-300 truncate w-full ${
+                          options.uppercase
+                            ? "text-white font-black"
+                            : "text-text-muted/80 group-hover:text-text-primary"
+                        }`}
+                      >
+                        Uppercase Mode
+                      </span>
+                      <span
+                        className={`text-[7px] font-mono tracking-widest mt-0.5 transition-opacity duration-300 ${
+                          options.uppercase
+                            ? "text-accent-glitch/80"
+                            : "text-white/10"
+                        }`}
+                      >
+                        {options.uppercase ? "CAPS_LOCK_ON" : "CAPS_LOCK_OFF"}
+                      </span>
+                    </div>
+
+                    <div className="ml-auto flex items-center shrink-0">
+                      <div
+                        className={`w-8 h-4 rounded-full border transition-all duration-300 relative ${
+                          options.uppercase
+                            ? "bg-accent-glitch/20 border-accent-glitch/50"
+                            : "bg-black/40 border-white/10"
+                        }`}
+                      >
+                        <motion.div
+                          initial={false}
+                          animate={{ x: options.uppercase ? 16 : 2 }}
+                          className={`absolute top-0.5 w-2.5 h-2.5 rounded-full shadow-lg ${
+                            options.uppercase
+                              ? "bg-accent-glitch shadow-[0_0_8px_rgba(57,255,20,0.8)]"
+                              : "bg-white/20"
+                          }`}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="absolute top-0 left-0 w-full h-[1px] bg-white/5" />
+                  </motion.button>
+
+                  <motion.button
+                    whileTap={{ y: 1 }}
                     onClick={() => setShowPlatformLimits(!showPlatformLimits)}
-                    className={`flex items-center justify-between p-4 border transition-all font-mono text-[10px] uppercase tracking-widest ${
+                    className={`group relative flex items-center gap-3 p-3 border transition-all duration-300 overflow-hidden rounded-md cursor-pointer select-none ${
                       showPlatformLimits
-                        ? "border-accent-glitch bg-accent-glitch/5 text-accent-glitch"
-                        : "border-white/10 text-text-muted"
+                        ? "border-accent-glitch/40 bg-accent-glitch/5 shadow-[0_2px_10px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.05)]"
+                        : "border-white/5 bg-[#111]/50 hover:border-white/10 shadow-[inner_0_1px_10px_rgba(0,0,0,0.2)]"
                     }`}
                   >
-                    <span className="flex items-center gap-2">
-                      <BarChart3 className="w-3 h-3" />
-                      Character Guide
-                    </span>
                     <div
-                      className={`w-8 h-4 border ${showPlatformLimits ? "border-accent-glitch" : "border-white/10"} relative`}
+                      className={`p-1.5 rounded-sm transition-all duration-500 ${
+                        showPlatformLimits
+                          ? "bg-accent-glitch text-black shadow-[0_0_10px_rgba(57,255,20,0.3)]"
+                          : "bg-white/5 text-text-muted group-hover:bg-white/10"
+                      }`}
                     >
-                      <div
-                        className={`absolute top-0.5 bottom-0.5 w-3 transition-all ${showPlatformLimits ? "right-0.5 bg-accent-glitch" : "left-0.5 bg-white/20"}`}
-                      />
+                      <BarChart3 className="w-3.5 h-3.5" />
                     </div>
-                  </button>
+
+                    <div className="flex flex-col items-start gap-0 min-w-0">
+                      <span
+                        className={`text-[10px] font-mono uppercase tracking-[0.05em] transition-colors duration-300 truncate w-full ${
+                          showPlatformLimits
+                            ? "text-white font-black"
+                            : "text-text-muted/80 group-hover:text-text-primary"
+                        }`}
+                      >
+                        Character Guide
+                      </span>
+                      <span
+                        className={`text-[7px] font-mono tracking-widest mt-0.5 transition-opacity duration-300 ${
+                          showPlatformLimits
+                            ? "text-accent-glitch/80"
+                            : "text-white/10"
+                        }`}
+                      >
+                        {showPlatformLimits
+                          ? "DATA_STREAM_ON"
+                          : "DATA_STREAM_OFF"}
+                      </span>
+                    </div>
+
+                    <div className="ml-auto flex items-center shrink-0">
+                      <div
+                        className={`w-8 h-4 rounded-full border transition-all duration-300 relative ${
+                          showPlatformLimits
+                            ? "bg-accent-glitch/20 border-accent-glitch/50"
+                            : "bg-black/40 border-white/10"
+                        }`}
+                      >
+                        <motion.div
+                          initial={false}
+                          animate={{ x: showPlatformLimits ? 16 : 2 }}
+                          className={`absolute top-0.5 w-2.5 h-2.5 rounded-full shadow-lg ${
+                            showPlatformLimits
+                              ? "bg-accent-glitch shadow-[0_0_8px_rgba(57,255,20,0.8)]"
+                              : "bg-white/20"
+                          }`}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="absolute top-0 left-0 w-full h-[1px] bg-white/5" />
+                  </motion.button>
 
                   <AnimatePresence>
                     {showPlatformLimits && output && (
@@ -794,49 +1034,96 @@ export default function ToolView({
             </div>
 
             {/* Tool Details (Mobile Only) */}
-            <div className="grid lg:hidden grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-5 bg-bg-card/50 border border-border-subtle group hover:border-accent-glitch/10 transition-all duration-300">
-                <h2 className="text-[9px] font-mono text-accent-glitch uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
-                  <Info className="w-3 h-3" />
-                  Module_Summary
-                </h2>
-                <p className="text-text-muted font-mono text-[11px] leading-relaxed line-clamp-4">
-                  {content.about}
-                </p>
-              </div>
-              <div className="p-5 bg-bg-card/50 border border-border-subtle group hover:border-accent-glitch/10 transition-all duration-300">
-                <h2 className="text-[9px] font-mono text-accent-glitch uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
-                  <Zap className="w-3 h-3" />
-                  Key_Specs
-                </h2>
-                <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-                  {content.features.slice(0, 4).map((f, i) => (
-                    <div key={i} className="flex flex-col gap-0.5">
-                      <div className="text-[8px] font-mono text-text-primary uppercase tracking-widest truncate">
-                        {f.title}
-                      </div>
-                      <div className="text-[8px] font-mono text-text-muted/60 truncate">
-                        {f.text}
-                      </div>
+            <div className="grid lg:hidden grid-cols-1 gap-4">
+              {/* About Card - Mobile */}
+              <div className="p-5 bg-[#0c0c0c] border border-white/5 rounded-xl group hover:border-accent-glitch/20 transition-all duration-500 relative overflow-hidden">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 bg-[#111] border border-white/10 rounded-lg flex items-center justify-center">
+                      <Info className="w-4 h-4 text-white/30 group-hover:text-accent-glitch transition-colors duration-500" />
                     </div>
-                  ))}
+                    <div>
+                      <h2 className="text-xs font-black uppercase tracking-wider text-white">
+                        About This Tool
+                      </h2>
+                      <p className="text-[9px] font-mono text-white/20 uppercase tracking-widest">
+                        Overview
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-white/50 font-mono text-[12px] leading-[1.8] group-hover:text-white/70 transition-colors duration-500">
+                    {content.about}
+                  </p>
+                </div>
+              </div>
+
+              {/* Features Card - Mobile */}
+              <div className="p-5 bg-[#0c0c0c] border border-white/5 rounded-xl group hover:border-accent-glitch/20 transition-all duration-500 relative overflow-hidden">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 bg-[#111] border border-white/10 rounded-lg flex items-center justify-center">
+                      <Zap className="w-4 h-4 text-white/30 group-hover:text-accent-glitch transition-colors duration-500" />
+                    </div>
+                    <div>
+                      <h2 className="text-xs font-black uppercase tracking-wider text-white">
+                        Key Features
+                      </h2>
+                      <p className="text-[9px] font-mono text-white/20 uppercase tracking-widest">
+                        Capabilities
+                      </p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {content.features.slice(0, 4).map((f, i) => (
+                      <div
+                        key={i}
+                        className="flex items-start gap-3 group/feat"
+                      >
+                        <div className="mt-1 w-1.5 h-1.5 rounded-full bg-accent-glitch/40 shrink-0 group-hover/feat:bg-accent-glitch transition-colors" />
+                        <div className="flex-1 min-w-0">
+                          <div className="text-[11px] font-black text-white uppercase tracking-wide mb-0.5">
+                            {f.title}
+                          </div>
+                          <div className="text-[10px] font-mono text-white/40 leading-relaxed">
+                            {f.text}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Quick Links */}
-            <div className="p-4 bg-bg-card border border-white/5">
-              <h3 className="text-[10px] font-mono uppercase tracking-[0.3em] text-text-muted mb-4">
-                Related_Modules
-              </h3>
-              <div className="grid grid-cols-2 gap-2">
-                {category.tools.slice(0, 4).map((t) => (
+            {/* Related Tools */}
+            <div className="p-5 bg-[#0c0c0c] border border-white/5 rounded-xl relative overflow-hidden">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-9 h-9 bg-[#111] border border-white/10 rounded-lg flex items-center justify-center">
+                  <Layers className="w-4 h-4 text-white/30" />
+                </div>
+                <div>
+                  <h3 className="text-xs font-black uppercase tracking-wider text-white">
+                    Related Tools
+                  </h3>
+                  <p className="text-[9px] font-mono text-white/20 uppercase tracking-widest">
+                    Explore More
+                  </p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 gap-2">
+                {category.tools.slice(0, 6).map((t) => (
                   <Link
                     key={t.slug}
                     href={`/${category.slug}/${t.slug}`}
-                    className="p-2 border border-border-subtle bg-bg-void text-[9px] font-mono text-text-muted hover:text-accent-glitch hover:border-accent-glitch/30 transition-all uppercase truncate"
+                    className="group/link flex items-center gap-3 p-3 bg-[#111]/50 border border-white/5 rounded-lg hover:border-accent-glitch/20 hover:bg-accent-glitch/[0.03] transition-all duration-300"
                   >
-                    {t.name}
+                    <div className="w-1 h-4 bg-white/5 rounded-full group-hover/link:bg-accent-glitch/40 transition-colors" />
+                    <span className="text-[11px] font-mono font-bold text-white/50 uppercase tracking-wider group-hover/link:text-accent-glitch transition-colors flex-1 truncate">
+                      {t.name}
+                    </span>
+                    <ChevronRight className="w-3 h-3 text-white/10 group-hover/link:text-accent-glitch/60 transition-colors" />
                   </Link>
                 ))}
               </div>
@@ -847,25 +1134,37 @@ export default function ToolView({
         {/* FAQs */}
         {!hideFaqs && (
           <div className="mt-16 sm:mt-24">
-            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-center mb-6 md:mb-10 underline decoration-accent-glitch/20 underline-offset-8">
-              Matrix_Intel_FAQ
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+            <div className="flex flex-col items-center gap-4 mb-10 md:mb-14">
+              <div className="w-12 h-12 bg-[#0c0c0c] border border-white/10 rounded-xl flex items-center justify-center">
+                <Info className="w-6 h-6 text-accent-glitch" />
+              </div>
+              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-center">
+                Frequently Asked{" "}
+                <span className="text-accent-glitch">Questions</span>
+              </h2>
+              <p className="text-white/30 font-mono text-xs uppercase tracking-widest">
+                Common queries answered
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {content.faqs.map((faq, i) => (
                 <div
                   key={i}
-                  className="p-4 md:p-5 bg-bg-card border border-border-subtle group hover:border-accent-glitch/20 transition-all duration-300 shadow-sm"
+                  className="p-5 md:p-6 bg-[#0c0c0c] border border-white/5 rounded-xl group hover:border-accent-glitch/20 transition-all duration-500 relative overflow-hidden"
                 >
-                  <h4 className="text-[10px] md:text-[11px] font-mono font-black text-accent-glitch uppercase tracking-widest mb-3 flex gap-2">
-                    <span className="opacity-50">[Q]</span> {faq.q}
-                  </h4>
-                  <div className="flex gap-3">
-                    <span className="text-text-primary/10 text-[10px] md:text-[11px] font-mono font-black shrink-0">
-                      [A]
-                    </span>
-                    <p className="text-text-muted font-mono text-[12px] md:text-sm leading-relaxed">
-                      {faq.a}
-                    </p>
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
+                  <div className="relative z-10">
+                    <h4 className="text-[11px] md:text-xs font-mono font-black text-accent-glitch uppercase tracking-wider mb-4 flex items-start gap-3">
+                      <span className="inline-flex items-center justify-center w-6 h-6 bg-accent-glitch/10 border border-accent-glitch/20 rounded-md text-[9px] text-accent-glitch shrink-0 mt-0.5">
+                        Q
+                      </span>
+                      <span className="pt-1">{faq.q}</span>
+                    </h4>
+                    <div className="flex gap-3 ml-9">
+                      <p className="text-white/50 font-mono text-[12px] md:text-[13px] leading-[1.8] group-hover:text-white/70 transition-colors duration-500">
+                        {faq.a}
+                      </p>
+                    </div>
                   </div>
                 </div>
               ))}

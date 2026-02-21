@@ -1,34 +1,42 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, memo } from "react";
 
-export default function BackgroundEffect() {
+const BackgroundEffect = memo(function BackgroundEffect() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const isVisibleRef = useRef(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    // Observe visibility to pause when off-screen
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+      },
+      { threshold: 0 },
+    );
+    observer.observe(canvas);
+
     const ctx = canvas.getContext("2d", {
       alpha: false,
-      desynchronized: true, // Low latency rendering
+      desynchronized: true,
     });
     if (!ctx) return;
 
     let animationFrameId: number;
     let frameCount = 0;
 
-    // Performance presets
     const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-    const skipFrames = isMobile ? 3 : 1;
-    const fontSize = isMobile ? 18 : 14;
-    const step = isMobile ? 3 : 1; // Only render every 3rd column on mobile
+    const skipFrames = isMobile ? 4 : 2;
+    const fontSize = isMobile ? 20 : 16;
+    const step = isMobile ? 4 : 2;
 
     const resize = () => {
-      // Cap at 1 for max performance on high-DPI screens
-      const dpr = 1;
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
+      const scale = isMobile ? 0.5 : 0.75;
+      canvas.width = Math.floor(window.innerWidth * scale);
+      canvas.height = Math.floor(window.innerHeight * scale);
       canvas.style.width = window.innerWidth + "px";
       canvas.style.height = window.innerHeight + "px";
     };
@@ -36,21 +44,20 @@ export default function BackgroundEffect() {
     let resizeTimer: ReturnType<typeof setTimeout>;
     const handleResize = () => {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(resize, 250);
+      resizeTimer = setTimeout(resize, 300);
     };
 
     window.addEventListener("resize", handleResize, { passive: true });
     resize();
 
-    const characters = "01$#@%&*";
-    const columns = Math.ceil(window.innerWidth / fontSize);
+    const characters = "01$#@%";
+    const columns = Math.ceil(canvas.width / fontSize);
     const drops: number[] = new Array(columns)
       .fill(1)
-      .map(() => Math.random() * -100);
+      .map(() => Math.random() * -50);
 
     const draw = () => {
-      // Pause if tab is hidden to save energy/CPU
-      if (document.hidden) {
+      if (document.hidden || !isVisibleRef.current) {
         animationFrameId = requestAnimationFrame(draw);
         return;
       }
@@ -63,13 +70,10 @@ export default function BackgroundEffect() {
 
       ctx.fillStyle = "rgba(3, 3, 3, 0.15)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-
       ctx.font = `${fontSize}px monospace`;
 
       for (let i = 0; i < drops.length; i += step) {
-        const text = characters[Math.floor(Math.random() * characters.length)];
-
-        // Use simpler colors for perf
+        const text = characters[(Math.random() * characters.length) | 0];
         ctx.fillStyle =
           Math.random() > 0.98 ? "#39ff14" : "rgba(57, 255, 20, 0.12)";
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
@@ -86,6 +90,7 @@ export default function BackgroundEffect() {
     draw();
 
     return () => {
+      observer.disconnect();
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationFrameId);
       clearTimeout(resizeTimer);
@@ -96,10 +101,8 @@ export default function BackgroundEffect() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0 opacity-20"
-      style={{
-        contain: "strict",
-        transform: "translateZ(0)", // Force GPU acceleration
-      }}
     />
   );
-}
+});
+
+export default BackgroundEffect;

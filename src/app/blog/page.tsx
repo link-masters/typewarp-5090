@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { categories, TOTAL_TOOLS_COUNT } from "@/lib/categories";
 import JSONLD from "@/components/JSONLD";
-import BackgroundEffect from "@/components/BackgroundEffect";
+import BackgroundEffect from "@/components/CanvasEffect";
 import {
   Calendar,
   User,

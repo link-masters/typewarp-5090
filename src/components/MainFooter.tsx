@@ -75,9 +75,6 @@ const Footer = () => {
 
   return (
     <footer className="w-full border-t border-neutral-200 dark:border-white/[0.1] bg-white dark:bg-[#0a0a0a] relative overflow-hidden font-mono">
-      {/* Subtle texture overlay */}
-      <div className="absolute inset-0 opacity-[0.015] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
-
       {/* Top gradient line */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-500/20 dark:via-accent-glitch/15 to-transparent" />
 
@@ -114,16 +111,14 @@ const Footer = () => {
             {/* Social links */}
             <div className="flex items-center gap-2.5 sm:gap-3 mb-6 sm:mb-8">
               {socialLinks.map(({ Icon, href, label }) => (
-                <motion.a
+                <a
                   key={label}
                   href={href}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.92 }}
                   className="w-9 h-9 sm:w-10 sm:h-10 border border-neutral-200 dark:border-white/[0.08] rounded-xl flex items-center justify-center text-neutral-400 dark:text-text-muted hover:text-emerald-600 dark:hover:text-accent-glitch hover:border-emerald-500/30 dark:hover:border-accent-glitch/30 hover:bg-emerald-500/5 dark:hover:bg-accent-glitch/5 transition-all duration-200"
                   aria-label={label}
                 >
                   <Icon className="w-4 h-4" />
-                </motion.a>
+                </a>
               ))}
             </div>
 
@@ -134,7 +129,6 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-2">
                 <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 dark:bg-accent-glitch opacity-75" />
                   <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500 dark:bg-accent-glitch" />
                 </span>
                 <span className="text-[10px] text-emerald-600 dark:text-accent-glitch font-bold uppercase tracking-[0.2em]">
@@ -323,7 +317,6 @@ const Footer = () => {
             </span>
             <div className="hidden sm:flex items-center gap-2">
               <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 dark:bg-accent-glitch opacity-75" />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500 dark:bg-accent-glitch" />
               </span>
               <span className="text-[9px] sm:text-[10px] text-emerald-600 dark:text-accent-glitch font-bold uppercase tracking-[0.2em]">
@@ -338,15 +331,13 @@ const Footer = () => {
               Verified Stable
             </span>
 
-            <motion.button
+            <button
               onClick={scrollToTop}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
               className="w-9 h-9 sm:w-10 sm:h-10 border border-neutral-200 dark:border-white/[0.08] rounded-xl bg-white dark:bg-[#0e0e0e] flex items-center justify-center text-neutral-400 dark:text-text-muted hover:text-emerald-600 dark:hover:text-accent-glitch hover:border-emerald-500/30 dark:hover:border-accent-glitch/30 hover:bg-emerald-500/5 dark:hover:bg-accent-glitch/5 transition-all duration-200 shadow-sm"
               aria-label="Scroll to top"
             >
               <ArrowUp className="w-4 h-4" />
-            </motion.button>
+            </button>
           </div>
         </div>
       </div>

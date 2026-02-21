@@ -1,6 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
-import BackgroundEffect from "@/components/BackgroundEffect";
+import BackgroundEffect from "@/components/CanvasEffect";
 import Link from "next/link";
 import { Home, ChevronRight, ShieldCheck } from "lucide-react";
 
