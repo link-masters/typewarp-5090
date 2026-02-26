@@ -43,7 +43,7 @@ export const categories: Category[] = [
   {
     name: "Social Fonts",
     slug: "social-fonts",
-    count: 8,
+    count: 9,
     icon: "📱",
     description: "Perfect fonts for Instagram, Discord, TikTok & more",
     tools: [
@@ -61,7 +61,7 @@ export const categories: Category[] = [
   {
     name: "Style & Fancy",
     slug: "style-fancy",
-    count: 13,
+    count: 14,
     icon: "✨",
     description: "Aesthetic, vaporwave, and stylish text designs",
     tools: [

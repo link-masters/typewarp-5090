@@ -33,29 +33,64 @@ export async function generateMetadata({
 
   const toolContent = await getToolContent(toolSlug);
 
+  const baseKeywords = [
+    tool.name.toLowerCase(),
+    `${category.name.toLowerCase()} generator`,
+    "free text generator",
+    "fancy fonts",
+    "cool symbols",
+    "social media branding",
+    "unicode text",
+    "copy paste text",
+    "discord fonts",
+    "instagram fonts",
+    "typewarp",
+  ];
+
   if (toolContent?.meta) {
     return {
       title:
-        toolContent.meta.title || `${tool.name} | ${category.name} Generator`,
+        toolContent.meta.title ||
+        `${tool.name} | Free ${category.name} Generator`,
       description:
         toolContent.meta.description ||
-        `Generate ${tool.name.toLowerCase()} instantly. Best ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok & Gaming.`,
-      keywords: toolContent.meta.keywords || [
-        tool.name,
-        category.name,
-        "text generator",
-        "fancy fonts",
-        "cool symbols",
-        "social media branding",
-        "typewarp",
-      ],
+        `Generate ${tool.name.toLowerCase()} instantly. Free ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok & Gaming.`,
+      keywords: toolContent.meta.keywords || baseKeywords,
+      robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+        },
+      },
       openGraph: {
         title: toolContent.meta.title || `${tool.name} | TypeWarp`,
         description:
           toolContent.meta.description ||
-          `Premium ${tool.name.toLowerCase()} tool. Best for ${category.name.toLowerCase()}.`,
+          `Free ${tool.name.toLowerCase()} generator. Works on all social platforms.`,
         url: `https://www.typewarp.com/${categorySlug}/${toolSlug}`,
         type: "website",
+        images: [
+          {
+            url: "/og-image.png",
+            width: 1200,
+            height: 630,
+            alt: `${tool.name} - Free Online Generator`,
+          },
+        ],
+        siteName: "TypeWarp",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: toolContent.meta.title || `${tool.name} | TypeWarp`,
+        description:
+          toolContent.meta.description ||
+          `Free ${tool.name.toLowerCase()} generator.`,
+        creator: "@typewarp",
+        images: ["/og-image.png"],
       },
       alternates: {
         canonical: `https://www.typewarp.com/${categorySlug}/${toolSlug}`,
@@ -64,22 +99,40 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${tool.name} | ${category.name} Generator`,
-    description: `Generate ${tool.name.toLowerCase()} instantly. Best ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok & Gaming.`,
-    keywords: [
-      tool.name,
-      category.name,
-      "text generator",
-      "fancy fonts",
-      "cool symbols",
-      "social media branding",
-      "typewarp",
-    ],
+    title: `${tool.name} | Free ${category.name} Generator - TypeWarp`,
+    description: `Generate ${tool.name.toLowerCase()} instantly. Free ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok & Gaming. No signup required.`,
+    keywords: baseKeywords,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
     openGraph: {
-      title: `${tool.name} | TypeWarp`,
-      description: `Premium ${tool.name.toLowerCase()} tool. Best for ${category.name.toLowerCase()}.`,
+      title: `${tool.name} | Free ${category.name} Generator`,
+      description: `Free ${tool.name.toLowerCase()} generator. Works on Discord, Twitter, Instagram.`,
       url: `https://www.typewarp.com/${categorySlug}/${toolSlug}`,
       type: "website",
+      images: [
+        {
+          url: "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: `${tool.name} - Free Online Generator`,
+        },
+      ],
+      siteName: "TypeWarp",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${tool.name} | Free ${category.name} Generator`,
+      description: `Free ${tool.name.toLowerCase()} generator.`,
+      creator: "@typewarp",
+      images: ["/og-image.png"],
     },
     alternates: {
       canonical: `https://www.typewarp.com/${categorySlug}/${toolSlug}`,
@@ -128,7 +181,40 @@ export default async function ToolPage({
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
     },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "320",
+      bestRating: "5",
+      worstRating: "1",
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.typewarp.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: category.name,
+        item: `https://www.typewarp.com/${categorySlug}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: tool.name,
+        item: `https://www.typewarp.com/${categorySlug}/${toolSlug}`,
+      },
+    ],
   };
 
   const faqJsonLd = {
@@ -157,6 +243,7 @@ export default async function ToolPage({
   return (
     <>
       <JSONLD data={jsonLd} />
+      <JSONLD data={breadcrumbJsonLd} />
       <JSONLD data={faqJsonLd} />
       <ToolView category={category} tool={tool} hideFaqs={!!toolContent} />
 

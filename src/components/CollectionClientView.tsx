@@ -8,17 +8,17 @@ import { ToolIcon } from "@/components/ToolIcon";
 import ToolCard from "@/components/ui/ToolCard";
 import BackgroundEffect from "@/components/CanvasEffect";
 
-interface ArsenalClientViewProps {
+interface CollectionClientViewProps {
   allTools: any[];
   totalCount: number;
 }
 
-export default function ArsenalClientView({
+export default function CollectionClientView({
   allTools,
   totalCount,
-}: ArsenalClientViewProps) {
+}: CollectionClientViewProps) {
   return (
-    <div className="min-h-screen pt-24 pb-24 bg-[#080808] text-white relative overflow-hidden">
+    <div className="min-h-screen pt-32 pb-24 bg-[#080808] text-white relative overflow-hidden">
       {/* Background Glow */}
       <div className="fixed top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-10%,rgba(57,255,20,0.03)_0%,transparent_50%)] pointer-events-none" />
 
@@ -40,7 +40,7 @@ export default function ArsenalClientView({
           <ChevronRight className="w-3 h-3 opacity-20" />
           <div className="flex items-center gap-2 text-accent-glitch/80">
             <LayoutGrid className="w-3 h-3" />
-            ARSENAL
+            COLLECTION
           </div>
         </motion.div>
         <motion.header
@@ -67,7 +67,7 @@ export default function ArsenalClientView({
         <div className="mb-16">
           <div className="flex items-center gap-4 overflow-x-auto pb-4 no-scrollbar">
             <Link
-              href="/arsenal"
+              href="/collection"
               className="px-8 py-3 bg-white text-black text-[10px] font-bold uppercase tracking-[0.2em] whitespace-nowrap rounded-full hover:scale-105 transition-transform"
             >
               All Tools
@@ -122,7 +122,7 @@ export default function ArsenalClientView({
                     <ToolIcon
                       slug={tool.slug}
                       categorySlug={tool.category.slug}
-                      className="w-7 h-7 text-white/30 group-hover:text-accent-glitch transition-all duration-500"
+                      className="w-6 h-6 text-white/30 group-hover:text-accent-glitch transition-all duration-500"
                     />
                   }
                   className="h-full"

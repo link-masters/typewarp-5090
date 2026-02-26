@@ -17,7 +17,7 @@ export default function CategoryClientView({
   category,
 }: CategoryClientViewProps) {
   return (
-    <div className="min-h-screen bg-[#080808] text-white pt-24 pb-24 px-6 relative overflow-hidden">
+    <div className="min-h-screen bg-[#080808] text-white pt-32 pb-24 px-6 relative overflow-hidden">
       {/* Background Glow */}
       <div className="fixed top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-10%,rgba(57,255,20,0.02)_0%,transparent_50%)] pointer-events-none" />
 
@@ -68,7 +68,7 @@ export default function CategoryClientView({
         <div className="mb-16 overflow-x-auto no-scrollbar">
           <div className="flex items-center gap-4">
             <Link
-              href="/arsenal"
+              href="/collection"
               className="px-8 py-3 border border-white/10 text-white/40 text-[10px] font-bold uppercase tracking-[0.2em] whitespace-nowrap hover:border-white/20 hover:text-white transition-all rounded-full"
             >
               All Tools

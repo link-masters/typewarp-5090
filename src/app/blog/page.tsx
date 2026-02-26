@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     "font design",
     "unicode guide",
     "cursed text",
+    "glitch text tutorial",
+    "text effects guide",
+    "zalgo tutorial",
     "typewarp",
   ],
   openGraph: {
@@ -31,6 +34,22 @@ export const metadata: Metadata = {
       "Deep dives into the art of text manipulation, typography trends, and digital entropy.",
     url: "https://www.typewarp.com/blog",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "TypeWarp Blog - Typography & Text Effects Guides",
+      },
+    ],
+    siteName: "TypeWarp",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Systems Intel | TypeWarp Blog",
+    description:
+      "Deep dives into text manipulation, typography trends, and digital entropy.",
+    creator: "@typewarp",
     images: ["/og-image.png"],
   },
   other: {
@@ -52,7 +71,7 @@ export default async function BlogPage() {
   };
 
   return (
-    <div className="min-h-screen pt-32 pb-24 px-6 bg-[#080808] text-white relative overflow-hidden">
+    <div className="min-h-screen pt-40 pb-24 px-6 bg-[#080808] text-white relative overflow-hidden">
       {/* Background Glow */}
       <div className="fixed top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-10%,rgba(57,255,20,0.02)_0%,transparent_50%)] pointer-events-none" />
       <JSONLD data={jsonLd} />
@@ -119,7 +138,7 @@ export default async function BlogPage() {
             </p>
             <div className="flex justify-center flex-col sm:flex-row gap-4">
               <Link
-                href="/arsenal"
+                href="/collection"
                 className="group relative px-12 py-5 bg-white text-black font-bold text-sm rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_20px_40px_-10px_rgba(255,255,255,0.2)]"
               >
                 <span className="relative z-10 uppercase tracking-[0.2em] text-center block w-full">

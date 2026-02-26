@@ -114,6 +114,8 @@ const Footer = () => {
                 <a
                   key={label}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-9 h-9 sm:w-10 sm:h-10 border border-neutral-200 dark:border-white/[0.08] rounded-xl flex items-center justify-center text-neutral-400 dark:text-text-muted hover:text-emerald-600 dark:hover:text-accent-glitch hover:border-emerald-500/30 dark:hover:border-accent-glitch/30 hover:bg-emerald-500/5 dark:hover:bg-accent-glitch/5 transition-all duration-200"
                   aria-label={label}
                 >
@@ -293,12 +295,12 @@ const Footer = () => {
       {/* ===== Legal links row ===== */}
       <div className="border-t border-neutral-100 dark:border-white/[0.06] bg-neutral-50/50 dark:bg-white/[0.03]">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 py-5 sm:py-6">
-          <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-2">
+          <div className="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-6 md:gap-x-8 gap-y-1 sm:gap-y-2">
             {legalLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[10px] sm:text-[11px] text-neutral-400 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors duration-200 uppercase tracking-[0.15em] py-1"
+                className="text-[11px] sm:text-[11px] text-neutral-400 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors duration-200 uppercase tracking-[0.15em] py-2 sm:py-1 px-1"
               >
                 {link.label}
               </Link>

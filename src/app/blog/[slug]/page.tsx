@@ -38,6 +38,12 @@ export async function generateMetadata({
   return {
     title: `${post.title} | TypeWarp Intel`,
     description: post.description,
+    keywords: post.tags || [
+      post.category,
+      "typography",
+      "text effects",
+      "typewarp",
+    ],
     openGraph: {
       title: post.title,
       description: post.description,
@@ -46,6 +52,14 @@ export async function generateMetadata({
       publishedTime: post.date,
       authors: [post.author],
       images: [{ url: post.image, width: 1200, height: 630, alt: post.title }],
+      siteName: "TypeWarp",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      creator: "@typewarp",
+      images: [post.image],
     },
     alternates: { canonical: `https://www.typewarp.com/blog/${post.slug}` },
   };
@@ -84,10 +98,10 @@ function ToolsSection() {
             Initialize transformation protocols.
           </p>
           <Link
-            href="/arsenal"
+            href="/collection"
             className="block py-3 bg-accent-glitch text-black font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_20px_rgba(57,255,20,0.1)]"
           >
-            Access Arsenal
+            Access Collection
           </Link>
         </div>
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent-glitch/30 to-transparent" />
@@ -167,7 +181,7 @@ export default async function BlogPostPage({
   };
 
   return (
-    <article className="min-h-screen pt-28 pb-20 bg-bg-void text-text-primary relative overflow-hidden">
+    <article className="min-h-screen pt-36 pb-20 bg-bg-void text-text-primary relative overflow-hidden">
       <BackgroundEffect />
       <JSONLD data={jsonLd} />
       <div className="container mx-auto max-w-7xl relative z-10 px-4">
@@ -294,19 +308,25 @@ export default async function BlogPostPage({
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <a
-                  href="#"
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://www.typewarp.com/blog/${post.slug}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="py-3 border border-white/10 text-center text-[9px] tracking-widest hover:border-accent-glitch/40 hover:text-accent-glitch transition-all"
                 >
                   TWITTER
                 </a>
                 <a
-                  href="#"
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://www.typewarp.com/blog/${post.slug}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="py-3 border border-white/10 text-center text-[9px] tracking-widest hover:border-accent-glitch/40 hover:text-accent-glitch transition-all"
                 >
                   FACEBOOK
                 </a>
                 <a
-                  href="#"
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://www.typewarp.com/blog/${post.slug}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="py-3 border border-white/10 text-center text-[9px] tracking-widest hover:border-accent-glitch/40 hover:text-accent-glitch transition-all uppercase"
                 >
                   LinkedIn

@@ -7,20 +7,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // 1. Static Routes
   const staticRoutes = [
-    "",
-    "/blog",
-    "/about",
-
-    "/privacy",
-    "/terms",
-    "/gdpr",
-    "/cookies",
-    "/contact",
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
+    { route: "", priority: 1, changeFrequency: "weekly" as const },
+    { route: "/collection", priority: 0.9, changeFrequency: "weekly" as const },
+    { route: "/blog", priority: 0.8, changeFrequency: "weekly" as const },
+    { route: "/about", priority: 0.7, changeFrequency: "monthly" as const },
+    { route: "/contact", priority: 0.6, changeFrequency: "monthly" as const },
+    { route: "/privacy", priority: 0.3, changeFrequency: "yearly" as const },
+    { route: "/terms", priority: 0.3, changeFrequency: "yearly" as const },
+    { route: "/gdpr", priority: 0.3, changeFrequency: "yearly" as const },
+    { route: "/cookies", priority: 0.3, changeFrequency: "yearly" as const },
+  ].map((item) => ({
+    url: `${baseUrl}${item.route}`,
     lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: route === "" ? 1 : 0.8,
+    changeFrequency: item.changeFrequency,
+    priority: item.priority,
   }));
 
   // 2. Category Routes

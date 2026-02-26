@@ -64,7 +64,7 @@ export default function FeaturedTools() {
   ];
 
   return (
-    <section className="py-12 md:py-28 bg-[#080808] relative overflow-hidden border-t border-border-subtle font-mono">
+    <section className="py-12 md:py-28 bg-[#080808] relative overflow-hidden font-mono">
       {/* Ambient Glow */}
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-20%,rgba(57,255,20,0.02)_0%,transparent_50%)] pointer-events-none" />
       <div className="container mx-auto max-w-7xl px-4 lg:px-6">
@@ -80,7 +80,7 @@ export default function FeaturedTools() {
           </div>
 
           <Link
-            href="/arsenal"
+            href="/collection"
             className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40 hover:text-white transition-colors border-b border-white/10 pb-2 mb-2 flex items-center gap-3 shrink-0"
           >
             Toolkit
@@ -95,29 +95,28 @@ export default function FeaturedTools() {
               <Link
                 key={tool.slug}
                 href={`/${tool.category}/${tool.slug}`}
-                className="group relative p-8 bg-[#0c0c0c] border border-white/5 hover:border-accent-glitch/20 transition-all duration-500 overflow-hidden flex flex-col rounded-xl"
+                className="group relative p-6 bg-[#0c0c0c] border border-white/5 hover:border-accent-glitch/20 transition-all duration-500 overflow-hidden flex flex-col rounded-xl"
               >
                 {/* Unique Refined Hover Glimmer */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.03)_0%,transparent_70%)]" />
 
                 {/* Kinetic Icon Container */}
                 <div className="relative z-10 flex flex-col h-full">
-                  <div className="mb-8 w-14 h-14 border border-white/10 flex items-center justify-center bg-[#111] group-hover:scale-110 group-hover:border-accent-glitch/30 transition-all duration-500 rounded-lg overflow-hidden relative">
-                    <Icon className="w-7 h-7 text-white/30 group-hover:text-accent-glitch transition-all duration-500" />
-                    <div className="absolute inset-0 bg-accent-glitch/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="mb-4 flex items-center justify-start origin-left group-hover:scale-110 transition-transform duration-500 relative">
+                    <Icon className="w-6 h-6 text-white/30 group-hover:text-accent-glitch transition-colors duration-500" />
                   </div>
 
-                  <h3 className="text-xl font-black text-white/90 uppercase tracking-tighter mb-4 group-hover:text-white transition-all duration-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                  <h3 className="text-lg font-black text-white/90 uppercase tracking-tighter mb-3 group-hover:text-white transition-all duration-500 whitespace-nowrap overflow-hidden text-ellipsis">
                     {tool.name}
                   </h3>
 
-                  <p className="text-[12px] font-mono text-text-muted leading-relaxed mb-10 opacity-60 group-hover:opacity-100 transition-opacity">
+                  <p className="text-[11px] font-mono text-text-muted leading-relaxed mb-6 opacity-60 group-hover:opacity-100 transition-opacity">
                     Create unique and stand-out {tool.name.toLowerCase()} text
                     with our simple generator.
                   </p>
 
                   {/* Clean Action Link */}
-                  <div className="mt-auto flex items-center justify-between">
+                  <div className="mt-auto pt-5 border-t border-white/5 flex items-center justify-between">
                     <div className="flex items-center gap-3 text-white/20 group-hover:text-accent-glitch font-mono font-bold text-[10px] uppercase tracking-[0.2em] transition-colors duration-300">
                       Try Now
                       <div className="w-8 h-[1px] bg-current transition-all duration-500 group-hover:w-12" />

@@ -60,11 +60,23 @@ export const metadata: Metadata = {
   description:
     "The ultimate cursed text toolkit. Transform your typography with glitch effects, Zalgo text, and deep-fried fonts.",
   keywords: [
-    "cursed text",
-    "glitch text",
-    "typography",
-    "text manipulation",
-    "zalgo",
+    "cursed text generator",
+    "glitch text generator",
+    "zalgo text generator",
+    "fancy text generator",
+    "weird text generator",
+    "aesthetic font generator",
+    "unicode text converter",
+    "cool fonts for discord",
+    "fancy fonts for instagram",
+    "cursed font copy paste",
+    "text effects online",
+    "creepy text maker",
+    "scary text generator",
+    "glitch font maker",
+    "text transformation tool",
+    "free font generator",
+    "social media fonts",
     "typewarp",
   ],
   authors: [{ name: "TypeWarp Team", url: SITE_URL }],
@@ -155,16 +167,32 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link rel="manifest" href="/site.webmanifest" />
+        <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+        <link rel="icon" href="/logo.png" type="image/png" sizes="any" />
         <link rel="apple-touch-icon" href="/logo.png" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="TypeWarp Blog RSS"
+          href="/rss.xml"
+        />
       </head>
       <body
         suppressHydrationWarning
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-bg-void text-text-primary selection:bg-accent-glitch selection:text-black`}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent-glitch focus:text-black focus:font-bold focus:text-sm focus:rounded-lg focus:outline-none"
+        >
+          Skip to main content
+        </a>
         <ThemeProvider>
           <SmoothScroll>
             <Header />
-            <main className="min-h-screen relative z-10">{children}</main>
+            <main id="main-content" className="min-h-screen relative z-10">
+              {children}
+            </main>
             <Footer />
             <GDPR />
           </SmoothScroll>

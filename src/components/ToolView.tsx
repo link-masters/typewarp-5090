@@ -343,7 +343,7 @@ export default function ToolView({
   const content = getDynamicContent();
 
   return (
-    <div className="min-h-screen pt-24 pb-24 bg-[#080808] text-white relative overflow-hidden">
+    <div className="min-h-screen pt-32 pb-24 bg-[#080808] text-white relative overflow-hidden">
       {/* Background Glow */}
       <div className="fixed top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-10%,rgba(57,255,20,0.02)_0%,transparent_50%)] pointer-events-none" />
 
@@ -429,53 +429,59 @@ export default function ToolView({
 
             {/* Output Panel */}
             <div className="bg-bg-card border border-border-subtle relative group shadow-lg overflow-hidden flex flex-col">
-              <div className="p-1 border-b border-border-subtle bg-bg-void/50 flex flex-col sm:flex-row justify-between items-start sm:items-center px-4 py-2 gap-4">
-                <div className="flex items-center gap-2 text-[9px] font-mono uppercase tracking-[0.3em] text-accent-glitch">
-                  <Zap className="w-3 h-3" />
+              <div className="p-2 border-b border-border-subtle bg-bg-void/50 flex flex-col sm:flex-row justify-between items-start sm:items-center px-4 py-3 gap-3">
+                <div className="flex items-center gap-2 text-[10px] sm:text-[9px] font-mono uppercase tracking-[0.3em] text-accent-glitch shrink-0 mt-1 sm:mt-0">
+                  <Zap className="w-3.5 h-3.5 sm:w-3 sm:h-3" />
                   Preview
                 </div>
-                <div className="flex items-center justify-between w-full sm:w-auto gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className="flex items-center gap-2 p-1.5 bg-bg-void/40 border border-white/5 rounded-full backdrop-blur-sm">
-                      {colors.map((c) => (
-                        <button
-                          key={c.name}
-                          onClick={() => setOutputColor(c.value)}
-                          className={`group relative w-6 h-6 rounded-full transition-all duration-300 ${
-                            outputColor === c.value
-                              ? "scale-105 ring-1 ring-accent-glitch ring-offset-1 ring-offset-[#0c0c0c]"
-                              : "hover:scale-110 hover:ring-1 hover:ring-white/20 hover:ring-offset-1 hover:ring-offset-[#0c0c0c]"
-                          }`}
-                          title={c.name}
+                <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-3 h-min">
+                  {/* Color Picker Wrapper */}
+                  <div className="flex items-center gap-2 p-1.5 bg-bg-void/40 border border-white/10 rounded-full backdrop-blur-md shrink-0 h-min ring-1 ring-white/5 shadow-inner">
+                    {colors.map((c) => (
+                      <button
+                        key={c.name}
+                        onClick={() => setOutputColor(c.value)}
+                        className={`group relative flex-none rounded-full transition-all duration-300 ${
+                          outputColor === c.value
+                            ? "scale-110 ring-2 ring-accent-glitch ring-offset-2 ring-offset-black z-10"
+                            : "hover:scale-110 hover:ring-2 hover:ring-white/30 hover:ring-offset-2 hover:ring-offset-black"
+                        }`}
+                        style={{
+                          width: "22px",
+                          height: "22px",
+                          minWidth: "22px",
+                          minHeight: "22px",
+                        }}
+                        title={c.name}
+                      >
+                        <span
+                          className="absolute inset-0 rounded-full"
+                          style={{
+                            backgroundColor:
+                              c.value === "inherit" ? "#ffffff" : c.value,
+                            opacity:
+                              c.value === "inherit" && outputColor !== "inherit"
+                                ? 0.2
+                                : 1,
+                          }}
                         >
-                          <span
-                            className="absolute inset-0 rounded-full"
-                            style={{
-                              backgroundColor:
-                                c.value === "inherit" ? "#ffffff" : c.value,
-                              opacity:
-                                c.value === "inherit" &&
-                                outputColor !== "inherit"
-                                  ? 0.3
-                                  : 1,
-                            }}
-                          >
-                            {c.value === "inherit" && (
-                              <span className="absolute inset-0 flex items-center justify-center">
-                                <span className="w-full h-px bg-red-500/50 -rotate-45" />
-                              </span>
-                            )}
-                          </span>
-                        </button>
-                      ))}
-                    </div>
+                          {c.value === "inherit" && (
+                            <span className="absolute inset-0 flex items-center justify-center pointer-events-none rounded-full overflow-hidden">
+                              <span className="w-[120%] h-[1.5px] bg-red-500 -rotate-45" />
+                            </span>
+                          )}
+                        </span>
+                      </button>
+                    ))}
                   </div>
+
+                  {/* Copy Button */}
                   <button
                     onClick={() => handleCopy()}
-                    className={`flex items-center justify-center gap-2 px-4 sm:px-6 py-2 bg-accent-glitch text-black font-black uppercase tracking-widest text-[9px] sm:text-[10px] transition-all active:scale-95 shadow-lg min-w-[100px] ${
+                    className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-accent-glitch text-black font-black uppercase tracking-widest text-[10px] transition-all active:scale-95 shadow-lg min-w-[100px] shrink-0 ${
                       isCopied
                         ? "bg-text-primary text-bg-void"
-                        : "hover:translate-y-[-1px] hover:shadow-accent-glitch/20"
+                        : "hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(57,255,20,0.3)]"
                     }`}
                   >
                     {isCopied ? (

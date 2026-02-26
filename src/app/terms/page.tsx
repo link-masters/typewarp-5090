@@ -5,15 +5,46 @@ import Link from "next/link";
 import { Home, ChevronRight, FileText } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | TypeWarp Intel",
+  title: "Terms of Service | TypeWarp",
   description:
-    "Read our terms of service to understand how you can use the TypeWarp matrix.",
+    "Read TypeWarp's terms of service. Understand how to use our free text generators and tools responsibly.",
+  keywords: [
+    "typewarp terms",
+    "terms of service",
+    "user agreement",
+    "text generator terms",
+    "usage policy",
+  ],
+  openGraph: {
+    title: "Terms of Service | TypeWarp",
+    description:
+      "Read our terms of service to understand how you can use TypeWarp's free text tools.",
+    url: "https://www.typewarp.com/terms",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "TypeWarp Terms of Service",
+      },
+    ],
+    siteName: "TypeWarp",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service | TypeWarp",
+    description:
+      "Read our terms of service to understand how you can use TypeWarp tools.",
+    creator: "@typewarp",
+    images: ["/og-image.png"],
+  },
   alternates: { canonical: "https://www.typewarp.com/terms" },
 };
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen pt-32 pb-20 bg-bg-void text-text-primary relative overflow-hidden">
+    <div className="min-h-screen pt-40 pb-20 bg-bg-void text-text-primary relative overflow-hidden">
       <BackgroundEffect />
       <div className="container mx-auto px-4 max-w-4xl relative z-10">
         <nav className="flex items-center gap-4 mb-16 font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted">

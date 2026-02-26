@@ -115,7 +115,7 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 w-full px-8"
         >
           <Link
-            href="/arsenal"
+            href="/collection"
             className="group relative w-full sm:w-auto px-10 py-4 md:py-5 bg-white text-black font-black text-xs md:text-sm rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_20px_40px_-10px_rgba(255,255,255,0.2)]"
           >
             <span className="relative z-10 uppercase tracking-widest text-center block">
@@ -124,7 +124,7 @@ export default function Hero() {
             <div className="absolute inset-0 bg-accent-glitch opacity-0 group-hover:opacity-100 transition-opacity" />
           </Link>
           <Link
-            href="/arsenal"
+            href="/collection"
             className="w-full sm:w-auto px-10 py-4 md:py-5 border border-white/10 text-white font-black text-xs md:text-sm rounded-full hover:bg-white/5 transition-all uppercase tracking-widest text-center"
           >
             View Tools

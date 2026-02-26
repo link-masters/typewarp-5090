@@ -6,8 +6,39 @@ import BackgroundEffect from "@/components/CanvasEffect";
 import { Mail, Clock, HelpCircle } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Contact | TypeWarp Tools",
-  description: "Get help with TypeWarp tools or send us your feedback.",
+  title: "Contact Us | TypeWarp Support",
+  description:
+    "Get help with TypeWarp's free cursed text and glitch font generators. Contact our support team for questions, feedback, or technical assistance.",
+  keywords: [
+    "contact typewarp",
+    "text generator support",
+    "cursed text help",
+    "glitch font assistance",
+    "typewarp feedback",
+  ],
+  openGraph: {
+    title: "Contact Us | TypeWarp Support",
+    description:
+      "Get help with TypeWarp tools or send us your feedback. We respond within 24 hours.",
+    url: "https://www.typewarp.com/contact",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Contact TypeWarp Support",
+      },
+    ],
+    siteName: "TypeWarp",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Us | TypeWarp Support",
+    description: "Get help with TypeWarp tools or send us your feedback.",
+    creator: "@typewarp",
+    images: ["/og-image.png"],
+  },
   alternates: {
     canonical: "https://www.typewarp.com/contact",
   },
@@ -23,7 +54,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen pt-32 pb-24 px-6 bg-[#080808] text-white relative overflow-hidden">
+    <div className="min-h-screen pt-40 pb-24 px-6 bg-[#080808] text-white relative overflow-hidden">
       {/* Background Glow */}
       <div className="fixed top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-10%,rgba(57,255,20,0.02)_0%,transparent_50%)] pointer-events-none" />
       <JSONLD data={jsonLd} />

@@ -5,14 +5,47 @@ import Link from "next/link";
 import { Home, ChevronRight, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | TypeWarp Intel",
-  description: "Learn how we protect your data within the TypeWarp matrix.",
+  title: "Privacy Policy | TypeWarp",
+  description:
+    "Learn how TypeWarp protects your data. All text processing happens locally in your browser. We don't store or transmit your content.",
+  keywords: [
+    "typewarp privacy",
+    "data protection",
+    "privacy policy",
+    "client-side processing",
+    "no data storage",
+    "secure text generator",
+  ],
+  openGraph: {
+    title: "Privacy Policy | TypeWarp",
+    description:
+      "Learn how TypeWarp protects your data. All text processing happens locally in your browser.",
+    url: "https://www.typewarp.com/privacy",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "TypeWarp Privacy Policy",
+      },
+    ],
+    siteName: "TypeWarp",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | TypeWarp",
+    description:
+      "Learn how TypeWarp protects your data. All processing happens locally.",
+    creator: "@typewarp",
+    images: ["/og-image.png"],
+  },
   alternates: { canonical: "https://www.typewarp.com/privacy" },
 };
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen pt-32 pb-20 bg-bg-void text-text-primary relative overflow-hidden">
+    <div className="min-h-screen pt-40 pb-20 bg-bg-void text-text-primary relative overflow-hidden">
       <BackgroundEffect />
       <div className="container mx-auto px-4 max-w-4xl relative z-10">
         <nav className="flex items-center gap-4 mb-16 font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted">

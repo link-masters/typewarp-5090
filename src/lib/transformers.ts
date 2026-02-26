@@ -2446,17 +2446,6 @@ export function transformText(
     return result;
   }
 
-  if (s === "gaming-font" || s === "clan-tag") {
-    const gameStyle = customSettings.game || "game_fort";
-    return applyFontStyle(workingText, gameStyle);
-  }
-
-  if (s === "fortnite-font") {
-    // User specifically complained about format.
-    // We map it to "sansBold" (Burbank-ish)
-    return applyFontStyle(workingText, "sansBold");
-  }
-
   // ... Original switch for other tools ...
   switch (s) {
     case "cursed-text":
@@ -3533,15 +3522,35 @@ export function transformText(
     }
     case "character-counter": {
       const fontStyle = customSettings.fontStyle || "none";
-      if (fontStyle !== "none") {
-        return applyFontStyle(workingText, fontStyle);
+      const showDetails = customSettings.showDetails !== false;
+      const text = workingText;
+
+      if (!text) return "";
+
+      const chars = text.length;
+      const words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
+      const withoutSpaces = text.replace(/\s/g, "").length;
+      const lines = text.split(/\r\n|\r|\n/).length;
+      const sentences = text
+        .split(/[.!?]+/)
+        .filter((s) => s.trim().length > 0).length;
+
+      let result = "";
+      if (showDetails) {
+        result = `Characters: ${chars}\nWords: ${words}\nSentences: ${sentences}\nLines: ${lines}\nWithout Spaces: ${withoutSpaces}`;
+      } else {
+        result = `Characters: ${chars} | Words: ${words}`;
       }
-      return workingText;
+
+      if (fontStyle !== "none") {
+        return applyFontStyle(result, fontStyle);
+      }
+      return result;
     }
     case "invisible-character": {
       const fontStyle = customSettings.fontStyle || "none";
       const charType = customSettings.charType || "zwsp";
-      const count = customSettings.count || 1;
+      const count = Number(customSettings.count) || 1;
 
       const invisibleChars: Record<string, string> = {
         zwsp: "\u200B",
@@ -3557,13 +3566,17 @@ export function transformText(
       const invisChar = invisibleChars[charType] || invisibleChars.zwsp;
       const padding = invisChar.repeat(count);
 
+      if (!workingText) {
+        return padding;
+      }
+
       let text =
         fontStyle !== "none"
           ? applyFontStyle(workingText, fontStyle)
           : workingText;
 
-      if (!text) return padding;
-      return text.split("").join(padding);
+      // Append padding after every character, including when it's a single character
+      return [...text].map((c) => c + padding).join("");
     }
     case "reverse-text":
       return reverseText(workingText);
@@ -7579,6 +7592,134 @@ export function transformText(
           }
           return char;
         })
+        .join("");
+    }
+
+    case "aggressive-text": {
+      const aggStyle = customSettings.style || "sansBold";
+      let result = applyFontStyle(
+        uppercase ? workingText : workingText.toUpperCase(),
+        aggStyle,
+      );
+      const aggSymbols = ["💢", "🔥", "⚡", "💥", "😤"];
+      const density = customSettings.density || 3;
+      result = result
+        .split(" ")
+        .map((w, i) =>
+          i % density === 0
+            ? w +
+              " " +
+              aggSymbols[Math.floor(Math.random() * aggSymbols.length)]
+            : w,
+        )
+        .join(" ");
+      return result;
+    }
+    case "playful-text": {
+      const playStyle = customSettings.style || "bubble";
+      let result = applyFontStyle(workingText, playStyle);
+      const playSymbols = ["✿", "♡", "☆", "♪", "✧", "❀", "◕‿◕", "♬"];
+      const density = customSettings.density || 2;
+      result = result
+        .split("")
+        .map((c, i) =>
+          c === " "
+            ? " " +
+              playSymbols[Math.floor(Math.random() * playSymbols.length)] +
+              " "
+            : i % density === 0
+              ? c + playSymbols[Math.floor(Math.random() * playSymbols.length)]
+              : c,
+        )
+        .join("");
+      return result;
+    }
+    case "premium-font": {
+      const premStyle = customSettings.style || "boldScript";
+      return applyFontStyle(workingText, premStyle);
+    }
+    case "combat-symbols": {
+      const combatSymbols: Record<string, string[]> = {
+        swords: ["⚔", "🗡", "⚔️", "🔪", "🗡️", "⚓", "🪓", "🏹", "🛡", "⚒"],
+        military: ["★", "✪", "☆", "✰", "⍟", "✦", "❂", "✯", "⊕", "⊗"],
+        tactical: ["◎", "◉", "⊙", "⊚", "⊛", "⊜", "⊝", "⌖", "⊹", "⊕"],
+        ranks: ["▽", "△", "◇", "◆", "⬟", "✧", "⟐", "⬢", "⬣", "⬡"],
+      };
+      const category = customSettings.category || "all";
+      let symbols: string[];
+      if (category === "all") {
+        symbols = Object.values(combatSymbols).flat();
+      } else {
+        symbols =
+          combatSymbols[category] || Object.values(combatSymbols).flat();
+      }
+      return workingText
+        .split("")
+        .map((c) =>
+          c === " "
+            ? c
+            : c + symbols[Math.floor(Math.random() * symbols.length)],
+        )
+        .join("");
+    }
+    case "mirror-symbols": {
+      const mirrorSymbols: Record<string, string[]> = {
+        brackets: [
+          "⟨⟩",
+          "【】",
+          "〔〕",
+          "《》",
+          "「」",
+          "『』",
+          "〖〗",
+          "〘〙",
+        ],
+        symmetry: ["◁▷", "◀▶", "◃▹", "⊲⊳", "⋖⋗", "⊰⊱", "❮❯", "◂▸"],
+        decorative: ["꧁꧂", "༺༻", "〈〉", "⟪⟫", "⸤⸥", "⊂⊃", "⫷⫸", "⟅⟆"],
+        ornate: [
+          "\u275D\u275E",
+          "\u275B\u275C",
+          "\u2039\u203A",
+          "\u00AB\u00BB",
+          "\u2018\u2019",
+          "\u201C\u201D",
+          "\u300C\u300D",
+          "\u300A\u300B",
+        ],
+      };
+      const category = customSettings.category || "all";
+      let pairs: string[];
+      if (category === "all") {
+        pairs = Object.values(mirrorSymbols).flat();
+      } else {
+        pairs = mirrorSymbols[category] || Object.values(mirrorSymbols).flat();
+      }
+      const pair = pairs[Math.floor(Math.random() * pairs.length)];
+      const left = pair.charAt(0);
+      const right = pair.charAt(pair.length - 1);
+      return left + " " + workingText + " " + right;
+    }
+    case "tech-symbols": {
+      const techSymbols: Record<string, string[]> = {
+        keyboard: ["⌘", "⌥", "⇧", "⌃", "⎇", "⌫", "⌦", "⏎", "⇥", "⌤"],
+        computing: ["⟨/⟩", "⊞", "⊟", "⊠", "⟨⟩", "⎔", "⏏", "⏻", "⏼", "⎈"],
+        logic: ["∧", "∨", "¬", "⊕", "⊗", "∀", "∃", "⊢", "⊬", "⊨"],
+        circuits: ["⏚", "⎓", "⏛", "⏦", "⏧", "∿", "⎍", "⎎", "⎏", "⎐"],
+      };
+      const category = customSettings.category || "all";
+      let symbols: string[];
+      if (category === "all") {
+        symbols = Object.values(techSymbols).flat();
+      } else {
+        symbols = techSymbols[category] || Object.values(techSymbols).flat();
+      }
+      return workingText
+        .split("")
+        .map((c) =>
+          c === " "
+            ? c
+            : c + symbols[Math.floor(Math.random() * symbols.length)],
+        )
         .join("");
     }
 

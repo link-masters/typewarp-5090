@@ -84,6 +84,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeSpeed;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Custom Scrollbar */
@@ -113,6 +114,15 @@ body {
   .animate-spin-slow,
   .animate-reverse-spin {
     animation: none !important;
+  }
+
+  body {
+    cursor: default;
+  }
+
+  /* Ensure comfortable touch targets on primary action buttons */
+  button:not([class*="prose"]):not([class*="inline"]) {
+    min-height: 44px;
   }
 }
 
