@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/contexts/ThemeContext";
 import Header from "@/components/Header";
 import Footer from "@/components/MainFooter";
 import GDPR from "@/components/GDPR";
 import JSONLD from "@/components/JSONLD";
 import SmoothScroll from "@/components/SmoothScroll";
+import { SITE_URL } from "@/lib/config";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -22,18 +22,11 @@ const jetbrainsMono = JetBrains_Mono({
   preload: true,
 });
 
-const SITE_URL = "https://www.typewarp.com";
-
 const siteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "TypeWarp",
   url: SITE_URL,
-  potentialAction: {
-    "@type": "SearchAction",
-    target: `${SITE_URL}/search?q={search_term_string}`,
-    "query-input": "required name=search_term_string",
-  },
 };
 
 const organizationJsonLd = {
@@ -146,26 +139,6 @@ export default function RootLayout({
       <head>
         <JSONLD data={siteJsonLd} />
         <JSONLD data={organizationJsonLd} />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var saved = localStorage.getItem('theme');
-                  var theme = saved || 'dark';
-                  document.documentElement.classList.remove('light', 'dark');
-                  document.documentElement.classList.add(theme);
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
-        <link rel="dns-prefetch" href="https://api.dicebear.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="icon" href="/logo.svg" type="image/svg+xml" />
         <link rel="icon" href="/logo.png" type="image/png" sizes="any" />
@@ -187,16 +160,14 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <ThemeProvider>
-          <SmoothScroll>
-            <Header />
-            <main id="main-content" className="min-h-screen relative z-10">
-              {children}
-            </main>
-            <Footer />
-            <GDPR />
-          </SmoothScroll>
-        </ThemeProvider>
+        <SmoothScroll>
+          <Header />
+          <main id="main-content" className="min-h-screen relative z-10">
+            {children}
+          </main>
+          <Footer />
+          <GDPR />
+        </SmoothScroll>
       </body>
     </html>
   );

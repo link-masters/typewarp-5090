@@ -345,7 +345,7 @@ const Header = () => {
               href="/collection"
               onClick={killDropdown}
               aria-current={pathname === "/collection" ? "page" : undefined}
-              className="group hidden sm:flex items-center gap-2.5 px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 bg-emerald-500 dark:bg-accent-glitch text-white dark:text-bg-void font-black text-[10px] sm:text-[11px] md:text-[12px] uppercase tracking-widest transition-all duration-300 rounded-xl shadow-[0_0_20px_-5px_var(--btn-glow)] dark:shadow-[0_0_25px_-5px_var(--btn-glow)] hover:shadow-[0_0_35px_-5px_var(--btn-glow)] active:scale-[0.96] relative overflow-hidden border border-white/20 dark:border-black/10 group-hover:border-white/40 dark:group-hover:border-black/30"
+              className="group hidden sm:flex items-center gap-2.5 px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 bg-emerald-500 dark:bg-accent-glitch text-white dark:text-bg-void font-black text-[10px] sm:text-[11px] md:text-[12px] uppercase tracking-widest transition-all duration-300 rounded-full shadow-[0_0_20px_-5px_var(--btn-glow)] dark:shadow-[0_0_25px_-5px_var(--btn-glow)] hover:shadow-[0_0_35px_-5px_var(--btn-glow)] active:scale-[0.96] relative overflow-hidden border border-white/20 dark:border-black/10 group-hover:border-white/40 dark:group-hover:border-black/30"
               style={
                 {
                   "--btn-glow": "rgba(16, 185, 129, 0.5)",

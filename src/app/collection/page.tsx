@@ -1,6 +1,7 @@
 import { categories, TOTAL_TOOLS_COUNT } from "@/lib/categories";
 import type { Metadata } from "next";
 import CollectionClientView from "@/components/CollectionClientView";
+import { SITE_URL } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: `All Text Tools | ${TOTAL_TOOLS_COUNT}+ Free Generators - TypeWarp`,
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     title: `All Text Tools | ${TOTAL_TOOLS_COUNT}+ Free Generators`,
     description:
       "Explore the complete TypeWarp collection of text generators, typography engines, and encoding utilities.",
-    url: "https://www.typewarp.com/collection",
+    url: `${SITE_URL}/collection`,
     type: "website",
     images: [
       {
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
   other: {
     "og:updated_time": new Date().toISOString(),
   },
-  alternates: { canonical: "https://www.typewarp.com/collection" },
+  alternates: { canonical: `${SITE_URL}/collection` },
 };
 
 export default function TextToolsPage() {

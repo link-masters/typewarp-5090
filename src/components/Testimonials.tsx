@@ -2,27 +2,23 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Quote } from "lucide-react";
-import Image from "next/image";
+import { Quote, User } from "lucide-react";
 
 const testimonials = [
   {
     name: "Alex Reed",
     role: "Graphic Designer",
     text: "The unique text effects I can create with these tools are amazing. It has become a staple in my design workflow.",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
   },
   {
     name: "Sarah Chen",
     role: "Content Creator",
     text: "I love how easy it is to stand out on social media now. The various font styles are exactly what I was looking for.",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
   },
   {
     name: "Mike Johnson",
     role: "Social Media Manager",
     text: "Fast, simple, and the results look great. It's the best toolkit I've found for unique typography.",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Mike",
   },
 ];
 
@@ -61,14 +57,8 @@ export default function Testimonials() {
               </p>
 
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 md:w-11 md:h-11 rounded-full border border-white/10 overflow-hidden relative bg-[#111]">
-                  <Image
-                    src={t.avatar}
-                    alt={t.name}
-                    width={44}
-                    height={44}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
+                <div className="w-10 h-10 md:w-11 md:h-11 rounded-full border border-white/10 flex items-center justify-center overflow-hidden relative bg-[#111]">
+                  <User className="w-5 h-5 text-white/40" />
                 </div>
                 <div>
                   <div className="text-xs md:text-sm font-black text-white uppercase tracking-wider">

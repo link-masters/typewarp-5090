@@ -84,13 +84,18 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-6 md:mb-8 w-full px-4"
         >
-          <h1 className="select-none">
-            <span className="text-[clamp(2.5rem,12vw,5.5rem)] md:text-[clamp(3rem,8vw,5.5rem)] text-white font-black leading-[0.9] tracking-tighter uppercase flex flex-col md:block items-center">
-              <span className="whitespace-nowrap">
-                <ScrambleText text="Modern" delay={0.2} />
+          <h1 className="select-none text-center">
+            <span className="text-[clamp(2rem,8vw,4.5rem)] md:text-[clamp(2.5rem,5.5vw,4.5rem)] text-white font-black leading-[0.95] tracking-tighter uppercase flex flex-col items-center">
+              <span className="flex flex-wrap justify-center gap-x-3 md:gap-x-4">
+                <span className="whitespace-nowrap">
+                  <ScrambleText text="Modern" delay={0.2} />
+                </span>
+                <span className="text-accent-glitch whitespace-nowrap">
+                  <ScrambleText text="Text Effects" delay={0.6} />
+                </span>
               </span>
-              <span className="text-accent-glitch md:ml-4 whitespace-nowrap">
-                <ScrambleText text="Text Effects" delay={0.6} />
+              <span className="whitespace-nowrap mt-1">
+                <ScrambleText text="Generator" delay={1.0} />
               </span>
             </span>
           </h1>

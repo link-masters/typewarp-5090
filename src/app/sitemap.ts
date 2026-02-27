@@ -1,9 +1,10 @@
 import { MetadataRoute } from "next";
 import { categories } from "@/lib/categories";
 import { getBlogPosts } from "@/lib/blog";
+import { SITE_URL } from "@/lib/config";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://www.typewarp.com"; // Replace with your actual domain
+  const baseUrl = SITE_URL;
 
   // 1. Static Routes
   const staticRoutes = [

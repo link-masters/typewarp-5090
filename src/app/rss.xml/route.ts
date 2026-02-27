@@ -1,8 +1,9 @@
 import { getBlogPosts } from "@/lib/blog";
+import { SITE_URL } from "@/lib/config";
 
 export async function GET() {
   const posts = await getBlogPosts();
-  const baseUrl = "https://www.typewarp.com";
+  const baseUrl = SITE_URL;
 
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
@@ -27,7 +28,7 @@ export async function GET() {
       <category>${escapeXml(post.category)}</category>
       ${post.tags?.map((tag) => `<category>${escapeXml(tag)}</category>`).join("") || ""}
       <content:encoded><![CDATA[${post.description}]]></content:encoded>
-    </item>`
+    </item>`,
       )
       .join("")}
   </channel>

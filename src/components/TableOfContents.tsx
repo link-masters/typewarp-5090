@@ -82,7 +82,7 @@ export default function TableOfContents({
 
   return (
     <nav className="bg-bg-card/40 backdrop-blur-md border border-white/5 sticky top-32 overflow-hidden shadow-2xl group transition-all duration-300 hover:border-accent-glitch/20">
-      {/* Terminal Progress Indicator */}
+      {/* Progress Indicator */}
       <div className="h-[2px] bg-white/5 relative">
         <div
           className="h-full bg-accent-glitch shadow-[0_0_10px_var(--accent-glitch)] transition-all duration-300 ease-out"
@@ -91,7 +91,7 @@ export default function TableOfContents({
         <div className="absolute top-0 right-0 h-full w-4 bg-gradient-to-l from-bg-void to-transparent z-10" />
       </div>
 
-      {/* Module Header */}
+      {/* Header */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
         className="w-full p-5 flex items-center justify-between hover:bg-white/[0.03] transition-all group/header"
@@ -101,16 +101,14 @@ export default function TableOfContents({
             <div className="w-10 h-10 border border-white/10 flex items-center justify-center bg-white/5 transition-all group-hover/header:border-accent-glitch/50 group-hover/header:bg-accent-glitch/10">
               <List className="w-4 h-4 text-text-muted group-hover/header:text-accent-glitch transition-colors" />
             </div>
-            <div className="absolute -top-1 -right-1 w-2 h-2 bg-accent-glitch animate-pulse rounded-full shadow-[0_0_5px_var(--accent-glitch)]" />
           </div>
           <div className="text-left font-mono">
             <h2 className="text-[10px] font-black text-white uppercase tracking-[0.3em] leading-none mb-1.5">
-              Intel_Nodes
+              Table of Contents
             </h2>
             <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-accent-glitch/50 animate-pulse" />
               <span className="text-[8px] text-text-muted font-bold uppercase tracking-widest">
-                {tocItems.length}_Active_Sectors
+                {tocItems.length} Sections
               </span>
             </div>
           </div>
@@ -122,7 +120,7 @@ export default function TableOfContents({
         />
       </button>
 
-      {/* Navigation Matrix */}
+      {/* Navigation List */}
       <div
         className={`overflow-hidden transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) ${
           isExpanded ? "max-h-[65vh] opacity-100" : "max-h-0 opacity-0"

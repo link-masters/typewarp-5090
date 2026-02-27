@@ -7,6 +7,7 @@ import { ToolIcon } from "@/components/ToolIcon";
 import { getBlogPosts } from "@/lib/blog";
 import SmallBlogCard from "@/components/SmallBlogCard";
 import dynamic from "next/dynamic";
+import { SITE_URL } from "@/lib/config";
 import {
   Skull,
   Zap,
@@ -27,7 +28,7 @@ const Testimonials = dynamic(() => import("@/components/Testimonials"), {
 export const metadata: Metadata = {
   title: "TypeWarp | Modern Text Effects Generator",
   description:
-    "Free cursed text generator with 50+ glitch fonts, Zalgo text, and aesthetic styles. Instantly create unique text for Discord, Twitter, Instagram. No signup required.",
+    "Free cursed text generator with 81+ glitch fonts, Zalgo text, and aesthetic styles. Instantly create unique text for Discord, Twitter, Instagram. No signup required.",
   keywords: [
     "cursed text generator",
     "glitch text generator",
@@ -60,7 +61,7 @@ export const metadata: Metadata = {
         alt: "TypeWarp - Free Cursed Text Generator with 50+ Glitch Font Tools",
       },
     ],
-    url: "https://www.typewarp.com",
+    url: SITE_URL,
     type: "website",
     siteName: "TypeWarp",
   },
@@ -73,7 +74,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   alternates: {
-    canonical: "https://www.typewarp.com",
+    canonical: SITE_URL,
   },
   other: {
     "og:updated_time": new Date().toISOString(),
@@ -90,7 +91,7 @@ export default async function Home() {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: "TypeWarp - Free Cursed Text Generator",
-    url: "https://www.typewarp.com",
+    url: SITE_URL,
     description:
       "Free online cursed text generator with 50+ glitch fonts, Zalgo text, and aesthetic styles. Create unique text effects for Discord, Twitter, and Instagram instantly.",
     applicationCategory: "DesignApplication",
@@ -104,13 +105,6 @@ export default async function Home() {
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "1280",
-      bestRating: "5",
-      worstRating: "1",
-    },
     featureList: [
       "Real-time Cursed Text Generation",
       "50+ Glitch Font Styles",
@@ -121,7 +115,7 @@ export default async function Home() {
       "Copy Paste Ready",
       "No Signup Required",
     ],
-    screenshot: "https://www.typewarp.com/og-image.png",
+    screenshot: `${SITE_URL}/og-image.png`,
   };
 
   const faqJsonLd = {
@@ -199,7 +193,7 @@ export default async function Home() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.typewarp.com",
+        item: SITE_URL,
       },
     ],
   };

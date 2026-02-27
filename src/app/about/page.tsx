@@ -1,4 +1,5 @@
 import React from "react";
+import { SITE_URL } from "@/lib/config";
 import { Metadata } from "next";
 import Link from "next/link";
 import JSONLD from "@/components/JSONLD";
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
     title: "About TypeWarp | Mission & Technology",
     description:
       "Discover TypeWarp — 81+ free text transformation tools. Real-time processing, zero data collection, cross-platform compatible.",
-    url: "https://www.typewarp.com/about",
+    url: `${SITE_URL}/about`,
     type: "website",
     images: [
       {
@@ -69,7 +70,7 @@ export const metadata: Metadata = {
     creator: "@typewarp",
     images: ["/og-image.png"],
   },
-  alternates: { canonical: "https://www.typewarp.com/about" },
+  alternates: { canonical: `${SITE_URL}/about` },
 };
 
 /* ------------------------------------------------------------------ */
@@ -148,21 +149,6 @@ const features: Feature[] = [
   },
 ];
 
-const platforms = [
-  { name: "Discord", emoji: "💬" },
-  { name: "Instagram", emoji: "📸" },
-  { name: "TikTok", emoji: "🎵" },
-  { name: "Twitter / X", emoji: "𝕏" },
-  { name: "Facebook", emoji: "📘" },
-  { name: "WhatsApp", emoji: "💬" },
-  { name: "Telegram", emoji: "✈️" },
-  { name: "Reddit", emoji: "🔴" },
-  { name: "GitHub", emoji: "🐙" },
-  { name: "LinkedIn", emoji: "💼" },
-  { name: "Slack", emoji: "💡" },
-  { name: "Email", emoji: "📧" },
-];
-
 const techStack = [
   { label: "Framework", value: "Next.js 15", icon: Layers },
   { label: "Language", value: "TypeScript", icon: Code2 },
@@ -217,6 +203,7 @@ const AboutPage = () => {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     name: "About TypeWarp",
+    url: `${SITE_URL}/about`,
     description:
       "TypeWarp is a free, privacy-first text transformation platform with 81+ tools across 6 categories.",
     mainEntity: {
@@ -229,7 +216,7 @@ const AboutPage = () => {
   };
 
   return (
-    <div className="min-h-screen pt-32 sm:pt-36 md:pt-40 pb-16 sm:pb-20 bg-bg-void text-text-primary relative overflow-hidden">
+    <div className="min-h-screen pt-24 lg:pt-28 pb-16 sm:pb-20 bg-bg-void text-text-primary relative overflow-hidden">
       <BackgroundEffect />
       <JSONLD data={jsonLd} />
 
@@ -254,10 +241,8 @@ const AboutPage = () => {
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 sm:mb-8 tracking-tight uppercase leading-[0.9]">
-            Beyond the{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-glitch via-emerald-300 to-white">
-              Standard Script.
-            </span>
+            <span className="text-white">Beyond the</span>{" "}
+            <span className="text-accent-glitch">Standard Script.</span>
           </h1>
 
           <p className="text-text-muted text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
@@ -411,32 +396,6 @@ const AboutPage = () => {
                   </p>
                 </div>
               </Link>
-            ))}
-          </div>
-        </section>
-
-        {/* ── Platform Compatibility ── */}
-        <section className="mb-16 sm:mb-20 md:mb-28">
-          <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-            <div className="w-1.5 h-8 sm:h-10 bg-accent-glitch rounded-full" />
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight">
-              Works <span className="text-accent-glitch">Everywhere</span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
-            {platforms.map((p) => (
-              <div
-                key={p.name}
-                className="group p-4 sm:p-5 bg-bg-card border border-white/[0.06] rounded-2xl text-center hover:border-accent-glitch/30 transition-all duration-300"
-              >
-                <div className="text-3xl sm:text-4xl mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">
-                  {p.emoji}
-                </div>
-                <div className="text-xs sm:text-sm font-bold text-white/90 truncate">
-                  {p.name}
-                </div>
-              </div>
             ))}
           </div>
         </section>

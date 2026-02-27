@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import CategoryClientView from "@/components/CategoryClientView";
 import JSONLD from "@/components/JSONLD";
+import { SITE_URL } from "@/lib/config";
 
 export function generateStaticParams() {
   return categories.map((category) => ({
@@ -58,7 +59,7 @@ export async function generateMetadata({
           alt: `${category.name} Text Generator Tools`,
         },
       ],
-      url: `https://www.typewarp.com/${categorySlug}`,
+      url: `${SITE_URL}/${categorySlug}`,
       type: "website",
       siteName: "TypeWarp",
     },
@@ -70,7 +71,7 @@ export async function generateMetadata({
       images: ["/og-image.png"],
     },
     alternates: {
-      canonical: `https://www.typewarp.com/${categorySlug}`,
+      canonical: `${SITE_URL}/${categorySlug}`,
     },
   };
 }
@@ -84,7 +85,7 @@ export async function generateCategoryJsonLd(categorySlug: string) {
     "@type": "CollectionPage",
     name: `${category.name} Text Generator Collection`,
     description: category.description,
-    url: `https://www.typewarp.com/${categorySlug}`,
+    url: `${SITE_URL}/${categorySlug}`,
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: category.count,
@@ -92,7 +93,7 @@ export async function generateCategoryJsonLd(categorySlug: string) {
         "@type": "ListItem",
         position: index + 1,
         name: tool.name,
-        url: `https://www.typewarp.com/${categorySlug}/${tool.slug}`,
+        url: `${SITE_URL}/${categorySlug}/${tool.slug}`,
       })),
     },
   };
@@ -110,13 +111,13 @@ export async function generateBreadcrumbJsonLd(categorySlug: string) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.typewarp.com",
+        item: SITE_URL,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: category.name,
-        item: `https://www.typewarp.com/${categorySlug}`,
+        item: `${SITE_URL}/${categorySlug}`,
       },
     ],
   };

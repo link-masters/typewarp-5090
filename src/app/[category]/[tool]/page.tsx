@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import { getToolContent } from "@/lib/tools";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import MDXComponents from "@/components/MDXComponents";
+import { SITE_URL } from "@/lib/config";
 
 export function generateStaticParams() {
   const params: { category: string; tool: string }[] = [];
@@ -71,7 +72,7 @@ export async function generateMetadata({
         description:
           toolContent.meta.description ||
           `Free ${tool.name.toLowerCase()} generator. Works on all social platforms.`,
-        url: `https://www.typewarp.com/${categorySlug}/${toolSlug}`,
+        url: `${SITE_URL}/${categorySlug}/${toolSlug}`,
         type: "website",
         images: [
           {
@@ -93,7 +94,7 @@ export async function generateMetadata({
         images: ["/og-image.png"],
       },
       alternates: {
-        canonical: `https://www.typewarp.com/${categorySlug}/${toolSlug}`,
+        canonical: `${SITE_URL}/${categorySlug}/${toolSlug}`,
       },
     };
   }
@@ -115,7 +116,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${tool.name} | Free ${category.name} Generator`,
       description: `Free ${tool.name.toLowerCase()} generator. Works on Discord, Twitter, Instagram.`,
-      url: `https://www.typewarp.com/${categorySlug}/${toolSlug}`,
+      url: `${SITE_URL}/${categorySlug}/${toolSlug}`,
       type: "website",
       images: [
         {
@@ -135,7 +136,7 @@ export async function generateMetadata({
       images: ["/og-image.png"],
     },
     alternates: {
-      canonical: `https://www.typewarp.com/${categorySlug}/${toolSlug}`,
+      canonical: `${SITE_URL}/${categorySlug}/${toolSlug}`,
     },
   };
 }
@@ -176,19 +177,12 @@ export default async function ToolPage({
     description: `Online tool to generate ${tool.name.toLowerCase()} for ${category.name.toLowerCase()}.`,
     applicationCategory: "DesignApplication",
     operatingSystem: "All",
-    url: `https://www.typewarp.com/${categorySlug}/${toolSlug}`,
+    url: `${SITE_URL}/${categorySlug}/${toolSlug}`,
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      reviewCount: "320",
-      bestRating: "5",
-      worstRating: "1",
     },
   };
 
@@ -200,19 +194,19 @@ export default async function ToolPage({
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.typewarp.com",
+        item: SITE_URL,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: category.name,
-        item: `https://www.typewarp.com/${categorySlug}`,
+        item: `${SITE_URL}/${categorySlug}`,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: tool.name,
-        item: `https://www.typewarp.com/${categorySlug}/${toolSlug}`,
+        item: `${SITE_URL}/${categorySlug}/${toolSlug}`,
       },
     ],
   };

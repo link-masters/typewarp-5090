@@ -343,13 +343,13 @@ export default function ToolView({
   const content = getDynamicContent();
 
   return (
-    <div className="min-h-screen pt-32 pb-24 bg-[#080808] text-white relative overflow-hidden">
+    <div className="min-h-screen pt-24 lg:pt-28 pb-24 bg-[#080808] text-white relative overflow-hidden">
       {/* Background Glow */}
       <div className="fixed top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-10%,rgba(57,255,20,0.02)_0%,transparent_50%)] pointer-events-none" />
 
       <div className="container mx-auto max-w-7xl relative z-10 px-6">
         {/* Compact Breadcrumbs */}
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-8 font-mono text-[10px] uppercase tracking-[0.2em] text-white/30">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-4 lg:mb-6 font-mono text-[10px] uppercase tracking-[0.2em] text-white/30">
           <Link
             href="/"
             className="hover:text-accent-glitch transition-colors flex items-center gap-1.5 shrink-0"
@@ -371,11 +371,11 @@ export default function ToolView({
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-3 items-start">
+        <div className="flex flex-col lg:flex-row gap-6 items-start">
           {/* Main Transformation Area */}
-          <div className="flex-1 w-full flex flex-col gap-3">
+          <div className="flex-1 w-full flex flex-col gap-6">
             {/* Optimized Header - Compact Edition */}
-            <div className="bg-bg-card border border-border-subtle p-3 md:p-4 lg:px-6 relative overflow-hidden">
+            <div className="bg-bg-card border border-border-subtle p-3 md:p-4 lg:px-6 relative overflow-hidden rounded-xl">
               <div className="flex flex-col gap-2 relative z-10">
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tighter uppercase leading-tight break-words max-w-4xl">
                   {tool.name}
@@ -388,7 +388,7 @@ export default function ToolView({
             </div>
 
             {/* Input Panel */}
-            <div className="bg-bg-card border border-border-subtle relative group shadow-lg">
+            <div className="bg-bg-card border border-border-subtle relative group shadow-lg transition-all duration-300 focus-within:border-accent-glitch/50 focus-within:ring-1 focus-within:ring-accent-glitch/20 rounded-xl overflow-hidden">
               <div className="p-1 border-b border-border-subtle bg-bg-void/50 flex justify-between items-center px-4 py-2">
                 <div className="flex items-center gap-2 text-[9px] font-mono uppercase tracking-[0.3em] text-text-muted">
                   <Terminal className="w-3 h-3" />
@@ -418,7 +418,7 @@ export default function ToolView({
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Enter text to transform..."
-                  className="w-full min-h-[140px] md:min-h-[180px] bg-[#0c0c0c] text-lg md:text-2xl font-medium tracking-normal text-text-primary placeholder:text-text-primary/20 outline-none resize-none custom-scrollbar transition-all overscroll-contain p-4 md:p-6 text-left border-none focus:ring-1 focus:ring-accent-glitch/20"
+                  className="w-full min-h-[130px] lg:min-h-[150px] bg-[#0c0c0c] text-base md:text-lg lg:text-xl font-medium tracking-normal text-text-primary placeholder:text-text-primary/20 outline-none focus:outline-none resize-none custom-scrollbar transition-all overscroll-contain p-4 lg:p-5 text-left border-none"
                   autoFocus
                   spellCheck="false"
                   data-gramm="false"
@@ -428,7 +428,7 @@ export default function ToolView({
             </div>
 
             {/* Output Panel */}
-            <div className="bg-bg-card border border-border-subtle relative group shadow-lg overflow-hidden flex flex-col">
+            <div className="bg-bg-card border border-border-subtle relative group shadow-lg overflow-hidden flex flex-col transition-all duration-300 focus-within:border-accent-glitch/50 focus-within:ring-1 focus-within:ring-accent-glitch/20 rounded-xl">
               <div className="p-2 border-b border-border-subtle bg-bg-void/50 flex flex-col sm:flex-row justify-between items-start sm:items-center px-4 py-3 gap-3">
                 <div className="flex items-center gap-2 text-[10px] sm:text-[9px] font-mono uppercase tracking-[0.3em] text-accent-glitch shrink-0 mt-1 sm:mt-0">
                   <Zap className="w-3.5 h-3.5 sm:w-3 sm:h-3" />
@@ -507,13 +507,13 @@ export default function ToolView({
                 onMouseEnter={lockBodyScroll}
                 onMouseLeave={unlockBodyScroll}
               >
-                <div className="min-h-[140px] md:min-h-[180px]">
+                <div className="min-h-[130px] lg:min-h-[150px] flex flex-col">
                   {output ? (
                     <textarea
                       ref={outputRef}
                       readOnly
                       value={output}
-                      className="w-full min-h-[140px] md:min-h-[180px] bg-[#0c0c0c]/80 text-lg md:text-2xl font-medium tracking-normal break-all leading-relaxed transition-colors duration-300 relative z-10 outline-none resize-none overflow-y-auto custom-scrollbar overscroll-contain p-4 md:p-6 text-left"
+                      className="w-full flex-1 min-h-[130px] lg:min-h-[150px] bg-[#0c0c0c]/80 text-base md:text-lg lg:text-xl font-medium tracking-normal break-all leading-relaxed transition-colors duration-300 relative z-10 outline-none resize-none overflow-y-auto custom-scrollbar overscroll-contain p-4 lg:p-5 text-left"
                       style={{ color: outputColor }}
                     />
                   ) : (
@@ -598,8 +598,8 @@ export default function ToolView({
           </div>
 
           {/* Sidebar Controls */}
-          <div className="w-full lg:w-[320px] shrink-0 flex flex-col gap-4">
-            <div className="bg-bg-card border border-border-subtle p-4 relative group shadow-xl">
+          <div className="w-full lg:w-[320px] shrink-0 flex flex-col gap-4 z-20">
+            <div className="bg-bg-card border border-border-subtle p-4 relative group shadow-xl rounded-xl">
               <div className="flex items-center gap-3 mb-6 md:mb-8">
                 <div className="w-10 h-10 border border-accent-glitch/20 flex items-center justify-center">
                   <Settings className="w-5 h-5 text-accent-glitch" />
@@ -1100,38 +1100,6 @@ export default function ToolView({
                     ))}
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Related Tools */}
-            <div className="p-5 bg-[#0c0c0c] border border-white/5 rounded-xl relative overflow-hidden">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-9 h-9 bg-[#111] border border-white/10 rounded-lg flex items-center justify-center">
-                  <Layers className="w-4 h-4 text-white/30" />
-                </div>
-                <div>
-                  <h3 className="text-xs font-black uppercase tracking-wider text-white">
-                    Related Tools
-                  </h3>
-                  <p className="text-[9px] font-mono text-white/20 uppercase tracking-widest">
-                    Explore More
-                  </p>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 gap-2">
-                {category.tools.slice(0, 6).map((t) => (
-                  <Link
-                    key={t.slug}
-                    href={`/${category.slug}/${t.slug}`}
-                    className="group/link flex items-center gap-3 p-3 bg-[#111]/50 border border-white/5 rounded-lg hover:border-accent-glitch/20 hover:bg-accent-glitch/[0.03] transition-all duration-300"
-                  >
-                    <div className="w-1 h-4 bg-white/5 rounded-full group-hover/link:bg-accent-glitch/40 transition-colors" />
-                    <span className="text-[11px] font-mono font-bold text-white/50 uppercase tracking-wider group-hover/link:text-accent-glitch transition-colors flex-1 truncate">
-                      {t.name}
-                    </span>
-                    <ChevronRight className="w-3 h-3 text-white/10 group-hover/link:text-accent-glitch/60 transition-colors" />
-                  </Link>
-                ))}
               </div>
             </div>
           </div>
