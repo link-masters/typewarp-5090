@@ -112,6 +112,37 @@ const nextConfig: NextConfig = {
         destination: "/social-fonts/fancy-font",
         permanent: true,
       },
+      // Canonical Redirects for removed duplicate categories
+      {
+        source: "/style-fancy/scary-text",
+        destination: "/dark-horror/scary-text",
+        permanent: true,
+      },
+      {
+        source: "/text-tools/vaporwave-text",
+        destination: "/style-fancy/vaporwave-text",
+        permanent: true,
+      },
+      {
+        source: "/text-tools/glitter-text",
+        destination: "/dark-horror/glitter-text",
+        permanent: true,
+      },
+      {
+        source: "/translators/old-english",
+        destination: "/style-fancy/old-english",
+        permanent: true,
+      },
+      {
+        source: "/style-fancy/fancy-font",
+        destination: "/social-fonts/fancy-font",
+        permanent: true,
+      },
+      {
+        source: "/translators/reverse-text",
+        destination: "/text-tools/reverse-text",
+        permanent: true,
+      },
     ];
   },
   // Optimize production builds
