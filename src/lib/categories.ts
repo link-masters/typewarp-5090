@@ -61,7 +61,7 @@ export const categories: Category[] = [
   {
     name: "Style & Fancy",
     slug: "style-fancy",
-    count: 14,
+    count: 17,
     icon: "✨",
     description: "Aesthetic, vaporwave, and stylish text designs",
     tools: [
@@ -79,26 +79,36 @@ export const categories: Category[] = [
       { name: "Cursive Font Generator", slug: "cursive-font", icon: "📝" },
       { name: "Bubble Text Generator", slug: "bubble-text", icon: "🫧" },
       { name: "Wide Text Generator", slug: "wide-text", icon: "↔️" },
-      { name: "Scary Text Generator", slug: "scary-text", icon: "🎃" }, // Added duplication for 404
-      { name: "Monospace Text Generator", slug: "monospace-text", icon: "💻" }, // Added for 404
-      { name: "Premium Font Generator", slug: "premium-font", icon: "💎" }, // Added for 404
+      { name: "Scary Text Generator", slug: "scary-text", icon: "🎃" },
+      { name: "Monospace Text Generator", slug: "monospace-text", icon: "💻" },
+      { name: "Premium Font Generator", slug: "premium-font", icon: "💎" },
       {
         name: "Typewriter Font Generator",
         slug: "typewriter-font",
         icon: "⌨️",
-      }, // Added for 404
+      },
+      {
+        name: "Old English Font Generator",
+        slug: "old-english-font",
+        icon: "📜",
+      },
+      { name: "Old English Text Generator", slug: "old-english", icon: "Ꝋ" },
     ],
   },
   {
     name: "Text Tools",
     slug: "text-tools",
-    count: 21,
+    count: 29,
     icon: "🔧",
     description: "Essential text formatting and manipulation tools",
     tools: [
       { name: "Bold Text Generator", slug: "bold-text", icon: "𝐁" },
-      { name: "Italic Text Generator", slug: "italic-text", icon: "𝐼" },
-      { name: "Underline Text Generator", slug: "underline-text", icon: "U̲" },
+      { name: "Italic Text Generator Online", slug: "italic-text", icon: "𝐼" },
+      {
+        name: "Underline Text Generator Online",
+        slug: "underline-text",
+        icon: "U̲",
+      },
       {
         name: "Strikethrough Text Generator",
         slug: "strikethrough-text",
@@ -107,45 +117,66 @@ export const categories: Category[] = [
       { name: "Small Text Generator", slug: "small-text", icon: "ˢ" },
       { name: "Tiny Text Generator", slug: "tiny-text", icon: "ᵗ" },
       { name: "Big Text Generator", slug: "big-text", icon: "🔠" },
-      { name: "Superscript Generator", slug: "superscript", icon: "ˣ" },
+      { name: "Uppercase Text Generator", slug: "uppercase-text", icon: "🔤" },
+      { name: "Superscript Generator Online", slug: "superscript", icon: "ˣ" },
       {
         name: "Upside Down Text Generator",
         slug: "upside-down-text",
         icon: "🙃",
       },
+      { name: "Upside Down Text", slug: "upside-down", icon: "🔃" },
       { name: "Mirror Text Generator", slug: "mirror-text", icon: "🪞" },
+      { name: "Reverse Text Generator", slug: "reverse-text", icon: "◀" },
       { name: "Space Remover", slug: "space-remover", icon: "🗜️" },
       { name: "Text Cleaner", slug: "text-cleaner", icon: "🧹" },
       { name: "Sentence Case Converter", slug: "sentence-case", icon: "Aa" },
-      { name: "Character Counter", slug: "character-counter", icon: "🔢" },
+      { name: "Title Case Converter", slug: "title-case", icon: "🔡" },
+      {
+        name: "Character Counter Online",
+        slug: "character-counter",
+        icon: "🔢",
+      },
       { name: "Invisible Character", slug: "invisible-character", icon: "👁️" },
-      { name: "Box Text Generator", slug: "box-text", icon: "📦" }, // Added for 404
-      { name: "Sparkle Text Generator", slug: "sparkle-text", icon: "✨" }, // Added for 404
-      { name: "Slashed Text Generator", slug: "slashed-text", icon: "🗡️" }, // Added for 404
+      { name: "Zero Width Character", slug: "zero-width", icon: "🔍" },
+      { name: "Stacked Text Generator", slug: "stacked-text", icon: "📚" },
+      { name: "Funny Text Generator", slug: "funny-text", icon: "😂" },
+      { name: "Vaporwave Text Generator", slug: "vaporwave-text", icon: "🌊" },
+      { name: "Box Text Generator", slug: "box-text", icon: "📦" },
+      { name: "Sparkle Text Generator", slug: "sparkle-text", icon: "✨" },
+      { name: "Slashed Text Generator", slug: "slashed-text", icon: "🗡️" },
       {
         name: "Aggressive Text Generator",
         slug: "aggressive-text",
         icon: "😤",
-      }, // Added for 404
-      { name: "Playful Text Generator", slug: "playful-text", icon: "🤹" }, // Added for 404
-      { name: "Glitter Text Generator", slug: "glitter-text", icon: "✨" }, // Added duplication for 404
+      },
+      { name: "Playful Text Generator", slug: "playful-text", icon: "🤹" },
+      { name: "Glitter Text Generator", slug: "glitter-text", icon: "✨" },
     ],
   },
   {
     name: "Symbols",
     slug: "symbols",
-    count: 8,
+    count: 9,
     icon: "🔣",
     description: "Special characters, emoticons, and symbols",
     tools: [
       { name: "Text Symbols", slug: "text-symbols", icon: "♠️" },
-      { name: "Aesthetic Symbols", slug: "aesthetic-symbols", icon: "✧" },
-      { name: "Special Characters", slug: "special-characters", icon: "※" },
+      {
+        name: "Aesthetic Symbols Generator Online",
+        slug: "aesthetic-symbols",
+        icon: "✧",
+      },
+      {
+        name: "Special Characters Generator",
+        slug: "special-characters",
+        icon: "※",
+      },
       { name: "Text Emoticons", slug: "text-emoticons", icon: "ʕ•ᴥ•ʔ" },
+      { name: "Kaomoji Generator", slug: "kaomoji", icon: "(◕‿◕)" },
       { name: "Lenny Face Generator", slug: "lenny-face", icon: "( ͡° ͜ʖ ͡°)" },
-      { name: "Combat Symbols", slug: "combat-symbols", icon: "⚔️" }, // Added for 404
-      { name: "Mirror Symbols", slug: "mirror-symbols", icon: "🪞" }, // Added for 404
-      { name: "Tech Symbols", slug: "tech-symbols", icon: "💾" }, // Added for 404
+      { name: "Combat Symbols", slug: "combat-symbols", icon: "⚔️" },
+      { name: "Mirror Symbols", slug: "mirror-symbols", icon: "🪞" },
+      { name: "Tech Symbols", slug: "tech-symbols", icon: "💾" },
     ],
   },
   {
@@ -157,7 +188,7 @@ export const categories: Category[] = [
     tools: [
       { name: "Morse Code Translator", slug: "morse-code", icon: "•−" },
       { name: "Braille Translator", slug: "braille", icon: "⠃" },
-      { name: "Binary Converter", slug: "binary", icon: "01" },
+      { name: "Binary Generator Online", slug: "binary", icon: "01" },
       { name: "Hex Converter", slug: "hex-code", icon: "⬡" },
       { name: "Base64 Encoder", slug: "base64", icon: "📦" },
       { name: "Reverse Text", slug: "reverse-text", icon: "◀" },

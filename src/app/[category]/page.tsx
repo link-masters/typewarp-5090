@@ -88,12 +88,12 @@ export async function generateCategoryJsonLd(categorySlug: string) {
     url: `${SITE_URL}/${categorySlug}`,
     mainEntity: {
       "@type": "ItemList",
-      numberOfItems: category.count,
+      numberOfItems: category.tools.length,
       itemListElement: category.tools.slice(0, 10).map((tool, index) => ({
         "@type": "ListItem",
         position: index + 1,
         name: tool.name,
-        url: `${SITE_URL}/${categorySlug}/${tool.slug}`,
+        item: `${SITE_URL}/${categorySlug}/${tool.slug}`,
       })),
     },
   };
@@ -117,7 +117,6 @@ export async function generateBreadcrumbJsonLd(categorySlug: string) {
         "@type": "ListItem",
         position: 2,
         name: category.name,
-        item: `${SITE_URL}/${categorySlug}`,
       },
     ],
   };

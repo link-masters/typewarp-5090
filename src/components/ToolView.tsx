@@ -269,72 +269,120 @@ export default function ToolView({
     const name = tool.name;
     const cat = category.name;
     const s = tool.slug;
+    const slugWords = tool.slug.replace(/-/g, " ");
 
-    let aboutText = `The ${name} is a high-performance ${cat.toLowerCase()} generator engineered for elite digital creators. By utilizing sophisticated Unicode mapping protocols, it converts your standard text into a ${tool.slug.replace("-", " ")} masterpiece in milliseconds. In today's attention economy, ordinary text is invisible; our ${name} ensures your message breaks through the noise on platforms like Instagram, Discord, and TikTok.`;
+    let aboutText = `The ${name} is a high-performance ${cat.toLowerCase()} generator engineered for elite digital creators. By utilizing sophisticated Unicode mapping protocols, it converts your standard text into a ${slugWords} masterpiece in milliseconds. In today's attention economy, ordinary text is invisible; our ${name} ensures your message breaks through the noise on platforms like Instagram, Discord, and TikTok. Whether you are crafting a viral caption, building a personal brand, or adding flair to your gaming profile, this tool delivers instant, professional-grade results with zero technical knowledge required.`;
 
     if (s === "tiktok-font") {
-      aboutText = `Maximize your viral potential with the industry-leading TikTok Font Generator. TikTok's algorithm prioritizes high engagement, and visual contrast is the key. Our generator provides specially curated Unicode styles that bypass standard system font limitations, allowing you to create high-impact captions, bios, and on-screen text that demand attention. Whether you're a micro-influencer or a global brand, this tool is your secret weapon for the 'For You' page.`;
+      aboutText = `Maximize your viral potential with the industry-leading TikTok Font Generator. TikTok's algorithm prioritizes high engagement, and visual contrast is the key. Our generator provides specially curated Unicode styles that bypass standard system font limitations, allowing you to create high-impact captions, bios, and on-screen text that demand attention. Whether you're a micro-influencer or a global brand, this tool is your secret weapon for the 'For You' page. Stand out in the comments section, make your video descriptions pop, and build a recognizable aesthetic that keeps viewers coming back.`;
     } else if (s === "instagram-font") {
-      aboutText = `Curate a world-class aesthetic with the definitive Instagram Font Generator. Your Instagram profile is your digital storefront; don't settle for generic typography. Our platform offers an extensive library of premium styles—from minimalist sans-serifs to decorative scripts—all 100% compatible with IG's latest updates. Transform your bio, stories, and captions into a cohesive brand experience that attracts followers and builds authority.`;
+      aboutText = `Curate a world-class aesthetic with the definitive Instagram Font Generator. Your Instagram profile is your digital storefront; don't settle for generic typography. Our platform offers an extensive library of premium styles — from minimalist sans-serifs to decorative scripts — all 100% compatible with IG's latest updates. Transform your bio, stories, and captions into a cohesive brand experience that attracts followers and builds authority. Perfect for influencers, small businesses, and content creators who want their profile to stand out.`;
     } else if (s.includes("cursed") || s.includes("zalgo")) {
-      aboutText = `Step into the realm of digital entropy with our advanced ${name}. This "Glitch Text" engine exploits combining character marks to create the iconic Zalgo effect, layering characters vertically until they overwrite the digital space around them. It is the ultimate tool for horror writing, avant-garde design, or creating a disruptive presence online. Control the intensity of the 'curse' from subtle glitch to total digital annihilation.`;
+      aboutText = `Step into the realm of digital entropy with our advanced ${name}. This "Glitch Text" engine exploits combining character marks to create the iconic Zalgo effect, layering characters vertically until they overwrite the digital space around them. It is the ultimate tool for horror writing, avant-garde design, or creating a disruptive presence online. Control the intensity of the 'curse' from subtle glitch to total digital annihilation. Perfect for Halloween social posts, horror game aesthetics, creepy pasta formatting, and experimental digital art.`;
     }
 
-    const detailedDescription = `Beyond simple transformation, the ${name} serves as a complete typography suite. It handles complex character encoding shifts while maintaining the structural integrity of your message. Our system is built on a "Privacy-First" architecture, ensuring that every transformation stay entirely within your browser local environment. No data ever reaches our servers, providing a secure workspace for confidential branding and creative projects.`;
+    const detailedDescription = `Beyond simple transformation, the ${name} serves as a complete typography suite. It handles complex character encoding shifts while maintaining the structural integrity of your message. Our system is built on a "Privacy-First" architecture, ensuring that every transformation stays entirely within your browser's local environment. No data ever reaches our servers, providing a secure workspace for confidential branding and creative projects. The engine supports input in over 40 languages and can process texts of up to 10,000 characters without any performance degradation, making it suitable for both quick social media posts and longer-form creative content.`;
+
+    const howToSteps = [
+      {
+        step: "1",
+        title: "Enter Your Text",
+        text: `Type or paste the text you want to transform into the input field above. You can enter anything from a single word to entire paragraphs. The ${name} accepts all standard characters including letters, numbers, and punctuation marks.`,
+      },
+      {
+        step: "2",
+        title: "Choose Your Style",
+        text: `Browse through the available ${cat.toLowerCase()} styles in the output panel. Each style produces a unique visual effect using Unicode character mappings. Click on any style to preview how your text looks with that transformation applied in real time.`,
+      },
+      {
+        step: "3",
+        title: "Copy and Use Anywhere",
+        text: `Click the copy button next to your preferred style to save it to your clipboard. The transformed text is pure Unicode and works on Instagram, Discord, TikTok, Twitter, Facebook, WhatsApp, Snapchat, YouTube, and virtually any platform that supports text input.`,
+      },
+    ];
+
+    const useCases = [
+      {
+        platform: "Instagram",
+        text: `Use the ${name} to create eye-catching Instagram bios, story captions, and post descriptions. Stylized text helps your profile stand out to new visitors and reinforces your brand identity across all touchpoints.`,
+      },
+      {
+        platform: "Discord",
+        text: `Make your Discord messages, server nicknames, and channel descriptions stand out with unique ${slugWords} styles. Many gaming communities use stylized text to create memorable usernames and server branding.`,
+      },
+      {
+        platform: "TikTok",
+        text: `Boost your TikTok engagement with distinctive ${slugWords} in your bio and video descriptions. Unique typography catches the eye during scrolling and can increase your profile visit rate significantly.`,
+      },
+      {
+        platform: "Gaming",
+        text: `Create unique gamertags, clan names, and in-game chat messages using ${slugWords} effects. Stand out in games like Fortnite, Call of Duty, Minecraft, and Roblox with creative typography that other players will remember.`,
+      },
+    ];
 
     return {
       about: aboutText,
       moreInfo: detailedDescription,
+      howToSteps,
+      useCases,
       features: [
         {
           title: "Real-Time Processing",
-          text: "Zero-latency transformation as you type, optimized for speed.",
+          text: "Zero-latency transformation as you type, powered by client-side Unicode mapping. No server round-trips means instant results even on slow connections.",
         },
         {
-          title: "Cross-Platform Sync",
-          text: "Verified compatibility with 50+ social networks and gaming platforms.",
+          title: "Cross-Platform Compatibility",
+          text: "Verified compatibility with 50+ social networks and gaming platforms including Instagram, Discord, TikTok, Twitter, WhatsApp, and Steam.",
         },
         {
           title: "Unicode 15.0 Support",
-          text: "Utilizes the latest character maps for maximum stylistic variety.",
+          text: "Utilizes the latest Unicode character maps with over 7,500 mappings for maximum stylistic variety and the widest device compatibility.",
         },
         {
           title: "Adaptive Controls",
-          text: "Intelligent sliders that adjust to the specific nuances of each style.",
+          text: "Intelligent sliders and customization options that adjust to the specific nuances of each style, giving you fine-grained control over the output.",
+        },
+        {
+          title: "Privacy First Design",
+          text: "All text processing happens locally in your browser. Your content never touches our servers, ensuring complete privacy for sensitive or confidential text.",
+        },
+        {
+          title: "Mobile Optimized",
+          text: "Fully responsive interface designed for seamless use on smartphones and tablets. Create stylized text on the go with the same power as the desktop version.",
         },
       ],
       faqs: [
         {
           q: `Is the ${name} truly free?`,
-          a: `Absolutely. We provide unlimited access to the ${name} without any hidden fees, subscriptions, or watermarks. It is a community-supported tool for the creative web.`,
+          a: `Absolutely. We provide unlimited access to the ${name} without any hidden fees, subscriptions, or watermarks. It is a community-supported tool for the creative web. There are no usage limits, no account requirements, and no premium tiers.`,
         },
         {
           q: "Will these fonts look the same for everyone?",
-          a: "Yes. Because we use Unicode characters (not actual .ttf/.otf fonts), they render identically on iOS, Android, Windows, and macOS devices.",
+          a: "Yes. Because we use Unicode characters (not actual .ttf/.otf fonts), they render identically on iOS, Android, Windows, and macOS devices. Over 99% of modern devices fully support these characters, ensuring your text looks exactly as intended regardless of the viewer's platform.",
         },
         {
           q: "Can I use this for commercial projects?",
-          a: "Definitely. The output from our generator is standard Unicode text, which you can use in commercial designs, branding, and promotional content.",
+          a: "Definitely. The output from our generator is standard Unicode text, which you can use in commercial designs, branding, promotional content, and marketing materials without any attribution or licensing requirements.",
         },
         {
-          q: "How do I get the 'Small Text' effect?",
-          a: "Our system includes dedicated superscript and subscript maps. Select the 'Small Text' tool or adjust the formatting toggle in the parameters panel.",
+          q: `How do I use the ${name}?`,
+          a: `Simply type or paste your text into the input field, browse the available styles in the output panel, and click the copy button on your preferred result. The transformed text is ready to paste into any app or website that accepts text input.`,
         },
         {
           q: "Is it safe for my social media account?",
-          a: "Yes. Using stylized Unicode text is fully compliant with platform terms of service. We do not require account access or any login credentials.",
+          a: "Yes. Using stylized Unicode text is fully compliant with platform terms of service on all major social networks. We do not require account access or any login credentials. The text is standard Unicode, not a hack or exploit.",
         },
         {
           q: "Why do some characters look like boxes?",
-          a: "This happens rarely on extremely old operating systems that don't support modern Unicode. All modern devices (post-2018) will see the text perfectly.",
+          a: "This happens rarely on extremely old operating systems or budget devices that don't support modern Unicode blocks. All modern devices manufactured after 2018 will display the text perfectly. If you encounter this issue, try a different style.",
         },
         {
-          q: "How do I clear my input quickly?",
-          a: "Click the 'Trash' icon in the Input Buffer header to reset the interface instantly. You can also use Cmd/Ctrl + A and Delete.",
+          q: `Does the ${name} work offline?`,
+          a: "Once the page is loaded, the transformation engine runs entirely in your browser, so it will continue to work even if your internet connection drops. However, you need an initial connection to load the page.",
         },
         {
-          q: "Can I save my favorite settings?",
-          a: "Currently, settings are local to your session. We are developing a 'Profile' feature that will allow you to save your custom Warp Matrix configurations soon.",
+          q: `What makes this ${name} different from others?`,
+          a: `Our ${name} offers the widest selection of ${cat.toLowerCase()} styles powered by an advanced Unicode mapping engine with 7,500+ character mappings. We also provide real-time preview, customization controls, and a privacy-first architecture that competitors lack.`,
         },
       ],
     };
@@ -1102,6 +1150,81 @@ export default function ToolView({
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        {/* How to Use Section */}
+        <div className="mt-16 sm:mt-24">
+          <div className="flex flex-col items-center gap-4 mb-10 md:mb-14">
+            <div className="w-12 h-12 bg-[#0c0c0c] border border-white/10 rounded-xl flex items-center justify-center">
+              <Sparkles className="w-6 h-6 text-accent-glitch" />
+            </div>
+            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-center">
+              How to <span className="text-accent-glitch">Use</span>
+            </h2>
+            <p className="text-white/30 font-mono text-xs uppercase tracking-widest">
+              Quick start guide
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {content.howToSteps.map((step, i) => (
+              <div
+                key={i}
+                className="p-5 md:p-6 bg-[#0c0c0c] border border-white/5 rounded-xl group hover:border-accent-glitch/20 transition-all duration-500 relative overflow-hidden"
+              >
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="inline-flex items-center justify-center w-8 h-8 bg-accent-glitch/10 border border-accent-glitch/20 rounded-lg text-sm font-black text-accent-glitch">
+                      {step.step}
+                    </span>
+                    <h3 className="text-sm font-black uppercase tracking-wider text-white">
+                      {step.title}
+                    </h3>
+                  </div>
+                  <p className="text-white/50 font-mono text-[12px] leading-[1.8] group-hover:text-white/70 transition-colors duration-500">
+                    {step.text}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Use Cases / Where to Use Section */}
+        <div className="mt-16 sm:mt-24">
+          <div className="flex flex-col items-center gap-4 mb-10 md:mb-14">
+            <div className="w-12 h-12 bg-[#0c0c0c] border border-white/10 rounded-xl flex items-center justify-center">
+              <Smartphone className="w-6 h-6 text-accent-glitch" />
+            </div>
+            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-center">
+              Where to <span className="text-accent-glitch">Use It</span>
+            </h2>
+            <p className="text-white/30 font-mono text-xs uppercase tracking-widest">
+              Platform compatibility
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {content.useCases.map((uc, i) => (
+              <div
+                key={i}
+                className="p-5 md:p-6 bg-[#0c0c0c] border border-white/5 rounded-xl group hover:border-accent-glitch/20 transition-all duration-500 relative overflow-hidden"
+              >
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
+                <div className="relative z-10">
+                  <h3 className="text-sm font-black uppercase tracking-wider text-white mb-3">
+                    {uc.platform}
+                  </h3>
+                  <p className="text-white/50 font-mono text-[12px] leading-[1.8] group-hover:text-white/70 transition-colors duration-500">
+                    {uc.text}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 p-5 md:p-6 bg-[#0c0c0c] border border-white/5 rounded-xl">
+            <p className="text-white/50 font-mono text-[12px] leading-[1.8]">
+              {content.moreInfo}
+            </p>
           </div>
         </div>
 

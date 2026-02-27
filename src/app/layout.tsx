@@ -27,6 +27,14 @@ const siteJsonLd = {
   "@type": "WebSite",
   name: "TypeWarp",
   url: SITE_URL,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${SITE_URL}/collection?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
 };
 
 const organizationJsonLd = {
@@ -34,7 +42,11 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "TypeWarp",
   url: SITE_URL,
-  logo: `${SITE_URL}/logo.png`,
+  logo: {
+    "@type": "ImageObject",
+    url: `${SITE_URL}/logo.png`,
+  },
+  sameAs: [`${SITE_URL}`],
 };
 
 export const viewport: Viewport = {

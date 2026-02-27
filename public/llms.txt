@@ -1,0 +1,38 @@
+# TypeWarp
+
+> TypeWarp is a free, privacy-first text transformation platform that converts standard text into stylized Unicode typography. All processing runs entirely in the browser — no data is ever sent to servers.
+
+## About
+
+TypeWarp provides 90+ text transformation tools organized into 7 categories. Users type or paste text and get real-time stylized output they can copy and use on Instagram, Discord, TikTok, Twitter, Facebook, and other platforms. The output is standard Unicode text, not images or custom fonts, so it works everywhere.
+
+## Categories
+
+- **Dark & Horror**: Cursed text, Zalgo, glitch, creepy, demonic, gothic, and corrupted text generators
+- **Social Fonts**: TikTok fonts, Instagram fonts, Discord fonts, Fortnite fonts, and gaming fonts
+- **Style & Fancy**: Fancy fonts, calligraphy, cursive, old English, bubble text, and aesthetic text
+- **Text Tools**: Bold, italic, underline, strikethrough, small text, big text, uppercase, reverse, vaporwave, and more
+- **Symbols**: Aesthetic symbols, special characters, text emoticons, kaomoji, lenny faces, and combat symbols
+- **Translators**: Morse code, braille, binary, hex, Base64, Caesar cipher, ROT13, Atbash, and NATO phonetic
+- **Emoji**: Emoji art and ASCII art generators
+
+## Key Pages
+
+- Homepage: https://www.typewarp.com
+- All Tools Collection: https://www.typewarp.com/collection
+- Blog: https://www.typewarp.com/blog
+- About: https://www.typewarp.com/about
+- Contact: https://www.typewarp.com/contact
+
+## Technical Details
+
+- Built with Next.js (App Router) and TypeScript
+- All text transformations use Unicode character mapping (client-side only)
+- No user accounts, logins, or data collection required
+- GDPR compliant, privacy-first architecture
+- Mobile-optimized responsive design
+- Free to use with no limits or watermarks
+
+## Usage Rights
+
+All generated text output is standard Unicode and can be used freely for personal and commercial purposes without attribution.

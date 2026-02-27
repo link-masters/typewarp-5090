@@ -211,7 +211,13 @@ const AboutPage = () => {
       name: "TypeWarp",
       applicationCategory: "UtilitiesApplication",
       operatingSystem: "Web",
-      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      image: `${SITE_URL}/og-image.png`,
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+      },
     },
   };
 

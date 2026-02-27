@@ -83,28 +83,13 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/style-fancy/old-english",
-        destination: "/translators/old-english",
-        permanent: true,
-      },
-      {
-        source: "/style-fancy/old-english-font",
-        destination: "/translators/old-english",
-        permanent: true,
-      },
-      {
         source: "/gaming/:path*",
         destination: "/social-fonts/:path*",
         permanent: true,
       },
       {
-        source: "/symbols/kaomoji",
-        destination: "/symbols/text-emoticons",
-        permanent: true,
-      },
-      {
-        source: "/text-tools/vaporwave-text",
-        destination: "/style-fancy/vaporwave-text",
+        source: "/gaming-fonts/gamer-tag",
+        destination: "/social-fonts/gaming-font",
         permanent: true,
       },
       {
@@ -118,53 +103,8 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/text-tools/upside-down",
-        destination: "/text-tools/upside-down-text",
-        permanent: true,
-      },
-      {
-        source: "/style-fancy/aesthetic-text",
-        destination: "/social-fonts/fancy-font",
-        permanent: true,
-      },
-      {
-        source: "/gaming-fonts/gamer-tag",
-        destination: "/social-fonts/gaming-font",
-        permanent: true,
-      },
-      {
-        source: "/text-tools/funny-text",
-        destination: "/dark-horror/weird-text",
-        permanent: true,
-      },
-      {
         source: "/text-tools/wide-text",
         destination: "/style-fancy/wide-text",
-        permanent: true,
-      },
-      {
-        source: "/text-tools/uppercase-text",
-        destination: "/text-tools/big-text",
-        permanent: true,
-      },
-      {
-        source: "/text-tools/reverse-text",
-        destination: "/translators/reverse-text",
-        permanent: true,
-      },
-      {
-        source: "/text-tools/zero-width",
-        destination: "/text-tools/invisible-character",
-        permanent: true,
-      },
-      {
-        source: "/text-tools/title-case",
-        destination: "/text-tools/sentence-case",
-        permanent: true,
-      },
-      {
-        source: "/text-tools/stacked-text",
-        destination: "/dark-horror/cursed-text",
         permanent: true,
       },
       {

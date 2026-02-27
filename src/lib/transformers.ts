@@ -2448,6 +2448,7 @@ export function transformText(
 
   // ... Original switch for other tools ...
   switch (s) {
+    case "stacked-text":
     case "cursed-text":
     case "corrupted-text": {
       const fontStyle = customSettings.fontStyle || "zalgo";
@@ -3227,6 +3228,7 @@ export function transformText(
       }
       return [...base].map((c) => c + char).join("");
     }
+    case "upside-down":
     case "upside-down-text": {
       const fontStyle = customSettings.fontStyle || "none";
       const angle = customSettings.angle || "180";
@@ -3364,6 +3366,7 @@ export function transformText(
       }
       return mapChars(text, SUPERSCRIPT_MAP);
     }
+    case "uppercase-text":
     case "big-text": {
       const fontStyle = customSettings.fontStyle || "none";
       const gap = customSettings.gap || 1;
@@ -3475,6 +3478,7 @@ export function transformText(
 
       return result;
     }
+    case "title-case":
     case "sentence-case": {
       const fontStyle = customSettings.fontStyle || "none";
       const caseType = customSettings.caseType || "sentence";
@@ -3547,6 +3551,7 @@ export function transformText(
       }
       return result;
     }
+    case "zero-width":
     case "invisible-character": {
       const fontStyle = customSettings.fontStyle || "none";
       const charType = customSettings.charType || "zwsp";
@@ -5811,6 +5816,7 @@ export function transformText(
 
       return result;
     }
+    case "old-english-font":
     case "old-english": {
       const era = customSettings.era || "medieval";
       const useThorn = customSettings.addThorn !== false;
@@ -6136,6 +6142,7 @@ export function transformText(
       return generateAsciiArt(workingText, customSettings.font || "std");
 
     // Weird and Creepy text tools with proper customization
+    case "funny-text":
     case "weird-text": {
       const fontStyle = customSettings.fontStyle || "ransomNote";
       const level = customSettings.level || 5;
@@ -7355,6 +7362,7 @@ export function transformText(
         })
         .join("");
     }
+    case "kaomoji":
     case "text-emoticons": {
       const mood = customSettings.mood || "happy";
       const addBefore = customSettings.addBefore !== false;

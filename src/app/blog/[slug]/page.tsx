@@ -37,7 +37,7 @@ export async function generateMetadata({
   if (!post) return { title: "Post Not Found" };
 
   return {
-    title: `${post.title} | TypeWarp Intel`,
+    title: post.title,
     description: post.description,
     keywords: post.tags || [
       post.category,
@@ -234,7 +234,6 @@ export default async function BlogPostPage({
           <div className="flex items-center gap-6 mb-8 flex-wrap font-mono">
             <Link
               href={`/blog?category=${encodeURIComponent(post.category)}`}
-              rel="nofollow"
               className="px-3 py-1 bg-accent-glitch text-black text-[9px] font-black tracking-widest uppercase"
             >
               {post.category}
@@ -309,7 +308,6 @@ export default async function BlogPostPage({
                     <Link
                       key={tag}
                       href={`/blog?tag=${encodeURIComponent(tag)}`}
-                      rel="nofollow"
                       className="px-3 py-1.5 border border-white/10 text-[9px] uppercase tracking-widest hover:text-accent-glitch hover:border-accent-glitch/30 transition-all"
                     >
                       #{tag}

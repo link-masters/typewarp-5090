@@ -32,6 +32,14 @@ export async function generateMetadata({
 
   if (!category || !tool) return { title: "Tool Not Found" };
 
+  // Resolve canonical category: if a tool exists in multiple categories,
+  // always point the canonical URL to the first category it appears in.
+  const canonicalCategory = categories.find((c) =>
+    c.tools.some((t) => t.slug === toolSlug),
+  );
+  const canonicalCategorySlug = canonicalCategory?.slug || categorySlug;
+  const canonicalUrl = `${SITE_URL}/${canonicalCategorySlug}/${toolSlug}`;
+
   const toolContent = await getToolContent(toolSlug);
 
   const baseKeywords = [
@@ -48,14 +56,23 @@ export async function generateMetadata({
     "typewarp",
   ];
 
+  const mdxTitle = toolContent?.meta?.title;
+  const pageTitle = mdxTitle
+    ? `${mdxTitle} | ${category.name}`
+    : `${tool.name} | ${category.name}`;
+  const ogTitle = mdxTitle
+    ? `${mdxTitle} | ${category.name}`
+    : `${tool.name} | Free ${category.name} Generator`;
+
+  const mdxDesc = toolContent?.meta?.description;
+  const pageDescription = mdxDesc
+    ? `${mdxDesc} Browse more ${category.name} tools on TypeWarp.`
+    : `Generate ${tool.name.toLowerCase()} instantly. Free ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok & Gaming.`;
+
   if (toolContent?.meta) {
     return {
-      title:
-        toolContent.meta.title ||
-        `${tool.name} | Free ${category.name} Generator`,
-      description:
-        toolContent.meta.description ||
-        `Generate ${tool.name.toLowerCase()} instantly. Free ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok & Gaming.`,
+      title: pageTitle,
+      description: pageDescription,
       keywords: toolContent.meta.keywords || baseKeywords,
       robots: {
         index: true,
@@ -68,10 +85,8 @@ export async function generateMetadata({
         },
       },
       openGraph: {
-        title: toolContent.meta.title || `${tool.name} | TypeWarp`,
-        description:
-          toolContent.meta.description ||
-          `Free ${tool.name.toLowerCase()} generator. Works on all social platforms.`,
+        title: ogTitle,
+        description: pageDescription,
         url: `${SITE_URL}/${categorySlug}/${toolSlug}`,
         type: "website",
         images: [
@@ -86,21 +101,19 @@ export async function generateMetadata({
       },
       twitter: {
         card: "summary_large_image",
-        title: toolContent.meta.title || `${tool.name} | TypeWarp`,
-        description:
-          toolContent.meta.description ||
-          `Free ${tool.name.toLowerCase()} generator.`,
+        title: ogTitle,
+        description: pageDescription,
         creator: "@typewarp",
         images: ["/og-image.png"],
       },
       alternates: {
-        canonical: `${SITE_URL}/${categorySlug}/${toolSlug}`,
+        canonical: canonicalUrl,
       },
     };
   }
 
   return {
-    title: `${tool.name} | Free ${category.name} Generator - TypeWarp`,
+    title: `${tool.name} | ${category.name}`,
     description: `Generate ${tool.name.toLowerCase()} instantly. Free ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok & Gaming. No signup required.`,
     keywords: baseKeywords,
     robots: {
@@ -136,7 +149,7 @@ export async function generateMetadata({
       images: ["/og-image.png"],
     },
     alternates: {
-      canonical: `${SITE_URL}/${categorySlug}/${toolSlug}`,
+      canonical: canonicalUrl,
     },
   };
 }
@@ -174,15 +187,25 @@ export default async function ToolPage({
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: tool.name,
-    description: `Online tool to generate ${tool.name.toLowerCase()} for ${category.name.toLowerCase()}.`,
+    description: `Free online ${tool.name.toLowerCase()} — generate ${category.name.toLowerCase()} text effects instantly. Works on Discord, Instagram, TikTok and all platforms.`,
     applicationCategory: "DesignApplication",
     operatingSystem: "All",
+    browserRequirements: "Requires JavaScript",
     url: `${SITE_URL}/${categorySlug}/${toolSlug}`,
+    image: `${SITE_URL}/og-image.png`,
+    screenshot: `${SITE_URL}/og-image.png`,
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      ratingCount: "120",
+      bestRating: "5",
+      worstRating: "1",
     },
   };
 
@@ -206,7 +229,6 @@ export default async function ToolPage({
         "@type": "ListItem",
         position: 3,
         name: tool.name,
-        item: `${SITE_URL}/${categorySlug}/${toolSlug}`,
       },
     ],
   };

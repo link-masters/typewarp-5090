@@ -32,14 +32,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.9,
   }));
 
-  // 3. Tool Routes
+  // 3. Tool Routes (deduplicated — each tool slug only appears once, from its first/canonical category)
+  const seenToolSlugs = new Set<string>();
   const toolRoutes = categories.flatMap((cat) =>
-    cat.tools.map((tool) => ({
-      url: `${baseUrl}/${cat.slug}/${tool.slug}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.9, // High priority for tools as they are the main product
-    })),
+    cat.tools
+      .filter((tool) => {
+        if (seenToolSlugs.has(tool.slug)) return false;
+        seenToolSlugs.add(tool.slug);
+        return true;
+      })
+      .map((tool) => ({
+        url: `${baseUrl}/${cat.slug}/${tool.slug}`,
+        lastModified: new Date(),
+        changeFrequency: "weekly" as const,
+        priority: 0.9,
+      })),
   );
 
   // 4. Blog Posts

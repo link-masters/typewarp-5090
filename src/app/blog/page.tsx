@@ -18,7 +18,7 @@ import { Suspense } from "react";
 import NoIndexOnQueryParams from "@/components/NoIndexOnQueryParams";
 
 export const metadata: Metadata = {
-  title: "Systems Intel | Cursed Text Blog - TypeWarp",
+  title: "Blog | Cursed Text Guides",
   description:
     "Explore technical guides on digital entropy, Unicode manipulation, and creative typography. Master the art of the glitch.",
   keywords: [
@@ -70,6 +70,23 @@ export default async function BlogPage() {
     name: "TypeWarp Blog",
     description: "Technical guides on text transformation and digital entropy",
     url: `${SITE_URL}/blog`,
+    publisher: {
+      "@type": "Organization",
+      name: "TypeWarp",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo.png`,
+      },
+    },
+    blogPost: posts.slice(0, 10).map((post) => ({
+      "@type": "BlogPosting",
+      headline: post.title,
+      url: `${SITE_URL}/blog/${post.slug}`,
+      datePublished: post.date,
+      image: post.image.startsWith("http")
+        ? post.image
+        : `${SITE_URL}${post.image}`,
+    })),
   };
 
   return (

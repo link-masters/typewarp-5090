@@ -164,6 +164,106 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+
+        {/* Support Info Section */}
+        <div className="mt-16 sm:mt-24">
+          <div className="flex flex-col items-center gap-4 mb-10 md:mb-14">
+            <div className="w-12 h-12 bg-[#0c0c0c] border border-white/10 rounded-xl flex items-center justify-center">
+              <MessageSquare className="w-6 h-6 text-accent-glitch" />
+            </div>
+            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-center">
+              How We Can <span className="text-accent-glitch">Help</span>
+            </h2>
+            <p className="text-white/30 font-mono text-xs uppercase tracking-widest">
+              Support categories
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+            <div className="p-5 md:p-6 bg-[#0c0c0c] border border-white/5 rounded-xl">
+              <h3 className="text-sm font-black uppercase tracking-wider text-white mb-3">
+                Technical Support
+              </h3>
+              <p className="text-white/50 font-mono text-[12px] leading-[1.8]">
+                Experiencing issues with a text generator or font tool? Our
+                technical team can help troubleshoot problems with character
+                rendering, clipboard functionality, platform compatibility, and
+                Unicode support. We typically resolve technical issues within 12
+                hours of your initial report.
+              </p>
+            </div>
+
+            <div className="p-5 md:p-6 bg-[#0c0c0c] border border-white/5 rounded-xl">
+              <h3 className="text-sm font-black uppercase tracking-wider text-white mb-3">
+                Feature Requests
+              </h3>
+              <p className="text-white/50 font-mono text-[12px] leading-[1.8]">
+                Have an idea for a new text style, font generator, or tool
+                feature? We actively incorporate community feedback into our
+                development roadmap. Many of our most popular tools, including
+                the Vaporwave and Zalgo generators, were built based on user
+                suggestions. Share your vision with us.
+              </p>
+            </div>
+
+            <div className="p-5 md:p-6 bg-[#0c0c0c] border border-white/5 rounded-xl">
+              <h3 className="text-sm font-black uppercase tracking-wider text-white mb-3">
+                General Inquiries
+              </h3>
+              <p className="text-white/50 font-mono text-[12px] leading-[1.8]">
+                Questions about how TypeWarp works, our privacy policy,
+                commercial usage rights, or partnership opportunities? Our team
+                is happy to provide detailed answers and guidance. We believe in
+                transparency and open communication with our community.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-xl mb-8">
+            <h3 className="text-sm font-black uppercase tracking-wider text-white mb-4">
+              Frequently Asked Support Questions
+            </h3>
+            <div className="space-y-6">
+              <div>
+                <h4 className="text-xs font-mono font-bold text-accent-glitch uppercase tracking-wider mb-2">
+                  What information should I include in my message?
+                </h4>
+                <p className="text-white/50 font-mono text-[12px] leading-[1.8]">
+                  For the fastest resolution, please include the specific tool
+                  you were using, your browser and operating system, and a
+                  description of the issue. If applicable, screenshots are
+                  extremely helpful for our team to diagnose the problem
+                  quickly.
+                </p>
+              </div>
+              <div>
+                <h4 className="text-xs font-mono font-bold text-accent-glitch uppercase tracking-wider mb-2">
+                  Is my data safe when I contact you?
+                </h4>
+                <p className="text-white/50 font-mono text-[12px] leading-[1.8]">
+                  Absolutely. TypeWarp is built on a privacy-first architecture.
+                  Your contact information is only used to respond to your
+                  inquiry and is never shared with third parties, sold, or used
+                  for marketing purposes. We take data privacy seriously and
+                  comply with GDPR regulations.
+                </p>
+              </div>
+              <div>
+                <h4 className="text-xs font-mono font-bold text-accent-glitch uppercase tracking-wider mb-2">
+                  Can I request a custom text generator?
+                </h4>
+                <p className="text-white/50 font-mono text-[12px] leading-[1.8]">
+                  Yes, we welcome custom tool requests. If you need a specific
+                  Unicode transformation, character mapping, or text effect that
+                  is not currently available on TypeWarp, describe your
+                  requirements and our development team will evaluate the
+                  feasibility. Popular community requests are prioritized in our
+                  roadmap.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

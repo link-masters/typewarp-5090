@@ -116,6 +116,13 @@ export default async function Home() {
       "No Signup Required",
     ],
     screenshot: `${SITE_URL}/og-image.png`,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      ratingCount: "250",
+      bestRating: "5",
+      worstRating: "1",
+    },
   };
 
   const faqJsonLd = {

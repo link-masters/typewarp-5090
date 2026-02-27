@@ -1,149 +1,277 @@
-# TypeWarp
+<div align="center">
 
-> The professional-grade cursed text and glitchy typography toolkit for digital architects.
+# ⚡ TypeWarp
 
-TypeWarp is a comprehensive text transformation platform offering **66+ tools** across 6 categories. Generate cursed text, Zalgo script, glitchy fonts, fancy text styles, and encode/decode text in various formats.
+### The Ultimate Cursed Text & Typography Toolkit
 
-![TypeWarp](public/og-image.png)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-Proprietary-red?style=flat-square)](#license)
 
-## Features
+**TypeWarp** is a professional-grade text transformation platform offering **81+ tools** across 6 categories — from cursed & Zalgo text generators to encoders, ciphers, and fancy Unicode fonts. Built for creators, developers, and social media power users.
 
-### Dark & Horror (13 tools)
+[🌐 Live Site](https://www.typewarp.com) · [📝 Blog](https://www.typewarp.com/blog) · [🛠️ All Tools](https://www.typewarp.com/collection)
 
-Unleash chaos with cursed, zalgo, and glitch text generators. Perfect for creating eerie, corrupted, or unsettling typography.
+![TypeWarp — Cursed Typography Toolkit](public/og-image.png)
 
-### Social Fonts (7 tools)
+</div>
 
-Perfect fonts for Instagram, Discord, TikTok, Twitter, Facebook, and gaming platforms. Stand out on social media with unique text styles.
+---
 
-### Style & Fancy (10 tools)
+## 📋 Table of Contents
 
-Aesthetic, vaporwave, and stylish text designs. Create beautiful calligraphy, cursive, bubble text, and more.
+- [Features](#-features)
+- [Tool Categories](#-tool-categories)
+- [Tech Stack](#-tech-stack)
+- [Getting Started](#-getting-started)
+- [Architecture](#-architecture)
+- [Adding New Tools](#-adding-new-tools)
+- [Configuration](#%EF%B8%8F-configuration)
+- [SEO & Performance](#-seo--performance)
+- [Deployment](#-deployment)
+- [License](#-license)
 
-### Text Tools (15 tools)
+---
 
-Essential text formatting and manipulation tools including bold, italic, underline, strikethrough, small text, mirror text, and character counters.
+## ✨ Features
 
-### Symbols (5 tools)
+| Feature                  | Description                                                        |
+| ------------------------ | ------------------------------------------------------------------ |
+| **81+ Text Tools**       | Comprehensive toolkit spanning 6 categories                        |
+| **Real-time Preview**    | See transformations instantly as you type                          |
+| **One-Click Copy**       | Copy generated text to clipboard instantly                         |
+| **Dark Cyberpunk Theme** | Immersive design with glitch effects & neon aesthetics             |
+| **Fully Responsive**     | Optimized for desktop, tablet, and mobile devices                  |
+| **SEO Optimized**        | Structured data (JSON-LD), Open Graph, Twitter Cards, sitemap, RSS |
+| **Blog Section**         | 17+ MDX-powered articles with syntax highlighting                  |
+| **Smooth Scrolling**     | Butter-smooth scroll experience powered by Lenis                   |
+| **Accessibility**        | Skip-to-content links, semantic HTML, ARIA support                 |
+| **GDPR Compliant**       | Cookie consent banner and privacy-first design                     |
 
-Special characters, emoticons, aesthetic symbols, and the famous Lenny Face generator.
+---
 
-### Translators (16 tools)
+## 🧰 Tool Categories
 
-Convert text to Morse code, binary, braille, Base64, hex, and more. Includes cipher tools like Caesar cipher, ROT13, and Atbash.
+### 💀 Dark & Horror — 13 tools
 
-## Tech Stack
+Unleash chaos with cursed, Zalgo, and glitch text generators. Create eerie, corrupted, and unsettling typography.
 
-- **Framework**: [Next.js 16](https://nextjs.org/) with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS 4
-- **Animations**: Framer Motion
-- **Content**: MDX with syntax highlighting (Shiki)
-- **Icons**: Lucide React & Heroicons
-- **Smooth Scrolling**: Lenis
+> Cursed Text · Zalgo Text · Glitch Text · Weird Text · Creepy Text · Corrupted Text · Demonic Text · Scary Text · Gothic Font · Special Text · Extra Thicc Text · Glitter Text · Square Text
 
-## Getting Started
+### 📱 Social Fonts — 9 tools
+
+Platform-optimized fonts for Instagram, Discord, TikTok, Twitter, Facebook, and gaming communities.
+
+> Instagram Font · Discord Font · TikTok Font · Facebook Font · Twitter Font · Gaming Font · Fortnite Font · Clan Tag · Fancy Font
+
+### ✨ Style & Fancy — 14 tools
+
+Aesthetic, vaporwave, and premium text designs — calligraphy, cursive, bubble, wide, and typewriter styles.
+
+> Fancy Font · Aesthetic Font · Stylish Font · Vaporwave Text · Aesthetic Text · Cute Font · Calligraphy Font · Cursive Font · Bubble Text · Wide Text · Monospace Text · Premium Font · Typewriter Font · Scary Text
+
+### 🔧 Text Tools — 21 tools
+
+Essential formatting and manipulation utilities like bold, italic, underline, strikethrough, counters, and generators.
+
+> Bold Text · Italic Text · Underline Text · Strikethrough Text · Small Text · Tiny Text · Big Text · Superscript · Upside Down Text · Mirror Text · Space Remover · Text Cleaner · Sentence Case · Character Counter · Invisible Character · Box Text · Sparkle Text · Slashed Text · Aggressive Text · Playful Text · Glitter Text
+
+### 🔣 Symbols — 8 tools
+
+Special characters, emoticons, aesthetic symbols, and famous face generators.
+
+> Text Symbols · Aesthetic Symbols · Special Characters · Text Emoticons · Lenny Face · Combat Symbols · Mirror Symbols · Tech Symbols
+
+### 🌐 Translators — 16 tools
+
+Encode, decode, and translate text across Morse code, binary, Braille, Base64, ciphers, and more.
+
+> Morse Code · Braille · Binary · Hex · Base64 · Reverse Text · Caesar Cipher · ROT13 · NATO Phonetic · Atbash Cipher · Leetspeak · Wingdings · Runic · Old English · Sign Language · ASCII Art
+
+---
+
+## 🏗️ Tech Stack
+
+| Layer          | Technology                                                                | Purpose                                    |
+| -------------- | ------------------------------------------------------------------------- | ------------------------------------------ |
+| **Framework**  | [Next.js 16](https://nextjs.org/)                                         | App Router, SSR, ISR, API routes           |
+| **Language**   | [TypeScript 5](https://www.typescriptlang.org/)                           | Type safety across the codebase            |
+| **Styling**    | [Tailwind CSS 4](https://tailwindcss.com/)                                | Utility-first CSS framework                |
+| **Animations** | [Framer Motion](https://www.framer.com/motion/)                           | Declarative animations & gestures          |
+| **Content**    | [MDX](https://mdxjs.com/) + [Shiki](https://shiki.matsu.io/)              | Rich blog content with syntax highlighting |
+| **Icons**      | [Lucide React](https://lucide.dev/) + [Heroicons](https://heroicons.com/) | Icon systems                               |
+| **Scrolling**  | [Lenis](https://lenis.darkroom.engineering/)                              | Smooth scroll engine                       |
+| **Email**      | [Nodemailer](https://nodemailer.com/)                                     | Contact form email delivery                |
+| **Fonts**      | Inter + JetBrains Mono                                                    | Google Fonts with `next/font` optimization |
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js 18+
-- npm, yarn, pnpm, or bun
+- **Node.js** ≥ 18.x
+- **npm**, **yarn**, **pnpm**, or **bun**
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/typewarp.git
+git clone https://github.com/link-masters/typewarp.git
 cd typewarp
 
 # Install dependencies
 npm install
-# or
-yarn install
-# or
-pnpm install
-# or
-bun install
 ```
 
 ### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-### Build
+### Production Build
 
 ```bash
 npm run build
 npm start
 ```
 
-## Project Structure
+### Linting
 
-```
-src/
-  app/                    # Next.js App Router pages
-    [category]/           # Dynamic category pages
-    [category]/[tool]/    # Dynamic tool pages
-    about/                # About page
-    arsenal/              # All tools overview
-    blog/                 # Blog section
-    contact/              # Contact page
-    privacy/              # Privacy policy
-    terms/                # Terms of service
-  components/             # React components
-    ui/                   # UI components (ToolCard, CyberInput, etc.)
-    BackgroundEffect.tsx  # Animated background
-    Footer.tsx            # Site footer
-    Header.tsx            # Navigation header
-    Hero.tsx              # Homepage hero section
-    ToolView.tsx          # Tool interface component
-  content/
-    blog/                 # MDX blog posts
-    tools/                # MDX tool content
-  lib/                    # Utility functions
-    categories.ts         # Tool categories & definitions
-    tools.ts              # Tool content loader
-    blog.ts               # Blog content loader
+```bash
+npm run lint
 ```
 
-## Adding New Tools
+---
 
-1. Create a new MDX file in `src/content/tools/your-tool-slug.mdx`
-2. Add frontmatter with tool metadata:
+## 🏛️ Architecture
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│                       Next.js App Router                     │
+├──────────────┬──────────────┬──────────────┬─────────────────┤
+│  Static Pages│Dynamic Routes│  API/Actions │   RSS/Sitemap   │
+│  (about,     │ [category]/  │  (contact    │   (robots.ts,   │
+│   privacy…)  │  [tool]/     │   form)      │    sitemap.ts)  │
+├──────────────┴──────────────┴──────────────┴─────────────────┤
+│                      Component Layer                         │
+│  Header · Hero · ToolView · FeaturedTools · Footer · GDPR   │
+├──────────────────────────────────────────────────────────────┤
+│                     Content Layer (MDX)                       │
+│            107 Tool Pages  ·  17 Blog Articles               │
+├──────────────────────────────────────────────────────────────┤
+│                    Core Engine (lib/)                         │
+│  transformers.ts · fontMappings.ts · cursed.ts · categories  │
+└──────────────────────────────────────────────────────────────┘
+```
+
+**Key design decisions:**
+
+- **Dynamic routing** via `[category]/[tool]` for clean, SEO-friendly URLs
+- **MDX content** decoupled from UI — tools & blog posts are authored as `.mdx` files
+- **Centralized transformer engine** (`transformers.ts`) powers all 81+ text transformations
+- **Standalone output** mode for containerized deployments
+- **Security headers** (CSP, X-Frame-Options, CORS) configured in `next.config.ts`
+
+---
+
+## 🧩 Adding New Tools
+
+1. **Create the MDX content** — Add a new file at `src/content/tools/<tool-slug>.mdx`:
+
    ```mdx
    ---
    title: "Your Tool Name"
-   description: "Tool description"
+   description: "A brief description of what this tool does."
    category: "category-slug"
    ---
+
+   Your tool content here with rich MDX support.
    ```
-3. Add the tool definition in `src/lib/categories.ts`
 
-## Features Highlights
+2. **Register the tool** — Add an entry to the appropriate category in `src/lib/categories.ts`:
 
-- **Real-time Preview**: See transformations instantly as you type
-- **Copy to Clipboard**: One-click copy functionality
-- **Dark Theme**: Cyberpunk-inspired design with glitch aesthetics
-- **Responsive**: Fully responsive design for all devices
-- **SEO Optimized**: Structured data, Open Graph, and Twitter cards
-- **Blog Section**: Guides and tutorials for text transformation
+   ```ts
+   { name: "Your Tool Name", slug: "your-tool-slug", icon: "🎯" }
+   ```
 
-## License
+3. **Add the transformer** — Implement the text transformation logic in `src/lib/transformers.ts`.
 
-This project is private and proprietary.
+4. **Configure the tool** — Add tool-specific settings (FAQs, examples, etc.) in `src/lib/toolConfig.ts`.
 
-## Deploy on Vercel
+5. **Verify** — Run `npm run dev` and navigate to `/<category-slug>/<tool-slug>`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new) from the creators of Next.js.
+---
+
+## ⚙️ Configuration
+
+### Site Config (`src/lib/config.ts`)
+
+Centralized configuration for the site URL, used across SEO metadata, sitemaps, OG images, and canonical links.
+
+### Next.js Config (`next.config.ts`)
+
+Key configurations include:
+
+- **Image optimization** — AVIF/WebP formats, aggressive caching (1 year TTL)
+- **Security headers** — CSP, X-Frame-Options (DENY), Referrer-Policy
+- **Static asset caching** — Long-lived cache for `.png` and `.webp` files
+- **URL redirects** — 18+ permanent redirects for legacy/renamed tool paths
+- **Production optimizations** — Console removal, CSS optimization, standalone output
+
+---
+
+## 📈 SEO & Performance
+
+TypeWarp implements comprehensive SEO and performance optimizations:
+
+- **Structured Data** — JSON-LD for `WebSite` and `Organization` schemas
+- **Dynamic Sitemap** — Auto-generated from categories, tools, and blog posts
+- **RSS Feed** — `/rss.xml` for blog syndication
+- **Robots.txt** — Programmatically generated with appropriate disallow rules
+- **Open Graph & Twitter Cards** — Rich previews on social platforms
+- **Font optimization** — `next/font` with `display: swap` and preloading
+- **Image optimization** — Next.js `<Image>` with AVIF/WebP format selection
+- **CSS optimization** — Experimental `optimizeCss` enabled
+- **Console stripping** — Automatic console removal in production builds
+
+---
+
+## 🚢 Deployment
+
+### Vercel (Recommended)
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
+
+1. Push your repository to GitHub
+2. Import the project on [Vercel](https://vercel.com)
+3. Configure your environment variables in the Vercel dashboard
+4. Deploy
+
+### Docker / Self-Hosted
+
+The app is configured with `output: "standalone"` for containerized deployment:
+
+```bash
+npm run build
+# The standalone output is in .next/standalone/
+node .next/standalone/server.js
+```
+
+---
+
+## 📄 License
+
+This project is **proprietary**. All rights reserved.
+
+---
+
+<div align="center">
+
+**Built with 🖤 by the [TypeWarp](https://www.typewarp.com) Team**
+
+</div>

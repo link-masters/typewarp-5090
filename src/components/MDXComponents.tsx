@@ -231,12 +231,12 @@ const MDXComponents = {
         <div className="w-9 h-9 bg-[#0c0c0c] border border-white/10 rounded-lg flex items-center justify-center shrink-0">
           <Cpu className="w-4 h-4 text-accent-glitch" />
         </div>
-        <h1
+        <h2
           {...props}
           className="text-2xl md:text-3xl font-black text-white tracking-tight uppercase leading-tight"
         >
           {props.children}
-        </h1>
+        </h2>
       </div>
       <div className="mt-4 h-[1px] bg-gradient-to-r from-accent-glitch/20 via-white/5 to-transparent" />
     </div>
