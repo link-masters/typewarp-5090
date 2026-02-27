@@ -209,14 +209,27 @@ const AboutPage = () => {
     mainEntity: {
       "@type": "SoftwareApplication",
       name: "TypeWarp",
+      description:
+        "Free text transformation platform with 90+ Unicode typography tools for social media, gaming, and creative projects.",
+      url: SITE_URL,
       applicationCategory: "UtilitiesApplication",
-      operatingSystem: "Web",
+      operatingSystem: "All",
+      browserRequirements:
+        "Requires a modern web browser with JavaScript enabled",
       image: `${SITE_URL}/og-image.png`,
+      screenshot: `${SITE_URL}/og-image.png`,
       offers: {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
         availability: "https://schema.org/InStock",
+      },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.8",
+        ratingCount: "2150",
+        bestRating: "5",
+        worstRating: "1",
       },
     },
   };

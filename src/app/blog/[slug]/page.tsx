@@ -6,10 +6,7 @@ import MDXComponents from "@/components/MDXComponents";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypePrettyCode from "rehype-pretty-code";
 import { Metadata } from "next";
 import { categories } from "@/lib/categories";
 import { ToolIcon } from "@/components/ToolIcon";
@@ -23,7 +20,6 @@ import {
   Share2,
   Home,
   ChevronRight,
-  Terminal,
   Zap,
 } from "lucide-react";
 
@@ -296,26 +292,6 @@ export default async function BlogPostPage({
                 }}
               />
             </div>
-
-            {/* Tags */}
-            {post.tags && post.tags.length > 0 && (
-              <div className="mt-20 pt-12 border-t border-white/5 font-mono">
-                <div className="text-[10px] text-text-muted uppercase tracking-[0.4em] mb-4">
-                  Tags
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
-                    <Link
-                      key={tag}
-                      href={`/blog?tag=${encodeURIComponent(tag)}`}
-                      className="px-3 py-1.5 border border-white/10 text-[9px] uppercase tracking-widest hover:text-accent-glitch hover:border-accent-glitch/30 transition-all"
-                    >
-                      #{tag}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
 
             {/* Comments */}
             <div className="mt-20">

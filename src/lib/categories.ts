@@ -65,7 +65,6 @@ export const categories: Category[] = [
     icon: "✨",
     description: "Aesthetic, vaporwave, and stylish text designs",
     tools: [
-      { name: "Fancy Font Generator", slug: "fancy-font", icon: "💎" },
       { name: "Aesthetic Font Generator", slug: "aesthetic-font", icon: "🌸" },
       { name: "Stylish Font Generator", slug: "stylish-font", icon: "👑" },
       { name: "Vaporwave Text Generator", slug: "vaporwave-text", icon: "🌊" },
@@ -79,7 +78,6 @@ export const categories: Category[] = [
       { name: "Cursive Font Generator", slug: "cursive-font", icon: "📝" },
       { name: "Bubble Text Generator", slug: "bubble-text", icon: "🫧" },
       { name: "Wide Text Generator", slug: "wide-text", icon: "↔️" },
-      { name: "Scary Text Generator", slug: "scary-text", icon: "🎃" },
       { name: "Monospace Text Generator", slug: "monospace-text", icon: "💻" },
       { name: "Premium Font Generator", slug: "premium-font", icon: "💎" },
       {
@@ -140,7 +138,6 @@ export const categories: Category[] = [
       { name: "Zero Width Character", slug: "zero-width", icon: "🔍" },
       { name: "Stacked Text Generator", slug: "stacked-text", icon: "📚" },
       { name: "Funny Text Generator", slug: "funny-text", icon: "😂" },
-      { name: "Vaporwave Text Generator", slug: "vaporwave-text", icon: "🌊" },
       { name: "Box Text Generator", slug: "box-text", icon: "📦" },
       { name: "Sparkle Text Generator", slug: "sparkle-text", icon: "✨" },
       { name: "Slashed Text Generator", slug: "slashed-text", icon: "🗡️" },
@@ -150,7 +147,6 @@ export const categories: Category[] = [
         icon: "😤",
       },
       { name: "Playful Text Generator", slug: "playful-text", icon: "🤹" },
-      { name: "Glitter Text Generator", slug: "glitter-text", icon: "✨" },
     ],
   },
   {
@@ -191,7 +187,6 @@ export const categories: Category[] = [
       { name: "Binary Generator Online", slug: "binary", icon: "01" },
       { name: "Hex Converter", slug: "hex-code", icon: "⬡" },
       { name: "Base64 Encoder", slug: "base64", icon: "📦" },
-      { name: "Reverse Text", slug: "reverse-text", icon: "◀" },
       { name: "Caesar Cipher", slug: "caesar-cipher", icon: "🏛️" },
       { name: "Rot13 Translator", slug: "rot13", icon: "🔄" },
       { name: "NATO Phonetic Alphabet", slug: "nato-phonetic", icon: "✈️" },
@@ -199,7 +194,6 @@ export const categories: Category[] = [
       { name: "Leetspeak Generator", slug: "leetspeak", icon: "1337" },
       { name: "Wingdings Translator", slug: "wingdings", icon: "✈" },
       { name: "Runic Translator", slug: "runic", icon: "ᚱ" },
-      { name: "Old English Translator", slug: "old-english", icon: "Ꝋ" },
       { name: "Sign Language Translator", slug: "sign-language", icon: "🤟" },
       { name: "ASCII Art Generator", slug: "ascii-art", icon: "🎨" },
     ],

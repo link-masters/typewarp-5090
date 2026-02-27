@@ -57,17 +57,15 @@ export async function generateMetadata({
   ];
 
   const mdxTitle = toolContent?.meta?.title;
-  const pageTitle = mdxTitle
-    ? `${mdxTitle} | ${category.name}`
-    : `${tool.name} | ${category.name}`;
+  const pageTitle = mdxTitle || tool.name;
   const ogTitle = mdxTitle
     ? `${mdxTitle} | ${category.name}`
     : `${tool.name} | Free ${category.name} Generator`;
 
   const mdxDesc = toolContent?.meta?.description;
-  const pageDescription = mdxDesc
-    ? `${mdxDesc} Browse more ${category.name} tools on TypeWarp.`
-    : `Generate ${tool.name.toLowerCase()} instantly. Free ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok & Gaming.`;
+  const pageDescription =
+    mdxDesc ||
+    `Generate ${tool.name.toLowerCase()} instantly. Free ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok & Gaming. No signup required.`;
 
   if (toolContent?.meta) {
     return {
@@ -113,7 +111,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${tool.name} | ${category.name}`,
+    title: tool.name,
     description: `Generate ${tool.name.toLowerCase()} instantly. Free ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok & Gaming. No signup required.`,
     keywords: baseKeywords,
     robots: {
@@ -255,6 +253,9 @@ export default async function ToolPage({
       },
     ],
   };
+
+  const toolNameLower = tool.name.toLowerCase();
+  const categoryNameLower = category.name.toLowerCase();
 
   return (
     <>
