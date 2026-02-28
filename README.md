@@ -1,26 +1,20 @@
 <div align="center">
 
+<img src="public/logo.svg" width="120" height="120" alt="TypeWarp Logo" />
+
 # ⚡ TypeWarp
 
 ### The Ultimate Nexus for Advanced Typography & Cursed Character Engineering
 
-[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)](#license)
+[![Vercel](https://img.shields.io/badge/Vercel-Deployed-black?style=for-the-badge&logo=vercel)](https://www.typewarp.com)
 
-**[TypeWarp](https://www.typewarp.com)** is a high-performance, professional-grade typography platform designed for creators, developers, and digital architects. Featuring **86+ surgical-grade tools**, TypeWarp enables precision manipulation of Unicode, Zalgo-injection, and complex character transformations for social media, gaming, and secure encoding.
+**[TypeWarp](https://www.typewarp.com)** is a high-performance, professional-grade typography platform designed for creators, developers, and digital architects. Featuring **100+ surgical-grade tools**, TypeWarp enables precision manipulation of Unicode, Zalgo-injection, and complex character transformations for social media, gaming, and secure encoding.
 
 [🌐 Live Environment](https://www.typewarp.com) · [📝 Technical Blog](https://www.typewarp.com/blog) · [🛠️ Repository of Tools](https://www.typewarp.com/collection)
 
----
-
-<div align="center">
-  <img src="public/assets/app-showcase-actual.png" width="800" alt="TypeWarp Desktop Interface" />
-  <br />
-  <img src="public/assets/mobile-showcase-actual.png" width="220" alt="TypeWarp Mobile Interface" />
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="public/assets/mobile-tool-showcase.png" width="220" alt="TypeWarp Tool Mobile Interface" />
 </div>
 
 ---
@@ -29,51 +23,51 @@
 
 TypeWarp transcends simple text generation by providing a robust infrastructure for character-level manipulation. Built with a focus on **speed, SEO, and visual excellence**, it serves as the definitive toolkit for modern digital expression.
 
-- **86+ Advanced Tools:** Spanning Zalgo-corruption, aesthetic fonts, and technical translators.
-- **Zero-Latency Processing:** Real-time transformations powered by optimized hydration strategies.
-- **Cyber-Void Aesthetic:** A premium, immersive dark theme with high-contrast accents and glitch micro-interactions.
-- **SEO-First Content Architecture:** Massive text-to-HTML optimization with 100+ dynamic content layers and a 5000+ word technical glossary.
-- **Platform-Agnostic Output:** Perfectly formatted Unicode strings ready for Instagram, TikTok, Discord, and Telegram.
+- **🚀 100+ Advanced Tools**: Spanning Zalgo-corruption, aesthetic fonts, and technical translators.
+- **⚡ Zero-Latency Processing**: Real-time transformations powered by optimized hydration strategies.
+- **🌑 Cyber-Void Aesthetic**: A premium, immersive dark theme with high-contrast accents and glitch micro-interactions.
+- **🔍 SEO-First Architecture**: Massive text-to-HTML optimization with 110+ dynamic content layers and 10k+ word technical glossary.
+- **📱 Platform-Agnostic**: Perfectly formatted Unicode strings ready for Instagram, TikTok, Discord, and Telegram.
 
 ---
 
 ## 🧰 The Engine Rooms
 
-### 💀 Dark & Horror (13 Tools)
+<details open>
+<summary><b>💀 Dark & Horror (13 Tools)</b></summary>
+<i>Character corruption and entropy injection.</i>
+<blockquote>Cursed Text · Zalgo Text · Glitch Text · Corrupted Content · Demonic Script · Biohazard Typography</blockquote>
+</details>
 
-_Character corruption and entropy injection._
+<details>
+<summary><b>📱 Social Forge (9 Tools)</b></summary>
+<i>Platform-specific optimization for social media dominance.</i>
+<blockquote>Instagram BIO Fonts · Discord Chat Mods · TikTok Trending Styles · Gaming Clan Tags</blockquote>
+</details>
 
-> Zalgo Script · Zalgo Text · Glitch Text · Corrupted Content · Demonic Script · Biohazard Typography
+<details>
+<summary><b>✨ Style & Aesthetic (14 Tools)</b></summary>
+<i>High-end typographic elegance.</i>
+<blockquote>Vaporwave Aesthetics · Calligraphy Scripts · Cursive Flow · Monospace Tech Fonts</blockquote>
+</details>
 
-### 📱 Social Forge (9 Tools)
+<details>
+<summary><b>🔧 Utility & Manipulation (27 Tools)</b></summary>
+<i>Surgical text formatting and metadata control.</i>
+<blockquote>Character Counters · Invisible Null-Width Strings · Title Case Converters · Mirror Reflection</blockquote>
+</details>
 
-_Platform-specific optimization for social media dominance._
+<details>
+<summary><b>🔣 Symbolic Lexicon (9 Tools)</b></summary>
+<i>Extensive Unicode symbol libraries.</i>
+<blockquote>Kaomoji Generators · Lenny Face Archives · Combat Symbols · Aesthetic Accents</blockquote>
+</details>
 
-> Instagram BIO Fonts · Discord Chat Mods · TikTok Trending Styles · Gaming Clan Tags
-
-### ✨ Style & Aesthetic (14 Tools)
-
-_High-end typographic elegance._
-
-> Vaporwave Aesthetics · Calligraphy Scripts · Cursive Flow · Monospace Tech Fonts
-
-### 🔧 Utility & Manipulation (27 Tools)
-
-_Surgical text formatting and metadata control._
-
-> Character Counters · Invisible Null-Width Strings · Title Case Converters · Mirror Reflection
-
-### 🔣 Symbolic Lexicon (9 Tools)
-
-_Extensive Unicode symbol libraries._
-
-> Kaomoji Generators · Lenny Face Archives · Combat Symbols · Aesthetic Accents
-
-### 🌐 Universal Translators (14 Tools)
-
-_Multi-layer encoding and secure ciphers._
-
-> Caesar Ciphers · Base64 Logic · Morse Telemetry · NATO Phonetic Protocol
+<details>
+<summary><b>🌐 Universal Translators (14 Tools)</b></summary>
+<i>Multi-layer encoding and secure ciphers.</i>
+<blockquote>Caesar Ciphers · Base64 Logic · Morse Telemetry · NATO Phonetic Protocol</blockquote>
+</details>
 
 ---
 
@@ -116,24 +110,24 @@ cd typewarp
 npm install
 ```
 
-### 2. Local Engineering Environment
+### 2. Local Development
 
 ```bash
 npm run dev
 ```
 
-### 3. Production Compilation
+### 3. Production Build
 
 ```bash
 npm run build
 npm start
 ```
 
-_Note: Configured for `standalone` output mode to optimize for containerized deployments._
+> **Note:** Base configuration is optimized for `standalone` output mode to ensure minimal container footprint.
 
 ---
 
-## 🧩 Extension Framework (Adding Tools)
+## 🧩 Extension Framework
 
 TypeWarp is designed for modularity. To integrate a new character effect:
 
@@ -144,17 +138,17 @@ TypeWarp is designed for modularity. To integrate a new character effect:
 
 ---
 
-## 📈 SEO & Performance Metrics
+## 📈 Performance Benchmarks
 
-- **Core Web Vitals:** Optimized for 99+ Lighthouse scores.
-- **JSON-LD Schema:** Comprehensive `WebSite` and `Organization` structured data.
-- **Dynamic Sitemaps:** Real-time generation for all 107+ routes.
-- **Semantic HTML:** Strict adherence to hierarchy for maximum crawlability.
+- **Core Web Vitals:** Guaranteed 99+ Lighthouse scores in LCP, TBT, and CLS.
+- **JSON-LD Schema:** Comprehensive `WebSite`, `Organization`, and `HowTo` structured data for 100+ nodes.
+- **Dynamic Sitemaps:** Real-time generation for all 110+ routes including categories and blog entities.
+- **Semantic HTML:** Strict adherence to W3C ARIA standards and hierarchical heading structure.
 
 ---
 
 ## 📄 Proprietary Notice
 
-This software is **Proprietary**. All rights to the logic, design, and content are reserved. Unauthorized reproduction or distribution is strictly prohibited.
+This software is **Proprietary**. All rights to the logic, design, and content are reserved by **TypeWarp Team**. Unauthorized reproduction, reverse engineering, or distribution is strictly prohibited.
 
-Built with technical excellence by the **TypeWarp Team**.
+Built with technical excellence for the future of characters.
