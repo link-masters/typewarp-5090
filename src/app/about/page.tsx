@@ -207,7 +207,7 @@ const AboutPage = () => {
     description:
       "TypeWarp is a free, privacy-first text transformation platform with 81+ tools across 6 categories.",
     mainEntity: {
-      "@type": "SoftwareApplication",
+      "@type": "WebApplication",
       name: "TypeWarp",
       description:
         "Free text transformation platform with 90+ Unicode typography tools for social media, gaming, and creative projects.",
@@ -216,13 +216,15 @@ const AboutPage = () => {
       operatingSystem: "All",
       browserRequirements:
         "Requires a modern web browser with JavaScript enabled",
+      softwareVersion: "1.4.0",
       image: `${SITE_URL}/og-image.png`,
       screenshot: `${SITE_URL}/og-image.png`,
       offers: {
         "@type": "Offer",
-        price: "0",
+        price: "0.00",
         priceCurrency: "USD",
         availability: "https://schema.org/InStock",
+        url: SITE_URL,
       },
       aggregateRating: {
         "@type": "AggregateRating",

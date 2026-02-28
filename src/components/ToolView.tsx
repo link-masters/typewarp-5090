@@ -580,7 +580,6 @@ export default function ToolView({
               <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent-glitch/10 to-transparent" />
             </div>
 
-            {/* Tool Details (Desktop Only) */}
             <div className="hidden lg:grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* About This Tool Card */}
               <div className="p-6 bg-[#0c0c0c] border border-white/5 rounded-xl group hover:border-accent-glitch/20 transition-all duration-500 relative overflow-hidden">

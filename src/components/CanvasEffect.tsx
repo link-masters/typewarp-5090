@@ -87,13 +87,17 @@ const BackgroundEffect = memo(function BackgroundEffect() {
       animationFrameId = requestAnimationFrame(draw);
     };
 
-    draw();
+    // Delay animation start by 1.5s to free up main thread for better mobile LCP and Speed Index
+    const startDelayTimer = setTimeout(() => {
+      animationFrameId = requestAnimationFrame(draw);
+    }, 1500);
 
     return () => {
       observer.disconnect();
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationFrameId);
       clearTimeout(resizeTimer);
+      clearTimeout(startDelayTimer);
     };
   }, []);
 

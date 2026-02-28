@@ -228,12 +228,9 @@ export default async function BlogPostPage({
         {/* Post Header */}
         <header className="max-w-6xl mx-auto mb-16">
           <div className="flex items-center gap-6 mb-8 flex-wrap font-mono">
-            <Link
-              href={`/blog?category=${encodeURIComponent(post.category)}`}
-              className="px-3 py-1 bg-accent-glitch text-black text-[9px] font-black tracking-widest uppercase"
-            >
+            <span className="px-3 py-1 bg-accent-glitch text-black text-[9px] font-black tracking-widest uppercase">
               {post.category}
-            </Link>
+            </span>
             <span className="text-[9px] text-text-muted flex items-center gap-2 uppercase tracking-widest">
               <Calendar className="w-3 h-3 text-accent-glitch" />
               {new Date(post.date).toLocaleDateString()}

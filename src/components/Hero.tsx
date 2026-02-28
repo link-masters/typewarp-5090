@@ -20,6 +20,8 @@ const ScrambleText = ({
 
   useEffect(() => {
     setMounted(true);
+    if (window.innerWidth < 768) return;
+
     setDisplayValue(
       text
         .split("")
@@ -35,7 +37,7 @@ const ScrambleText = ({
   }, [delay, text]);
 
   useEffect(() => {
-    if (!isAnimating || !mounted) return;
+    if (!isAnimating || !mounted || window.innerWidth < 768) return;
 
     let iteration = 0;
     const interval = setInterval(() => {
@@ -79,8 +81,7 @@ export default function Hero() {
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-6 md:mb-8 w-full px-4"
         >

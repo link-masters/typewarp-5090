@@ -94,9 +94,9 @@ export default function CategoryClientView({
 
         {/* Section Label */}
         <div className="flex items-center gap-6 mb-12">
-          <div className="text-[10px] font-mono text-white/20 uppercase tracking-[0.4em] whitespace-nowrap">
+          <h2 className="text-[10px] font-mono text-white/20 uppercase tracking-[0.4em] whitespace-nowrap">
             Our {category.name} Collection
-          </div>
+          </h2>
           <div className="h-[1px] flex-1 bg-white/5" />
         </div>
 

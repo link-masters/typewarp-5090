@@ -4,14 +4,12 @@ import type { NextRequest } from "next/server";
 export function middleware(request: NextRequest) {
   const url = request.nextUrl;
 
-  // We only want to intercept /blog and /blog/* paths
-  if (url.pathname.startsWith("/blog")) {
-    // If the URL has 'tag' or 'category' query parameters, we force noindex
-    // to prevent Semrush and Google from crawling filtered/duplicate views
+  // Redirect /blog?category=... or /blog?tag=... to /blog (301)
+  // These query params create duplicate views that conflict with the canonical
+  if (url.pathname === "/blog") {
     if (url.searchParams.has("tag") || url.searchParams.has("category")) {
-      const response = NextResponse.next();
-      response.headers.set("X-Robots-Tag", "noindex, nofollow");
-      return response;
+      const cleanUrl = new URL("/blog", request.url);
+      return NextResponse.redirect(cleanUrl, 301);
     }
   }
 
