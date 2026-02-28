@@ -425,7 +425,7 @@ export default function ToolView({
             {/* Optimized Header - Compact Edition */}
             <div className="bg-bg-card border border-border-subtle p-3 md:p-4 lg:px-6 relative overflow-hidden rounded-xl">
               <div className="flex flex-col gap-2 relative z-10">
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tighter uppercase leading-tight break-words max-w-4xl">
+                <h1 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-black tracking-tighter uppercase leading-tight break-words max-w-4xl">
                   {tool.name}
                 </h1>
               </div>
@@ -578,69 +578,6 @@ export default function ToolView({
               </div>
 
               <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent-glitch/10 to-transparent" />
-            </div>
-
-            <div className="hidden lg:grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* About This Tool Card */}
-              <div className="p-6 bg-[#0c0c0c] border border-white/5 rounded-xl group hover:border-accent-glitch/20 transition-all duration-500 relative overflow-hidden">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-5">
-                    <div className="w-10 h-10 bg-[#111] border border-white/10 rounded-lg flex items-center justify-center group-hover:border-accent-glitch/30 group-hover:scale-105 transition-all duration-500">
-                      <Info className="w-5 h-5 text-white/30 group-hover:text-accent-glitch transition-colors duration-500" />
-                    </div>
-                    <div>
-                      <h2 className="text-sm font-black uppercase tracking-wider text-white">
-                        About This Tool
-                      </h2>
-                      <p className="text-[10px] font-mono text-white/20 uppercase tracking-widest">
-                        Overview
-                      </p>
-                    </div>
-                  </div>
-                  <p className="text-white/50 font-mono text-[13px] leading-[1.8] group-hover:text-white/70 transition-colors duration-500">
-                    {content.about}
-                  </p>
-                </div>
-              </div>
-
-              {/* Features Card */}
-              <div className="p-6 bg-[#0c0c0c] border border-white/5 rounded-xl group hover:border-accent-glitch/20 transition-all duration-500 relative overflow-hidden">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-5">
-                    <div className="w-10 h-10 bg-[#111] border border-white/10 rounded-lg flex items-center justify-center group-hover:border-accent-glitch/30 group-hover:scale-105 transition-all duration-500">
-                      <Zap className="w-5 h-5 text-white/30 group-hover:text-accent-glitch transition-colors duration-500" />
-                    </div>
-                    <div>
-                      <h2 className="text-sm font-black uppercase tracking-wider text-white">
-                        Key Features
-                      </h2>
-                      <p className="text-[10px] font-mono text-white/20 uppercase tracking-widest">
-                        Capabilities
-                      </p>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-4">
-                    {content.features.slice(0, 4).map((f, i) => (
-                      <div
-                        key={i}
-                        className="flex items-start gap-3 group/feat"
-                      >
-                        <div className="mt-0.5 w-1.5 h-1.5 rounded-full bg-accent-glitch/40 shrink-0 group-hover/feat:bg-accent-glitch transition-colors" />
-                        <div className="flex-1 min-w-0">
-                          <div className="text-xs font-black text-white uppercase tracking-wide mb-0.5">
-                            {f.title}
-                          </div>
-                          <div className="text-[11px] font-mono text-white/40 leading-relaxed">
-                            {f.text}
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -1085,72 +1022,250 @@ export default function ToolView({
 
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent-glitch/30 to-transparent" />
             </div>
+          </div>
+        </div>
 
-            {/* Tool Details (Mobile Only) */}
-            <div className="grid lg:hidden grid-cols-1 gap-4">
-              {/* About Card - Mobile */}
-              <div className="p-5 bg-[#0c0c0c] border border-white/5 rounded-xl group hover:border-accent-glitch/20 transition-all duration-500 relative overflow-hidden">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-9 h-9 bg-[#111] border border-white/10 rounded-lg flex items-center justify-center">
-                      <Info className="w-4 h-4 text-white/30 group-hover:text-accent-glitch transition-colors duration-500" />
-                    </div>
-                    <div>
-                      <h2 className="text-xs font-black uppercase tracking-wider text-white">
-                        About This Tool
-                      </h2>
-                      <p className="text-[9px] font-mono text-white/20 uppercase tracking-widest">
-                        Overview
-                      </p>
-                    </div>
-                  </div>
-                  <p className="text-white/50 font-mono text-[12px] leading-[1.8] group-hover:text-white/70 transition-colors duration-500">
-                    {content.about}
+        {/* SEO Text Content for tools without MDX */}
+        {!hideFaqs && (
+          <div className="mt-16 sm:mt-24 max-w-4xl mx-auto space-y-8">
+            <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+                  Maximizing Engagement with{" "}
+                  <span className="text-accent-glitch">{tool.name}</span>
+                </h2>
+                <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+                  <p>
+                    Built on advanced Unicode algorithms, this generator allows
+                    users to bypass traditional platform formatting
+                    restrictions. The <strong>{tool.name}</strong> is designed
+                    to run entirely in your browser through local processing,
+                    meaning it offers real-time updates and ensures maximum
+                    privacy since no text data is ever sent to an external
+                    server.
+                  </p>
+                  {content.moreInfo && <p>{content.moreInfo}</p>}
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_0%_100%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+                  Advanced Generation Techniques
+                </h2>
+                <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+                  <p>
+                    To get the most out of our {tool.name}, we recommend
+                    experimenting with different styles and combinations. Since
+                    our generator uses advanced Unicode manipulation, the
+                    resulting text is entirely platform-agnostic. This means you
+                    can copy the generated output and paste it anywhere—from
+                    social media bios and captions to gaming chat windows and
+                    professional profiles—without losing the stylistic
+                    formatting.
+                  </p>
+                  <p>
+                    Whether you are optimizing a brand profile, standing out in
+                    community channels, or simply trying to break out of boring
+                    standard fonts, this specific effect falls under the{" "}
+                    <strong>{category.name}</strong> toolkit, widely used
+                    globally across thousands of social interactions a day.
+                    Remember that while creative typography significantly boosts
+                    engagement, readability remains paramount. Use the{" "}
+                    {tool.name} strategically to highlight key phrases and
+                    usernames.
                   </p>
                 </div>
               </div>
+            </div>
 
-              {/* Features Card - Mobile */}
-              <div className="p-5 bg-[#0c0c0c] border border-white/5 rounded-xl group hover:border-accent-glitch/20 transition-all duration-500 relative overflow-hidden">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-9 h-9 bg-[#111] border border-white/10 rounded-lg flex items-center justify-center">
-                      <Zap className="w-4 h-4 text-white/30 group-hover:text-accent-glitch transition-colors duration-500" />
-                    </div>
-                    <div>
-                      <h2 className="text-xs font-black uppercase tracking-wider text-white">
-                        Key Features
-                      </h2>
-                      <p className="text-[9px] font-mono text-white/20 uppercase tracking-widest">
-                        Capabilities
-                      </p>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {content.features.slice(0, 4).map((f, i) => (
-                      <div
-                        key={i}
-                        className="flex items-start gap-3 group/feat"
-                      >
-                        <div className="mt-1 w-1.5 h-1.5 rounded-full bg-accent-glitch/40 shrink-0 group-hover/feat:bg-accent-glitch transition-colors" />
-                        <div className="flex-1 min-w-0">
-                          <div className="text-[11px] font-black text-white uppercase tracking-wide mb-0.5">
-                            {f.title}
-                          </div>
-                          <div className="text-[10px] font-mono text-white/40 leading-relaxed">
-                            {f.text}
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+            <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+                  Universal Device Compatibility
+                </h2>
+                <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+                  <p>
+                    Unlike external plugins, custom mobile keyboards, or images
+                    containing stylized typography, the characters produced by
+                    the <strong>{tool.name}</strong> exist entirely within the
+                    standard Unicode specification. This ensures that any string
+                    of stylized text you create will be natively supported and
+                    rendered properly across almost all modern digital
+                    platforms, from iOS and Android devices to Windows and macOS
+                    environments.
+                  </p>
+                  <p>
+                    Because this system relies strictly on replacing standard
+                    characters with their stylized Unicode equivalents in
+                    real-time, you never have to worry about compatibility
+                    issues. Paste your results directly into fields that
+                    typically do not allow rich-text formatting—including the
+                    Instagram bio section, Twitter/X display names, Discord
+                    server rules, TikTok video descriptions, or even WhatsApp
+                    statuses. Your uniquely formatted text moves seamlessly
+                    wherever you copy it, preserving its exact aesthetic on the
+                    receiving end.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_0%_100%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+                  Privacy, Performance, and Security
+                </h2>
+                <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+                  <p>
+                    Performance and data privacy are foundational to the
+                    architecture of our <strong>{category.name}</strong>{" "}
+                    utilities. The <strong>{tool.name}</strong> operates
+                    strictly on a client-side processing model. This means that
+                    every single keystroke, transformation, and customized
+                    configuration occurs entirely locally within your browser's
+                    memory. No text inputs are ever logged, tracked,
+                    transmitted, or saved to any external database or remote
+                    server.
+                  </p>
+                  <p>
+                    By eliminating server round-trips from the text-generation
+                    process, the tool is able to offer instantaneous,
+                    zero-latency visual feedback. You can paste thousands of
+                    words into the input field and see the conversion happen in
+                    real-time without experiencing any lag or loading screens.
+                    This powerful local execution ensures that you maintain
+                    absolute control over your digital content while enjoying an
+                    exceptionally fast and responsive user experience.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+                  The Psychology of Aesthetic Typography
+                </h2>
+                <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+                  <p>
+                    In the modern digital landscape, where the average user
+                    scrolls through hundreds of pieces of content per minute,
+                    visual differentiation is not just an advantage—it is a
+                    necessity. Standard system fonts blend into the background.
+                    By leveraging the <strong>{tool.name}</strong>, you actively
+                    disrupt pattern recognition, forcing the viewer's eye to
+                    pause and process your text. This microscopic pause can
+                    drastically increase your overall engagement rates and
+                    profile retention.
+                  </p>
+                  <p>
+                    Aesthetic text signals creativity, effort, and brand
+                    consistency. When a user encounters a profile utilizing
+                    customized Unicode characters, it subconsciously
+                    communicates technical proficiency and attention to
+                    microscopic details. Whether you are building a gaming
+                    community on Discord or attempting to establish a viral
+                    presence on TikTok, mastering typographic psychology ensures
+                    that your first impression is both memorable and highly
+                    impactful in an increasingly crowded visual space.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_0%_100%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+                  Unicode vs. ASCII: A Technical Breakdown
+                </h2>
+                <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+                  <p>
+                    To fully understand how the <strong>{tool.name}</strong>{" "}
+                    works, it is important to distinguish between standard
+                    typography and Unicode rendering. A traditional font is
+                    essentially an external styling file (like a .TTF or .OTF)
+                    that tells your computer how to physically draw a standard
+                    letter. If you copy text styled by a traditional font and
+                    paste it into Instagram, it immediately reverts to
+                    Instagram's default styling because the external styling
+                    file does not transfer with the core text.
+                  </p>
+                  <p>
+                    Our generator entirely circumvents this massive limitation
+                    by utilizing the international Unicode standard database.
+                    Over the decades, development organizations have mapped tens
+                    of thousands of unique characters, aesthetic symbols, and
+                    mathematical alphabetic variations to specific numerical
+                    codes. When our <strong>{category.name}</strong> script
+                    processes your input, it isn't simply changing the "font"—it
+                    is programmatically mapping and swapping your standard ASCII
+                    characters for entirely different mathematical or symbolic
+                    letters that inherently look stylish.
+                  </p>
+                  <p>
+                    Because these are raw, hardcoded symbols rather than applied
+                    styles, the formatting is permanently embedded within the
+                    text data payload itself. This deep architectural
+                    integration guarantees that your customized text will
+                    survive being copied and pasted across different
+                    applications, networks, and operating systems without losing
+                    its unique edge.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+                  Strategic Application Across Social Networks
+                </h2>
+                <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+                  <p>
+                    Using the <strong>{tool.name}</strong> effectively requires
+                    strategic restraint and aesthetic planning. Overusing
+                    heavily modified Unicode text can trigger spam filters or
+                    make entire paragraphs illegible to screen readers used by
+                    the visually impaired. The most successful influencers and
+                    digital brands utilize these specialized generators strictly
+                    for targeted capitalization to draw attention to critical
+                    elements.
+                  </p>
+                  <p>
+                    For example, on platforms like Twitter and Instagram, using
+                    a stylized font exclusively for your Display Name or a
+                    specific call-to-action in your bio highlights the most
+                    important information without compromising the readability
+                    of your larger body copy and hashtag structures. On Discord,
+                    server administrators frequently use specialized unicode
+                    blocks to create highly structured, aesthetic channel names
+                    that immediately stand out in the interface sidebar
+                    hierarchy.
+                  </p>
+                  <p>
+                    Similarly, professional gamers use these unique characters
+                    to construct complex, untaken usernames on rigid platforms
+                    like Steam, Xbox Live, and the PlayStation Network. By
+                    mixing standard system fonts with tactical deployments of
+                    our {category.name} effects, you can establish an elite
+                    digital footprint. We always advise users to test your
+                    generated text on multiple devices—both mobile and
+                    desktop—before finalizing your public profile updates.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* FAQs */}
         {!hideFaqs && (

@@ -233,7 +233,7 @@ const MDXComponents = {
         </div>
         <h2
           {...props}
-          className="text-2xl md:text-3xl font-black text-white tracking-tight uppercase leading-tight"
+          className="text-lg sm:text-xl md:text-3xl font-black text-white tracking-tight uppercase leading-tight break-words"
         >
           {props.children}
         </h2>
@@ -251,7 +251,7 @@ const MDXComponents = {
           </div>
           <h2
             {...props}
-            className="text-xl md:text-2xl font-black text-white tracking-tight uppercase leading-tight"
+            className="text-base sm:text-lg md:text-2xl font-black text-white tracking-tight uppercase leading-tight break-words"
           >
             {props.children}
           </h2>
@@ -278,7 +278,7 @@ const MDXComponents = {
                 {stepNum}
               </span>
             </div>
-            <h3 className="text-base md:text-lg font-black text-white tracking-wide uppercase">
+            <h3 className="text-sm sm:text-base md:text-lg font-black text-white tracking-wide uppercase">
               {stepTitle}
             </h3>
           </div>
@@ -290,7 +290,7 @@ const MDXComponents = {
       <h3
         {...props}
         id={id}
-        className="text-base md:text-lg font-black text-white mt-10 mb-5 tracking-wide uppercase flex items-center gap-3"
+        className="text-sm sm:text-base md:text-lg font-black text-white mt-10 mb-5 tracking-wide uppercase flex items-center gap-3"
       >
         <div className="w-1.5 h-5 bg-accent-glitch/40 rounded-full shrink-0" />
         {props.children}
@@ -368,6 +368,7 @@ const MDXComponents = {
         <Image
           {...props}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
           className="object-cover grayscale opacity-50 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-1000"
           alt={props.alt || "Visual reference"}
         />

@@ -103,9 +103,9 @@ export default function TableOfContents({
             </div>
           </div>
           <div className="text-left font-mono">
-            <h2 className="text-[10px] font-black text-white uppercase tracking-[0.3em] leading-none mb-1.5">
+            <div className="text-[10px] font-black text-white uppercase tracking-[0.3em] leading-none mb-1.5">
               Table of Contents
-            </h2>
+            </div>
             <div className="flex items-center gap-2">
               <span className="text-[8px] text-text-muted font-bold uppercase tracking-widest">
                 {tocItems.length} Sections

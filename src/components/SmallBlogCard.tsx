@@ -12,6 +12,7 @@ export default function SmallBlogCard({ post }: { post: BlogPost }) {
             src={post.image}
             alt={post.title}
             fill
+            sizes="(max-width: 640px) 144px, (max-width: 768px) 128px, (max-width: 1024px) 144px, 160px"
             className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100"
           />
         </div>

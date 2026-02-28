@@ -7,6 +7,7 @@ import GDPR from "@/components/GDPR";
 import JSONLD from "@/components/JSONLD";
 import SmoothScroll from "@/components/SmoothScroll";
 import { SITE_URL } from "@/lib/config";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -179,6 +180,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <GDPR />
+          <SpeedInsights />
         </SmoothScroll>
       </body>
     </html>
