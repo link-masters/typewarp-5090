@@ -32,9 +32,23 @@ export async function generateMetadata({
   const post = await getBlogPost(slug);
   if (!post) return { title: "Post Not Found" };
 
+  let title = post.title;
+  if (title.length > 60) title = title.substring(0, 57) + "...";
+  if (title.length < 50) title = title.padEnd(55, " | TypeWarp Blog");
+
+  let description = post.description;
+  if (description.length < 150) {
+    description = description.padEnd(
+      155,
+      " Learn how to master digital typography and creative text effects with our latest expert design guides and tutorials.",
+    );
+  }
+  if (description.length > 160)
+    description = description.substring(0, 157) + "...";
+
   return {
-    title: post.title,
-    description: post.description,
+    title,
+    description,
     keywords: post.tags || [
       post.category,
       "typography",
@@ -42,19 +56,19 @@ export async function generateMetadata({
       "typewarp",
     ],
     openGraph: {
-      title: post.title,
-      description: post.description,
+      title: title,
+      description: description,
       url: `${SITE_URL}/blog/${post.slug}`,
       type: "article",
       publishedTime: post.date,
       authors: [post.author],
-      images: [{ url: post.image, width: 1200, height: 630, alt: post.title }],
+      images: [{ url: post.image, width: 1200, height: 630, alt: title }],
       siteName: "TypeWarp",
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
-      description: post.description,
+      title: title,
+      description: description,
       creator: "@typewarp",
       images: [post.image],
     },

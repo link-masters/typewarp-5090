@@ -2,276 +2,155 @@
 
 # ⚡ TypeWarp
 
-### The Ultimate Cursed Text & Typography Toolkit
+### The Ultimate Nexus for Advanced Typography & Cursed Character Engineering
 
-[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/License-Proprietary-red?style=flat-square)](#license)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)](#license)
 
-**TypeWarp** is a professional-grade text transformation platform offering **81+ tools** across 6 categories — from cursed & Zalgo text generators to encoders, ciphers, and fancy Unicode fonts. Built for creators, developers, and social media power users.
+**[TypeWarp](https://www.typewarp.com)** is a high-performance, professional-grade typography platform designed for creators, developers, and digital architects. Featuring **86+ surgical-grade tools**, TypeWarp enables precision manipulation of Unicode, Zalgo-injection, and complex character transformations for social media, gaming, and secure encoding.
 
-[🌐 Live Site](https://www.typewarp.com) · [📝 Blog](https://www.typewarp.com/blog) · [🛠️ All Tools](https://www.typewarp.com/collection)
+[🌐 Live Environment](https://www.typewarp.com) · [📝 Technical Blog](https://www.typewarp.com/blog) · [🛠️ Repository of Tools](https://www.typewarp.com/collection)
 
-![TypeWarp — Cursed Typography Toolkit](public/og-image.png)
+---
+
+![TypeWarp Interface Showcase](public/app-showcase.png)
 
 </div>
 
 ---
 
-## 📋 Table of Contents
+## 💎 Core Value Proposition
 
-- [Features](#-features)
-- [Tool Categories](#-tool-categories)
-- [Tech Stack](#-tech-stack)
-- [Getting Started](#-getting-started)
-- [Architecture](#-architecture)
-- [Adding New Tools](#-adding-new-tools)
-- [Configuration](#%EF%B8%8F-configuration)
-- [SEO & Performance](#-seo--performance)
-- [Deployment](#-deployment)
-- [License](#-license)
+TypeWarp transcends simple text generation by providing a robust infrastructure for character-level manipulation. Built with a focus on **speed, SEO, and visual excellence**, it serves as the definitive toolkit for modern digital expression.
+
+- **86+ Advanced Tools:** Spanning Zalgo-corruption, aesthetic fonts, and technical translators.
+- **Zero-Latency Processing:** Real-time transformations powered by optimized hydration strategies.
+- **Cyber-Void Aesthetic:** A premium, immersive dark theme with high-contrast accents and glitch micro-interactions.
+- **SEO-First Content Architecture:** Massive text-to-HTML optimization with 100+ dynamic content layers and a 5000+ word technical glossary.
+- **Platform-Agnostic Output:** Perfectly formatted Unicode strings ready for Instagram, TikTok, Discord, and Telegram.
 
 ---
 
-## ✨ Features
+## 🧰 The Engine Rooms
 
-| Feature                  | Description                                                        |
-| ------------------------ | ------------------------------------------------------------------ |
-| **81+ Text Tools**       | Comprehensive toolkit spanning 6 categories                        |
-| **Real-time Preview**    | See transformations instantly as you type                          |
-| **One-Click Copy**       | Copy generated text to clipboard instantly                         |
-| **Dark Cyberpunk Theme** | Immersive design with glitch effects & neon aesthetics             |
-| **Fully Responsive**     | Optimized for desktop, tablet, and mobile devices                  |
-| **SEO Optimized**        | Structured data (JSON-LD), Open Graph, Twitter Cards, sitemap, RSS |
-| **Blog Section**         | 17+ MDX-powered articles with syntax highlighting                  |
-| **Smooth Scrolling**     | Butter-smooth scroll experience powered by Lenis                   |
-| **Accessibility**        | Skip-to-content links, semantic HTML, ARIA support                 |
-| **GDPR Compliant**       | Cookie consent banner and privacy-first design                     |
+### 💀 Dark & Horror (13 Tools)
 
----
+_Character corruption and entropy injection._
 
-## 🧰 Tool Categories
+> Zalgo Script · Zalgo Text · Glitch Text · Corrupted Content · Demonic Script · Biohazard Typography
 
-### 💀 Dark & Horror — 13 tools
+### 📱 Social Forge (9 Tools)
 
-Unleash chaos with cursed, Zalgo, and glitch text generators. Create eerie, corrupted, and unsettling typography.
+_Platform-specific optimization for social media dominance._
 
-> Cursed Text · Zalgo Text · Glitch Text · Weird Text · Creepy Text · Corrupted Text · Demonic Text · Scary Text · Gothic Font · Special Text · Extra Thicc Text · Glitter Text · Square Text
+> Instagram BIO Fonts · Discord Chat Mods · TikTok Trending Styles · Gaming Clan Tags
 
-### 📱 Social Fonts — 9 tools
+### ✨ Style & Aesthetic (14 Tools)
 
-Platform-optimized fonts for Instagram, Discord, TikTok, Twitter, Facebook, and gaming communities.
+_High-end typographic elegance._
 
-> Instagram Font · Discord Font · TikTok Font · Facebook Font · Twitter Font · Gaming Font · Fortnite Font · Clan Tag · Fancy Font
+> Vaporwave Aesthetics · Calligraphy Scripts · Cursive Flow · Monospace Tech Fonts
 
-### ✨ Style & Fancy — 14 tools
+### 🔧 Utility & Manipulation (27 Tools)
 
-Aesthetic, vaporwave, and premium text designs — calligraphy, cursive, bubble, wide, and typewriter styles.
+_Surgical text formatting and metadata control._
 
-> Fancy Font · Aesthetic Font · Stylish Font · Vaporwave Text · Aesthetic Text · Cute Font · Calligraphy Font · Cursive Font · Bubble Text · Wide Text · Monospace Text · Premium Font · Typewriter Font · Scary Text
+> Character Counters · Invisible Null-Width Strings · Title Case Converters · Mirror Reflection
 
-### 🔧 Text Tools — 21 tools
+### 🔣 Symbolic Lexicon (9 Tools)
 
-Essential formatting and manipulation utilities like bold, italic, underline, strikethrough, counters, and generators.
+_Extensive Unicode symbol libraries._
 
-> Bold Text · Italic Text · Underline Text · Strikethrough Text · Small Text · Tiny Text · Big Text · Superscript · Upside Down Text · Mirror Text · Space Remover · Text Cleaner · Sentence Case · Character Counter · Invisible Character · Box Text · Sparkle Text · Slashed Text · Aggressive Text · Playful Text · Glitter Text
+> Kaomoji Generators · Lenny Face Archives · Combat Symbols · Aesthetic Accents
 
-### 🔣 Symbols — 8 tools
+### 🌐 Universal Translators (14 Tools)
 
-Special characters, emoticons, aesthetic symbols, and famous face generators.
+_Multi-layer encoding and secure ciphers._
 
-> Text Symbols · Aesthetic Symbols · Special Characters · Text Emoticons · Lenny Face · Combat Symbols · Mirror Symbols · Tech Symbols
-
-### 🌐 Translators — 16 tools
-
-Encode, decode, and translate text across Morse code, binary, Braille, Base64, ciphers, and more.
-
-> Morse Code · Braille · Binary · Hex · Base64 · Reverse Text · Caesar Cipher · ROT13 · NATO Phonetic · Atbash Cipher · Leetspeak · Wingdings · Runic · Old English · Sign Language · ASCII Art
+> Caesar Ciphers · Base64 Logic · Morse Telemetry · NATO Phonetic Protocol
 
 ---
 
-## 🏗️ Tech Stack
+## 🏗️ Technical Architecture
 
-| Layer          | Technology                                                                | Purpose                                    |
-| -------------- | ------------------------------------------------------------------------- | ------------------------------------------ |
-| **Framework**  | [Next.js 16](https://nextjs.org/)                                         | App Router, SSR, ISR, API routes           |
-| **Language**   | [TypeScript 5](https://www.typescriptlang.org/)                           | Type safety across the codebase            |
-| **Styling**    | [Tailwind CSS 4](https://tailwindcss.com/)                                | Utility-first CSS framework                |
-| **Animations** | [Framer Motion](https://www.framer.com/motion/)                           | Declarative animations & gestures          |
-| **Content**    | [MDX](https://mdxjs.com/) + [Shiki](https://shiki.matsu.io/)              | Rich blog content with syntax highlighting |
-| **Icons**      | [Lucide React](https://lucide.dev/) + [Heroicons](https://heroicons.com/) | Icon systems                               |
-| **Scrolling**  | [Lenis](https://lenis.darkroom.engineering/)                              | Smooth scroll engine                       |
-| **Email**      | [Nodemailer](https://nodemailer.com/)                                     | Contact form email delivery                |
-| **Fonts**      | Inter + JetBrains Mono                                                    | Google Fonts with `next/font` optimization |
+```mermaid
+graph TD
+    A[User Input] --> B{Transformer Engine}
+    B --> C[Unicode Font Mappings]
+    B --> D[Zalgo/Glitch Logic]
+    B --> E[Encoder/Cipher Layer]
+    C --> F[Optimized Output]
+    D --> F
+    E --> F
+    F --> G[Clipboard API / One-Click Copy]
+    H[MDX Content Layer] --> I[SEO Injected Prose]
+    I --> J[Next.js SSR/ISR]
+```
+
+### 🛠️ Tech Stack
+
+| Component      | Technology              | Rationale                                                    |
+| :------------- | :---------------------- | :----------------------------------------------------------- |
+| **Framework**  | Next.js 15 (App Router) | Utilizing Server Components for zero-bundle core logic.      |
+| **Language**   | TypeScript 5            | Strict typing for complex character mapping schemas.         |
+| **Styling**    | Tailwind CSS 4          | Atomic utility design for the custom Void Theme.             |
+| **Animations** | Framer Motion           | Fluid micro-animations and layout transitions.               |
+| **Scrolling**  | Lenis                   | High-fidelity smooth scrolling engine.                       |
+| **Content**    | MDX + Shiki             | Dynamic, SEO-rich content delivery with syntax highlighting. |
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Deployment & Development
 
-### Prerequisites
-
-- **Node.js** ≥ 18.x
-- **npm**, **yarn**, **pnpm**, or **bun**
-
-### Installation
+### 1. Project Initialization
 
 ```bash
-# Clone the repository
 git clone https://github.com/link-masters/typewarp.git
 cd typewarp
-
-# Install dependencies
 npm install
 ```
 
-### Development
+### 2. Local Engineering Environment
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the app.
-
-### Production Build
+### 3. Production Compilation
 
 ```bash
 npm run build
 npm start
 ```
 
-### Linting
-
-```bash
-npm run lint
-```
+_Note: Configured for `standalone` output mode to optimize for containerized deployments._
 
 ---
 
-## 🏛️ Architecture
+## 🧩 Extension Framework (Adding Tools)
 
-```
-┌──────────────────────────────────────────────────────────────┐
-│                       Next.js App Router                     │
-├──────────────┬──────────────┬──────────────┬─────────────────┤
-│  Static Pages│Dynamic Routes│  API/Actions │   RSS/Sitemap   │
-│  (about,     │ [category]/  │  (contact    │   (robots.ts,   │
-│   privacy…)  │  [tool]/     │   form)      │    sitemap.ts)  │
-├──────────────┴──────────────┴──────────────┴─────────────────┤
-│                      Component Layer                         │
-│  Header · Hero · ToolView · FeaturedTools · Footer · GDPR   │
-├──────────────────────────────────────────────────────────────┤
-│                     Content Layer (MDX)                       │
-│            107 Tool Pages  ·  17 Blog Articles               │
-├──────────────────────────────────────────────────────────────┤
-│                    Core Engine (lib/)                         │
-│  transformers.ts · fontMappings.ts · cursed.ts · categories  │
-└──────────────────────────────────────────────────────────────┘
-```
+TypeWarp is designed for modularity. To integrate a new character effect:
 
-**Key design decisions:**
-
-- **Dynamic routing** via `[category]/[tool]` for clean, SEO-friendly URLs
-- **MDX content** decoupled from UI — tools & blog posts are authored as `.mdx` files
-- **Centralized transformer engine** (`transformers.ts`) powers all 81+ text transformations
-- **Standalone output** mode for containerized deployments
-- **Security headers** (CSP, X-Frame-Options, CORS) configured in `next.config.ts`
+1.  **Define Logic:** Add a transformation function in `src/lib/transformers.ts`.
+2.  **Register Meta:** Update the tool manifest in `src/lib/categories.ts`.
+3.  **Content Injection:** Create an SEO-rich `.mdx` entry in `src/content/tools/`.
+4.  **Verification:** Test responsiveness and character compatibility across platforms.
 
 ---
 
-## 🧩 Adding New Tools
+## 📈 SEO & Performance Metrics
 
-1. **Create the MDX content** — Add a new file at `src/content/tools/<tool-slug>.mdx`:
-
-   ```mdx
-   ---
-   title: "Your Tool Name"
-   description: "A brief description of what this tool does."
-   category: "category-slug"
-   ---
-
-   Your tool content here with rich MDX support.
-   ```
-
-2. **Register the tool** — Add an entry to the appropriate category in `src/lib/categories.ts`:
-
-   ```ts
-   { name: "Your Tool Name", slug: "your-tool-slug", icon: "🎯" }
-   ```
-
-3. **Add the transformer** — Implement the text transformation logic in `src/lib/transformers.ts`.
-
-4. **Configure the tool** — Add tool-specific settings (FAQs, examples, etc.) in `src/lib/toolConfig.ts`.
-
-5. **Verify** — Run `npm run dev` and navigate to `/<category-slug>/<tool-slug>`.
+- **Core Web Vitals:** Optimized for 99+ Lighthouse scores.
+- **JSON-LD Schema:** Comprehensive `WebSite` and `Organization` structured data.
+- **Dynamic Sitemaps:** Real-time generation for all 107+ routes.
+- **Semantic HTML:** Strict adherence to hierarchy for maximum crawlability.
 
 ---
 
-## ⚙️ Configuration
+## 📄 Proprietary Notice
 
-### Site Config (`src/lib/config.ts`)
+This software is **Proprietary**. All rights to the logic, design, and content are reserved. Unauthorized reproduction or distribution is strictly prohibited.
 
-Centralized configuration for the site URL, used across SEO metadata, sitemaps, OG images, and canonical links.
-
-### Next.js Config (`next.config.ts`)
-
-Key configurations include:
-
-- **Image optimization** — AVIF/WebP formats, aggressive caching (1 year TTL)
-- **Security headers** — CSP, X-Frame-Options (DENY), Referrer-Policy
-- **Static asset caching** — Long-lived cache for `.png` and `.webp` files
-- **URL redirects** — 18+ permanent redirects for legacy/renamed tool paths
-- **Production optimizations** — Console removal, CSS optimization, standalone output
-
----
-
-## 📈 SEO & Performance
-
-TypeWarp implements comprehensive SEO and performance optimizations:
-
-- **Structured Data** — JSON-LD for `WebSite` and `Organization` schemas
-- **Dynamic Sitemap** — Auto-generated from categories, tools, and blog posts
-- **RSS Feed** — `/rss.xml` for blog syndication
-- **Robots.txt** — Programmatically generated with appropriate disallow rules
-- **Open Graph & Twitter Cards** — Rich previews on social platforms
-- **Font optimization** — `next/font` with `display: swap` and preloading
-- **Image optimization** — Next.js `<Image>` with AVIF/WebP format selection
-- **CSS optimization** — Experimental `optimizeCss` enabled
-- **Console stripping** — Automatic console removal in production builds
-
----
-
-## 🚢 Deployment
-
-### Vercel (Recommended)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-
-1. Push your repository to GitHub
-2. Import the project on [Vercel](https://vercel.com)
-3. Configure your environment variables in the Vercel dashboard
-4. Deploy
-
-### Docker / Self-Hosted
-
-The app is configured with `output: "standalone"` for containerized deployment:
-
-```bash
-npm run build
-# The standalone output is in .next/standalone/
-node .next/standalone/server.js
-```
-
----
-
-## 📄 License
-
-This project is **proprietary**. All rights reserved.
-
----
-
-<div align="center">
-
-**Built with 🖤 by the [TypeWarp](https://www.typewarp.com) Team**
-
-</div>
+Built with technical excellence by the **TypeWarp Team**.

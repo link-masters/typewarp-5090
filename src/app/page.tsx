@@ -26,9 +26,9 @@ const Testimonials = dynamic(() => import("@/components/Testimonials"), {
 });
 
 export const metadata: Metadata = {
-  title: "TypeWarp | Modern Text Effects Generator",
+  title: "TypeWarp | Modern Text Effects & Glitch Font Generator Tool",
   description:
-    "Free cursed text generator with 81+ glitch fonts, Zalgo text, and aesthetic styles. Instantly create unique text for Discord, Twitter, Instagram. No signup required.",
+    "Free cursed text generator with 81+ glitch fonts, Zalgo text, and aesthetic styles. Create unique text for Discord, Twitter, and Instagram. No signup required.",
   keywords: [
     "cursed text generator",
     "glitch text generator",

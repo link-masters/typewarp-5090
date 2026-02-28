@@ -4,8 +4,9 @@ import CollectionClientView from "@/components/CollectionClientView";
 import { SITE_URL } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: `All Text Tools | ${TOTAL_TOOLS_COUNT}+ Free Generators - TypeWarp`,
-  description: `Browse ${TOTAL_TOOLS_COUNT}+ free text generators: cursed text, glitch fonts, Zalgo, fancy text, ASCII art, and more. No signup required. Works on Discord, Twitter, Instagram.`,
+  title: "Cursed Text Tools Collection | All Glitch & Fancy Fonts",
+  description:
+    "Explore the complete TypeWarp collection of text generators, typography engines, and encoding utilities. Access over 86+ free tools for unique digital styles.",
   keywords: [
     "text generator tools",
     "cursed text generator",

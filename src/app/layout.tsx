@@ -60,11 +60,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "TypeWarp | The Ultimate Cursed Text Toolkit",
+    default: "TypeWarp | The Ultimate Cursed Text & Glitch Font Toolkit",
     template: "%s | TypeWarp",
   },
   description:
-    "The ultimate cursed text toolkit. Transform your typography with glitch effects, Zalgo text, and deep-fried fonts.",
+    "The ultimate cursed text toolkit. Transform your digital typography with glitch effects, Zalgo text, and deep-fried fonts for Discord, Instagram, and TikTok.",
   keywords: [
     "cursed text generator",
     "glitch text generator",

@@ -16,9 +16,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "GDPR Compliance | TypeWarp",
+  title: "GDPR Compliance | Data Protection Rights at TypeWarp Tool",
   description:
-    "TypeWarp's commitment to GDPR compliance and data protection. Learn about your rights under GDPR and our privacy practices.",
+    "Learn how TypeWarp adheres to GDPR regulations to protect the data of users in the EU. We prioritize transparency and user control over their personal data.",
   keywords: [
     "typewarp gdpr",
     "gdpr compliance",

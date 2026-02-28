@@ -1,6 +1,7 @@
 import { categories } from "@/lib/categories";
 import { notFound } from "next/navigation";
 import ToolView from "@/components/ToolView";
+import GenericSEOTent from "@/components/GenericSEOTent";
 import JSONLD from "@/components/JSONLD";
 import { Metadata } from "next";
 import { getToolContent } from "@/lib/tools";
@@ -32,8 +33,6 @@ export async function generateMetadata({
 
   if (!category || !tool) return { title: "Tool Not Found" };
 
-  // Resolve canonical category: if a tool exists in multiple categories,
-  // always point the canonical URL to the first category it appears in.
   const canonicalCategory = categories.find((c) =>
     c.tools.some((t) => t.slug === toolSlug),
   );
@@ -57,63 +56,41 @@ export async function generateMetadata({
   ];
 
   const mdxTitle = toolContent?.meta?.title;
-  const pageTitle = mdxTitle || tool.name;
+  let pageTitle =
+    mdxTitle || `${tool.name} - Free Online ${category.name} Tool`;
+
+  // Enforce 50-60 chars for title
+  if (pageTitle.length < 50) {
+    pageTitle = `${pageTitle} | Best Free ${category.name} Text Generator`;
+  }
+  if (pageTitle.length > 60) {
+    pageTitle = pageTitle.substring(0, 57) + "...";
+  }
+
   const ogTitle = mdxTitle
-    ? `${mdxTitle} | ${category.name}`
-    : `${tool.name} | Free ${category.name} Generator`;
+    ? `${mdxTitle} | TypeWarp`
+    : `${tool.name} | ${category.name} Font Tool`;
 
   const mdxDesc = toolContent?.meta?.description;
-  const pageDescription =
+  let pageDescription =
     mdxDesc ||
-    `Generate ${tool.name.toLowerCase()} instantly. Free ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok & Gaming. No signup required.`;
+    `Generate ${tool.name.toLowerCase()} instantly. High-performance ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok and gaming platforms. No signup required.`;
 
-  if (toolContent?.meta) {
-    return {
-      title: pageTitle,
-      description: pageDescription,
-      keywords: toolContent.meta.keywords || baseKeywords,
-      robots: {
-        index: true,
-        follow: true,
-        googleBot: {
-          index: true,
-          follow: true,
-          "max-image-preview": "large",
-          "max-snippet": -1,
-        },
-      },
-      openGraph: {
-        title: ogTitle,
-        description: pageDescription,
-        url: `${SITE_URL}/${categorySlug}/${toolSlug}`,
-        type: "website",
-        images: [
-          {
-            url: "/og-image.png",
-            width: 1200,
-            height: 630,
-            alt: `${tool.name} - Free Online Generator`,
-          },
-        ],
-        siteName: "TypeWarp",
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: ogTitle,
-        description: pageDescription,
-        creator: "@typewarp",
-        images: ["/og-image.png"],
-      },
-      alternates: {
-        canonical: canonicalUrl,
-      },
-    };
+  // Enforce 150-160 chars for description
+  if (pageDescription.length < 150) {
+    pageDescription = pageDescription.padEnd(
+      155,
+      " Create unique stylized content for your social media profiles and gaming usernames with TypeWarp today.",
+    );
+  }
+  if (pageDescription.length > 160) {
+    pageDescription = pageDescription.substring(0, 157) + "...";
   }
 
   return {
-    title: tool.name,
-    description: `Generate ${tool.name.toLowerCase()} instantly. Free ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok & Gaming. No signup required.`,
-    keywords: baseKeywords,
+    title: pageTitle,
+    description: pageDescription,
+    keywords: toolContent?.meta?.keywords || baseKeywords,
     robots: {
       index: true,
       follow: true,
@@ -125,8 +102,8 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: `${tool.name} | Free ${category.name} Generator`,
-      description: `Free ${tool.name.toLowerCase()} generator. Works on Discord, Twitter, Instagram.`,
+      title: ogTitle,
+      description: pageDescription,
       url: `${SITE_URL}/${categorySlug}/${toolSlug}`,
       type: "website",
       images: [
@@ -141,8 +118,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${tool.name} | Free ${category.name} Generator`,
-      description: `Free ${tool.name.toLowerCase()} generator.`,
+      title: ogTitle,
+      description: pageDescription,
       creator: "@typewarp",
       images: ["/og-image.png"],
     },
@@ -179,7 +156,6 @@ export default async function ToolPage({
   }
 
   const toolContent = await getToolContent(toolSlug);
-  const headings = toolContent ? extractHeadings(toolContent.content) : [];
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -254,17 +230,17 @@ export default async function ToolPage({
     ],
   };
 
-  const toolNameLower = tool.name.toLowerCase();
-  const categoryNameLower = category.name.toLowerCase();
-
   return (
     <>
       <JSONLD data={jsonLd} />
       <JSONLD data={breadcrumbJsonLd} />
       <JSONLD data={faqJsonLd} />
-      <ToolView category={category} tool={tool} hideFaqs={!!toolContent} />
 
-      {toolContent && (
+      {/* Tool functionality area (Client Component) */}
+      <ToolView category={category} tool={tool} hideFaqs={true} />
+
+      {/* Primary content area (Server Components) */}
+      {toolContent ? (
         <div className="bg-[#080808] py-16 md:py-24 border-t border-white/5 relative overflow-hidden">
           {/* Subtle Ambient Glow */}
           <div className="absolute top-0 left-0 w-full h-96 bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_100%)] pointer-events-none" />
@@ -286,6 +262,8 @@ export default async function ToolPage({
             </div>
           </div>
         </div>
+      ) : (
+        <GenericSEOTent tool={tool} category={category} />
       )}
     </>
   );

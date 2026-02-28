@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy | TypeWarp",
+  title: "Cookie Policy | How TypeWarp Uses Cookies for Performance",
   description:
-    "Understand how TypeWarp uses cookies. We use minimal cookies for theme preference and anonymous analytics.",
+    "Understand how TypeWarp uses cookies to improve your experience. We use minimal cookies for theme preferences and anonymous analytics to boost performance.",
   keywords: [
     "typewarp cookies",
     "cookie policy",

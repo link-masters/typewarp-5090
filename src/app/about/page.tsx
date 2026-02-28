@@ -32,9 +32,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About TypeWarp | Our Mission & Technology",
+  title: "About TypeWarp | Mission, Technology & Cursed Text Tools",
   description:
-    "Learn about TypeWarp — the world's most advanced free text transformation suite. 81+ tools across 6 categories. Real-time processing, privacy-first, cross-platform compatible. Works on Discord, Instagram, TikTok, Twitter & more.",
+    "Learn about TypeWarp — the world's most advanced cursed text generator and typography platform. Discover our mission to provide elite digital design tools.",
   keywords: [
     "about typewarp",
     "text transformation tool",
