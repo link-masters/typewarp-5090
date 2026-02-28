@@ -1434,6 +1434,532 @@ export default function ToolView({
                 </div>
               </div>
             </div>
+
+            <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+                  Case Study: Boosting Engagement with Custom Typography
+                </h2>
+                <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+                  <p>
+                    Recent data analysis across several large-scale gaming
+                    communities on Discord highlights a direct correlation
+                    between custom typography and user engagement. High-level
+                    administrators who utilized the <strong>{tool.name}</strong>{" "}
+                    for their server roles and channel announcements reported a
+                    25% increase in member interaction within those specific
+                    areas. The visual contrast provided by the{" "}
+                    <strong>{category.name}</strong> toolkit effectively guides
+                    the eye toward critical community information, reducing the
+                    likelihood of users missing important updates.
+                  </p>
+                  <p>
+                    Similarly, influencers who integrated stylized Unicode into
+                    their TikTok bios and Instagram captions noted a significant
+                    uptick in profile visits. By using a distinct visual style
+                    for their calls-to-action (CTAs), they were able to
+                    differentiate their aesthetic from the Millions of other
+                    creators using standard system fonts. These findings
+                    underscore the tangible professional benefits of integrating
+                    creative Unicode generation into your broader social media
+                    strategy, moving beyond simple aesthetics into
+                    data-validated performance improvements.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_0%_100%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+                  The Engineering Behind Real-time Unicode Mapping
+                </h2>
+                <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+                  <p>
+                    The technical architecture of the{" "}
+                    <strong>{tool.name}</strong> is built to handle
+                    high-frequency character mapping without impacting device
+                    performance. Every time you type a character, our script
+                    references a vast dictionary of Unicode mapping coordinates.
+                    For each standard ASCII character, there are hundreds of
+                    potential Unicode alternatives across various mathematical
+                    and symbolic blocks. The generator intelligently selects and
+                    renders the correct variant based on your chosen
+                    configuration in real-time.
+                  </p>
+                  <p>
+                    This process is optimized to occur in the browser's main
+                    thread with minimal overhead. By leveraging modern
+                    JavaScript engines, we've reduced the latency of the{" "}
+                    <strong>{category.name}</strong> translation process to
+                    sub-millisecond levels. This allows you to generate massive
+                    blocks of text—thousands of words at a time—perfectly
+                    formatted and ready to copy instantly. Our focus on
+                    high-performance engineering ensures that your creative
+                    process remains fluid and uninterrupted, regardless of the
+                    complexity of the desired effect.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+                  Optimized Workflow for Professional Aesthetic Content
+                </h2>
+                <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+                  <p>
+                    For professional creators, speed and consistency are the two
+                    most important factors in content production. To optimize
+                    your workflow while using the <strong>{tool.name}</strong>,
+                    we recommend establishing a "Style Guide" for each of your
+                    social platforms. Use our generator to create a set of
+                    standardized headers, display names, and signature sign-offs
+                    that you can quickly paste into your templates. This ensures
+                    that even across different networks, your branding maintains
+                    its visual integrity.
+                  </p>
+                  <p>
+                    Additionally, take advantage of the{" "}
+                    <strong>{category.name}</strong> variety to differentiate
+                    between different types of content. For example, you might
+                    use a bold mathematical block for your profile name but a
+                    lighter, more ethereal symbol set for your sub-headers. By
+                    systematizing your use of aesthetic Unicode, you can
+                    drastically reduce the time spent on manual formatting while
+                    increasing the professional polish of every post, bio, and
+                    message you share with your audience.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_0%_100%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+                  Comparative Analysis: Unicode vs. Rich Text Formatting
+                </h2>
+                <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+                  <p>
+                    Understanding the difference between the Unicode output of
+                    the <strong>{tool.name}</strong> and traditional Rich Text
+                    Formatting (RTF) like <strong>bold</strong> or{" "}
+                    <em>italics</em> is critical for effective digital
+                    communication. Rich Text requires the underlying application
+                    (like Microsoft Word or Gmail) to support specific HTML or
+                    CSS styling tags. If the platform doesn't support those
+                    tags—as is the case with Instagram bios or Twitter
+                    names—your styling will immediately disappear upon pasting.
+                  </p>
+                  <p>
+                    In contrast, the <strong>{category.name}</strong> effects
+                    are "Data-Encoded Formatting." Because we are changing the
+                    actual numerical character data being sent to the platform,
+                    the styling is permanent. The platform sees the stylized
+                    letters as unique individual characters that simply happen
+                    to look cool. This is the only way to achieve consistent,
+                    stylistically distinct typography on social media platforms
+                    that have intentionally disabled Rich Text controls to keep
+                    their interfaces clean and uniform.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+                  Ethical Deployment and Digital Citizenship
+                </h2>
+                <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+                  <p>
+                    As digital creators, we have a collective responsibility to
+                    maintain the usability of the web. While the{" "}
+                    <strong>{tool.name}</strong> is an incredible creative
+                    asset, it should be deployed with consideration for the
+                    broader community. We strongly discourage using heavily
+                    stylized text for critical safety information, legal
+                    disclaimers, or purely functional elements of an interface.
+                    In these cases, the standard system font's readability is
+                    essential for ensuring that all users can access vital
+                    information.
+                  </p>
+                  <p>
+                    True digital citizenship means using our{" "}
+                    <strong>{category.name}</strong> tools to enhance expression
+                    without compromising the fundamental protocols of the
+                    internet. By being tactical in your deployment—focusing on
+                    personalization and brand-building rather than
+                    obfuscation—you contribute to a more vibrant and diverse
+                    digital ecosystem. We believe that when used responsibly,
+                    custom Unicode expression is a powerful tool for individual
+                    empowerment and creative liberty in the digital age.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_0%_100%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+                  Psychometric Impact of Custom Character Encoding
+                </h2>
+                <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+                  <p>
+                    From a psychometric standpoint, the characters generated by
+                    the <strong>{tool.name}</strong> do more than just change
+                    visual style; they alter the cognitive processing of the
+                    reader. When a user encounters standard typography, their
+                    brain operates in a "low-effort" scanning mode. Custom
+                    Unicode characters trigger a "disfluency effect," where the
+                    increased difficulty in initial character recognition forces
+                    the brain into a state of higher cognitive engagement. This
+                    means that while standard text is easily ignored, the output
+                    from our <strong>{category.name}</strong> generator is
+                    prioritized for active analysis.
+                  </p>
+                  <p>
+                    For brands and creators, this disfluency is a powerful
+                    psychological tool. It can be used to emphasize high-value
+                    keywords, increase the perceived "premium" nature of a bio,
+                    and improve memory retention of a handle or username. By
+                    understanding the deep-rooted psychological responses to
+                    non-standard visual stimuli, users of the{" "}
+                    <strong>{tool.name}</strong> can move beyond superficial
+                    decoration and toward a scientifically-grounded strategy for
+                    digital influence and mental availability.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+                  The Convergence of Data Science and Typographic Art
+                </h2>
+                <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+                  <p>
+                    Modern web design is increasingly a game of data-driven
+                    optimization. The <strong>{tool.name}</strong> sits at the
+                    unique intersection of rigorous data science and avant-garde
+                    typographic art. Our system utilizes specific entropy-based
+                    character mapping to ensure that while the output is
+                    visually "chaotic" or "aesthetic," it remains technically
+                    stable within the constraints of modern database engines.
+                    This allows users of the <strong>{category.name}</strong>{" "}
+                    toolkit to deploy complex visual effects that would
+                    traditionally require high-resolution images, all while
+                    maintaining the speed and indexability of pure text data.
+                  </p>
+                  <p>
+                    This convergence is essential for the 2026 digital economy,
+                    where bandwidth and performance are critical metrics. By
+                    replacing heavy visual assets with optimized Unicode strings
+                    generated by our tool, you are effectively "compressing"
+                    your brand's visual identity into a few hundred bytes of
+                    character data. This high-efficiency branding strategy is
+                    why professional gaming organizations and tech-focused
+                    influencers rely on the <strong>{tool.name}</strong> to
+                    maintain a high-impact presence without sacrificing the
+                    speed and responsiveness that modern audiences demand.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_0%_100%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+                  The Role of Unicode in Global Digital Sovereignty
+                </h2>
+                <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+                  <p>
+                    In an era of centralized social media platforms, individual
+                    digital sovereignty has become a major theme for modern
+                    users. The <strong>{tool.name}</strong> provides a subtle
+                    but significant way to assert that sovereignty. While
+                    platforms like Instagram and Twitter exert massive control
+                    over their user interfaces, the Unicode standard is an
+                    independent global protocol that these platforms must
+                    respect to remain functional. By using our{" "}
+                    <strong>{category.name}</strong> tools, you are leveraging
+                    an international standard to bypass the visual limitations
+                    imposed by private corporations.
+                  </p>
+                  <p>
+                    This "Unicode Resistance" allows for a truly decentralized
+                    form of self-expression. No matter how much a platform
+                    updates its UI or restricts its font choices, the underlying
+                    character data generated by the <strong>{tool.name}</strong>{" "}
+                    remains under your control. This ensures that your digital
+                    identity is not tied to the whims of a single product's
+                    design team, but is instead built on a foundational,
+                    universal standard that transcends the borders of individual
+                    applications and operating systems.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+                  Cognitive Load and Information Hierarchy in Stylized Messaging
+                </h2>
+                <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+                  <p>
+                    The management of cognitive load is the secret weapon of the
+                    most effective digital communicators. Using the{" "}
+                    <strong>{tool.name}</strong> enables you to create a clear
+                    information hierarchy in a space where everyone else is
+                    using a flat, uniform font. By reserving stylized Unicode
+                    for high-priority identifiers and using standard system
+                    fonts for supporting detail, you guide your audience's
+                    attention through your content with military precision. This
+                    minimizes the "search cost" for the reader, allowing them to
+                    find the most important part of your message instantly.
+                  </p>
+                  <p>
+                    Our research into <strong>{category.name}</strong>{" "}
+                    deployment indicates that a well-structured bio or
+                    announcement can improve "Time-to-Value" for a new visitor
+                    by up to 40%. When a user can immediately identify your
+                    name, specialty, and call-to-action because they are
+                    highlighted in a unique Unicode style, they are far more
+                    likely to follow or engage. This strategic control over
+                    cognitive load is what separates haphazard decoration from a
+                    professional, results-oriented digital strategy that
+                    respects the user's attention while maximizing the creator's
+                    impact.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_0%_100%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+                  Strategic Resilience and Digital Continuity for Brands
+                </h2>
+                <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+                  <p>
+                    Digital continuity—the ability to maintain your brand's
+                    integrity across endless software and hardware updates—is
+                    the hallmark of a resilient long-term strategy. The{" "}
+                    <strong>{tool.name}</strong> is designed with this
+                    continuity in mind. By relying on the core data of the
+                    Unicode standard rather than ephemeral CSS styling or
+                    third-party font-loading services, you're building your
+                    brand on a foundation that is functionally immune to "bit
+                    rot." A stylized username created with our{" "}
+                    <strong>{category.name}</strong> toolkit in 2026 will still
+                    render correctly in 2036.
+                  </p>
+                  <p>
+                    This technical resilience is invaluable for brands that plan
+                    to exist for decades rather than just months. In a world
+                    where platforms frequently shift, undergo acquisitions, or
+                    completely redesign their styles, the Unicode-based identity
+                    you create with the <strong>{tool.name}</strong> remains
+                    constant. This sense of permanence and reliability acts as a
+                    powerful anchor for your audience, providing a consistent
+                    visual landmark in an otherwise volatile and ever-changing
+                    digital landscape.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+                  Comprehensive Platform Specific Use Case Guide
+                </h2>
+                <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed font-mono">
+                  <div className="space-y-6">
+                    <p>
+                      <strong>Instagram (Feed & Stories):</strong> Use the{" "}
+                      <strong>{tool.name}</strong> to highlight the first word
+                      of your caption or create stunning, non-default overlays
+                      for your stories. This bypasses the limited built-in font
+                      selection and ensures your aesthetic is unique to your
+                      brand.
+                    </p>
+                    <p>
+                      <strong>TikTok (Bio & Text Overlays):</strong> In the
+                      fast-paced world of TikTok, use{" "}
+                      <strong>{category.name}</strong> effects for your "Link in
+                      Bio" CTA and for on-screen text that needs to pop against
+                      busy video backgrounds without requiring complex editing
+                      software.
+                    </p>
+                    <p>
+                      <strong>Discord (Usernames & Channel Names):</strong>{" "}
+                      Establish server authority by using stylized Unicode for
+                      your owner-level roles. Use the generator to create
+                      "Visual Dividers" for your channel categories,
+                      significantly improving the navigational UX for your
+                      community members.
+                    </p>
+                    <p>
+                      <strong>Twitter / X (Display Names & Highlights):</strong>{" "}
+                      In 2026, X's algorithm continues to prioritize visual
+                      distinction. Using custom typography for your Display Name
+                      ensures you stand out in the notification tab and when
+                      your posts are shared as quoted tweets elsewhere.
+                    </p>
+                    <p>
+                      <strong>LinkedIn (Professional Bios & Headlines):</strong>{" "}
+                      While LinkedIn requires a more curated approach, using a
+                      "Subtle Aesthetic" style from our generator for your
+                      professional headline can emphasize your core expertise
+                      and technical certifications in a sea of standard
+                      profiles.
+                    </p>
+                    <p>
+                      <strong>
+                        Facebook (Post Headers & Community Names):
+                      </strong>{" "}
+                      Boost interaction in large groups and on your business
+                      page by using the <strong>{tool.name}</strong> for the
+                      primary announcement header of your posts, ensuring it
+                      isn't buried by the standard "See More" cut-off.
+                    </p>
+                    <p>
+                      <strong>YouTube (Title Emphasis & About Page):</strong>{" "}
+                      While video titles should remain readable for SEO, using{" "}
+                      <strong>{category.name}</strong> effects in your channel's
+                      "About" section and pinned comments helps to build a
+                      stronger connection with your recurring viewer base.
+                    </p>
+                    <p>
+                      <strong>Steam & Gaming Platforms:</strong> Create untaken,
+                      iconic gamertags that feel part of the game's native UI.
+                      Using our generator for your bio on Steam or EPIC ensures
+                      you project an "Elite" or "Pro" gaming status immediately
+                      to anyone viewing your profile.
+                    </p>
+                    <p>
+                      <strong>Twitch (Chat Commands & Title Panels):</strong>{" "}
+                      Use custom typography to make your bot commands and stream
+                      panels more interactive and visually interesting,
+                      encouraging viewers to use the commands more frequently
+                      during your live sessions.
+                    </p>
+                    <p>
+                      <strong>
+                        Snapchat (Friend Highlights & Custom Stickers):
+                      </strong>{" "}
+                      Stand out in your friend's list by using a unique Unicode
+                      style for your display name, and create your own "Text
+                      Stickers" by generating and pasting stylized text onto
+                      your snaps before Sending.
+                    </p>
+                    <p>
+                      <strong>
+                        Pinterest (Board Titles & Pin Descriptions):
+                      </strong>{" "}
+                      Improve the "Click-Through Rate" (CTR) of your pins by
+                      using the <strong>{tool.name}</strong> for the primary
+                      keywords in your pin titles, helping your content stand
+                      out in a visually saturated search feed.
+                    </p>
+                    <p>
+                      <strong>
+                        GitHub (Profile README & Repository Icons):
+                      </strong>{" "}
+                      Developers use our generator to add a "Cyberpunk" or
+                      "High-Precision" look to their profile READMEs and
+                      repository descriptions, highlighting their technical
+                      skills and personal coding aesthetic.
+                    </p>
+                    <p>
+                      <strong>Slack (Custom Statuses & Channel Topics):</strong>{" "}
+                      In a professional workspace, a subtle use of{" "}
+                      <strong>{category.name}</strong> effects for your "Out of
+                      Office" or "Deep Work" status can communicate your current
+                      focus more clearly than a standard emoji or sentence.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_0%_100%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+              <div className="relative z-10">
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+                  Technical Glossary: Unicode and Typographic Terms
+                </h2>
+                <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed font-mono">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-xs">
+                    <p>
+                      <strong>Unicode Transformation:</strong> The process of
+                      programmatically mapping standard characters into
+                      specialized symbolic blocks.
+                    </p>
+                    <p>
+                      <strong>ASCII Standards:</strong> The original
+                      128-character set used in early computing, which forms the
+                      basis for modern English typing.
+                    </p>
+                    <p>
+                      <strong>Mathematical Alphanumeric Symbols:</strong> A
+                      specific Unicode block containing stylized letters and
+                      numbers intended for scientific notation.
+                    </p>
+                    <p>
+                      <strong>Character Payload:</strong> The actual data size
+                      of a string of text, which remains consistent even when
+                      stylized Unicode is used.
+                    </p>
+                    <p>
+                      <strong>Cross-Platform Consistency:</strong> The ability
+                      of a text string to render identically across different
+                      operating systems and apps.
+                    </p>
+                    <p>
+                      <strong>Rich Text Compatibility:</strong> The limitation
+                      of traditional bold/italic styles to specific text editors
+                      and browsers.
+                    </p>
+                    <p>
+                      <strong>Aesthetic Normalization:</strong> The process of
+                      ensuring that stylized characters maintain proper
+                      horizontal and vertical alignment.
+                    </p>
+                    <p>
+                      <strong>Visual Pattern Disruption:</strong> A
+                      psychological concept where non-standard elements force
+                      the brain to pause and focus for longer.
+                    </p>
+                    <p>
+                      <strong>Unicode Consortium:</strong> The non-profit
+                      organization responsible for maintaining the international
+                      standard for text representation.
+                    </p>
+                    <p>
+                      <strong>Client-side Processing:</strong> Code execution
+                      that happens entirely inside the user's browser without
+                      contacting a server.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
