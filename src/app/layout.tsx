@@ -60,7 +60,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "TypeWarp | The Ultimate Cursed Text & Glitch Font Toolkit",
+    default: "TypeWarp | Cursed Text & Glitch Font Toolkit",
     template: "%s | TypeWarp",
   },
   description:

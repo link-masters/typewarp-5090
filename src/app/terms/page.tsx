@@ -16,9 +16,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Legal Agreement for Using TypeWarp",
+  title: "Terms of Service",
   description:
-    "Read our Terms of Service to understand the legal agreement and rules for using the TypeWarp platform, including our cursed text and glitch font generators.",
+    "Read our Terms of Service to understand the legal agreement and rules for using TypeWarp, including our cursed text and glitch font generators.",
   keywords: [
     "typewarp terms",
     "terms of service",

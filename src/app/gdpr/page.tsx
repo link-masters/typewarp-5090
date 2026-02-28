@@ -16,9 +16,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "GDPR Compliance | Data Protection Rights at TypeWarp Tool",
+  title: "GDPR Compliance",
   description:
-    "Learn how TypeWarp adheres to GDPR regulations to protect the data of users in the EU. We prioritize transparency and user control over their personal data.",
+    "Learn how TypeWarp adheres to GDPR regulations to protect your EU data. We prioritize full transparency and user control over personal data.",
   keywords: [
     "typewarp gdpr",
     "gdpr compliance",
@@ -76,6 +76,16 @@ const rights = [
     desc: "You can obtain your data in a readable format.",
     icon: HardDriveDownload,
   },
+  {
+    title: "Right to Restrict",
+    desc: "Request a temporary pause in data processing.",
+    icon: Minimize2,
+  },
+  {
+    title: "Right to Object",
+    desc: "Object to processing based on legitimate interests.",
+    icon: Shield,
+  },
 ];
 
 export default function GDPRPage() {
@@ -100,19 +110,45 @@ export default function GDPRPage() {
         {/* Hero */}
         <section className="mb-12 sm:mb-16">
           <div className="inline-block px-4 py-1.5 mb-5 sm:mb-6 bg-accent-glitch/10 border border-accent-glitch/20 rounded-full text-accent-glitch text-[10px] sm:text-[11px] font-mono font-black uppercase tracking-[0.3em]">
-            EU Compliance
+            EU Compliance Framework
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 tracking-tight uppercase leading-[0.9]">
             <span className="text-white">GDPR</span>{" "}
-            <span className="text-accent-glitch">Compliance.</span>
+            <span className="text-accent-glitch">Standards.</span>
           </h1>
 
           <p className="text-text-muted text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed">
-            TypeWarp securely operates on a zero-trust model, ensuring full
-            alignment with the General Data Protection Regulation (GDPR) for all
-            European & global users.
+            TypeWarp is built on a foundation of data privacy and transparency.
+            We fully adhere to the General Data Protection Regulation (GDPR),
+            implementing world-class standards to protect our users in the EU
+            and across the globe.
           </p>
+        </section>
+
+        {/* Detailed Overview */}
+        <section className="mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white mb-6">
+            Data Preservation{" "}
+            <span className="text-accent-glitch">& Privacy</span>
+          </h2>
+          <div className="prose prose-invert max-w-none text-text-muted space-y-4 text-sm sm:text-base">
+            <p>
+              The General Data Protection Regulation (GDPR) is the toughest
+              privacy and security law in the world. Though it was drafted and
+              passed by the European Union (EU), it imposes obligations onto
+              organizations anywhere, so long as they target or collect data
+              related to people in the EU.
+            </p>
+            <p>
+              At TypeWarp, we don't just comply with GDPR because we have to; we
+              embrace its principles of data minimization and transparency
+              because they align with our core engineering philosophy. Our
+              platform is designed to function with the absolute minimum amount
+              of data necessary, often processing your text transformations
+              entirely within your own browser session.
+            </p>
+          </div>
         </section>
 
         {/* Philosophy/Commitments */}
@@ -121,13 +157,13 @@ export default function GDPRPage() {
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-glitch/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             <Globe className="w-8 h-8 text-white/50 mb-5 group-hover:text-accent-glitch transition-colors" />
             <h2 className="text-xl font-bold text-white mb-3">
-              Our Commitment
+              Global Standards
             </h2>
             <p className="text-sm text-text-muted leading-relaxed">
-              We are unconditionally committed to protecting the data and
-              privacy of our users in the European Economic Area (EEA) and
-              globally. We treat all global traffic with the same strict EU
-              standards.
+              We treat all visitors with the same high level of protection,
+              regardless of their physical location. This "GDPR-for-all"
+              approach ensures that our privacy standards remain consistent and
+              unbreakable worldwide.
             </p>
           </div>
 
@@ -135,15 +171,64 @@ export default function GDPRPage() {
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-glitch/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             <Minimize2 className="w-8 h-8 text-white/50 mb-5 group-hover:text-accent-glitch transition-colors" />
             <h2 className="text-xl font-bold text-white mb-3">
-              Data Minimization
+              Privacy by Design
             </h2>
             <p className="text-sm text-text-muted leading-relaxed">
-              Aligned perfectly with GDPR Article 5(1)(c), we practice absolute
-              data minimization. By offloading text processing to your local
-              device, we do not collect or monitor your input data.
+              Every feature on TypeWarp is vetted through a "Privacy First"
+              framework. We prioritize local processing over server-side
+              storage, ensuring your creative outputs remain under your direct
+              control at all times.
             </p>
           </div>
         </div>
+
+        {/* Core Principles Section */}
+        <section className="mb-12 sm:mb-16 bg-bg-card/30 border border-white/[0.04] p-6 sm:p-10 rounded-3xl">
+          <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white mb-8 border-b border-white/5 pb-6">
+            Our <span className="text-accent-glitch">Principles</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8 text-sm text-text-muted leading-relaxed">
+            <div className="space-y-2">
+              <h3 className="text-white font-bold uppercase tracking-wider text-xs">
+                Lawfulness & Transparency
+              </h3>
+              <p>
+                We process your data fairly and are always transparent about why
+                specific technical cookies are used for performance and
+                stability.
+              </p>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-white font-bold uppercase tracking-wider text-xs">
+                Purpose Limitation
+              </h3>
+              <p>
+                Data collection is strictly limited to the specific purposes
+                outlined in our privacy documentation, mostly revolving around
+                site traffic analytics.
+              </p>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-white font-bold uppercase tracking-wider text-xs">
+                Storage Limitation
+              </h3>
+              <p>
+                We do not keep data longer than necessary. Since we don't use
+                user accounts, the majority of your experience is stateless.
+              </p>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-white font-bold uppercase tracking-wider text-xs">
+                Integrity & Security
+              </h3>
+              <p>
+                We implement robust technical and organizational measures to
+                protect any metadata from unauthorized access or accidental
+                loss.
+              </p>
+            </div>
+          </div>
+        </section>
 
         {/* User Rights */}
         <section className="mb-12 sm:mb-16">
@@ -177,11 +262,37 @@ export default function GDPRPage() {
 
           <div className="mt-8 p-5 sm:p-6 bg-accent-glitch/5 border border-accent-glitch/20 rounded-2xl">
             <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-mono uppercase tracking-wide">
-              <strong>Note:</strong> Because TypeWarp does not require user
-              accounts or store personal server data, exercising these rights is
-              simple — we already possess none of your private, identifiable
-              content.
+              <strong>Compliance Notice:</strong> TypeWarp operates as a
+              "stateless" text utility. Because we do not store user profiles,
+              the identification of specific data for erasure or access requests
+              generally results in zero records found, which is the ultimate
+              form of privacy.
             </p>
+          </div>
+        </section>
+
+        {/* Legal Grounding */}
+        <section className="mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white mb-6">
+            Legal <span className="text-accent-glitch">Basis</span>
+          </h2>
+          <div className="prose prose-invert max-w-none text-text-muted space-y-4 text-sm sm:text-base">
+            <p>
+              Under GDPR Article 6, we process your data based on the following
+              legal grounds:
+            </p>
+            <ul className="list-disc pl-5 space-y-2">
+              <li>
+                <strong>Legitimate Interest</strong>: We have a legitimate
+                interest in maintaining the performance, security, and stability
+                of our transformation engine.
+              </li>
+              <li>
+                <strong>Consent</strong>: For non-essential tracking and
+                functional cookies, we seek your explicit consent via our cookie
+                notice.
+              </li>
+            </ul>
           </div>
         </section>
 

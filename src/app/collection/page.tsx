@@ -4,9 +4,9 @@ import CollectionClientView from "@/components/CollectionClientView";
 import { SITE_URL } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Cursed Text Tools Collection | All Glitch & Fancy Fonts",
+  title: "Collection",
   description:
-    "Explore the complete TypeWarp collection of text generators, typography engines, and encoding utilities. Access over 86+ free tools for unique digital styles.",
+    "Explore the TypeWarp collection of text generators, typography engines, and encoding utilities. Access our 86+ free tools for unique styles.",
   keywords: [
     "text generator tools",
     "cursed text generator",

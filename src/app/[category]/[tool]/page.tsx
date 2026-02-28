@@ -7,6 +7,7 @@ import { Metadata } from "next";
 import { getToolContent } from "@/lib/tools";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import MDXComponents from "@/components/MDXComponents";
+import SEOTrophy from "@/components/SEOTrophy";
 import { SITE_URL } from "@/lib/config";
 
 export function generateStaticParams() {
@@ -56,15 +57,21 @@ export async function generateMetadata({
   ];
 
   const mdxTitle = toolContent?.meta?.title;
-  let pageTitle =
-    mdxTitle || `${tool.name} - Free Online ${category.name} Tool`;
+  let pageTitle = mdxTitle || `${tool.name} Generator`;
 
-  // Enforce 50-60 chars for title
-  if (pageTitle.length < 50) {
-    pageTitle = `${pageTitle} | Best Free ${category.name} Text Generator`;
-  }
-  if (pageTitle.length > 60) {
-    pageTitle = pageTitle.substring(0, 57) + "...";
+  // Dynamically clean verbose titles from mdx frontmatter to fit SERP length limits
+  pageTitle = pageTitle
+    .replace(/\s*-\s*Free Online.*$/i, "")
+    .replace(/\s*—\s*.*$/i, "")
+    .replace(/\s*Online\.?\s*/i, "")
+    .replace(/\s*Free\s*/i, "")
+    .replace(/\s*High-Performance\s*/i, "")
+    .replace(/\s*Best Tool\s*/i, "")
+    .replace(/\s*Tool\s*/i, "")
+    .trim();
+
+  if (pageTitle.length > 45) {
+    pageTitle = pageTitle.substring(0, 42) + "...";
   }
 
   const ogTitle = mdxTitle
@@ -76,15 +83,15 @@ export async function generateMetadata({
     mdxDesc ||
     `Generate ${tool.name.toLowerCase()} instantly. High-performance ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok and gaming platforms. No signup required.`;
 
-  // Enforce 150-160 chars for description
-  if (pageDescription.length < 150) {
+  // Enforce 140-153 chars for description
+  if (pageDescription.length < 140) {
     pageDescription = pageDescription.padEnd(
-      155,
+      150,
       " Create unique stylized content for your social media profiles and gaming usernames with TypeWarp today.",
     );
   }
-  if (pageDescription.length > 160) {
-    pageDescription = pageDescription.substring(0, 157) + "...";
+  if (pageDescription.length > 155) {
+    pageDescription = pageDescription.substring(0, 151) + "...";
   }
 
   return {
@@ -156,6 +163,24 @@ export default async function ToolPage({
   }
 
   const toolContent = await getToolContent(toolSlug);
+
+  let modifiedContent = toolContent?.content || "";
+  if (modifiedContent) {
+    const injectToken = `\n\n<SEOTrophy toolSlug="${tool.slug}" />\n\n`;
+    if (modifiedContent.includes("\n## Comparison")) {
+      modifiedContent = modifiedContent.replace(
+        "\n## Comparison",
+        injectToken + "## Comparison",
+      );
+    } else if (modifiedContent.includes("\n## Frequently")) {
+      modifiedContent = modifiedContent.replace(
+        "\n## Frequently",
+        injectToken + "## Frequently",
+      );
+    } else {
+      modifiedContent += injectToken;
+    }
+  }
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -255,8 +280,8 @@ export default async function ToolPage({
                   prose-li:p-0 prose-li:m-0"
               >
                 <MDXRemote
-                  source={toolContent.content}
-                  components={MDXComponents}
+                  source={modifiedContent}
+                  components={{ ...MDXComponents, SEOTrophy }}
                 />
               </div>
             </div>

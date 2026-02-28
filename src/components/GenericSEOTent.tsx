@@ -1,5 +1,6 @@
 import React from "react";
 import { Info } from "lucide-react";
+import SEOTrophy from "@/components/SEOTrophy";
 
 interface GenericSEOTentProps {
   tool: {
@@ -65,10 +66,9 @@ export default function GenericSEOTent({
           <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
           <div className="relative z-10">
             <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
-              Maximizing Engagement with{" "}
-              <span className="text-accent-glitch">{tool.name}</span>
+              <span className="text-accent-glitch">{tool.name}</span> Overview
             </h2>
-            <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+            <div className="prose prose-invert max-w-none text-white/75 text-sm md:text-base leading-relaxed space-y-4 font-mono">
               <p>
                 Built on advanced Unicode algorithms, this generator allows
                 users to bypass traditional platform formatting call-to-action
@@ -244,7 +244,7 @@ export default function GenericSEOTent({
             <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
               Technical Glossary: Unicode and Typographic Terms
             </h2>
-            <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed font-mono">
+            <div className="prose prose-invert max-w-none text-white/75 text-sm md:text-base leading-relaxed font-mono">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-xs">
                 <p>
                   <strong>Unicode Transformation:</strong> The process of
@@ -292,6 +292,10 @@ export default function GenericSEOTent({
         </div>
       </div>
 
+      <div className="pt-8">
+        <SEOTrophy toolSlug={tool.slug} />
+      </div>
+
       <div className="space-y-10">
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12 bg-[#0c0c0c] border border-white/10 rounded-xl flex items-center justify-center text-accent-glitch">
@@ -320,8 +324,8 @@ export default function GenericSEOTent({
                   </span>
                   <span className="pt-1">{faq.q}</span>
                 </h4>
-                <div className="flex gap-3 ml-9">
-                  <p className="text-white/50 font-mono text-[12px] md:text-[13px] leading-[1.8] group-hover:text-white/70 transition-colors duration-500">
+                <div className="flex gap-3 xs:ml-9">
+                  <p className="text-white/70 font-mono text-[12px] md:text-[13px] leading-[1.8] group-hover:text-white/90 transition-colors duration-500">
                     {faq.a}
                   </p>
                 </div>

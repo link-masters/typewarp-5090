@@ -15,8 +15,12 @@
 
 ---
 
-![TypeWarp Interface Showcase](public/app-showcase.png)
-
+<div align="center">
+  <img src="public/assets/app-showcase-actual.png" width="800" alt="TypeWarp Desktop Interface" />
+  <br />
+  <img src="public/assets/mobile-showcase-actual.png" width="220" alt="TypeWarp Mobile Interface" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="public/assets/mobile-tool-showcase.png" width="220" alt="TypeWarp Tool Mobile Interface" />
 </div>
 
 ---

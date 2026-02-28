@@ -24,19 +24,19 @@ export async function generateMetadata({
 
   const toolNames = category.tools.slice(0, 5).map((t) => t.name);
 
-  let title = `${category.name} Generator | Free Online Glitch & Fancy Font Tools`;
-  if (title.length > 60) title = title.substring(0, 57) + "...";
-  if (title.length < 50) title = title.padEnd(55, " | TypeWarp Tools");
+  let title = `${category.name} Generator & Text Tools`;
 
   let description = `Access ${category.count} free ${category.name.toLowerCase()} tools online. Create specialized text effects like ${toolNames.slice(0, 2).join(" and ")} for Discord, Instagram and TikTok.`;
-  if (description.length < 150) {
+  // Enforce 140-153 chars for description
+  if (description.length < 140) {
     description = description.padEnd(
-      155,
+      150,
       " Enhance your social media branding and digital presence with our high-performance Unicode transformation engine.",
     );
   }
-  if (description.length > 160)
-    description = description.substring(0, 157) + "...";
+  if (description.length > 155) {
+    description = description.substring(0, 151) + "...";
+  }
 
   return {
     title,

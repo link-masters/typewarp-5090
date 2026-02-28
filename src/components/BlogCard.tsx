@@ -11,9 +11,10 @@ export default function BlogCard({ post }: { post: BlogPost }) {
           <Image
             src={post.image}
             alt={post.title}
-            fill
+            width={1200}
+            height={630}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100"
           />
           <div className="absolute top-4 left-4">
             <span className="px-3 py-1 text-[10px] font-mono font-bold bg-accent-glitch text-black uppercase tracking-widest rounded-md">
@@ -24,17 +25,17 @@ export default function BlogCard({ post }: { post: BlogPost }) {
         </div>
 
         <div className="p-6 md:p-8 flex flex-col flex-grow relative z-10">
-          <div className="flex items-center gap-4 text-[10px] font-mono text-white/20 mb-4 uppercase tracking-[0.2em]">
-            <span className="flex items-center gap-1.5 group-hover:text-white/40 transition-colors">
-              <Calendar className="w-3.5 h-3.5 text-accent-glitch/50" />
+          <div className="flex items-center gap-4 text-[10px] font-mono text-white/50 mb-4 uppercase tracking-[0.2em]">
+            <span className="flex items-center gap-1.5 group-hover:text-white/70 transition-colors">
+              <Calendar className="w-3.5 h-3.5 text-accent-glitch/70" />
               {new Date(post.date).toLocaleDateString("en-US", {
                 month: "short",
                 day: "numeric",
                 year: "numeric",
               })}
             </span>
-            <span className="flex items-center gap-1.5 group-hover:text-white/40 transition-colors">
-              <User className="w-3.5 h-3.5 text-accent-glitch/50" />
+            <span className="flex items-center gap-1.5 group-hover:text-white/70 transition-colors">
+              <User className="w-3.5 h-3.5 text-accent-glitch/70" />
               {post.author}
             </span>
           </div>
@@ -43,12 +44,12 @@ export default function BlogCard({ post }: { post: BlogPost }) {
             {post.title}
           </h2>
 
-          <p className="text-white/40 text-sm leading-relaxed line-clamp-2 md:line-clamp-3 mb-8 group-hover:text-white/60 transition-colors duration-500">
+          <p className="text-white/60 text-sm leading-relaxed line-clamp-2 md:line-clamp-3 mb-8 group-hover:text-white/80 transition-colors duration-500">
             {post.description}
           </p>
 
           <div className="mt-auto flex items-center justify-between">
-            <div className="flex items-center gap-2 text-white/20 group-hover:text-accent-glitch font-mono font-bold text-[10px] uppercase tracking-[0.3em] transition-colors duration-300">
+            <div className="flex items-center gap-2 text-white/40 group-hover:text-accent-glitch font-mono font-bold text-[10px] uppercase tracking-[0.3em] transition-colors duration-300">
               Read More
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
             </div>

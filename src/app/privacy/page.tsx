@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | How TypeWarp Protects Your Digital Data",
+  title: "Privacy Policy",
   description:
     "Read the TypeWarp Privacy Policy to understand how we protect your data. All text processing happens locally in your browser to ensure maximum user privacy.",
   keywords: [

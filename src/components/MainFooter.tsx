@@ -83,7 +83,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-20">
           {/* ---- Brand Section ---- */}
           <div className="lg:col-span-3 xl:col-span-3">
-            <Link href="/" className="group mb-6 sm:mb-8 block">
+            <Link
+              href="/"
+              aria-label="TypeWarp Home"
+              className="group mb-6 sm:mb-8 block"
+            >
               <div className="inline-flex items-end">
                 <span className="text-2xl sm:text-3xl font-black text-neutral-900 dark:text-text-primary uppercase tracking-tighter group-hover:text-emerald-600 dark:group-hover:text-accent-glitch transition-colors duration-300">
                   Type
@@ -263,7 +267,7 @@ const Footer = () => {
                         className="overflow-hidden"
                       >
                         <div className="px-3 pb-3 pt-1 grid grid-cols-2 gap-1">
-                          {category.tools.map((tool) => (
+                          {category.tools.slice(0, 6).map((tool) => (
                             <Link
                               key={tool.slug}
                               href={`/${category.slug}/${tool.slug}`}

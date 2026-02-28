@@ -289,7 +289,7 @@ export default function ToolView({
             {category.name}
           </Link>
           <ChevronRight className="w-2.5 h-2.5 opacity-20 shrink-0" />
-          <div className="text-accent-glitch opacity-80 truncate max-w-[150px] sm:max-w-none">
+          <div className="text-accent-glitch opacity-80 truncate max-w-[120px] xs:max-w-none">
             {tool.name}
           </div>
         </div>
@@ -341,7 +341,7 @@ export default function ToolView({
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Enter text to transform..."
-                  className="w-full min-h-[130px] lg:min-h-[150px] bg-[#0c0c0c] text-base md:text-lg lg:text-xl font-medium tracking-normal text-text-primary placeholder:text-text-primary/20 outline-none focus:outline-none resize-none custom-scrollbar transition-all overscroll-contain p-4 lg:p-5 text-left border-none"
+                  className="w-full min-h-[140px] lg:min-h-[150px] bg-[#0c0c0c] text-base md:text-lg lg:text-xl font-medium tracking-normal text-text-primary placeholder:text-text-primary/30 outline-none focus:outline-none resize-none custom-scrollbar transition-all overscroll-contain p-4 lg:p-5 text-left border-none"
                   autoFocus
                   spellCheck="false"
                   data-gramm="false"
@@ -353,7 +353,7 @@ export default function ToolView({
             {/* Output Panel */}
             <div className="bg-bg-card border border-border-subtle relative group shadow-lg overflow-hidden flex flex-col transition-all duration-300 focus-within:border-accent-glitch/50 focus-within:ring-1 focus-within:ring-accent-glitch/20 rounded-xl">
               <div className="p-2 border-b border-border-subtle bg-bg-void/50 flex flex-col sm:flex-row justify-between items-start sm:items-center px-4 py-3 gap-3">
-                <div className="flex items-center gap-2 text-[10px] sm:text-[9px] font-mono uppercase tracking-[0.3em] text-accent-glitch shrink-0 mt-1 sm:mt-0">
+                <div className="flex items-center gap-2 text-[10px] sm:text-[9px] font-mono uppercase tracking-[0.3em] text-accent-glitch shrink-0 mt-0.5">
                   <Zap className="w-3.5 h-3.5 sm:w-3 sm:h-3" />
                   Preview
                 </div>
@@ -441,8 +441,8 @@ export default function ToolView({
                     />
                   ) : (
                     <div className="flex-1 flex items-center justify-center">
-                      <p className="text-text-primary/10 font-mono text-[11px] uppercase tracking-[0.2em]">
-                        Waiting for text...
+                      <p className="text-text-primary/25 font-mono text-[10px] xs:text-[11px] uppercase tracking-[0.25em] text-center px-4">
+                        Waiting for text input...
                       </p>
                     </div>
                   )}
@@ -463,9 +463,9 @@ export default function ToolView({
                 <div className="w-10 h-10 border border-accent-glitch/20 flex items-center justify-center">
                   <Settings className="w-5 h-5 text-accent-glitch" />
                 </div>
-                <h3 className="text-xs font-mono uppercase tracking-[0.3em]">
+                <h2 className="text-xs font-mono uppercase tracking-[0.3em]">
                   Settings
-                </h3>
+                </h2>
               </div>
 
               <div className="flex flex-col gap-4 md:gap-5">

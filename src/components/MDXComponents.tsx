@@ -4,8 +4,6 @@ import Image from "next/image";
 import { categories } from "@/lib/categories";
 import { ToolIcon } from "@/components/ToolIcon";
 import {
-  Terminal,
-  Zap,
   Info,
   AlertTriangle,
   Lightbulb,
@@ -13,12 +11,6 @@ import {
   ArrowRight,
   ChevronRight,
   HelpCircle,
-  Cpu,
-  Shield,
-  Activity,
-  Box,
-  CheckCircle2,
-  Sparkles,
   ExternalLink,
 } from "lucide-react";
 
@@ -193,19 +185,12 @@ const FAQ = ({ children }: { children: React.ReactNode }) => {
 
 const FAQItem = ({ q, children }: { q: string; children: React.ReactNode }) => {
   return (
-    <div className="p-5 bg-[#111]/50 border border-white/5 rounded-xl group hover:border-accent-glitch/10 transition-all duration-500">
-      <div className="flex items-start gap-3 mb-4">
-        <span className="inline-flex items-center justify-center w-7 h-7 bg-accent-glitch/10 border border-accent-glitch/20 rounded-md text-[10px] font-black text-accent-glitch shrink-0 mt-0.5">
-          Q
-        </span>
-        <h4 className="text-sm font-mono font-bold text-white leading-relaxed pt-0.5 flex-1">
-          {q}
-        </h4>
-      </div>
-      <div className="ml-10 pl-4 border-l-2 border-white/5 group-hover:border-accent-glitch/20 transition-colors">
-        <div className="text-white/50 font-mono text-[13px] leading-[1.8] group-hover:text-white/60 transition-colors [&>p]:mb-0">
-          {children}
-        </div>
+    <div className="py-4 border-b border-white/5">
+      <h4 className="text-sm font-mono font-bold text-white leading-relaxed mb-2 before:content-['Q'] before:inline-flex before:items-center before:justify-center before:w-6 before:h-6 before:bg-accent-glitch/10 before:text-accent-glitch before:rounded before:text-[10px] before:mr-3">
+        {q}
+      </h4>
+      <div className="pl-9 text-white/50 font-mono text-[13px] leading-[1.8] [&>p]:mb-0">
+        {children}
       </div>
     </div>
   );
@@ -213,12 +198,11 @@ const FAQItem = ({ q, children }: { q: string; children: React.ReactNode }) => {
 
 // Professional system intel box
 const SystemIntel = ({ label, value }: { label: string; value: string }) => (
-  <div className="flex items-center gap-4 py-3 border-b border-white/5 font-mono text-xs group/intel">
+  <div className="flex items-center gap-4 py-3 border-b border-white/5 font-mono text-xs">
     <span className="text-white/30 uppercase tracking-widest font-bold">
       {label}
     </span>
-    <div className="flex-1 h-[1px] bg-white/[0.03] group-hover/intel:bg-accent-glitch/20 transition-colors" />
-    <span className="text-accent-glitch font-black uppercase tracking-widest">
+    <span className="ml-auto text-accent-glitch font-black uppercase tracking-widest">
       {value}
     </span>
   </div>
@@ -226,75 +210,29 @@ const SystemIntel = ({ label, value }: { label: string; value: string }) => (
 
 const MDXComponents = {
   h1: (props: any) => (
-    <div className="mb-8 mt-4">
-      <div className="flex items-center gap-4">
-        <div className="w-9 h-9 bg-[#0c0c0c] border border-white/10 rounded-lg flex items-center justify-center shrink-0">
-          <Cpu className="w-4 h-4 text-accent-glitch" />
-        </div>
-        <h2
-          {...props}
-          className="text-lg sm:text-xl md:text-3xl font-black text-white tracking-tight uppercase leading-tight break-words"
-        >
-          {props.children}
-        </h2>
-      </div>
-      <div className="mt-4 h-[1px] bg-gradient-to-r from-accent-glitch/20 via-white/5 to-transparent" />
-    </div>
+    <h2
+      {...props}
+      className="text-lg sm:text-xl md:text-3xl font-black text-white tracking-tight uppercase leading-tight break-words mb-4 mt-4 border-b border-accent-glitch/20 pb-4"
+    />
   ),
   h2: (props: any) => {
-    const id = props.children?.toString().toLowerCase().replace(/\s+/g, "-");
+    const id = props.children?.toString().toLowerCase().replace(/\\s+/g, "-");
     return (
-      <div className="mt-16 mb-8" id={id}>
-        <div className="flex items-center gap-4">
-          <div className="w-9 h-9 bg-[#0c0c0c] border border-white/10 rounded-lg flex items-center justify-center shrink-0">
-            <Cpu className="w-4 h-4 text-accent-glitch" />
-          </div>
-          <h2
-            {...props}
-            className="text-base sm:text-lg md:text-2xl font-black text-white tracking-tight uppercase leading-tight break-words"
-          >
-            {props.children}
-          </h2>
-        </div>
-        <div className="mt-4 h-[1px] bg-gradient-to-r from-accent-glitch/20 via-white/5 to-transparent" />
-      </div>
+      <h2
+        {...props}
+        id={id}
+        className="text-base sm:text-lg md:text-2xl font-black text-white tracking-tight uppercase leading-tight break-words mt-16 mb-8 border-b border-white/10 pb-4"
+      />
     );
   },
   h3: (props: any) => {
-    const id = props.children?.toString().toLowerCase().replace(/\s+/g, "-");
-
-    // Check if this is a step heading (starts with "Step X:")
-    const text = props.children?.toString() || "";
-    const stepMatch = text.match(/^Step\s+(\d+):\s*(.+)/i);
-
-    if (stepMatch) {
-      const stepNum = stepMatch[1];
-      const stepTitle = stepMatch[2];
-      return (
-        <div className="mt-8 mb-5" id={id}>
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 bg-accent-glitch/10 border border-accent-glitch/20 rounded-xl flex items-center justify-center shrink-0">
-              <span className="text-sm font-black text-accent-glitch">
-                {stepNum}
-              </span>
-            </div>
-            <h3 className="text-sm sm:text-base md:text-lg font-black text-white tracking-wide uppercase">
-              {stepTitle}
-            </h3>
-          </div>
-        </div>
-      );
-    }
-
+    const id = props.children?.toString().toLowerCase().replace(/\\s+/g, "-");
     return (
       <h3
         {...props}
         id={id}
-        className="text-sm sm:text-base md:text-lg font-black text-white mt-10 mb-5 tracking-wide uppercase flex items-center gap-3"
-      >
-        <div className="w-1.5 h-5 bg-accent-glitch/40 rounded-full shrink-0" />
-        {props.children}
-      </h3>
+        className="text-sm sm:text-base md:text-lg font-black text-white mt-10 mb-5 tracking-wide uppercase before:content-[''] before:inline-block before:w-1.5 before:h-4 before:bg-accent-glitch/60 before:mr-3 before:align-middle"
+      />
     );
   },
   p: (props: any) => {
@@ -330,24 +268,14 @@ const MDXComponents = {
   li: (props: any) => (
     <li
       {...props}
-      className="flex items-start gap-3 group/li py-2 px-4 rounded-lg hover:bg-white/[0.02] transition-colors"
-    >
-      <div className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-glitch/40 shrink-0 group-hover/li:bg-accent-glitch transition-colors" />
-      <span className="flex-1 leading-relaxed transition-colors group-hover/li:text-white/70">
-        {props.children}
-      </span>
-    </li>
+      className="relative pl-6 py-1 leading-relaxed text-white/60 before:content-[''] before:absolute before:left-0 before:top-3 before:w-1.5 before:h-1.5 before:bg-accent-glitch/40 before:rounded-full"
+    />
   ),
   blockquote: (props: any) => (
     <blockquote
       {...props}
-      className="border-l-2 border-accent-glitch/40 p-6 font-mono italic text-white/70 bg-accent-glitch/[0.03] my-8 text-base rounded-r-xl relative overflow-hidden"
-    >
-      <div className="absolute top-3 right-3 w-8 h-8 bg-accent-glitch/5 border border-accent-glitch/10 rounded-lg flex items-center justify-center">
-        <Terminal className="w-4 h-4 text-accent-glitch/20" />
-      </div>
-      {props.children}
-    </blockquote>
+      className="border-l-2 border-accent-glitch/40 py-4 px-5 font-mono italic text-white/70 bg-accent-glitch/[0.03] my-8 text-base rounded-r-xl"
+    />
   ),
   pre: (props: any) => (
     <pre
@@ -367,9 +295,10 @@ const MDXComponents = {
       <div className="relative w-full aspect-video border border-white/5 rounded-xl overflow-hidden">
         <Image
           {...props}
-          fill
+          width={1920}
+          height={1080}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
-          className="object-cover grayscale opacity-50 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-1000"
+          className="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-1000"
           alt={props.alt || "Visual reference"}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-bg-void/60 to-transparent" />

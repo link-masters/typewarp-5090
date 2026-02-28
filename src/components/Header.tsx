@@ -189,6 +189,7 @@ const Header = () => {
           <Link
             href="/"
             className="group shrink-0"
+            aria-label="TypeWarp Home"
             onClick={() => {
               killDropdown();
               closeMobile();
@@ -615,7 +616,7 @@ const Header = () => {
                                         className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-400 dark:text-neutral-500 group-hover/tool:text-emerald-600 dark:group-hover/tool:text-accent-glitch transition-colors duration-150"
                                       />
                                     </div>
-                                    <span className="text-[12px] sm:text-[13px] font-medium text-neutral-600 dark:text-neutral-400 group-hover/tool:text-neutral-900 dark:group-hover/tool:text-white truncate transition-colors duration-150 flex-1">
+                                    <span className="text-[12px] sm:text-[13px] font-medium text-neutral-600 dark:text-neutral-300 group-hover/tool:text-neutral-900 dark:group-hover/tool:text-white truncate transition-colors duration-150 flex-1">
                                       {tool.name}
                                     </span>
                                     <ChevronRight className="w-3.5 h-3.5 text-neutral-300 dark:text-neutral-700 shrink-0 opacity-0 group-hover/tool:opacity-100 transition-opacity duration-150" />

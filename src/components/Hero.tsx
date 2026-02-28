@@ -86,7 +86,7 @@ export default function Hero() {
           className="mb-6 md:mb-8 w-full px-4"
         >
           <h1 className="select-none text-center">
-            <span className="text-[clamp(2rem,8vw,4.5rem)] md:text-[clamp(2.5rem,5.5vw,4.5rem)] text-white font-black leading-[0.95] tracking-tighter uppercase flex flex-col items-center">
+            <span className="text-[clamp(1.75rem,7.5vw,4.5rem)] md:text-[clamp(2.5rem,5.5vw,4.5rem)] text-white font-black leading-[1.1] md:leading-[0.95] tracking-tighter uppercase flex flex-col items-center">
               <span className="flex flex-wrap justify-center gap-x-3 md:gap-x-4">
                 <span className="whitespace-nowrap">
                   <ScrambleText text="Modern" delay={0.2} />
@@ -95,7 +95,7 @@ export default function Hero() {
                   <ScrambleText text="Text Effects" delay={0.6} />
                 </span>
               </span>
-              <span className="whitespace-nowrap mt-1">
+              <span className="whitespace-nowrap mt-1 md:mt-0">
                 <ScrambleText text="Generator" delay={1.0} />
               </span>
             </span>
@@ -107,7 +107,7 @@ export default function Hero() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-          className="text-white/40 font-mono text-sm md:text-xl lg:text-2xl max-w-2xl mb-10 md:mb-14 px-6 leading-relaxed tracking-tight"
+          className="text-white/60 font-mono text-sm md:text-xl lg:text-2xl max-w-2xl mb-10 md:mb-14 px-6 leading-relaxed tracking-tight"
         >
           Create unique and beautiful text effects for your social media. Stand
           out with our professional collection of font styles.

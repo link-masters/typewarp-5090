@@ -18,9 +18,9 @@ import { Suspense } from "react";
 import NoIndexOnQueryParams from "@/components/NoIndexOnQueryParams";
 
 export const metadata: Metadata = {
-  title: "Technical Blog | Cursed Text, Glitch Fonts & Design Guides",
+  title: "Blog",
   description:
-    "Explore technical guides on digital entropy, Unicode manipulation, and creative typography. Master the art of the glitch with our expert-led blog articles.",
+    "Explore technical guides on digital entropy, Unicode manipulation, and creative typography. Master the art of glitch with our expert-led blog.",
   keywords: [
     "typography blog",
     "font design",

@@ -33,18 +33,19 @@ export async function generateMetadata({
   if (!post) return { title: "Post Not Found" };
 
   let title = post.title;
-  if (title.length > 60) title = title.substring(0, 57) + "...";
-  if (title.length < 50) title = title.padEnd(55, " | TypeWarp Blog");
+  if (title.length > 50) title = title.substring(0, 47) + "...";
 
   let description = post.description;
-  if (description.length < 150) {
+  // Enforce 140-153 chars for description
+  if (description.length < 140) {
     description = description.padEnd(
-      155,
+      150,
       " Learn how to master digital typography and creative text effects with our latest expert design guides and tutorials.",
     );
   }
-  if (description.length > 160)
-    description = description.substring(0, 157) + "...";
+  if (description.length > 155) {
+    description = description.substring(0, 151) + "...";
+  }
 
   return {
     title,
@@ -231,8 +232,9 @@ export default async function BlogPostPage({
           <Image
             src={post.image}
             alt={post.tags?.[0] || post.title}
-            fill
-            className="object-cover grayscale opacity-50 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-1000"
+            width={1920}
+            height={823}
+            className="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-1000"
             priority
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
           />

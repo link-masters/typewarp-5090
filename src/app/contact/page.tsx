@@ -16,9 +16,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Contact TypeWarp | Support for Cursed Text & Font Tools",
+  title: "Contact Us",
   description:
-    "Contact the TypeWarp support team for help with our cursed text generator, glitch font tools, or technical inquiries. We are here to assist with your needs.",
+    "Contact the TypeWarp support team for help with our cursed text generator, glitch font tools, or technical inquiries. We are here to assist you.",
   keywords: [
     "contact typewarp",
     "text generator support",
