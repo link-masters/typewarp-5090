@@ -8,7 +8,7 @@ import JSONLD from "@/components/JSONLD";
 import SmoothScroll from "@/components/SmoothScroll";
 import { SITE_URL } from "@/lib/config";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 
 const inter = Inter({
