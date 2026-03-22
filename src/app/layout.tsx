@@ -152,8 +152,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="dark">
       <head>
-        {/* Umami Analytics */}
-        <Script
+        {/* Umami Analytics */}        <Script
           defer
           src="https://cloud.umami.is/script.js"
           data-website-id="c8e67150-1fcb-43a6-940c-b27c953fecce"
