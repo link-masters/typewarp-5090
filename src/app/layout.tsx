@@ -8,6 +8,7 @@ import JSONLD from "@/components/JSONLD";
 import SmoothScroll from "@/components/SmoothScroll";
 import { SITE_URL } from "@/lib/config";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Script from "next/script";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -150,6 +151,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="dark">
       <head>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-131CE97G7N"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-131CE97G7N');
+          `}
+        </Script>
         <JSONLD data={siteJsonLd} />
         <JSONLD data={organizationJsonLd} />
         <link rel="manifest" href="/site.webmanifest" />
