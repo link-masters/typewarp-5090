@@ -8,7 +8,7 @@ import JSONLD from "@/components/JSONLD";
 import SmoothScroll from "@/components/SmoothScroll";
 import { SITE_URL } from "@/lib/config";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 
 const inter = Inter({
@@ -152,19 +152,25 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="dark">
       <head>
-        {/* Google Analytics */}
+        {/* Umami Analytics */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-131CE97G7N"
-          strategy="beforeInteractive"
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="c8e67150-1fcb-43a6-940c-b27c953fecce"
+          strategy="afterInteractive"
         />
-        <Script id="google-analytics" strategy="beforeInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-131CE97G7N');
-          `}
-        </Script>
+        {/* Google Analytics */}
+        <script async={true} src="https://www.googletagmanager.com/gtag/js?id=G-131CE97GZN"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-131CE97GZN');
+            `,
+          }}
+        />
         <JSONLD data={siteJsonLd} />
         <JSONLD data={organizationJsonLd} />
         <link rel="manifest" href="/site.webmanifest" />
