@@ -81,17 +81,11 @@ export async function generateMetadata({
   const mdxDesc = toolContent?.meta?.description;
   let pageDescription =
     mdxDesc ||
-    `Generate ${tool.name.toLowerCase()} instantly. High-performance ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok and gaming platforms. No signup required.`;
+    `Generate ${tool.name.toLowerCase()} instantly. Free ${category.name.toLowerCase()} tool for Instagram, Discord, TikTok, and gaming. Copy-paste Unicode text, no signup required.`;
 
-  // Enforce 140-153 chars for description
-  if (pageDescription.length < 140) {
-    pageDescription = pageDescription.padEnd(
-      150,
-      " Create unique stylized content for your social media profiles and gaming usernames with TypeWarp today.",
-    );
-  }
-  if (pageDescription.length > 155) {
-    pageDescription = pageDescription.substring(0, 151) + "...";
+  // Trim to 160 max
+  if (pageDescription.length > 160) {
+    pageDescription = pageDescription.substring(0, 157) + "...";
   }
 
   return {

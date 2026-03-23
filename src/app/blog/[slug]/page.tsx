@@ -36,15 +36,9 @@ export async function generateMetadata({
   if (title.length > 50) title = title.substring(0, 47) + "...";
 
   let description = post.description;
-  // Enforce 140-153 chars for description
-  if (description.length < 140) {
-    description = description.padEnd(
-      150,
-      " Learn how to master digital typography and creative text effects with our latest expert design guides and tutorials.",
-    );
-  }
-  if (description.length > 155) {
-    description = description.substring(0, 151) + "...";
+  // Trim to 160 max, no padding
+  if (description.length > 160) {
+    description = description.substring(0, 157) + "...";
   }
 
   return {

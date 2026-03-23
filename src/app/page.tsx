@@ -26,9 +26,9 @@ const Testimonials = dynamic(() => import("@/components/Testimonials"), {
 });
 
 export const metadata: Metadata = {
-  title: "Modern Text Formatting Tools",
+  title: "TypeWarp — Free Cursed Text & Unicode Font Generator",
   description:
-    "Free cursed text generator with 81+ glitch fonts, Zalgo text, and aesthetic styles. Create unique text for Discord, Twitter, and Insta instantly.",
+    "Free text generator with 113+ tools: cursed text, Zalgo, glitch fonts, and aesthetic styles. Create unique copy-paste text for Discord, Instagram, and TikTok.",
   keywords: [
     "cursed text generator",
     "glitch text generator",
@@ -417,6 +417,168 @@ export default async function Home() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+      {/* About Section */}
+      <section
+        className="py-20 md:py-32 px-4 bg-[#080808] relative overflow-hidden border-t border-white/5"
+        aria-labelledby="about-heading"
+      >
+        <div className="container mx-auto max-w-7xl relative z-10">
+
+          {/* Section header — same pattern as Capabilities & Categories */}
+          <div className="flex flex-col md:flex-row items-end justify-between mb-12 md:mb-16 gap-6">
+            <div className="max-w-2xl">
+              <span className="text-white/30 font-mono text-[10px] uppercase tracking-[0.5em] mb-4 inline-block">
+                About TypeWarp
+              </span>
+              <h2
+                id="about-heading"
+                className="text-3xl md:text-5xl font-black tracking-tighter uppercase leading-tight"
+              >
+                How It <span className="text-accent-glitch">Works</span>
+              </h2>
+            </div>
+            <p className="text-white/40 font-mono text-sm max-w-sm text-left md:text-right">
+              113+ free Unicode text tools. No signup. No installs. Just copy and paste.
+            </p>
+          </div>
+
+          {/* Top row — wide intro card + tall stat card */}
+          <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6 mb-6">
+            {/* Intro card */}
+            <div className="group relative p-8 bg-[#0c0c0c] border border-white/5 hover:border-accent-glitch/20 transition-all duration-500 rounded-xl overflow-hidden">
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
+              <div className="relative z-10">
+                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/20 mb-5 inline-block">
+                  01 — What is TypeWarp
+                </span>
+                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter text-white mb-4 leading-tight">
+                  Free Text Generator,{" "}
+                  <span className="text-accent-glitch">113+ Tools</span>
+                </h3>
+                <p className="text-white/40 text-sm leading-relaxed max-w-xl">
+                  TypeWarp gives you instant access to over 113 Unicode text
+                  tools — all in one place, no account required. Cursed text
+                  dripping with Zalgo diacritics, aesthetic fonts for your
+                  Instagram bio, binary and Morse code converters, gothic
+                  blackletter Discord usernames — every transformation runs in
+                  real time, directly in your browser. The output is always
+                  standard Unicode, so you can copy and paste it anywhere.
+                </p>
+              </div>
+            </div>
+            {/* Stat card */}
+            <div className="group relative p-8 bg-[#0c0c0c] border border-white/5 hover:border-accent-glitch/20 transition-all duration-500 rounded-xl overflow-hidden flex flex-col justify-between">
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
+              <div className="relative z-10 flex flex-col h-full justify-between gap-8">
+                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/20">
+                  02 — Unicode Engine
+                </span>
+                <div>
+                  <div className="text-5xl md:text-6xl font-black tracking-tighter text-white leading-none mb-3">
+                    149<span className="text-accent-glitch">K</span>
+                  </div>
+                  <p className="text-white/40 text-sm leading-relaxed">
+                    Unicode characters in the standard. TypeWarp maps your input
+                    across mathematical symbols, combining diacritics, enclosed
+                    alphanumerics, and fullwidth Latin — effects no font file
+                    can replicate.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Middle row — three equal cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            {[
+              {
+                num: "03",
+                title: "Works Everywhere",
+                body: "Unicode characters are part of the text data itself, not a font file. Paste bold Unicode into Discord and every reader sees bold text — no download, no rendering issues, no broken characters on mobile. Works on Instagram, TikTok, Twitter/X, Discord, Facebook, YouTube, Reddit, and Twitch.",
+              },
+              {
+                num: "04",
+                title: "Six Categories",
+                body: "Dark & Horror: Zalgo, glitch, cursed, creepy. Style & Fancy: aesthetic, vaporwave, cursive, calligraphy. Social Fonts: Discord, TikTok, Fortnite, gaming. Symbols: kaomoji, Lenny faces, combat icons. Text Tools: case converters, formatters. Translators: binary, hex, Morse, Braille, ciphers.",
+              },
+              {
+                num: "05",
+                title: "Private & Fast",
+                body: "Every tool runs entirely in your browser. Your text is never sent to a server, never stored, never logged. Transformations happen in under a millisecond. No account to create, no email to verify, no subscription. TypeWarp is, and will remain, completely free.",
+              },
+            ].map((card) => (
+              <div
+                key={card.num}
+                className="group relative p-6 bg-[#0c0c0c] border border-white/5 hover:border-accent-glitch/20 transition-all duration-500 rounded-xl overflow-hidden flex flex-col gap-5"
+              >
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
+                <div className="relative z-10 flex flex-col gap-4 h-full">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/20">
+                    {card.num}
+                  </span>
+                  <h3 className="text-base font-black uppercase tracking-tighter text-white leading-tight group-hover:text-accent-glitch transition-colors duration-500">
+                    {card.title}
+                  </h3>
+                  <p className="text-white/40 text-[11px] leading-relaxed group-hover:text-white/60 transition-colors duration-500">
+                    {card.body}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom row — 4 use-case cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                num: "06",
+                title: "Creators & Influencers",
+                body: "Make Instagram bios and TikTok captions stand out in a feed full of default fonts using aesthetic, fancy, and vaporwave text tools.",
+              },
+              {
+                num: "07",
+                title: "Gamers",
+                body: "Build intimidating usernames and clan tags with Discord font, gaming font, Fortnite font, Free Fire font, and combat symbol generators.",
+              },
+              {
+                num: "08",
+                title: "Horror & Dark Content",
+                body: "Add visual dread to posts and profiles using cursed text, Zalgo, glitch, demonic, and corrupted text generators.",
+              },
+              {
+                num: "09",
+                title: "Devs & Students",
+                body: "Quickly encode and decode with binary, hex, Base64, Caesar cipher, Atbash, ROT13, and Braille tools — no library needed.",
+              },
+            ].map((card) => (
+              <div
+                key={card.num}
+                className="group relative p-6 bg-[#0c0c0c] border border-white/5 hover:border-accent-glitch/20 transition-all duration-500 rounded-xl overflow-hidden flex flex-col"
+              >
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
+                <div className="relative z-10 flex flex-col gap-3 h-full">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/20">
+                    {card.num}
+                  </span>
+                  <h3 className="text-sm font-black uppercase tracking-tighter text-white leading-tight group-hover:text-accent-glitch transition-colors duration-500">
+                    {card.title}
+                  </h3>
+                  <p className="text-white/40 text-[11px] leading-relaxed group-hover:text-white/60 transition-colors duration-500">
+                    {card.body}
+                  </p>
+                  <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/20 group-hover:text-accent-glitch transition-colors duration-300">
+                      Use Case
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5 text-white/20 group-hover:text-accent-glitch group-hover:translate-x-1 transition-all" aria-hidden="true" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
         </div>
       </section>
       {/* Testimonials Section */}

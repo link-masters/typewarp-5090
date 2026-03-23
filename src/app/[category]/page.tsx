@@ -26,16 +26,10 @@ export async function generateMetadata({
 
   let title = `${category.name} Generator & Text Tools`;
 
-  let description = `Access ${category.count} free ${category.name.toLowerCase()} tools online. Create specialized text effects like ${toolNames.slice(0, 2).join(" and ")} for Discord, Instagram and TikTok.`;
-  // Enforce 140-153 chars for description
-  if (description.length < 140) {
-    description = description.padEnd(
-      150,
-      " Enhance your social media branding and digital presence with our high-performance Unicode transformation engine.",
-    );
-  }
-  if (description.length > 155) {
-    description = description.substring(0, 151) + "...";
+  let description = `Access ${category.count} free ${category.name.toLowerCase()} tools online. Create specialized text effects like ${toolNames.slice(0, 2).join(" and ")} for Discord, Instagram, and TikTok.`;
+  // Trim to 160 max
+  if (description.length > 160) {
+    description = description.substring(0, 157) + "...";
   }
 
   return {

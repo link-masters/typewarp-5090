@@ -142,6 +142,15 @@ export const metadata: Metadata = {
     google: "google-site-verification-id",
     yandex: "yandex-verification-id",
   },
+  icons: {
+    icon: [
+      { url: "/favicon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/logo.png", sizes: "512x512", type: "image/png" },
+      { url: "/logo.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/logo.png", sizes: "512x512" }],
+    shortcut: "/favicon-48.png",
+  },
 };
 
 export default function RootLayout({
