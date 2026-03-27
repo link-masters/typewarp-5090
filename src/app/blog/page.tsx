@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   other: {
-    "og:updated_time": new Date().toISOString(),
+    "og:updated_time": "2026-03-27T00:00:00.000Z",
   },
   alternates: { canonical: `${SITE_URL}/blog` },
 };

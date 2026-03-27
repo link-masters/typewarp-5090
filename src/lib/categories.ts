@@ -61,7 +61,7 @@ export const categories: Category[] = [
   {
     name: "Style & Fancy",
     slug: "style-fancy",
-    count: 17,
+    count: 14,
     icon: "✨",
     description: "Aesthetic, vaporwave, and stylish text designs",
     tools: [
@@ -96,7 +96,7 @@ export const categories: Category[] = [
   {
     name: "Text Tools",
     slug: "text-tools",
-    count: 29,
+    count: 27,
     icon: "🔧",
     description: "Essential text formatting and manipulation tools",
     tools: [
@@ -178,7 +178,7 @@ export const categories: Category[] = [
   {
     name: "Translators",
     slug: "translators",
-    count: 16,
+    count: 14,
     icon: "🌐",
     description: "Convert text to morse, binary, braille & more",
     tools: [

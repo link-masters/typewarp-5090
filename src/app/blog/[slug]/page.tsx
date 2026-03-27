@@ -225,7 +225,7 @@ export default async function BlogPostPage({
         <div className="relative w-full aspect-[21/9] mb-12 bg-bg-card border border-white/10 group overflow-hidden max-w-6xl mx-auto shadow-2xl">
           <Image
             src={post.image}
-            alt={post.tags?.[0] || post.title}
+            alt={post.title}
             width={1920}
             height={823}
             className="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-1000"

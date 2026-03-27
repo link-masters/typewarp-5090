@@ -6,7 +6,7 @@ import { SITE_URL } from "@/lib/config";
 export const metadata: Metadata = {
   title: "Collection",
   description:
-    "Explore the TypeWarp collection of text generators, typography engines, and encoding utilities. Access our 86+ free tools for unique styles.",
+    "Explore the TypeWarp collection of text generators, typography engines, and encoding utilities. Access our 88+ free tools for unique styles.",
   keywords: [
     "text generator tools",
     "cursed text generator",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   other: {
-    "og:updated_time": new Date().toISOString(),
+    "og:updated_time": "2026-03-27T00:00:00.000Z",
   },
   alternates: { canonical: `${SITE_URL}/collection` },
 };

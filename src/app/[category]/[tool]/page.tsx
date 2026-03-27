@@ -59,19 +59,15 @@ export async function generateMetadata({
   const mdxTitle = toolContent?.meta?.title;
   let pageTitle = mdxTitle || `${tool.name} Generator`;
 
-  // Dynamically clean verbose titles from mdx frontmatter to fit SERP length limits
+  // Only strip verbose suffixes — preserve the core tool name intact
   pageTitle = pageTitle
     .replace(/\s*-\s*Free Online.*$/i, "")
-    .replace(/\s*—\s*.*$/i, "")
-    .replace(/\s*Online\.?\s*/i, "")
-    .replace(/\s*Free\s*/i, "")
-    .replace(/\s*High-Performance\s*/i, "")
-    .replace(/\s*Best Tool\s*/i, "")
-    .replace(/\s*Tool\s*/i, "")
+    .replace(/\s*—\s*Free.*$/i, "")
+    .replace(/\s*\|\s*.*$/i, "")
     .trim();
 
-  if (pageTitle.length > 45) {
-    pageTitle = pageTitle.substring(0, 42) + "...";
+  if (pageTitle.length > 60) {
+    pageTitle = pageTitle.substring(0, 57) + "...";
   }
 
   const ogTitle = mdxTitle
@@ -193,13 +189,6 @@ export default async function ToolPage({
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      ratingCount: "120",
-      bestRating: "5",
-      worstRating: "1",
-    },
   };
 
   const breadcrumbJsonLd = {
@@ -226,24 +215,35 @@ export default async function ToolPage({
     ],
   };
 
+  // Extract FAQ questions from MDX content for rich schema
+  const faqMatches = [...(toolContent?.content || "").matchAll(/<FAQItem q="([^"]+)">([\s\S]*?)<\/FAQItem>/g)];
+  const faqEntities = faqMatches.slice(0, 7).map((m) => ({
+    "@type": "Question",
+    name: m[1],
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: m[2].replace(/<[^>]+>/g, "").trim().substring(0, 300),
+    },
+  }));
+
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
+    mainEntity: faqEntities.length > 0 ? faqEntities : [
       {
         "@type": "Question",
         name: `Is the ${tool.name} free?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: `Yes, the ${tool.name} is completely free to use.`,
+          text: `Yes, the ${tool.name} on TypeWarp is completely free with no signup required.`,
         },
       },
       {
         "@type": "Question",
-        name: `Can I use ${tool.name} output on social media?`,
+        name: `Does ${tool.name} output work on Discord and Instagram?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: `Yes, the output is standard Unicode and works on Instagram, TikTok, Discord, and Twitter/X.`,
+          text: `Yes, the output uses standard Unicode characters that work on Discord, Instagram, TikTok, Twitter/X, and most other platforms without any font installation.`,
         },
       },
     ],

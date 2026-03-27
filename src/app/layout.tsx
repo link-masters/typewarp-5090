@@ -105,7 +105,7 @@ export const metadata: Metadata = {
       "The ultimate cursed text toolkit. Transform your typography with glitch effects, Zalgo text, and deep-fried fonts.",
     images: [
       {
-        url: "/og-image.png",
+        url: `${SITE_URL}/og-image.png`,
         width: 1200,
         height: 630,
         alt: "TypeWarp - Cursed Typography",
@@ -118,12 +118,11 @@ export const metadata: Metadata = {
     description:
       "The ultimate cursed text toolkit. Transform your typography with glitch effects, Zalgo text, and deep-fried fonts.",
     creator: "@typewarp",
-    images: ["/og-image.png"],
+    images: [`${SITE_URL}/og-image.png`],
   },
   robots: {
     index: true,
     follow: true,
-    nocache: true,
     googleBot: {
       index: true,
       follow: true,
@@ -138,10 +137,10 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: "TypeWarp",
   },
-  verification: {
-    google: "google-site-verification-id",
-    yandex: "yandex-verification-id",
-  },
+  // Add real verification IDs from Google Search Console / Yandex Webmaster
+  // verification: {
+  //   google: "YOUR_REAL_GOOGLE_VERIFICATION_CODE",
+  // },
   icons: {
     icon: [
       { url: "/favicon-48.png", sizes: "48x48", type: "image/png" },
@@ -161,15 +160,21 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="dark">
       <head>
-        {/* Umami Analytics */}        <Script
+        {/* Umami Analytics */}
+        <Script
           defer
           src="https://cloud.umami.is/script.js"
           data-website-id="c8e67150-1fcb-43a6-940c-b27c953fecce"
           strategy="afterInteractive"
         />
-        {/* Google Analytics */}
-        <script async={true} src="https://www.googletagmanager.com/gtag/js?id=G-131CE97GZN"></script>
-        <script
+        {/* Google Analytics — using Next.js Script to avoid render-blocking */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-131CE97GZN"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];

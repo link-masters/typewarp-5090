@@ -4,7 +4,7 @@
 
 ## About
 
-TypeWarp provides 90+ text transformation tools organized into 7 categories. Users type or paste text and get real-time stylized output they can copy and use on Instagram, Discord, TikTok, Twitter, Facebook, and other platforms. The output is standard Unicode text, not images or custom fonts, so it works everywhere.
+TypeWarp provides 88+ text transformation tools organized into 6 categories. Users type or paste text and get real-time stylized output they can copy and use on Instagram, Discord, TikTok, Twitter, Facebook, and other platforms. The output is standard Unicode text, not images or custom fonts, so it works everywhere.
 
 ## Categories
 
@@ -14,7 +14,6 @@ TypeWarp provides 90+ text transformation tools organized into 7 categories. Use
 - **Text Tools**: Bold, italic, underline, strikethrough, small text, big text, uppercase, reverse, vaporwave, and more
 - **Symbols**: Aesthetic symbols, special characters, text emoticons, kaomoji, lenny faces, and combat symbols
 - **Translators**: Morse code, braille, binary, hex, Base64, Caesar cipher, ROT13, Atbash, and NATO phonetic
-- **Emoji**: Emoji art and ASCII art generators
 
 ## Key Pages
 

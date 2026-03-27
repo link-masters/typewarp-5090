@@ -3,6 +3,10 @@ import { categories } from "@/lib/categories";
 import { getBlogPosts } from "@/lib/blog";
 import { SITE_URL } from "@/lib/config";
 
+// Use a stable build date instead of new Date() which changes on every request
+// and makes Google ignore lastModified entirely
+const LAST_CONTENT_UPDATE = new Date("2026-03-27");
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = SITE_URL;
 
@@ -19,7 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { route: "/cookies", priority: 0.3, changeFrequency: "yearly" as const },
   ].map((item) => ({
     url: `${baseUrl}${item.route}`,
-    lastModified: new Date(),
+    lastModified: LAST_CONTENT_UPDATE,
     changeFrequency: item.changeFrequency,
     priority: item.priority,
   }));
@@ -27,7 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 2. Category Routes
   const categoryRoutes = categories.map((cat) => ({
     url: `${baseUrl}/${cat.slug}`,
-    lastModified: new Date(),
+    lastModified: LAST_CONTENT_UPDATE,
     changeFrequency: "weekly" as const,
     priority: 0.9,
   }));
@@ -43,13 +47,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       })
       .map((tool) => ({
         url: `${baseUrl}/${cat.slug}/${tool.slug}`,
-        lastModified: new Date(),
+        lastModified: LAST_CONTENT_UPDATE,
         changeFrequency: "weekly" as const,
-        priority: 0.9,
+        priority: 0.8,
       })),
   );
 
-  // 4. Blog Posts
+  // 4. Blog Posts — use actual publish date
   const posts = await getBlogPosts();
   const blogRoutes = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,

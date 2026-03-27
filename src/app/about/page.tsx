@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About TypeWarp | Mission & Technology",
     description:
-      "Discover TypeWarp — 81+ free text transformation tools. Real-time processing, zero data collection, cross-platform compatible.",
+      "Discover TypeWarp — 88+ free text transformation tools. Real-time processing, zero data collection, cross-platform compatible.",
     url: `${SITE_URL}/about`,
     type: "website",
     images: [
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About TypeWarp | Mission & Technology",
     description:
-      "Discover TypeWarp — 81+ free text transformation tools with real-time processing and zero data collection.",
+      "Discover TypeWarp — 88+ free text transformation tools with real-time processing and zero data collection.",
     creator: "@typewarp",
     images: ["/og-image.png"],
   },
@@ -163,7 +163,7 @@ const roadmapItems = [
     phase: "Now",
     title: "Core Platform",
     items: [
-      "81+ text transformation tools",
+      "88+ text transformation tools",
       "6 organized categories",
       "Real-time preview engine",
       "Mobile-first responsive UI",
@@ -205,12 +205,12 @@ const AboutPage = () => {
     name: "About TypeWarp",
     url: `${SITE_URL}/about`,
     description:
-      "TypeWarp is a free, privacy-first text transformation platform with 81+ tools across 6 categories.",
+      "TypeWarp is a free, privacy-first text transformation platform with 88+ tools across 6 categories.",
     mainEntity: {
       "@type": "WebApplication",
       name: "TypeWarp",
       description:
-        "Free text transformation platform with 90+ Unicode typography tools for social media, gaming, and creative projects.",
+        "Free text transformation platform with 88+ Unicode typography tools for social media, gaming, and creative projects.",
       url: SITE_URL,
       applicationCategory: "UtilitiesApplication",
       operatingSystem: "All",
@@ -225,13 +225,6 @@ const AboutPage = () => {
         priceCurrency: "USD",
         availability: "https://schema.org/InStock",
         url: SITE_URL,
-      },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.8",
-        ratingCount: "2150",
-        bestRating: "5",
-        worstRating: "1",
       },
     },
   };

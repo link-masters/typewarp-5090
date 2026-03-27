@@ -28,7 +28,7 @@ const Testimonials = dynamic(() => import("@/components/Testimonials"), {
 export const metadata: Metadata = {
   title: "TypeWarp — Free Cursed Text & Unicode Font Generator",
   description:
-    "Free text generator with 113+ tools: cursed text, Zalgo, glitch fonts, and aesthetic styles. Create unique copy-paste text for Discord, Instagram, and TikTok.",
+    "Free text generator with 88+ tools: cursed text, Zalgo, glitch fonts, and aesthetic styles. Create unique copy-paste text for Discord, Instagram, and TikTok.",
   keywords: [
     "cursed text generator",
     "glitch text generator",
@@ -52,13 +52,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "TypeWarp | Modern Text Effects Generator",
     description:
-      "Create cursed text, Zalgo fonts, and glitch effects instantly. 50+ free text tools for Discord, Twitter, Instagram. No signup needed.",
+      "Create cursed text, Zalgo fonts, and glitch effects instantly. 88+ free text tools for Discord, Twitter, Instagram. No signup needed.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "TypeWarp - Free Cursed Text Generator with 50+ Glitch Font Tools",
+        alt: "TypeWarp - Free Cursed Text Generator with 88+ Glitch Font Tools",
       },
     ],
     url: SITE_URL,
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "TypeWarp | Modern Text Effects Generator",
     description:
-      "Create cursed text, Zalgo fonts, and glitch effects instantly. 50+ free text tools.",
+      "Create cursed text, Zalgo fonts, and glitch effects instantly. 88+ free text tools.",
     creator: "@typewarp",
     images: ["/og-image.png"],
   },
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     canonical: SITE_URL,
   },
   other: {
-    "og:updated_time": new Date().toISOString(),
+    "og:updated_time": "2026-03-27T00:00:00.000Z",
     "application-name": "TypeWarp",
     "apple-mobile-web-app-title": "TypeWarp",
   },
@@ -93,7 +93,7 @@ export default async function Home() {
     name: "TypeWarp - Free Cursed Text Generator",
     url: SITE_URL,
     description:
-      "Free online cursed text generator with 50+ glitch fonts, Zalgo text, and aesthetic styles. Create unique text effects for Discord, Twitter, and Instagram instantly.",
+      "Free online cursed text generator with 88+ glitch fonts, Zalgo text, and aesthetic styles. Create unique text effects for Discord, Twitter, and Instagram instantly.",
     applicationCategory: "DesignApplication",
     genre: ["Typography", "Text Effects", "Font Generator"],
     browserRequirements: "Requires JavaScript",
@@ -107,7 +107,7 @@ export default async function Home() {
     },
     featureList: [
       "Real-time Cursed Text Generation",
-      "50+ Glitch Font Styles",
+      "88+ Glitch Font Styles",
       "Advanced Zalgo Text Effects",
       "Binary & Morse Code Converters",
       "ASCII Art Generator",
@@ -116,13 +116,6 @@ export default async function Home() {
       "No Signup Required",
     ],
     screenshot: `${SITE_URL}/og-image.png`,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      ratingCount: "250",
-      bestRating: "5",
-      worstRating: "1",
-    },
   };
 
   const faqJsonLd = {
@@ -150,7 +143,7 @@ export default async function Home() {
         name: "Is the cursed text generator free to use?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes, TypeWarp is completely free with no signup required. All 50+ text tools including the cursed text generator, Zalgo creator, and glitch font maker are available instantly.",
+          text: "Yes, TypeWarp is completely free with no signup required. All 88+ text tools including the cursed text generator, Zalgo creator, and glitch font maker are available instantly.",
         },
       },
       {
@@ -440,7 +433,7 @@ export default async function Home() {
               </h2>
             </div>
             <p className="text-white/40 font-mono text-sm max-w-sm text-left md:text-right">
-              113+ free Unicode text tools. No signup. No installs. Just copy and paste.
+              88+ free Unicode text tools. No signup. No installs. Just copy and paste.
             </p>
           </div>
 
@@ -455,10 +448,10 @@ export default async function Home() {
                 </span>
                 <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter text-white mb-4 leading-tight">
                   Free Text Generator,{" "}
-                  <span className="text-accent-glitch">113+ Tools</span>
+                  <span className="text-accent-glitch">88+ Tools</span>
                 </h3>
                 <p className="text-white/40 text-sm leading-relaxed max-w-xl">
-                  TypeWarp gives you instant access to over 113 Unicode text
+                  TypeWarp gives you instant access to over 88 Unicode text
                   tools — all in one place, no account required. Cursed text
                   dripping with Zalgo diacritics, aesthetic fonts for your
                   Instagram bio, binary and Morse code converters, gothic
