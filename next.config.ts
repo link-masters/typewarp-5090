@@ -151,6 +151,7 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizeCss: true,
+    optimizePackageImports: ["lucide-react", "framer-motion"],
   },
 };
 

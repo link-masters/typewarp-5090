@@ -152,15 +152,15 @@ export default async function CategoryPage({
       <CategoryClientView category={category} />
 
       {/* Improved Text-to-HTML Ratio Section */}
-      <section className="bg-[#080808] py-24 md:py-32 border-t border-white/5 relative overflow-hidden">
+      <section className="bg-bg-void py-24 md:py-32 border-t border-neutral-200 dark:border-white/5 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent-glitch/20 to-transparent" />
         <div className="container mx-auto max-w-7xl px-6 relative z-10">
           <div className="max-w-4xl mx-auto space-y-12">
             <div className="space-y-6">
-              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">
+              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-text-primary">
                 The Science of {category.name} Typography
               </h2>
-              <div className="prose prose-invert max-w-none text-white/50 font-mono text-sm md:text-base leading-relaxed space-y-4">
+              <div className="prose dark:prose-invert max-w-none text-neutral-500 dark:text-white/50 font-mono text-sm md:text-base leading-relaxed space-y-4">
                 <p>
                   The <strong>{category.name}</strong> collection at TypeWarp is
                   engineered using advanced Unicode mapping techniques. Unlike
@@ -182,11 +182,11 @@ export default async function CategoryPage({
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl">
-                <h3 className="text-lg font-black uppercase tracking-tighter text-white mb-4">
+              <div className="p-8 bg-white dark:bg-[#0c0c0c] border border-neutral-200 dark:border-white/5 rounded-2xl shadow-sm dark:shadow-none">
+                <h3 className="text-lg font-black uppercase tracking-tighter text-text-primary mb-4">
                   Why Use {category.name} Tools?
                 </h3>
-                <p className="text-white/40 font-mono text-xs leading-relaxed">
+                <p className="text-neutral-500 dark:text-white/40 font-mono text-xs leading-relaxed">
                   The modern digital landscape is saturated with standard system
                   typography. By utilizing specialized {category.name} effects,
                   you create a visual disruption that captures attention and
@@ -196,11 +196,11 @@ export default async function CategoryPage({
                   editing software.
                 </p>
               </div>
-              <div className="p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl">
-                <h3 className="text-lg font-black uppercase tracking-tighter text-white mb-4">
+              <div className="p-8 bg-white dark:bg-[#0c0c0c] border border-neutral-200 dark:border-white/5 rounded-2xl shadow-sm dark:shadow-none">
+                <h3 className="text-lg font-black uppercase tracking-tighter text-text-primary mb-4">
                   Universal Compatibility
                 </h3>
-                <p className="text-white/40 font-mono text-xs leading-relaxed">
+                <p className="text-neutral-500 dark:text-white/40 font-mono text-xs leading-relaxed">
                   Every tool in the {category.name} category produces raw
                   Unicode output. This ensures that your stylized text moves
                   seamlessly from our generator to any text field that supports

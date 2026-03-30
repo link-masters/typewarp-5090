@@ -73,10 +73,7 @@ export default async function BlogPage() {
     publisher: {
       "@type": "Organization",
       name: "TypeWarp",
-      logo: {
-        "@type": "ImageObject",
-        url: `${SITE_URL}/logo.png`,
-      },
+      logo: `${SITE_URL}/logo.png`,
     },
     blogPost: posts.slice(0, 10).map((post) => ({
       "@type": "BlogPosting",
@@ -90,9 +87,9 @@ export default async function BlogPage() {
   };
 
   return (
-    <div className="min-h-screen pt-40 pb-24 px-6 bg-[#080808] text-white relative overflow-hidden">
+    <div className="min-h-screen pt-40 pb-24 px-6 bg-bg-void light:bg-white text-text-primary relative overflow-hidden">
       {/* Background Glow */}
-      <div className="fixed top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-10%,rgba(57,255,20,0.02)_0%,transparent_50%)] pointer-events-none" />
+      <div className="fixed top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-10%,rgba(57,255,20,0.02)_0%,transparent_50%)] pointer-events-none hidden dark:block" />
       <JSONLD data={jsonLd} />
       <Suspense fallback={null}>
         <NoIndexOnQueryParams />
@@ -100,7 +97,7 @@ export default async function BlogPage() {
 
       <div className="container mx-auto max-w-7xl relative z-10">
         {/* Breadcrumbs */}
-        <div className="flex items-center gap-3 mb-10 font-mono text-[10px] uppercase tracking-[0.2em] text-white/30">
+        <div className="flex items-center gap-3 mb-10 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400 dark:text-white/30">
           <Link
             href="/"
             className="hover:text-accent-glitch transition-colors flex items-center gap-2"
@@ -118,7 +115,7 @@ export default async function BlogPage() {
               <span className="whitespace-nowrap">TypeWarp</span>{" "}
               <span className="text-accent-glitch whitespace-nowrap">Blog</span>
             </h1>
-            <p className="text-white/40 font-mono text-base md:text-lg max-w-xl">
+            <p className="text-neutral-500 dark:text-white/40 font-mono text-base md:text-lg max-w-xl">
               Tips and guides on digital typography, social media trends, and
               creating unique designs.
             </p>
@@ -134,20 +131,20 @@ export default async function BlogPage() {
 
         {/* CTA Section */}
         {/* CTA Section */}
-        <section className="relative p-8 md:p-24 bg-[#0c0c0c] border border-white/5 rounded-[32px] md:rounded-[40px] text-center overflow-hidden">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(57,255,20,0.02)_0%,transparent_70%)] pointer-events-none" />
+        <section className="relative p-8 md:p-24 bg-white dark:bg-[#0c0c0c] border border-neutral-200 dark:border-white/5 rounded-[32px] md:rounded-[40px] text-center overflow-hidden shadow-sm dark:shadow-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(57,255,20,0.02)_0%,transparent_70%)] pointer-events-none hidden dark:block" />
 
           <div className="relative z-10">
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-6 md:mb-8 tracking-tighter uppercase leading-[0.9]">
+            <h2 className="text-4xl md:text-6xl font-black text-text-primary mb-6 md:mb-8 tracking-tighter uppercase leading-[0.9]">
               Explore Our <span className="text-accent-glitch">Collection</span>
             </h2>
-            <p className="text-white/40 font-mono text-sm md:text-lg mb-10 md:mb-14 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-neutral-500 dark:text-white/40 font-mono text-sm md:text-lg mb-10 md:mb-14 max-w-2xl mx-auto leading-relaxed">
               Discover {TOTAL_TOOLS_COUNT}+ tools for your creative projects.
             </p>
             <div className="flex justify-center flex-col sm:flex-row gap-4">
               <Link
                 href="/collection"
-                className="group relative px-12 py-5 bg-white text-black font-bold text-sm rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_20px_40px_-10px_rgba(255,255,255,0.2)]"
+                className="group relative px-12 py-5 bg-neutral-900 dark:bg-white text-white dark:text-black font-bold text-sm rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-lg"
               >
                 <span className="relative z-10 uppercase tracking-[0.2em] text-center block w-full">
                   Explore All Tools

@@ -1,9 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import Link from "next/link";
-import BackgroundEffect from "./CanvasEffect";
 
 const CHARS = "!@#$%^&*()_+{}:<>?|ABCD0123456789";
 
@@ -66,27 +64,29 @@ const ScrambleText = ({
   return <span>{displayValue}</span>;
 };
 
+const BackgroundEffect = lazy(() => import("./CanvasEffect"));
+
 export default function Hero() {
-  const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const [showEffects, setShowEffects] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowEffects(true), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <section className="relative min-h-[95vh] flex flex-col items-center justify-center overflow-hidden pt-20 px-4 md:px-6 bg-[#080808]">
-      <BackgroundEffect />
+    <section className="relative min-h-[95vh] flex flex-col items-center justify-center overflow-hidden pt-20 px-4 md:px-6 bg-white dark:bg-[#080808]">
+      {showEffects && (
+        <Suspense fallback={null}>
+          <BackgroundEffect />
+        </Suspense>
+      )}
 
-      {/* Hero Content */}
-      <motion.div
-        style={{ opacity }}
-        className="relative z-10 flex flex-col items-center text-center max-w-7xl mx-auto will-change-transform"
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-6 md:mb-8 w-full px-4"
-        >
+      {/* Hero Content — rendered immediately for fast LCP */}
+      <div className="relative z-10 flex flex-col items-center text-center max-w-7xl mx-auto hero-fade-in">
+        <div className="mb-6 md:mb-8 w-full px-4">
           <h1 className="select-none text-center">
-            <span className="text-[clamp(1.75rem,7.5vw,4.5rem)] md:text-[clamp(2.5rem,5.5vw,4.5rem)] text-white font-black leading-[1.1] md:leading-[0.95] tracking-tighter uppercase flex flex-col items-center">
+            <span className="text-[clamp(1.75rem,7.5vw,4.5rem)] md:text-[clamp(2.5rem,5.5vw,4.5rem)] text-neutral-900 dark:text-white font-black leading-[1.1] md:leading-[0.95] tracking-tighter uppercase flex flex-col items-center">
               <span className="flex flex-wrap justify-center gap-x-3 md:gap-x-4">
                 <span className="whitespace-nowrap">
                   <ScrambleText text="Modern" delay={0.2} />
@@ -100,46 +100,33 @@ export default function Hero() {
               </span>
             </span>
           </h1>
-        </motion.div>
+        </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-          className="text-white/60 font-mono text-sm md:text-xl lg:text-2xl max-w-2xl mb-10 md:mb-14 px-6 leading-relaxed tracking-tight"
-        >
+        <p className="text-neutral-500 dark:text-white/60 font-mono text-sm md:text-xl lg:text-2xl max-w-2xl mb-10 md:mb-14 px-6 leading-relaxed tracking-tight hero-fade-in-delayed">
           Create unique and beautiful text effects for your social media. Stand
           out with our professional collection of font styles.
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 w-full px-8"
-        >
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 w-full px-8 hero-fade-in-delayed">
           <Link
             href="/collection"
-            className="group relative w-full sm:w-auto px-10 py-4 md:py-5 bg-white text-black font-black text-xs md:text-sm rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_20px_40px_-10px_rgba(255,255,255,0.2)]"
+            className="group relative w-full sm:w-auto px-10 py-4 md:py-5 bg-accent-glitch text-black font-black text-xs md:text-sm rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_8px_24px_-4px_rgba(57,255,20,0.35)] dark:shadow-[0_8px_24px_-4px_rgba(57,255,20,0.35)] light:shadow-[0_8px_24px_-4px_rgba(22,163,74,0.3)]"
           >
             <span className="relative z-10 uppercase tracking-widest text-center block">
               Try Now
             </span>
-            <div className="absolute inset-0 bg-accent-glitch opacity-0 group-hover:opacity-100 transition-opacity" />
           </Link>
           <Link
             href="/collection"
-            className="w-full sm:w-auto px-10 py-4 md:py-5 border border-white/10 text-white font-black text-xs md:text-sm rounded-full hover:bg-white/5 transition-all uppercase tracking-widest text-center"
+            className="w-full sm:w-auto px-10 py-4 md:py-5 border-2 border-text-primary/20 text-text-primary font-black text-xs md:text-sm rounded-full hover:border-accent-glitch hover:text-accent-glitch transition-all uppercase tracking-widest text-center"
           >
             View Tools
           </Link>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       {/* Subtle bottom fade */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#080808] to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white dark:from-[#080808] to-transparent pointer-events-none" />
     </section>
   );
 }

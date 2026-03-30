@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Lenis from "lenis";
 import { usePathname } from "next/navigation";
 
 export default function SmoothScroll({
@@ -10,7 +9,7 @@ export default function SmoothScroll({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const lenisRef = useRef<Lenis | null>(null);
+  const lenisRef = useRef<any>(null);
 
   useEffect(() => {
     // Disable custom smooth scroll on mobile for native performance
@@ -18,23 +17,32 @@ export default function SmoothScroll({
       return;
     }
 
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-    });
-    lenisRef.current = lenis;
+    let cancelled = false;
 
-    function raf(time: number) {
-      lenis.raf(time);
+    import("lenis").then(({ default: Lenis }) => {
+      if (cancelled) return;
+
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: "vertical",
+      });
+      lenisRef.current = lenis;
+
+      function raf(time: number) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
       requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
+    });
 
     return () => {
-      lenis.destroy();
-      lenisRef.current = null;
+      cancelled = true;
+      if (lenisRef.current) {
+        lenisRef.current.destroy();
+        lenisRef.current = null;
+      }
     };
   }, []);
 

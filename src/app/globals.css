@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @variant dark (&:where(.dark, .dark *));
+@variant light (&:where(.light, .light *));
 
 @theme {
   --color-bg-void: var(--bg-void);
@@ -46,30 +47,54 @@
   }
 }
 
-:root {
+/* ── Dark mode (default) ── */
+:root,
+.dark {
   --bg-void: #030303;
   --bg-card: #0a0a0a;
   --text-primary: #ededed;
   --text-muted: #888888;
-  --accent-glitch: #39ff14; /* Acid Green */
+  --accent-glitch: #39ff14;
   --accent-glitch-rgb: 57, 255, 20;
   --accent-gradient: linear-gradient(135deg, #39ff14 0%, #32cd32 100%);
   --border-subtle: rgba(255, 255, 255, 0.1);
-
   --background: var(--bg-void);
   --foreground: var(--text-primary);
 }
 
-/* For Neon Purple switch - can be triggered by a class or similar */
-.theme-purple {
-  --accent-glitch: #bc13fe;
+/* ── Light mode ── */
+.light {
+  --bg-void: #ffffff;
+  --bg-card: #ffffff;
+  --text-primary: #111111;
+  --text-muted: #6b7280;
+  --accent-glitch: #16a34a;
+  --accent-glitch-rgb: 22, 163, 74;
+  --accent-gradient: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  --border-subtle: rgba(0, 0, 0, 0.1);
+  --background: var(--bg-void);
+  --foreground: var(--text-primary);
 }
 
+/* ── Theme utility classes ── */
+.section-bg { background-color: var(--bg-void); }
+.card-bg { background-color: var(--bg-card); }
+.border-theme { border-color: var(--border-subtle); }
+.text-theme-primary { color: var(--text-primary); }
+.text-theme-muted { color: var(--text-muted); }
+
+/* ── Selection ── */
 ::selection {
   background: var(--accent-glitch);
   color: black;
 }
 
+.light ::selection {
+  background: var(--accent-glitch);
+  color: white;
+}
+
+/* ── Base html/body ── */
 html {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
@@ -87,7 +112,7 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Custom Scrollbar */
+/* ── Scrollbar ── */
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -105,7 +130,101 @@ body {
   background: var(--accent-glitch);
 }
 
-/* Reduce motion globally on mobile for smoother scrolling */
+.light ::-webkit-scrollbar-track {
+  background: #e5e5e5;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-glitch);
+}
+
+/* ── Light mode: canvas effect hidden ── */
+.light canvas {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+/* ── Light mode: Prose overrides ── */
+.light .prose-invert {
+  --tw-prose-body: rgba(0, 0, 0, 0.65);
+  --tw-prose-headings: #111111;
+  --tw-prose-bold: #111111;
+  --tw-prose-links: var(--accent-glitch);
+  --tw-prose-code: var(--accent-glitch);
+  --tw-prose-pre-bg: #f3f4f6;
+}
+
+.light .prose-invert p,
+.light .prose-invert li {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.light .prose-invert h1,
+.light .prose-invert h2,
+.light .prose-invert h3,
+.light .prose-invert h4,
+.light .prose-invert strong {
+  color: #111111 !important;
+}
+
+.light .prose-invert pre,
+.light .prose-invert code {
+  background-color: #f3f4f6 !important;
+  color: #111111 !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.light .prose-invert table {
+  background-color: #ffffff !important;
+}
+
+.light .prose-invert th {
+  color: #111111 !important;
+  background-color: #f9fafb !important;
+}
+
+.light .prose-invert td {
+  color: rgba(0, 0, 0, 0.6) !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+.light .prose-invert blockquote {
+  color: rgba(0, 0, 0, 0.6) !important;
+  border-color: var(--accent-glitch) !important;
+  background-color: rgba(22, 163, 74, 0.04) !important;
+}
+
+/* ── Light-mode form element normalization ── */
+.light textarea,
+.light input[type="text"],
+.light input[type="email"] {
+  background-color: #f9fafb !important;
+  color: #111111 !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.light textarea::placeholder,
+.light input::placeholder {
+  color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.light input[type="range"] {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ── Light mode: Custom scrollbar variant ── */
+.light .custom-scrollbar::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+.light .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* ── Mobile responsive ── */
 @media (max-width: 768px) {
   * {
     scroll-behavior: auto !important;
@@ -120,18 +239,31 @@ body {
     cursor: default;
   }
 
-  /* Ensure comfortable touch targets on primary action buttons */
   button:not([class*="prose"]):not([class*="inline"]) {
     min-height: 44px;
   }
 }
 
-/* Performance: contain layout for key sections */
+/* ── Performance: contain layout ── */
 section {
   contain: content;
 }
 
-/* Prefer reduced motion */
+/* ── Hero CSS animations (replaces framer-motion for faster FCP/LCP) ── */
+@keyframes hero-fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-fade-in {
+  animation: hero-fade-in 0.8s ease-out both;
+}
+
+.hero-fade-in-delayed {
+  animation: hero-fade-in 0.8s ease-out 0.3s both;
+}
+
+/* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

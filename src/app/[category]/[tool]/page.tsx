@@ -34,11 +34,17 @@ export async function generateMetadata({
 
   if (!category || !tool) return { title: "Tool Not Found" };
 
-  const canonicalCategory = categories.find((c) =>
-    c.tools.some((t) => t.slug === toolSlug),
-  );
-  const canonicalCategorySlug = canonicalCategory?.slug || categorySlug;
-  const canonicalUrl = `${SITE_URL}/${canonicalCategorySlug}/${toolSlug}`;
+  // Canonical URL always points to the first category that contains this tool slug
+  // This handles duplicate slugs like old-english / old-english-font
+  const CANONICAL_SLUG_MAP: Record<string, string> = {
+    "old-english": "style-fancy/old-english-font",
+    "upside-down": "text-tools/upside-down-text",
+  };
+
+  const canonicalOverride = CANONICAL_SLUG_MAP[toolSlug];
+  const canonicalUrl = canonicalOverride
+    ? `${SITE_URL}/${canonicalOverride}`
+    : `${SITE_URL}/${categorySlug}/${toolSlug}`;
 
   const toolContent = await getToolContent(toolSlug);
 
@@ -260,16 +266,16 @@ export default async function ToolPage({
 
       {/* Primary content area (Server Components) */}
       {toolContent ? (
-        <div className="bg-[#080808] py-16 md:py-24 border-t border-white/5 relative overflow-hidden">
+        <div className="bg-bg-void light:bg-white py-16 md:py-24 border-t border-border-subtle light:border-neutral-200 relative overflow-hidden">
           {/* Subtle Ambient Glow */}
-          <div className="absolute top-0 left-0 w-full h-96 bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_100%)] pointer-events-none" />
+          <div className="absolute top-0 left-0 w-full h-96 bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_100%)] pointer-events-none hidden dark:block" />
 
           <div className="container mx-auto max-w-7xl px-6 relative z-10">
             {/* Main Content Area */}
             <div className="max-w-4xl mx-auto">
               <div
-                className="prose prose-invert max-w-none
-                  prose-strong:text-white prose-strong:font-bold
+                className="prose dark:prose-invert max-w-none
+                  prose-strong:text-text-primary prose-strong:font-bold
                   prose-ul:list-none prose-ol:list-none
                   prose-li:p-0 prose-li:m-0"
               >
@@ -282,7 +288,9 @@ export default async function ToolPage({
           </div>
         </div>
       ) : (
-        <GenericSEOTent tool={tool} category={category} />
+        <div className="bg-bg-void light:bg-white">
+          <GenericSEOTent tool={tool} category={category} />
+        </div>
       )}
     </>
   );

@@ -25,6 +25,7 @@ import {
   LayoutGrid,
   Zap,
 } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 /* ------------------------------------------------------------------ */
 /*  Animation presets                                                   */
@@ -369,6 +370,9 @@ const Header = () => {
                 Explore All
               </span>
             </Link>
+
+            {/* Theme toggle */}
+            <ThemeToggle />
 
             {/* Mobile menu toggle */}
             <motion.button

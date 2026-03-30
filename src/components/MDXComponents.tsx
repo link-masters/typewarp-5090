@@ -22,7 +22,7 @@ const InternalLink = ({ href, children, ...props }: any) => {
     return (
       <Link
         href={href}
-        className="text-accent-glitch hover:text-white font-bold transition-colors duration-300 inline-flex items-center gap-1.5 group border-b border-accent-glitch/20 hover:border-accent-glitch/60 pb-0.5"
+        className="text-accent-glitch hover:text-text-primary font-bold transition-colors duration-300 inline-flex items-center gap-1.5 group border-b border-accent-glitch/20 hover:border-accent-glitch/60 pb-0.5"
         {...props}
       >
         {children}
@@ -38,7 +38,7 @@ const InternalLink = ({ href, children, ...props }: any) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-accent-glitch hover:text-white font-bold transition-colors duration-300 inline-flex items-center gap-1.5 group border-b border-accent-glitch/20 hover:border-accent-glitch/60 pb-0.5"
+      className="text-accent-glitch hover:text-text-primary font-bold transition-colors duration-300 inline-flex items-center gap-1.5 group border-b border-accent-glitch/20 hover:border-accent-glitch/60 pb-0.5"
       {...props}
     >
       {children}
@@ -107,7 +107,7 @@ const Callout = ({
           >
             {labels[type]}
           </span>
-          <div className="text-sm font-mono leading-relaxed text-white/60 [&>p]:mb-0">
+          <div className="text-sm font-mono leading-relaxed text-text-muted [&>p]:mb-0">
             {children}
           </div>
         </div>
@@ -132,26 +132,26 @@ const InlineToolCard = ({
   return (
     <Link
       href={`/${category}/${slug}`}
-      className="group block my-8 p-5 bg-[#0c0c0c] border border-white/5 rounded-xl relative overflow-hidden transition-all duration-500 hover:border-accent-glitch/20"
+      className="group block my-8 p-5 bg-bg-card border border-border-subtle rounded-xl relative overflow-hidden transition-all duration-500 hover:border-accent-glitch/20"
     >
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
       <div className="flex items-center gap-4 relative z-10">
-        <div className="w-12 h-12 bg-[#111] border border-white/10 rounded-lg flex items-center justify-center group-hover:border-accent-glitch/30 group-hover:scale-105 transition-all duration-500">
+        <div className="w-12 h-12 bg-bg-card border border-border-subtle rounded-lg flex items-center justify-center group-hover:border-accent-glitch/30 group-hover:scale-105 transition-all duration-500">
           <ToolIcon
             slug={tool.slug}
             categorySlug={category}
-            className="w-6 h-6 text-white/20 group-hover:text-accent-glitch transition-colors duration-500"
+            className="w-6 h-6 text-text-muted group-hover:text-accent-glitch transition-colors duration-500"
           />
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-[10px] font-mono text-white/20 uppercase tracking-widest mb-1">
+          <p className="text-[10px] font-mono text-text-muted uppercase tracking-widest mb-1">
             Try this tool
           </p>
-          <h4 className="text-sm font-black text-white group-hover:text-accent-glitch transition-colors uppercase tracking-wider">
+          <h4 className="text-sm font-black text-text-primary group-hover:text-accent-glitch transition-colors uppercase tracking-wider">
             {tool.name}
           </h4>
         </div>
-        <ChevronRight className="w-5 h-5 text-white/10 group-hover:text-accent-glitch group-hover:translate-x-1 transition-all duration-300" />
+        <ChevronRight className="w-5 h-5 text-neutral-300 dark:text-white/10 group-hover:text-accent-glitch group-hover:translate-x-1 transition-all duration-300" />
       </div>
     </Link>
   );
@@ -159,19 +159,19 @@ const InlineToolCard = ({
 
 const FAQ = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="my-12 bg-[#0c0c0c] border border-white/5 rounded-xl relative overflow-hidden">
+    <div className="my-12 bg-bg-card border border-border-subtle rounded-xl relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
       <div className="relative z-10">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-white/5 flex items-center gap-3">
-          <div className="w-8 h-8 bg-[#111] border border-white/10 rounded-lg flex items-center justify-center">
+        <div className="px-6 py-4 border-b border-border-subtle flex items-center gap-3">
+          <div className="w-8 h-8 bg-bg-card border border-border-subtle rounded-lg flex items-center justify-center">
             <HelpCircle className="w-4 h-4 text-accent-glitch" />
           </div>
           <div>
-            <h3 className="text-xs font-black uppercase tracking-wider text-white">
+            <h3 className="text-xs font-black uppercase tracking-wider text-text-primary">
               Frequently Asked Questions
             </h3>
-            <p className="text-[9px] font-mono text-white/20 uppercase tracking-widest">
+            <p className="text-[9px] font-mono text-text-muted uppercase tracking-widest">
               Common Queries
             </p>
           </div>
@@ -185,11 +185,11 @@ const FAQ = ({ children }: { children: React.ReactNode }) => {
 
 const FAQItem = ({ q, children }: { q: string; children: React.ReactNode }) => {
   return (
-    <div className="py-4 border-b border-white/5">
-      <h4 className="text-sm font-mono font-bold text-white leading-relaxed mb-2 before:content-['Q'] before:inline-flex before:items-center before:justify-center before:w-6 before:h-6 before:bg-accent-glitch/10 before:text-accent-glitch before:rounded before:text-[10px] before:mr-3">
+    <div className="py-4 border-b border-border-subtle">
+      <h4 className="text-sm font-mono font-bold text-text-primary leading-relaxed mb-2 before:content-['Q'] before:inline-flex before:items-center before:justify-center before:w-6 before:h-6 before:bg-accent-glitch/10 before:text-accent-glitch before:rounded before:text-[10px] before:mr-3">
         {q}
       </h4>
-      <div className="pl-9 text-white/50 font-mono text-[13px] leading-[1.8] [&>p]:mb-0">
+      <div className="pl-9 text-text-muted font-mono text-[13px] leading-[1.8] [&>p]:mb-0">
         {children}
       </div>
     </div>
@@ -198,8 +198,8 @@ const FAQItem = ({ q, children }: { q: string; children: React.ReactNode }) => {
 
 // Professional system intel box
 const SystemIntel = ({ label, value }: { label: string; value: string }) => (
-  <div className="flex items-center gap-4 py-3 border-b border-white/5 font-mono text-xs">
-    <span className="text-white/30 uppercase tracking-widest font-bold">
+  <div className="flex items-center gap-4 py-3 border-b border-border-subtle font-mono text-xs">
+    <span className="text-text-muted dark:text-white/30 uppercase tracking-widest font-bold">
       {label}
     </span>
     <span className="ml-auto text-accent-glitch font-black uppercase tracking-widest">
@@ -212,7 +212,7 @@ const MDXComponents = {
   h1: (props: any) => (
     <h2
       {...props}
-      className="text-lg sm:text-xl md:text-3xl font-black text-white tracking-tight uppercase leading-tight break-words mb-4 mt-4 border-b border-accent-glitch/20 pb-4"
+      className="text-lg sm:text-xl md:text-3xl font-black text-text-primary tracking-tight uppercase leading-tight break-words mb-4 mt-4 border-b border-neutral-200 dark:border-accent-glitch/20 pb-4"
     />
   ),
   h2: (props: any) => {
@@ -221,7 +221,7 @@ const MDXComponents = {
       <h2
         {...props}
         id={id}
-        className="text-base sm:text-lg md:text-2xl font-black text-white tracking-tight uppercase leading-tight break-words mt-16 mb-8 border-b border-white/10 pb-4"
+        className="text-base sm:text-lg md:text-2xl font-black text-text-primary tracking-tight uppercase leading-tight break-words mt-16 mb-8 border-b border-border-subtle pb-4"
       />
     );
   },
@@ -231,7 +231,7 @@ const MDXComponents = {
       <h3
         {...props}
         id={id}
-        className="text-sm sm:text-base md:text-lg font-black text-white mt-10 mb-5 tracking-wide uppercase before:content-[''] before:inline-block before:w-1.5 before:h-4 before:bg-accent-glitch/60 before:mr-3 before:align-middle"
+        className="text-sm sm:text-base md:text-lg font-black text-text-primary mt-10 mb-5 tracking-wide uppercase before:content-[''] before:inline-block before:w-1.5 before:h-4 before:bg-accent-glitch/60 before:mr-3 before:align-middle"
       />
     );
   },
@@ -255,44 +255,44 @@ const MDXComponents = {
     return (
       <p
         {...props}
-        className="text-white/50 font-mono leading-[1.8] mb-6 text-[14px] md:text-[15px]"
+        className="text-text-muted font-mono leading-[1.8] mb-6 text-[14px] md:text-[15px]"
       />
     );
   },
   ul: (props: any) => (
-    <ul {...props} className="mb-8 space-y-3 font-mono text-sm text-white/50" />
+    <ul {...props} className="mb-8 space-y-3 font-mono text-sm text-text-muted" />
   ),
   ol: (props: any) => (
-    <ol {...props} className="mb-8 space-y-3 font-mono text-sm text-white/50" />
+    <ol {...props} className="mb-8 space-y-3 font-mono text-sm text-text-muted" />
   ),
   li: (props: any) => (
     <li
       {...props}
-      className="relative pl-6 py-1 leading-relaxed text-white/60 before:content-[''] before:absolute before:left-0 before:top-3 before:w-1.5 before:h-1.5 before:bg-accent-glitch/40 before:rounded-full"
+      className="relative pl-6 py-1 leading-relaxed text-text-muted before:content-[''] before:absolute before:left-0 before:top-3 before:w-1.5 before:h-1.5 before:bg-accent-glitch/40 before:rounded-full"
     />
   ),
   blockquote: (props: any) => (
     <blockquote
       {...props}
-      className="border-l-2 border-accent-glitch/40 py-4 px-5 font-mono italic text-white/70 bg-accent-glitch/[0.03] my-8 text-base rounded-r-xl"
+      className="border-l-2 border-accent-glitch/40 py-4 px-5 font-mono italic text-neutral-600 dark:text-white/70 bg-accent-glitch/[0.03] my-8 text-base rounded-r-xl"
     />
   ),
   pre: (props: any) => (
     <pre
       {...props}
-      className="p-6 mb-8 bg-[#0c0c0c] border border-white/5 rounded-xl font-mono text-xs overflow-x-auto custom-scrollbar"
+      className="p-6 mb-8 bg-bg-card border border-border-subtle rounded-xl font-mono text-xs overflow-x-auto custom-scrollbar"
     />
   ),
   code: (props: any) => (
     <code
       {...props}
-      className="bg-white/5 px-2 py-1 text-accent-glitch font-mono text-xs border border-white/5 rounded-md"
+      className="bg-neutral-100 dark:bg-white/5 px-2 py-1 text-accent-glitch font-mono text-xs border border-border-subtle rounded-md"
     />
   ),
   a: InternalLink,
   img: (props: any) => (
     <figure className="my-12 group">
-      <div className="relative w-full aspect-video border border-white/5 rounded-xl overflow-hidden">
+      <div className="relative w-full aspect-video border border-border-subtle rounded-xl overflow-hidden">
         <Image
           {...props}
           width={1920}
@@ -304,37 +304,37 @@ const MDXComponents = {
         <div className="absolute inset-0 bg-gradient-to-t from-bg-void/60 to-transparent" />
       </div>
       {props.alt && (
-        <figcaption className="text-center text-[10px] font-mono uppercase tracking-widest text-white/20 mt-4">
+        <figcaption className="text-center text-[10px] font-mono uppercase tracking-widest text-text-muted mt-4">
           {props.alt}
         </figcaption>
       )}
     </figure>
   ),
   table: (props: any) => (
-    <div className="overflow-x-auto my-10 border border-white/5 bg-[#0c0c0c] rounded-xl">
+    <div className="overflow-x-auto my-10 border border-border-subtle bg-bg-card rounded-xl">
       <table {...props} className="w-full text-left font-mono text-sm" />
     </div>
   ),
   thead: (props: any) => (
-    <thead {...props} className="bg-white/[0.03] border-b border-white/10" />
+    <thead {...props} className="bg-neutral-50 dark:bg-white/[0.03] border-b border-border-subtle" />
   ),
   th: (props: any) => (
     <th
       {...props}
-      className="px-6 py-4 font-black text-white text-xs uppercase tracking-wider"
+      className="px-6 py-4 font-black text-text-primary text-xs uppercase tracking-wider"
     />
   ),
   td: (props: any) => (
     <td
       {...props}
-      className="px-6 py-4 text-white/50 border-b border-white/5 text-sm"
+      className="px-6 py-4 text-text-muted border-b border-border-subtle text-sm"
     />
   ),
   hr: () => (
     <div className="my-16 flex items-center gap-4">
-      <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
-      <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-neutral-200 dark:via-white/10 to-transparent" />
+      <div className="w-1.5 h-1.5 rounded-full bg-neutral-200 dark:bg-white/10" />
+      <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-neutral-200 dark:via-white/10 to-transparent" />
     </div>
   ),
   // Custom components

@@ -128,20 +128,6 @@ const Footer = () => {
               ))}
             </div>
 
-            {/* System status */}
-            <div className="space-y-2.5">
-              <div className="text-[9px] text-neutral-400/50 dark:text-text-muted/30 uppercase tracking-[0.25em]">
-                Status
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500 dark:bg-accent-glitch" />
-                </span>
-                <span className="text-[10px] text-emerald-600 dark:text-accent-glitch font-bold uppercase tracking-[0.2em]">
-                  Platform Online
-                </span>
-              </div>
-            </div>
           </div>
 
           {/* ---- Categories Section ---- */}
@@ -321,14 +307,6 @@ const Footer = () => {
             <span className="text-[9px] sm:text-[10px] text-neutral-400/60 dark:text-neutral-600 uppercase tracking-[0.15em] truncate">
               © {new Date().getFullYear()} TypeWarp
             </span>
-            <div className="hidden sm:flex items-center gap-2">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500 dark:bg-accent-glitch" />
-              </span>
-              <span className="text-[9px] sm:text-[10px] text-emerald-600 dark:text-accent-glitch font-bold uppercase tracking-[0.2em]">
-                Online
-              </span>
-            </div>
           </div>
 
           {/* Right */}

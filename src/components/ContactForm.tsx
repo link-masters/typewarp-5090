@@ -30,7 +30,7 @@ export default function ContactForm() {
   }
 
   const inputClasses =
-    "w-full bg-bg-void/40 border border-white/10 px-3.5 py-2.5 md:px-4 md:py-3 text-xs md:text-sm text-text-primary outline-none focus:border-accent-glitch/50 transition-all placeholder:text-white/20 rounded-xl";
+    "w-full bg-neutral-50 dark:bg-bg-void/40 border border-neutral-200 dark:border-white/10 px-3.5 py-2.5 md:px-4 md:py-3 text-xs md:text-sm text-text-primary outline-none focus:border-accent-glitch/50 transition-all placeholder:text-neutral-400 dark:placeholder:text-white/20 rounded-xl";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">

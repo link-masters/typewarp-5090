@@ -291,12 +291,12 @@ export default async function Home() {
 
       {/* Capabilities Section */}
       <section
-        className="py-24 md:py-32 px-4 bg-[#080808] relative overflow-hidden"
+        className="py-24 md:py-32 px-4 bg-bg-void relative overflow-hidden"
         aria-labelledby="features-heading"
       >
         <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-20 md:mb-28">
-            <span className="text-white/30 font-mono text-[10px] uppercase tracking-[0.5em] mb-4 inline-block">
+            <span className="text-text-muted font-mono text-[10px] uppercase tracking-[0.5em] mb-4 inline-block">
               Built for Creators
             </span>
             <h2
@@ -312,15 +312,15 @@ export default async function Home() {
               const Icon = cap.icon;
               return (
                 <div key={i} className="flex flex-col gap-6 group">
-                  <div className="w-14 h-14 flex items-center justify-center bg-[#0c0c0c] border border-white/5 rounded-2xl group-hover:scale-110 group-hover:border-accent-glitch/20 transition-all duration-500 relative overflow-hidden">
-                    <Icon className="w-6 h-6 text-white/30 group-hover:text-accent-glitch transition-all duration-500" />
+                  <div className="w-14 h-14 flex items-center justify-center bg-bg-card border border-border-subtle rounded-2xl group-hover:scale-110 group-hover:border-accent-glitch/20 transition-all duration-500 relative overflow-hidden">
+                    <Icon className="w-6 h-6 text-text-muted group-hover:text-accent-glitch transition-all duration-500" />
                     <div className="absolute inset-0 bg-accent-glitch/[0.02] opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                   <div className="space-y-4">
-                    <h3 className="text-2xl font-black uppercase tracking-tight text-white group-hover:text-accent-glitch transition-all duration-500">
+                    <h3 className="text-2xl font-black uppercase tracking-tight text-text-primary group-hover:text-accent-glitch transition-all duration-500">
                       {cap.title}
                     </h3>
-                    <p className="text-white/40 text-base leading-relaxed group-hover:text-white/60 transition-colors duration-500">
+                    <p className="text-text-muted text-base leading-relaxed group-hover:text-text-primary transition-colors duration-500">
                       {cap.description}
                     </p>
                   </div>
@@ -332,7 +332,7 @@ export default async function Home() {
       </section>
       {/* Categories Explorer Section */}
       <section
-        className="py-20 md:py-32 px-4 bg-[#080808] relative overflow-hidden"
+        className="py-20 md:py-32 px-4 bg-bg-void relative overflow-hidden"
         aria-labelledby="categories-heading"
       >
         <div className="container mx-auto max-w-7xl relative z-10">
@@ -344,7 +344,7 @@ export default async function Home() {
               >
                 Creative <span className="text-accent-glitch">Collections</span>
               </h2>
-              <p className="text-white/40 font-mono text-base md:text-lg max-w-xl">
+              <p className="text-text-muted font-mono text-base md:text-lg max-w-xl">
                 Browse our curated categories to find the perfect look for your
                 social profiles.
               </p>
@@ -352,7 +352,7 @@ export default async function Home() {
 
             <Link
               href="/collection"
-              className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 hover:text-accent-glitch transition-colors flex items-center gap-3 border-b border-white/10 pb-2 mb-2"
+              className="font-mono text-xs uppercase tracking-[0.2em] text-text-muted hover:text-accent-glitch transition-colors flex items-center gap-3 border-b border-border-subtle pb-2 mb-2"
               title="Browse all 50+ text effect tools"
             >
               View All
@@ -365,7 +365,7 @@ export default async function Home() {
               <Link
                 key={category.slug}
                 href={`/${category.slug}`}
-                className="group relative p-6 bg-[#0c0c0c] border border-white/5 hover:border-accent-glitch/20 transition-all duration-500 overflow-hidden flex flex-col rounded-xl"
+                className="group relative p-6 bg-bg-card border border-border-subtle hover:border-accent-glitch/20 transition-all duration-500 overflow-hidden flex flex-col rounded-xl"
                 title={`${category.name} - ${category.description}`}
               >
                 {/* Unique Refined Hover Glimmer */}
@@ -377,24 +377,24 @@ export default async function Home() {
                       <ToolIcon
                         slug={category.slug}
                         categorySlug={category.slug}
-                        className="w-6 h-6 text-white/30 group-hover:text-accent-glitch transition-all duration-500"
+                        className="w-6 h-6 text-text-muted group-hover:text-accent-glitch transition-all duration-500"
                       />
                     </div>
-                    <div className="font-mono text-[10px] text-white/10 group-hover:text-accent-glitch/20 transition-colors">
+                    <div className="font-mono text-[10px] text-text-muted group-hover:text-accent-glitch/20 transition-colors">
                       {category.count.toString().padStart(2, "0")} TOOLS
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-black text-white/90 mb-3 uppercase tracking-tighter group-hover:tracking-widest group-hover:text-white transition-all duration-500">
+                  <h3 className="text-xl font-black text-text-primary mb-3 uppercase tracking-tighter group-hover:tracking-widest group-hover:text-text-primary transition-all duration-500">
                     {category.name}
                   </h3>
 
-                  <p className="text-white/40 text-[11px] leading-relaxed mb-6 group-hover:text-white/60 transition-colors">
+                  <p className="text-text-muted text-[11px] leading-relaxed mb-6 group-hover:text-text-primary transition-colors">
                     {category.description}
                   </p>
 
-                  <div className="mt-auto pt-5 border-t border-white/5 flex items-center justify-between">
-                    <div className="flex items-center gap-3 text-white/20 group-hover:text-accent-glitch font-mono font-bold text-[10px] uppercase tracking-[0.2em] transition-colors duration-300">
+                  <div className="mt-auto pt-5 border-t border-border-subtle flex items-center justify-between">
+                    <div className="flex items-center gap-3 text-text-muted group-hover:text-accent-glitch font-mono font-bold text-[10px] uppercase tracking-[0.2em] transition-colors duration-300">
                       <span className="sr-only">
                         Explore {category.name} tools
                       </span>
@@ -402,7 +402,7 @@ export default async function Home() {
                       <div className="w-8 h-[1px] bg-current transition-all duration-500 group-hover:w-12" />
                     </div>
                     <ArrowRight
-                      className="w-4 h-4 text-white/20 group-hover:text-accent-glitch group-hover:translate-x-1 transition-all"
+                      className="w-4 h-4 text-text-muted group-hover:text-accent-glitch group-hover:translate-x-1 transition-all"
                       aria-hidden="true"
                     />
                   </div>
@@ -414,7 +414,7 @@ export default async function Home() {
       </section>
       {/* About Section */}
       <section
-        className="py-20 md:py-32 px-4 bg-[#080808] relative overflow-hidden border-t border-white/5"
+        className="py-20 md:py-32 px-4 bg-bg-void relative overflow-hidden border-t border-border-subtle"
         aria-labelledby="about-heading"
       >
         <div className="container mx-auto max-w-7xl relative z-10">
@@ -422,7 +422,7 @@ export default async function Home() {
           {/* Section header — same pattern as Capabilities & Categories */}
           <div className="flex flex-col md:flex-row items-end justify-between mb-12 md:mb-16 gap-6">
             <div className="max-w-2xl">
-              <span className="text-white/30 font-mono text-[10px] uppercase tracking-[0.5em] mb-4 inline-block">
+              <span className="text-text-muted font-mono text-[10px] uppercase tracking-[0.5em] mb-4 inline-block">
                 About TypeWarp
               </span>
               <h2
@@ -432,7 +432,7 @@ export default async function Home() {
                 How It <span className="text-accent-glitch">Works</span>
               </h2>
             </div>
-            <p className="text-white/40 font-mono text-sm max-w-sm text-left md:text-right">
+            <p className="text-text-muted font-mono text-sm max-w-sm text-left md:text-right">
               88+ free Unicode text tools. No signup. No installs. Just copy and paste.
             </p>
           </div>
@@ -440,17 +440,17 @@ export default async function Home() {
           {/* Top row — wide intro card + tall stat card */}
           <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6 mb-6">
             {/* Intro card */}
-            <div className="group relative p-8 bg-[#0c0c0c] border border-white/5 hover:border-accent-glitch/20 transition-all duration-500 rounded-xl overflow-hidden">
+            <div className="group relative p-8 bg-bg-card border border-border-subtle hover:border-accent-glitch/20 transition-all duration-500 rounded-xl overflow-hidden">
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
               <div className="relative z-10">
-                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/20 mb-5 inline-block">
+                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted mb-5 inline-block">
                   01 — What is TypeWarp
                 </span>
-                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter text-white mb-4 leading-tight">
+                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter text-text-primary mb-4 leading-tight">
                   Free Text Generator,{" "}
                   <span className="text-accent-glitch">88+ Tools</span>
                 </h3>
-                <p className="text-white/40 text-sm leading-relaxed max-w-xl">
+                <p className="text-text-muted text-sm leading-relaxed max-w-xl">
                   TypeWarp gives you instant access to over 88 Unicode text
                   tools — all in one place, no account required. Cursed text
                   dripping with Zalgo diacritics, aesthetic fonts for your
@@ -462,17 +462,17 @@ export default async function Home() {
               </div>
             </div>
             {/* Stat card */}
-            <div className="group relative p-8 bg-[#0c0c0c] border border-white/5 hover:border-accent-glitch/20 transition-all duration-500 rounded-xl overflow-hidden flex flex-col justify-between">
+            <div className="group relative p-8 bg-bg-card border border-border-subtle hover:border-accent-glitch/20 transition-all duration-500 rounded-xl overflow-hidden flex flex-col justify-between">
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
               <div className="relative z-10 flex flex-col h-full justify-between gap-8">
-                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/20">
+                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted">
                   02 — Unicode Engine
                 </span>
                 <div>
-                  <div className="text-5xl md:text-6xl font-black tracking-tighter text-white leading-none mb-3">
+                  <div className="text-5xl md:text-6xl font-black tracking-tighter text-text-primary leading-none mb-3">
                     149<span className="text-accent-glitch">K</span>
                   </div>
-                  <p className="text-white/40 text-sm leading-relaxed">
+                  <p className="text-text-muted text-sm leading-relaxed">
                     Unicode characters in the standard. TypeWarp maps your input
                     across mathematical symbols, combining diacritics, enclosed
                     alphanumerics, and fullwidth Latin — effects no font file
@@ -504,17 +504,17 @@ export default async function Home() {
             ].map((card) => (
               <div
                 key={card.num}
-                className="group relative p-6 bg-[#0c0c0c] border border-white/5 hover:border-accent-glitch/20 transition-all duration-500 rounded-xl overflow-hidden flex flex-col gap-5"
+                className="group relative p-6 bg-bg-card border border-border-subtle hover:border-accent-glitch/20 transition-all duration-500 rounded-xl overflow-hidden flex flex-col gap-5"
               >
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
                 <div className="relative z-10 flex flex-col gap-4 h-full">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/20">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted">
                     {card.num}
                   </span>
-                  <h3 className="text-base font-black uppercase tracking-tighter text-white leading-tight group-hover:text-accent-glitch transition-colors duration-500">
+                  <h3 className="text-base font-black uppercase tracking-tighter text-text-primary leading-tight group-hover:text-accent-glitch transition-colors duration-500">
                     {card.title}
                   </h3>
-                  <p className="text-white/40 text-[11px] leading-relaxed group-hover:text-white/60 transition-colors duration-500">
+                  <p className="text-text-muted text-[11px] leading-relaxed group-hover:text-text-primary transition-colors duration-500">
                     {card.body}
                   </p>
                 </div>
@@ -548,24 +548,24 @@ export default async function Home() {
             ].map((card) => (
               <div
                 key={card.num}
-                className="group relative p-6 bg-[#0c0c0c] border border-white/5 hover:border-accent-glitch/20 transition-all duration-500 rounded-xl overflow-hidden flex flex-col"
+                className="group relative p-6 bg-bg-card border border-border-subtle hover:border-accent-glitch/20 transition-all duration-500 rounded-xl overflow-hidden flex flex-col"
               >
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
                 <div className="relative z-10 flex flex-col gap-3 h-full">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/20">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted">
                     {card.num}
                   </span>
-                  <h3 className="text-sm font-black uppercase tracking-tighter text-white leading-tight group-hover:text-accent-glitch transition-colors duration-500">
+                  <h3 className="text-sm font-black uppercase tracking-tighter text-text-primary leading-tight group-hover:text-accent-glitch transition-colors duration-500">
                     {card.title}
                   </h3>
-                  <p className="text-white/40 text-[11px] leading-relaxed group-hover:text-white/60 transition-colors duration-500">
+                  <p className="text-text-muted text-[11px] leading-relaxed group-hover:text-text-primary transition-colors duration-500">
                     {card.body}
                   </p>
-                  <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/20 group-hover:text-accent-glitch transition-colors duration-300">
+                  <div className="mt-auto pt-4 border-t border-border-subtle flex items-center justify-between">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted group-hover:text-accent-glitch transition-colors duration-300">
                       Use Case
                     </span>
-                    <ArrowRight className="w-3.5 h-3.5 text-white/20 group-hover:text-accent-glitch group-hover:translate-x-1 transition-all" aria-hidden="true" />
+                    <ArrowRight className="w-3.5 h-3.5 text-text-muted group-hover:text-accent-glitch group-hover:translate-x-1 transition-all" aria-hidden="true" />
                   </div>
                 </div>
               </div>
@@ -581,34 +581,34 @@ export default async function Home() {
 
       {/* Latest from Blog Section */}
       <section
-        className="py-12 md:py-16 lg:py-20 px-4 bg-bg-void relative border-t border-border-subtle/30"
+        className="py-8 md:py-10 lg:py-14 px-4 bg-bg-void relative border-t border-border-subtle/30"
         aria-labelledby="blog-heading"
       >
         <div className="container mx-auto max-w-7xl">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-6 md:mb-8 lg:mb-10 gap-4 md:gap-6 text-left">
+          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-5 md:mb-6 gap-3 text-left">
             <div className="max-w-2xl text-left">
               <h2
                 id="blog-heading"
-                className="text-3xl md:text-3xl lg:text-4xl font-black tracking-tighter uppercase mb-2 md:mb-3 text-left leading-[0.9]"
+                className="text-xl md:text-2xl lg:text-3xl font-black tracking-tighter uppercase mb-1 md:mb-2 text-left leading-[0.9]"
               >
                 Recent <span className="text-accent-glitch">Articles</span>
               </h2>
-              <p className="text-white/40 font-mono text-[10px] md:text-xs lg:text-sm max-w-xl text-left uppercase tracking-[0.3em]">
-                Deep dives into design, typography, and creative text effects.
+              <p className="text-text-muted font-mono text-[9px] md:text-[10px] max-w-xl text-left uppercase tracking-[0.3em]">
+                Design, typography, and creative text effects.
               </p>
             </div>
 
             <Link
               href="/blog"
-              className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40 hover:text-white transition-colors border-b border-white/10 pb-2 mb-1 shrink-0"
+              className="font-mono text-[9px] uppercase tracking-[0.3em] text-text-muted hover:text-accent-glitch light:hover:text-accent-glitch transition-colors border-b border-border-subtle pb-1.5 shrink-0"
               title="Read typography tutorials and design guides"
             >
-              Blog
+              View All
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-5">
-            {recentPosts.map((post) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+            {recentPosts.slice(0, 3).map((post) => (
               <SmallBlogCard key={post.slug} post={post} />
             ))}
           </div>
@@ -617,7 +617,7 @@ export default async function Home() {
       {/* CTA Section */}
       <section className="py-24 md:py-40 px-4" aria-labelledby="cta-heading">
         <div className="container mx-auto max-w-5xl relative">
-          <div className="relative p-8 md:p-24 bg-[#0c0c0c] border border-white/5 rounded-[32px] md:rounded-[40px] text-center overflow-hidden">
+          <div className="relative p-8 md:p-24 bg-bg-card border border-border-subtle rounded-[32px] md:rounded-[40px] text-center overflow-hidden">
             {/* Ambient Background Glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(57,255,20,0.02)_0%,transparent_70%)] pointer-events-none" />
 
@@ -628,12 +628,12 @@ export default async function Home() {
 
               <h2
                 id="cta-heading"
-                className="text-4xl md:text-5xl font-black text-white mb-6 md:mb-8 tracking-tighter leading-[0.9] uppercase"
+                className="text-4xl md:text-5xl font-black text-text-primary mb-6 md:mb-8 tracking-tighter leading-[0.9] uppercase"
               >
                 Start <span className="text-accent-glitch">Creating</span>
               </h2>
 
-              <p className="text-white/40 text-sm md:text-xl mb-10 md:mb-14 max-w-xl mx-auto leading-relaxed">
+              <p className="text-text-muted text-sm md:text-xl mb-10 md:mb-14 max-w-xl mx-auto leading-relaxed">
                 Join thousands of creators using our free cursed text generator
                 to build their brand and express themselves online.
               </p>
@@ -641,17 +641,16 @@ export default async function Home() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 w-full max-w-md mx-auto">
                 <Link
                   href="/collection"
-                  className="group relative w-full sm:w-auto px-10 py-4 md:py-5 bg-white text-black font-black text-xs md:text-sm rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_20px_40px_-10px_rgba(255,255,255,0.2)]"
+                  className="group relative w-full sm:w-auto px-10 py-4 md:py-5 bg-accent-glitch text-black font-black text-xs md:text-sm rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_8px_24px_-4px_rgba(57,255,20,0.35)]"
                   title="Generate cursed text now"
                 >
                   <span className="relative z-10 uppercase tracking-widest text-center block">
                     Try Now
                   </span>
-                  <div className="absolute inset-0 bg-accent-glitch opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
                 <Link
                   href="/collection"
-                  className="w-full sm:w-auto px-10 py-4 md:py-5 border border-white/10 text-white font-black text-xs md:text-sm rounded-full hover:border-white/20 hover:bg-white/5 transition-all uppercase tracking-widest text-center"
+                  className="w-full sm:w-auto px-10 py-4 md:py-5 border-2 border-text-primary/20 text-text-primary font-black text-xs md:text-sm rounded-full hover:border-accent-glitch hover:text-accent-glitch transition-all uppercase tracking-widest text-center"
                   title="Browse all cursed text and glitch font tools"
                 >
                   View Tools

@@ -255,7 +255,7 @@ const AboutPage = () => {
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 sm:mb-8 tracking-tight uppercase leading-[0.9]">
-            <span className="text-white">Beyond the</span>{" "}
+            <span className="text-text-primary">Beyond the</span>{" "}
             <span className="text-accent-glitch">Standard Script.</span>
           </h1>
 
@@ -274,14 +274,14 @@ const AboutPage = () => {
           {stats.map((s) => (
             <div
               key={s.label}
-              className="group relative flex items-center gap-3 sm:gap-4 p-4 sm:p-5 md:p-6 bg-bg-card border border-white/[0.06] rounded-2xl hover:border-accent-glitch/25 transition-all duration-300 overflow-hidden"
+              className="group relative flex items-center gap-3 sm:gap-4 p-4 sm:p-5 md:p-6 bg-bg-card border border-neutral-200 dark:border-white/[0.06] rounded-2xl hover:border-accent-glitch/25 transition-all duration-300 overflow-hidden"
             >
               <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-glitch/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="p-2 sm:p-3 bg-white/[0.04] rounded-xl group-hover:bg-accent-glitch/10 transition-colors shrink-0">
+              <div className="p-2 sm:p-3 bg-neutral-100 dark:bg-white/[0.04] rounded-xl group-hover:bg-accent-glitch/10 transition-colors shrink-0">
                 <s.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-accent-glitch" />
               </div>
               <div>
-                <div className="text-xl sm:text-2xl md:text-3xl font-black text-white leading-none">
+                <div className="text-xl sm:text-2xl md:text-3xl font-black text-text-primary leading-none">
                   {s.value}
                 </div>
                 <div className="text-[10px] sm:text-[11px] md:text-xs text-text-muted font-mono uppercase tracking-widest mt-1">
@@ -306,7 +306,7 @@ const AboutPage = () => {
                 In an era of homogenized digital communication, individual
                 expression is limited by system fonts and standard character
                 sets. TypeWarp was designed to{" "}
-                <span className="text-white font-medium">
+                <span className="text-text-primary font-medium">
                   break these constraints
                 </span>
                 .
@@ -328,8 +328,8 @@ const AboutPage = () => {
           </div>
 
           {/* Visual */}
-          <div className="lg:col-span-2 relative aspect-square max-w-[300px] sm:max-w-[350px] mx-auto lg:max-w-none border border-white/[0.06] bg-bg-card rounded-3xl flex items-center justify-center group overflow-hidden">
-            <div className="relative z-10 text-[8rem] sm:text-[10rem] font-black text-white/[0.04] group-hover:text-accent-glitch/15 group-hover:scale-105 transition-all duration-700 select-none font-mono leading-none">
+          <div className="lg:col-span-2 relative aspect-square max-w-[300px] sm:max-w-[350px] mx-auto lg:max-w-none border border-neutral-200 dark:border-white/[0.06] bg-bg-card rounded-3xl flex items-center justify-center group overflow-hidden">
+            <div className="relative z-10 text-[8rem] sm:text-[10rem] font-black text-black/[0.04] dark:text-white/[0.04] group-hover:text-accent-glitch/15 group-hover:scale-105 transition-all duration-700 select-none font-mono leading-none">
               TW
             </div>
             <div className="absolute inset-0 flex items-center justify-center">
@@ -356,14 +356,14 @@ const AboutPage = () => {
             {features.map((f) => (
               <div
                 key={f.title}
-                className="group flex flex-col items-start gap-4 p-5 sm:p-6 bg-bg-card border border-white/[0.06] rounded-2xl hover:border-accent-glitch/30 transition-all duration-300 relative overflow-hidden"
+                className="group flex flex-col items-start gap-4 p-5 sm:p-6 bg-bg-card border border-neutral-200 dark:border-white/[0.06] rounded-2xl hover:border-accent-glitch/30 transition-all duration-300 relative overflow-hidden"
               >
                 <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-glitch/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="p-2.5 sm:p-3 bg-white/[0.04] rounded-xl group-hover:bg-accent-glitch/10 transition-colors shrink-0">
+                <div className="p-2.5 sm:p-3 bg-neutral-100 dark:bg-white/[0.04] rounded-xl group-hover:bg-accent-glitch/10 transition-colors shrink-0">
                   <f.icon className="w-5 h-5 sm:w-6 sm:h-6 text-accent-glitch" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-sm sm:text-base font-bold text-white mb-1.5 sm:mb-2 uppercase tracking-wide leading-tight group-hover:text-accent-glitch transition-colors">
+                  <h3 className="text-sm sm:text-base font-bold text-text-primary mb-1.5 sm:mb-2 uppercase tracking-wide leading-tight group-hover:text-accent-glitch transition-colors">
                     {f.title}
                   </h3>
                   <p className="text-xs sm:text-sm text-text-muted leading-relaxed">
@@ -390,7 +390,7 @@ const AboutPage = () => {
               <Link
                 key={cat.slug}
                 href={`/${cat.slug}`}
-                className="group flex items-center gap-4 p-5 sm:p-6 bg-bg-card border border-white/[0.06] rounded-2xl hover:border-accent-glitch/30 transition-all duration-300 relative overflow-hidden"
+                className="group flex items-center gap-4 p-5 sm:p-6 bg-bg-card border border-neutral-200 dark:border-white/[0.06] rounded-2xl hover:border-accent-glitch/30 transition-all duration-300 relative overflow-hidden"
               >
                 <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-glitch/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="text-3xl sm:text-4xl shrink-0 p-2 sm:p-3 bg-white/[0.02] rounded-xl group-hover:bg-accent-glitch/5 transition-colors">
@@ -398,7 +398,7 @@ const AboutPage = () => {
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-3 mb-1 sm:mb-1.5">
-                    <h3 className="text-sm sm:text-base font-bold text-white group-hover:text-accent-glitch transition-colors truncate uppercase tracking-wide">
+                    <h3 className="text-sm sm:text-base font-bold text-text-primary group-hover:text-accent-glitch transition-colors truncate uppercase tracking-wide">
                       {cat.name}
                     </h3>
                     <span className="text-[10px] sm:text-xs font-mono font-bold text-accent-glitch/60 shrink-0 bg-accent-glitch/10 px-2 py-0.5 rounded-full">
@@ -427,17 +427,17 @@ const AboutPage = () => {
             {techStack.map((t) => (
               <div
                 key={t.label}
-                className="group flex flex-row xl:flex-col items-center xl:items-start gap-3 sm:gap-4 p-4 sm:p-5 bg-bg-card border border-white/[0.06] rounded-2xl hover:border-accent-glitch/30 transition-all duration-300 relative overflow-hidden"
+                className="group flex flex-row xl:flex-col items-center xl:items-start gap-3 sm:gap-4 p-4 sm:p-5 bg-bg-card border border-neutral-200 dark:border-white/[0.06] rounded-2xl hover:border-accent-glitch/30 transition-all duration-300 relative overflow-hidden"
               >
                 <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-glitch/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="p-2 sm:p-2.5 bg-white/[0.04] rounded-xl group-hover:bg-accent-glitch/10 transition-colors shrink-0">
+                <div className="p-2 sm:p-2.5 bg-neutral-100 dark:bg-white/[0.04] rounded-xl group-hover:bg-accent-glitch/10 transition-colors shrink-0">
                   <t.icon className="w-5 h-5 sm:w-6 sm:h-6 text-accent-glitch/80" />
                 </div>
                 <div className="min-w-0">
                   <div className="text-[10px] sm:text-[11px] font-mono text-text-muted uppercase tracking-widest leading-none mb-1 sm:mb-1.5">
                     {t.label}
                   </div>
-                  <div className="text-sm sm:text-base font-bold text-white truncate">
+                  <div className="text-sm sm:text-base font-bold text-text-primary truncate">
                     {t.value}
                   </div>
                 </div>
@@ -483,7 +483,7 @@ const AboutPage = () => {
                   </span>
                 </div>
 
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">
+                <h3 className="text-lg sm:text-xl font-bold text-text-primary mb-4 sm:mb-5">
                   {r.title}
                 </h3>
 
@@ -512,12 +512,12 @@ const AboutPage = () => {
         </section>
 
         {/* ── CTA ── */}
-        <section className="relative p-8 sm:p-12 md:p-16 lg:p-20 bg-bg-card border border-white/[0.06] rounded-3xl text-center overflow-hidden">
+        <section className="relative p-8 sm:p-12 md:p-16 lg:p-20 bg-bg-card border border-neutral-200 dark:border-white/[0.06] rounded-3xl text-center overflow-hidden">
           <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-glitch/40 to-transparent" />
           <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
           <div className="relative z-10">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-4 sm:mb-6 tracking-tight uppercase leading-[0.85]">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-text-primary mb-4 sm:mb-6 tracking-tight uppercase leading-[0.85]">
               Start{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-glitch to-emerald-300">
                 Transforming.
@@ -539,7 +539,7 @@ const AboutPage = () => {
               </Link>
               <Link
                 href="/dark-horror/cursed-text"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 sm:px-10 py-4 sm:py-5 bg-white/[0.04] border border-white/[0.1] text-white font-bold text-xs sm:text-sm uppercase tracking-widest rounded-xl hover:border-accent-glitch/30 hover:bg-accent-glitch/5 transition-all duration-300 active:scale-[0.97]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 sm:px-10 py-4 sm:py-5 bg-neutral-100 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/[0.1] text-text-primary font-bold text-xs sm:text-sm uppercase tracking-widest rounded-xl hover:border-accent-glitch/30 hover:bg-accent-glitch/5 transition-all duration-300 active:scale-[0.97]"
               >
                 <Terminal className="w-4 h-4 sm:w-5 sm:h-5" />
                 Try Cursed Text

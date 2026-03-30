@@ -8,6 +8,7 @@ import JSONLD from "@/components/JSONLD";
 import SmoothScroll from "@/components/SmoothScroll";
 import { SITE_URL } from "@/lib/config";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 
@@ -45,15 +46,16 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "TypeWarp",
   url: SITE_URL,
-  logo: {
-    "@type": "ImageObject",
-    url: `${SITE_URL}/logo.png`,
-  },
-  sameAs: [`${SITE_URL}`],
+  logo: `${SITE_URL}/logo.png`,
+  image: `${SITE_URL}/logo.png`,
+  sameAs: [SITE_URL],
 };
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -158,8 +160,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="dark">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Prevent theme flash on load — default to light */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var t=localStorage.getItem('tw-theme');var theme=t||'light';document.documentElement.classList.add(theme);})();`,
+          }}
+        />
         {/* Umami Analytics */}
         <Script
           defer
@@ -208,12 +216,14 @@ export default function RootLayout({
           Skip to main content
         </a>
         <SmoothScroll>
-          <Header />
-          <main id="main-content" className="min-h-screen relative z-10">
-            {children}
-          </main>
-          <Footer />
-          <GDPR />
+          <ThemeProvider>
+            <Header />
+            <main id="main-content" className="min-h-screen relative z-10">
+              {children}
+            </main>
+            <Footer />
+            <GDPR />
+          </ThemeProvider>
           <SpeedInsights />
           <Analytics />
         </SmoothScroll>

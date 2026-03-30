@@ -8,7 +8,6 @@ import {
   Copy,
   Trash2,
   Settings,
-  Info,
   Zap,
   Terminal,
   ChevronRight,
@@ -47,15 +46,6 @@ interface ToolViewProps {
   hideFaqs?: boolean;
 }
 
-const colors = [
-  { name: "Default", value: "inherit", bg: "bg-text-primary/20" },
-  { name: "Acid", value: "#39FF14", bg: "bg-[#39FF14]" },
-  { name: "Neon", value: "#BC13FE", bg: "bg-[#BC13FE]" },
-  { name: "Blood", value: "#FF0000", bg: "bg-[#FF0000]" },
-  { name: "Void", value: "#00E5FF", bg: "bg-[#00E5FF]" },
-  { name: "Gold", value: "#FFD700", bg: "bg-[#FFD700]" },
-];
-
 const platformLimits = [
   { name: "Twitter/X", limit: 280, icon: "𝕏" },
   { name: "Instagram Bio", limit: 150, icon: "📸" },
@@ -83,11 +73,9 @@ export default function ToolView({
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [isCopied, setIsCopied] = useState(false);
-  const [outputColor, setOutputColor] = useState("inherit");
   const [showPlatformLimits, setShowPlatformLimits] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const outputRef = useRef<HTMLTextAreaElement>(null);
   const copyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -128,10 +116,8 @@ export default function ToolView({
   // Handle clicking outside of dropdowns
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
+      const activeRef = openDropdown ? dropdownRefs.current[openDropdown] : null;
+      if (activeRef && !activeRef.contains(event.target as Node)) {
         setOpenDropdown(null);
       }
     };
@@ -146,8 +132,9 @@ export default function ToolView({
 
   // Prevent scroll chaining when interacting with the dropdown
   useEffect(() => {
-    const el = scrollRef.current;
-    if (!el || !openDropdown) return;
+    if (!openDropdown) return;
+    const el = dropdownRefs.current[openDropdown]?.querySelector<HTMLElement>('.overflow-y-auto');
+    if (!el) return;
 
     const handleWheel = (e: WheelEvent) => {
       const { scrollTop, scrollHeight, clientHeight } = el;
@@ -230,24 +217,7 @@ export default function ToolView({
       const text = textToCopy || output;
       if (!text) return;
 
-      if (outputColor !== "inherit" && !textToCopy) {
-        const html = `<span style="color: ${outputColor}">${text.replace(/\n/g, "<br>")}</span>`;
-        const textBlob = new Blob([text], { type: "text/plain" });
-        const htmlBlob = new Blob([html], { type: "text/html" });
-
-        try {
-          navigator.clipboard.write([
-            new ClipboardItem({
-              "text/plain": textBlob,
-              "text/html": htmlBlob,
-            }),
-          ]);
-        } catch (e) {
-          navigator.clipboard.writeText(text);
-        }
-      } else {
-        navigator.clipboard.writeText(text);
-      }
+      navigator.clipboard.writeText(text);
 
       // Clear any existing timer to prevent stacking
       if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
@@ -257,7 +227,7 @@ export default function ToolView({
         setIsCopied(false);
       }, 1500);
     },
-    [output, outputColor],
+    [output],
   );
 
   const handleClear = () => {
@@ -266,13 +236,13 @@ export default function ToolView({
   };
 
   return (
-    <div className="min-h-screen pt-24 lg:pt-28 pb-24 bg-[#080808] text-white relative overflow-hidden">
+    <div className="min-h-screen pt-24 lg:pt-28 pb-24 bg-bg-void light:bg-white text-text-primary relative overflow-hidden">
       {/* Background Glow */}
-      <div className="fixed top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-10%,rgba(57,255,20,0.02)_0%,transparent_50%)] pointer-events-none" />
+      <div className="fixed top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-10%,rgba(57,255,20,0.02)_0%,transparent_50%)] pointer-events-none hidden dark:block" />
 
       <div className="container mx-auto max-w-7xl relative z-10 px-6">
         {/* Compact Breadcrumbs */}
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-4 lg:mb-6 font-mono text-[10px] uppercase tracking-[0.2em] text-white/30">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-4 lg:mb-6 font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted">
           <Link
             href="/"
             className="hover:text-accent-glitch transition-colors flex items-center gap-1.5 shrink-0"
@@ -298,7 +268,7 @@ export default function ToolView({
           {/* Main Transformation Area */}
           <div className="flex-1 w-full flex flex-col gap-6">
             {/* Optimized Header - Compact Edition */}
-            <div className="bg-bg-card border border-border-subtle p-3 md:p-4 lg:px-6 relative overflow-hidden rounded-xl">
+            <div className="bg-bg-card border border-border-subtle light:border-neutral-200 p-3 md:p-4 lg:px-6 relative overflow-hidden rounded-xl light:shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
               <div className="flex flex-col gap-2 relative z-10">
                 <h1 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-black tracking-tighter uppercase leading-tight break-words max-w-4xl">
                   {tool.name}
@@ -307,12 +277,12 @@ export default function ToolView({
 
               {/* Decorative Background Elements */}
               <div className="absolute top-0 left-0 w-1 h-full bg-accent-glitch" />
-              <div className="absolute top-0 left-0 w-full h-px bg-white/5" />
+              <div className="absolute top-0 left-0 w-full h-px bg-border-subtle" />
             </div>
 
             {/* Input Panel */}
-            <div className="bg-bg-card border border-border-subtle relative group shadow-lg transition-all duration-300 focus-within:border-accent-glitch/50 focus-within:ring-1 focus-within:ring-accent-glitch/20 rounded-xl overflow-hidden">
-              <div className="p-1 border-b border-border-subtle bg-bg-void/50 flex justify-between items-center px-4 py-2">
+            <div className="bg-bg-card border border-border-subtle light:border-neutral-200 relative group shadow-lg transition-all duration-300 focus-within:border-accent-glitch/50 focus-within:ring-1 focus-within:ring-accent-glitch/20 rounded-xl overflow-hidden light:shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+              <div className="p-1 border-b border-border-subtle light:border-neutral-200 bg-bg-void/50 light:bg-neutral-50 flex justify-between items-center px-4 py-2">
                 <div className="flex items-center gap-2 text-[9px] font-mono uppercase tracking-[0.3em] text-text-muted">
                   <Terminal className="w-3 h-3" />
                   Input
@@ -332,7 +302,7 @@ export default function ToolView({
                 </div>
               </div>
               <div
-                className="p-0"
+                className="p-0 bg-neutral-50/80 dark:bg-white/[0.02]"
                 onMouseEnter={lockBodyScroll}
                 onMouseLeave={unlockBodyScroll}
               >
@@ -341,7 +311,7 @@ export default function ToolView({
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Enter text to transform..."
-                  className="w-full min-h-[140px] lg:min-h-[150px] bg-[#0c0c0c] text-base md:text-lg lg:text-xl font-medium tracking-normal text-text-primary placeholder:text-text-primary/30 outline-none focus:outline-none resize-none custom-scrollbar transition-all overscroll-contain p-4 lg:p-5 text-left border-none"
+                  className="w-full min-h-[140px] lg:min-h-[150px] bg-transparent text-base md:text-lg lg:text-xl font-medium tracking-normal text-text-primary placeholder:text-text-primary/30 outline-none focus:outline-none resize-none custom-scrollbar transition-all overscroll-contain p-4 lg:p-5 text-left border-none"
                   autoFocus
                   spellCheck="false"
                   data-gramm="false"
@@ -351,82 +321,31 @@ export default function ToolView({
             </div>
 
             {/* Output Panel */}
-            <div className="bg-bg-card border border-border-subtle relative group shadow-lg overflow-hidden flex flex-col transition-all duration-300 focus-within:border-accent-glitch/50 focus-within:ring-1 focus-within:ring-accent-glitch/20 rounded-xl">
-              <div className="p-2 border-b border-border-subtle bg-bg-void/50 flex flex-col sm:flex-row justify-between items-start sm:items-center px-4 py-3 gap-3">
+            <div className="bg-bg-card border border-border-subtle light:border-neutral-200 relative group shadow-lg flex flex-col transition-all duration-300 focus-within:border-accent-glitch/50 focus-within:ring-1 focus-within:ring-accent-glitch/20 rounded-xl light:shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+              <div className="p-2 border-b border-border-subtle light:border-neutral-200 bg-bg-void/50 light:bg-neutral-50 flex justify-between items-center px-4 py-3 rounded-t-xl">
                 <div className="flex items-center gap-2 text-[10px] sm:text-[9px] font-mono uppercase tracking-[0.3em] text-accent-glitch shrink-0 mt-0.5">
                   <Zap className="w-3.5 h-3.5 sm:w-3 sm:h-3" />
                   Preview
                 </div>
-                <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-3 h-min">
-                  {/* Color Picker Wrapper */}
-                  <div className="flex items-center gap-2 p-1.5 bg-bg-void/40 border border-white/10 rounded-full backdrop-blur-md shrink-0 h-min ring-1 ring-white/5 shadow-inner">
-                    {colors.map((c) => (
-                      <button
-                        key={c.name}
-                        onClick={() => setOutputColor(c.value)}
-                        className={`group relative flex-none rounded-full transition-all duration-300 ${
-                          outputColor === c.value
-                            ? "scale-110 ring-2 ring-accent-glitch ring-offset-2 ring-offset-black z-10"
-                            : "hover:scale-110 hover:ring-2 hover:ring-white/30 hover:ring-offset-2 hover:ring-offset-black"
-                        }`}
-                        style={{
-                          width: "22px",
-                          height: "22px",
-                          minWidth: "22px",
-                          minHeight: "22px",
-                        }}
-                        title={c.name}
-                      >
-                        <span
-                          className="absolute inset-0 rounded-full"
-                          style={{
-                            backgroundColor:
-                              c.value === "inherit" ? "#ffffff" : c.value,
-                            opacity:
-                              c.value === "inherit" && outputColor !== "inherit"
-                                ? 0.2
-                                : 1,
-                          }}
-                        >
-                          {c.value === "inherit" && (
-                            <span className="absolute inset-0 flex items-center justify-center pointer-events-none rounded-full overflow-hidden">
-                              <span className="w-[120%] h-[1.5px] bg-red-500 -rotate-45" />
-                            </span>
-                          )}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-
-                  {/* Copy Button */}
-                  <button
-                    onClick={() => handleCopy()}
-                    className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-accent-glitch text-black font-black uppercase tracking-widest text-[10px] transition-all active:scale-95 shadow-lg min-w-[100px] shrink-0 ${
-                      isCopied
-                        ? "bg-text-primary text-bg-void"
-                        : "hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(57,255,20,0.3)]"
-                    }`}
-                  >
-                    {isCopied ? (
-                      <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                    ) : (
-                      <Copy className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                    )}
-                    <span>{isCopied ? "COPIED" : "COPY"}</span>
-                  </button>
-                </div>
-              </div>
-
-              <div className="bg-accent-glitch/5 px-4 py-1 border-b border-border-subtle flex items-center gap-2">
-                <Info className="w-2.5 h-2.5 text-accent-glitch" />
-                <span className="text-[10px] font-sans text-accent-glitch/80 font-medium uppercase tracking-wider">
-                  Note: Colors work in Rich-Text (Email/Docs). Social Media
-                  platforms support Unicode symbols only.
-                </span>
+                <button
+                  onClick={() => handleCopy()}
+                  className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-black uppercase tracking-widest text-[10px] transition-all active:scale-95 shadow-md min-w-[100px] shrink-0 ${
+                    isCopied
+                      ? "bg-text-primary text-bg-void"
+                      : "bg-accent-glitch text-black hover:-translate-y-0.5 hover:shadow-lg"
+                  }`}
+                >
+                  {isCopied ? (
+                    <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                  ) : (
+                    <Copy className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                  )}
+                  <span>{isCopied ? "COPIED" : "COPY"}</span>
+                </button>
               </div>
 
               <div
-                className="relative bg-bg-void/10 overflow-hidden border-b border-white/5"
+                className="relative bg-neutral-50 dark:bg-bg-void/30 overflow-hidden rounded-b-xl"
                 onMouseEnter={lockBodyScroll}
                 onMouseLeave={unlockBodyScroll}
               >
@@ -436,8 +355,7 @@ export default function ToolView({
                       ref={outputRef}
                       readOnly
                       value={output}
-                      className="w-full flex-1 min-h-[130px] lg:min-h-[150px] bg-[#0c0c0c]/80 text-base md:text-lg lg:text-xl font-medium tracking-normal break-all leading-relaxed transition-colors duration-300 relative z-10 outline-none resize-none overflow-y-auto custom-scrollbar overscroll-contain p-4 lg:p-5 text-left"
-                      style={{ color: outputColor }}
+                      className="w-full flex-1 min-h-[130px] lg:min-h-[150px] bg-transparent text-base md:text-lg lg:text-xl font-medium tracking-normal break-all leading-relaxed transition-colors duration-300 relative z-10 outline-none resize-none overflow-y-auto custom-scrollbar overscroll-contain p-4 lg:p-5 text-left text-text-primary"
                     />
                   ) : (
                     <div className="flex-1 flex items-center justify-center">
@@ -449,7 +367,7 @@ export default function ToolView({
                 </div>
 
                 {/* Decorative Tech Grid */}
-                <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#39FF14_1px,transparent_1px)] [background-size:20px_20px]" />
+                <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#39FF14_1px,transparent_1px)] [background-size:20px_20px] hidden dark:block" />
               </div>
 
               <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent-glitch/10 to-transparent" />
@@ -458,12 +376,12 @@ export default function ToolView({
 
           {/* Sidebar Controls */}
           <div className="w-full lg:w-[320px] shrink-0 flex flex-col gap-4 z-20">
-            <div className="bg-bg-card border border-border-subtle p-4 relative group shadow-xl rounded-xl">
+            <div className="bg-bg-card border border-border-subtle light:border-neutral-200 p-4 relative group shadow-xl rounded-xl light:shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
               <div className="flex items-center gap-3 mb-6 md:mb-8">
-                <div className="w-10 h-10 border border-accent-glitch/20 flex items-center justify-center">
+                <div className="w-10 h-10 border border-accent-glitch/30 bg-accent-glitch/5 rounded-lg flex items-center justify-center">
                   <Settings className="w-5 h-5 text-accent-glitch" />
                 </div>
-                <h2 className="text-xs font-mono uppercase tracking-[0.3em]">
+                <h2 className="text-xs font-mono uppercase tracking-[0.3em] text-text-primary">
                   Settings
                 </h2>
               </div>
@@ -498,14 +416,14 @@ export default function ToolView({
                             },
                           }))
                         }
-                        className="w-full h-1 bg-white/5 rounded-none appearance-none cursor-pointer accent-accent-glitch"
+                        className="w-full h-1 bg-border-subtle rounded-none appearance-none cursor-pointer accent-accent-glitch"
                       />
                     )}
 
                     {control.type === "select" && (
                       <div
                         className="relative"
-                        ref={openDropdown === control.id ? containerRef : null}
+                        ref={(el) => { dropdownRefs.current[control.id] = el; }}
                       >
                         <motion.button
                           whileTap={{ scale: 0.97 }}
@@ -514,10 +432,10 @@ export default function ToolView({
                               openDropdown === control.id ? null : control.id,
                             )
                           }
-                          className={`w-full bg-[#0a0a0a] border transition-all duration-150 px-4 py-3 flex items-center justify-between group rounded-lg ${
+                          className={`w-full bg-bg-card border transition-all duration-150 px-4 py-3 flex items-center justify-between group rounded-lg ${
                             openDropdown === control.id
                               ? "border-accent-glitch/60 ring-1 ring-accent-glitch/20 shadow-[0_0_15px_rgba(57,255,20,0.08)]"
-                              : "border-white/10 hover:border-white/25 hover:bg-[#111]"
+                              : "border-border-subtle light:border-neutral-200 hover:border-text-muted hover:bg-bg-void light:hover:bg-neutral-50"
                           }`}
                         >
                           <div className="flex items-center gap-2.5">
@@ -534,7 +452,7 @@ export default function ToolView({
                             className={`w-4 h-4 transition-all duration-150 ${
                               openDropdown === control.id
                                 ? "rotate-180 text-accent-glitch"
-                                : "text-text-muted group-hover:text-white/40"
+                                : "text-text-muted group-hover:text-text-primary/50"
                             }`}
                           />
                         </motion.button>
@@ -542,7 +460,6 @@ export default function ToolView({
                         <AnimatePresence>
                           {openDropdown === control.id && (
                             <motion.div
-                              ref={scrollRef}
                               initial={{ opacity: 0, y: 4, scale: 0.98 }}
                               animate={{ opacity: 1, y: 0, scale: 1 }}
                               exit={{ opacity: 0, y: 4, scale: 0.98 }}
@@ -552,7 +469,7 @@ export default function ToolView({
                               }}
                               onMouseEnter={lockBodyScroll}
                               onMouseLeave={unlockBodyScroll}
-                              className="absolute top-[calc(100%+6px)] left-0 right-0 bg-[#0a0a0a] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_20px_rgba(57,255,20,0.03)] z-[70] max-h-[300px] overflow-hidden rounded-xl"
+                              className="absolute top-[calc(100%+6px)] left-0 right-0 bg-bg-card light:bg-white border border-border-subtle light:border-neutral-200 shadow-lg light:shadow-xl z-[9999] max-h-[300px] overflow-hidden rounded-xl"
                             >
                               <div className="overflow-y-auto max-h-[300px] custom-scrollbar p-1 flex flex-col gap-0.5 overscroll-contain">
                                 {control.options?.map(
@@ -575,8 +492,8 @@ export default function ToolView({
                                         }}
                                         className={`w-full text-left px-3 py-2.5 text-[11px] font-mono uppercase tracking-wider transition-all duration-75 rounded-lg flex items-center justify-between group/opt ${
                                           isActive
-                                            ? "bg-accent-glitch/10 border border-accent-glitch/30 text-accent-glitch font-black shadow-[inset_0_0_12px_rgba(57,255,20,0.05)]"
-                                            : "border border-transparent text-white/50 hover:bg-white/[0.04] hover:text-white/80 hover:border-white/[0.08]"
+                                            ? "bg-accent-glitch/10 light:bg-emerald-50 border border-accent-glitch/30 light:border-emerald-200 text-accent-glitch light:text-emerald-600 font-black"
+                                            : "border border-transparent text-text-muted light:text-neutral-500 hover:bg-border-subtle light:hover:bg-neutral-100 hover:text-text-primary light:hover:text-neutral-900 hover:border-border-subtle light:hover:border-neutral-200"
                                         }`}
                                       >
                                         <div className="flex items-center">
@@ -613,8 +530,8 @@ export default function ToolView({
                         className={`group relative flex items-center gap-3 p-3 border transition-all duration-300 overflow-hidden rounded-md cursor-pointer select-none ${
                           (options.customSettings?.[control.id] ??
                           control.defaultValue)
-                            ? "border-accent-glitch/40 bg-accent-glitch/5 shadow-[0_2px_10px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.05)]"
-                            : "border-white/5 bg-[#111]/50 hover:border-white/10 shadow-[inner_0_1px_10px_rgba(0,0,0,0.2)]"
+                            ? "border-accent-glitch/40 bg-accent-glitch/5 shadow-sm"
+                            : "border-border-subtle bg-bg-void/50 light:bg-neutral-50 light:border-neutral-200 hover:border-border-subtle "
                         }`}
                       >
                         {/* Compact Icon */}
@@ -623,7 +540,7 @@ export default function ToolView({
                             (options.customSettings?.[control.id] ??
                             control.defaultValue)
                               ? "bg-accent-glitch text-black shadow-[0_0_10px_rgba(57,255,20,0.3)]"
-                              : "bg-white/5 text-text-muted group-hover:bg-white/10"
+                              : "bg-border-subtle text-text-muted group-hover:bg-text-muted/20"
                           }`}
                         >
                           {(() => {
@@ -651,7 +568,7 @@ export default function ToolView({
                             className={`text-[10px] font-mono uppercase tracking-[0.05em] transition-colors duration-300 truncate w-full ${
                               (options.customSettings?.[control.id] ??
                               control.defaultValue)
-                                ? "text-white font-black"
+                                ? "text-text-primary font-black"
                                 : "text-text-muted/80 group-hover:text-text-primary"
                             }`}
                           >
@@ -662,7 +579,7 @@ export default function ToolView({
                               (options.customSettings?.[control.id] ??
                               control.defaultValue)
                                 ? "text-accent-glitch/80"
-                                : "text-white/10"
+                                : "text-text-muted"
                             }`}
                           >
                             {(options.customSettings?.[control.id] ??
@@ -679,7 +596,7 @@ export default function ToolView({
                               (options.customSettings?.[control.id] ??
                               control.defaultValue)
                                 ? "bg-accent-glitch/20 border-accent-glitch/50"
-                                : "bg-black/40 border-white/10"
+                                : "bg-border-subtle border-border-subtle"
                             }`}
                           >
                             <motion.div
@@ -695,14 +612,14 @@ export default function ToolView({
                                 (options.customSettings?.[control.id] ??
                                 control.defaultValue)
                                   ? "bg-accent-glitch shadow-[0_0_8px_rgba(57,255,20,0.8)]"
-                                  : "bg-white/20"
+                                  : "bg-text-muted/40"
                               }`}
                             />
                           </div>
                         </div>
 
                         {/* Metallic Edge Highlight */}
-                        <div className="absolute top-0 left-0 w-full h-[1px] bg-white/5" />
+                        <div className="absolute top-0 left-0 w-full h-[1px] bg-border-subtle" />
 
                         {(options.customSettings?.[control.id] ??
                           control.defaultValue) && (
@@ -714,7 +631,7 @@ export default function ToolView({
                 ))}
 
                 {/* Global Overrides */}
-                <div className="pt-8 border-t border-white/5 flex flex-col gap-4">
+                <div className="pt-8 border-t border-border-subtle flex flex-col gap-4">
                   <div className="text-[8px] font-mono uppercase tracking-[0.3em] text-text-muted/50 mb-1">
                     General Settings
                   </div>
@@ -725,15 +642,15 @@ export default function ToolView({
                     }
                     className={`group relative flex items-center gap-3 p-3 border transition-all duration-300 overflow-hidden rounded-md cursor-pointer select-none ${
                       options.uppercase
-                        ? "border-accent-glitch/40 bg-accent-glitch/5 shadow-[0_2px_10px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.05)]"
-                        : "border-white/5 bg-[#111]/50 hover:border-white/10 shadow-[inner_0_1px_10px_rgba(0,0,0,0.2)]"
+                        ? "border-accent-glitch/40 bg-accent-glitch/5 shadow-sm"
+                        : "border-border-subtle bg-bg-void/50 light:bg-neutral-50 light:border-neutral-200 hover:border-border-subtle "
                     }`}
                   >
                     <div
                       className={`p-1.5 rounded-sm transition-all duration-500 ${
                         options.uppercase
                           ? "bg-accent-glitch text-black shadow-[0_0_10px_rgba(57,255,20,0.3)]"
-                          : "bg-white/5 text-text-muted group-hover:bg-white/10"
+                          : "bg-border-subtle text-text-muted group-hover:bg-text-muted/20"
                       }`}
                     >
                       <Type className="w-3.5 h-3.5" />
@@ -743,7 +660,7 @@ export default function ToolView({
                       <span
                         className={`text-[10px] font-mono uppercase tracking-[0.05em] transition-colors duration-300 truncate w-full ${
                           options.uppercase
-                            ? "text-white font-black"
+                            ? "text-text-primary font-black"
                             : "text-text-muted/80 group-hover:text-text-primary"
                         }`}
                       >
@@ -753,7 +670,7 @@ export default function ToolView({
                         className={`text-[7px] font-mono tracking-widest mt-0.5 transition-opacity duration-300 ${
                           options.uppercase
                             ? "text-accent-glitch/80"
-                            : "text-white/10"
+                            : "text-text-muted"
                         }`}
                       >
                         {options.uppercase ? "CAPS_LOCK_ON" : "CAPS_LOCK_OFF"}
@@ -765,7 +682,7 @@ export default function ToolView({
                         className={`w-8 h-4 rounded-full border transition-all duration-300 relative ${
                           options.uppercase
                             ? "bg-accent-glitch/20 border-accent-glitch/50"
-                            : "bg-black/40 border-white/10"
+                            : "bg-border-subtle border-border-subtle"
                         }`}
                       >
                         <motion.div
@@ -774,13 +691,13 @@ export default function ToolView({
                           className={`absolute top-0.5 w-2.5 h-2.5 rounded-full shadow-lg ${
                             options.uppercase
                               ? "bg-accent-glitch shadow-[0_0_8px_rgba(57,255,20,0.8)]"
-                              : "bg-white/20"
+                              : "bg-text-muted/40"
                           }`}
                         />
                       </div>
                     </div>
 
-                    <div className="absolute top-0 left-0 w-full h-[1px] bg-white/5" />
+                    <div className="absolute top-0 left-0 w-full h-[1px] bg-border-subtle" />
                   </motion.button>
 
                   <motion.button
@@ -788,15 +705,15 @@ export default function ToolView({
                     onClick={() => setShowPlatformLimits(!showPlatformLimits)}
                     className={`group relative flex items-center gap-3 p-3 border transition-all duration-300 overflow-hidden rounded-md cursor-pointer select-none ${
                       showPlatformLimits
-                        ? "border-accent-glitch/40 bg-accent-glitch/5 shadow-[0_2px_10px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.05)]"
-                        : "border-white/5 bg-[#111]/50 hover:border-white/10 shadow-[inner_0_1px_10px_rgba(0,0,0,0.2)]"
+                        ? "border-accent-glitch/40 bg-accent-glitch/5 shadow-sm"
+                        : "border-border-subtle bg-bg-void/50 light:bg-neutral-50 light:border-neutral-200 hover:border-border-subtle "
                     }`}
                   >
                     <div
                       className={`p-1.5 rounded-sm transition-all duration-500 ${
                         showPlatformLimits
                           ? "bg-accent-glitch text-black shadow-[0_0_10px_rgba(57,255,20,0.3)]"
-                          : "bg-white/5 text-text-muted group-hover:bg-white/10"
+                          : "bg-border-subtle text-text-muted group-hover:bg-text-muted/20"
                       }`}
                     >
                       <BarChart3 className="w-3.5 h-3.5" />
@@ -806,7 +723,7 @@ export default function ToolView({
                       <span
                         className={`text-[10px] font-mono uppercase tracking-[0.05em] transition-colors duration-300 truncate w-full ${
                           showPlatformLimits
-                            ? "text-white font-black"
+                            ? "text-text-primary font-black"
                             : "text-text-muted/80 group-hover:text-text-primary"
                         }`}
                       >
@@ -816,7 +733,7 @@ export default function ToolView({
                         className={`text-[7px] font-mono tracking-widest mt-0.5 transition-opacity duration-300 ${
                           showPlatformLimits
                             ? "text-accent-glitch/80"
-                            : "text-white/10"
+                            : "text-text-muted"
                         }`}
                       >
                         {showPlatformLimits
@@ -830,7 +747,7 @@ export default function ToolView({
                         className={`w-8 h-4 rounded-full border transition-all duration-300 relative ${
                           showPlatformLimits
                             ? "bg-accent-glitch/20 border-accent-glitch/50"
-                            : "bg-black/40 border-white/10"
+                            : "bg-border-subtle border-border-subtle"
                         }`}
                       >
                         <motion.div
@@ -839,13 +756,13 @@ export default function ToolView({
                           className={`absolute top-0.5 w-2.5 h-2.5 rounded-full shadow-lg ${
                             showPlatformLimits
                               ? "bg-accent-glitch shadow-[0_0_8px_rgba(57,255,20,0.8)]"
-                              : "bg-white/20"
+                              : "bg-text-muted/40"
                           }`}
                         />
                       </div>
                     </div>
 
-                    <div className="absolute top-0 left-0 w-full h-[1px] bg-white/5" />
+                    <div className="absolute top-0 left-0 w-full h-[1px] bg-border-subtle" />
                   </motion.button>
 
                   <AnimatePresence>
@@ -865,9 +782,9 @@ export default function ToolView({
                             );
                             const isOver = len > platform.limit;
                             return (
-                              <div
+                                <div
                                 key={platform.name}
-                                className="p-2 border border-white/5"
+                                className="p-2 border border-border-subtle light:border-neutral-200"
                               >
                                 <div className="flex items-center justify-between mb-1">
                                   <span className="text-[8px] font-mono text-text-muted flex items-center gap-1">
@@ -879,7 +796,7 @@ export default function ToolView({
                                     {len}/{platform.limit}
                                   </span>
                                 </div>
-                                <div className="w-full h-1 bg-white/5 relative overflow-hidden">
+                                <div className="w-full h-1 bg-border-subtle relative overflow-hidden">
                                   <div
                                     className={`h-full transition-all duration-500 ${isOver ? "bg-red-500" : "bg-accent-glitch/60"}`}
                                     style={{ width: `${pct}%` }}

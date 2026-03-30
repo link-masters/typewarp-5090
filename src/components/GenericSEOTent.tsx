@@ -62,13 +62,13 @@ export default function GenericSEOTent({
   return (
     <div className="mt-16 sm:mt-24 max-w-4xl mx-auto space-y-16 px-4 pb-24">
       <div className="space-y-8">
-        <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
-          <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+        <div className="p-6 md:p-8 bg-bg-card border border-border-subtle light:border-neutral-200 light:shadow-[0_1px_3px_rgba(0,0,0,0.04)] rounded-2xl relative overflow-hidden">
+          <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(57,255,20,0.05)_0%,transparent_50%)] hidden dark:block" />
           <div className="relative z-10">
-            <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+            <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-text-primary">
               <span className="text-accent-glitch">{tool.name}</span> Overview
             </h2>
-            <div className="prose prose-invert max-w-none text-white/75 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+            <div className="prose dark:prose-invert max-w-none text-text-muted text-sm md:text-base leading-relaxed space-y-4 font-mono">
               <p>
                 Built on advanced Unicode algorithms, this generator allows
                 users to bypass traditional platform formatting call-to-action
@@ -81,13 +81,13 @@ export default function GenericSEOTent({
           </div>
         </div>
 
-        <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
-          <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_0%_100%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+        <div className="p-6 md:p-8 bg-bg-card border border-border-subtle light:border-neutral-200 light:shadow-[0_1px_3px_rgba(0,0,0,0.04)] rounded-2xl relative overflow-hidden">
+          <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_0%_100%,rgba(57,255,20,0.05)_0%,transparent_50%)] hidden dark:block" />
           <div className="relative z-10">
-            <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+            <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-text-primary">
               Advanced Generation Techniques
             </h2>
-            <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+            <div className="prose dark:prose-invert max-w-none text-text-muted text-sm md:text-base leading-relaxed space-y-4 font-mono">
               <p>
                 To get the most out of our {tool.name}, we recommend
                 experimenting with different styles and combinations. Since our
@@ -111,13 +111,13 @@ export default function GenericSEOTent({
           </div>
         </div>
 
-        <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
-          <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+        <div className="p-6 md:p-8 bg-bg-card border border-border-subtle light:border-neutral-200 light:shadow-[0_1px_3px_rgba(0,0,0,0.04)] rounded-2xl relative overflow-hidden">
+          <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(57,255,20,0.05)_0%,transparent_50%)] hidden dark:block" />
           <div className="relative z-10">
-            <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+            <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-text-primary">
               Universal Device Compatibility
             </h2>
-            <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+            <div className="prose dark:prose-invert max-w-none text-text-muted text-sm md:text-base leading-relaxed space-y-4 font-mono">
               <p>
                 Unlike external plugins, custom mobile keyboards, or images
                 containing stylized typography, the characters produced by the{" "}
@@ -142,13 +142,13 @@ export default function GenericSEOTent({
           </div>
         </div>
 
-        <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
-          <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+        <div className="p-6 md:p-8 bg-bg-card border border-border-subtle light:border-neutral-200 light:shadow-[0_1px_3px_rgba(0,0,0,0.04)] rounded-2xl relative overflow-hidden">
+          <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(57,255,20,0.05)_0%,transparent_50%)] hidden dark:block" />
           <div className="relative z-10">
-            <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+            <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-text-primary">
               Unicode vs. ASCII: A Technical Breakdown
             </h2>
-            <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+            <div className="prose dark:prose-invert max-w-none text-text-muted text-sm md:text-base leading-relaxed space-y-4 font-mono">
               <p>
                 To fully understand how the <strong>{tool.name}</strong> works,
                 it is important to distinguish between standard typography and
@@ -176,13 +176,13 @@ export default function GenericSEOTent({
           </div>
         </div>
 
-        <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
-          <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+        <div className="p-6 md:p-8 bg-bg-card border border-border-subtle light:border-neutral-200 light:shadow-[0_1px_3px_rgba(0,0,0,0.04)] rounded-2xl relative overflow-hidden">
+          <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(57,255,20,0.05)_0%,transparent_50%)] hidden dark:block" />
           <div className="relative z-10">
-            <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+            <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-text-primary">
               Privacy, Performance, and Security
             </h2>
-            <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+            <div className="prose dark:prose-invert max-w-none text-text-muted text-sm md:text-base leading-relaxed space-y-4 font-mono">
               <p>
                 Performance and data privacy are foundational to the
                 architecture of our <strong>{category.name}</strong> utilities.
@@ -207,13 +207,13 @@ export default function GenericSEOTent({
           </div>
         </div>
 
-        <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
-          <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_0%_100%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+        <div className="p-6 md:p-8 bg-bg-card border border-border-subtle light:border-neutral-200 light:shadow-[0_1px_3px_rgba(0,0,0,0.04)] rounded-2xl relative overflow-hidden">
+          <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_0%_100%,rgba(57,255,20,0.05)_0%,transparent_50%)] hidden dark:block" />
           <div className="relative z-10">
-            <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+            <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-text-primary">
               Accessibility and Ethical Usage of Stylized Text
             </h2>
-            <div className="prose prose-invert max-w-none text-white/60 text-sm md:text-base leading-relaxed space-y-4 font-mono">
+            <div className="prose dark:prose-invert max-w-none text-text-muted text-sm md:text-base leading-relaxed space-y-4 font-mono">
               <p>
                 While the <strong>{tool.name}</strong> offers incredible
                 creative potential, we advocate for responsible usage of
@@ -238,13 +238,13 @@ export default function GenericSEOTent({
           </div>
         </div>
 
-        <div className="p-6 md:p-8 bg-[#0c0c0c] border border-white/5 rounded-2xl relative overflow-hidden">
-          <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_0%_100%,rgba(57,255,20,0.05)_0%,transparent_50%)]" />
+        <div className="p-6 md:p-8 bg-bg-card border border-border-subtle light:border-neutral-200 light:shadow-[0_1px_3px_rgba(0,0,0,0.04)] rounded-2xl relative overflow-hidden">
+          <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_0%_100%,rgba(57,255,20,0.05)_0%,transparent_50%)] hidden dark:block" />
           <div className="relative z-10">
-            <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-white">
+            <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter mb-4 text-text-primary">
               Technical Glossary: Unicode and Typographic Terms
             </h2>
-            <div className="prose prose-invert max-w-none text-white/75 text-sm md:text-base leading-relaxed font-mono">
+            <div className="prose dark:prose-invert max-w-none text-text-muted text-sm md:text-base leading-relaxed font-mono">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-xs">
                 <p>
                   <strong>Unicode Transformation:</strong> The process of
@@ -298,14 +298,14 @@ export default function GenericSEOTent({
 
       <div className="space-y-10">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 bg-[#0c0c0c] border border-white/10 rounded-xl flex items-center justify-center text-accent-glitch">
+          <div className="w-12 h-12 bg-bg-card border border-border-subtle light:border-neutral-200 rounded-xl flex items-center justify-center text-accent-glitch">
             <Info className="w-6 h-6" />
           </div>
-          <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-center text-white">
+          <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-center text-text-primary">
             Frequently Asked{" "}
             <span className="text-accent-glitch">Questions</span>
           </h2>
-          <p className="text-white/30 font-mono text-xs uppercase tracking-widest">
+          <p className="text-text-muted font-mono text-xs uppercase tracking-widest">
             Common queries answered
           </p>
         </div>
@@ -314,9 +314,9 @@ export default function GenericSEOTent({
           {faqs.map((faq, i) => (
             <div
               key={i}
-              className="p-5 md:p-6 bg-[#0c0c0c] border border-white/5 rounded-xl group hover:border-accent-glitch/20 transition-all duration-500 relative overflow-hidden"
+              className="p-5 md:p-6 bg-bg-card border border-border-subtle light:border-neutral-200 light:shadow-[0_1px_3px_rgba(0,0,0,0.04)] rounded-xl group hover:border-accent-glitch/20 light:hover:border-accent-glitch/30 light:hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-all duration-500 relative overflow-hidden"
             >
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)]" />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_70%)] light:bg-[radial-gradient(circle_at_50%_0%,rgba(22,163,74,0.04)_0%,transparent_70%)]" />
               <div className="relative z-10">
                 <h4 className="text-[11px] md:text-xs font-mono font-black text-accent-glitch uppercase tracking-wider mb-4 flex items-start gap-3">
                   <span className="inline-flex items-center justify-center w-6 h-6 bg-accent-glitch/10 border border-accent-glitch/20 rounded-md text-[9px] text-accent-glitch shrink-0 mt-0.5">
@@ -325,7 +325,7 @@ export default function GenericSEOTent({
                   <span className="pt-1">{faq.q}</span>
                 </h4>
                 <div className="flex gap-3 xs:ml-9">
-                  <p className="text-white/70 font-mono text-[12px] md:text-[13px] leading-[1.8] group-hover:text-white/90 transition-colors duration-500">
+                  <p className="text-text-muted font-mono text-[12px] md:text-[13px] leading-[1.8] group-hover:text-text-primary transition-colors duration-500">
                     {faq.a}
                   </p>
                 </div>

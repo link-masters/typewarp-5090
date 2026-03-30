@@ -64,16 +64,16 @@ export default function FeaturedTools() {
   ];
 
   return (
-    <section className="py-12 md:py-28 bg-[#080808] relative overflow-hidden font-mono">
+    <section className="py-12 md:py-28 bg-bg-void light:bg-white relative overflow-hidden font-mono">
       {/* Ambient Glow */}
-      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-20%,rgba(57,255,20,0.02)_0%,transparent_50%)] pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-20%,rgba(57,255,20,0.02)_0%,transparent_50%)] pointer-events-none hidden dark:block" />
       <div className="container mx-auto max-w-7xl px-4 lg:px-6">
         <div className="flex flex-col md:flex-row items-end justify-between mb-10 md:mb-16 gap-6 md:gap-8">
           <div className="max-w-2xl text-left">
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter uppercase mb-4 md:mb-6 leading-[0.9]">
+            <h2 className="text-4xl md:text-5xl font-black tracking-tighter uppercase mb-4 md:mb-6 leading-[0.9] text-text-primary">
               Popular <span className="text-accent-glitch">Effects</span>
             </h2>
-            <p className="text-white/40 font-mono text-sm md:text-lg max-w-xl">
+            <p className="text-text-muted font-mono text-sm md:text-lg max-w-xl">
               Professional tools designed to help you create unique designs and
               standout typography for any platform.
             </p>
@@ -81,7 +81,7 @@ export default function FeaturedTools() {
 
           <Link
             href="/collection"
-            className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40 hover:text-white transition-colors border-b border-white/10 pb-2 mb-2 flex items-center gap-3 shrink-0"
+            className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted hover:text-text-primary light:hover:text-accent-glitch transition-colors border-b border-border-subtle pb-2 mb-2 flex items-center gap-3 shrink-0"
           >
             Toolkit
             <ArrowRight className="w-3 h-3" />
@@ -95,33 +95,31 @@ export default function FeaturedTools() {
               <Link
                 key={tool.slug}
                 href={`/${tool.category}/${tool.slug}`}
-                className="group relative p-6 bg-[#0c0c0c] border border-white/5 hover:border-accent-glitch/20 transition-all duration-500 overflow-hidden flex flex-col rounded-xl"
+                className="group relative p-6 bg-bg-card border border-border-subtle light:border-neutral-200 light:shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:border-accent-glitch/20 light:hover:border-accent-glitch/30 light:hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-all duration-500 overflow-hidden flex flex-col rounded-xl"
               >
-                {/* Unique Refined Hover Glimmer */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.03)_0%,transparent_70%)]" />
+                {/* Hover Glimmer */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.03)_0%,transparent_70%)] light:bg-[radial-gradient(circle_at_50%_0%,rgba(22,163,74,0.04)_0%,transparent_70%)]" />
 
-                {/* Kinetic Icon Container */}
                 <div className="relative z-10 flex flex-col h-full">
                   <div className="mb-4 flex items-center justify-start origin-left group-hover:scale-110 transition-transform duration-500 relative">
-                    <Icon className="w-6 h-6 text-white/30 group-hover:text-accent-glitch transition-colors duration-500" />
+                    <Icon className="w-6 h-6 text-text-muted group-hover:text-accent-glitch transition-colors duration-500" />
                   </div>
 
-                  <h3 className="text-lg font-black text-white/90 uppercase tracking-tighter mb-3 group-hover:text-white transition-all duration-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                  <h3 className="text-lg font-black text-text-primary uppercase tracking-tighter mb-3 group-hover:text-text-primary transition-all duration-500 whitespace-nowrap overflow-hidden text-ellipsis">
                     {tool.name}
                   </h3>
 
-                  <p className="text-[11px] font-mono text-text-muted leading-relaxed mb-6 opacity-60 group-hover:opacity-100 transition-opacity">
+                  <p className="text-[11px] font-mono text-text-muted leading-relaxed mb-6 opacity-60 light:opacity-100 light:text-neutral-500 group-hover:opacity-100 transition-opacity">
                     Create unique and stand-out {tool.name.toLowerCase()} text
                     with our simple generator.
                   </p>
 
-                  {/* Clean Action Link */}
-                  <div className="mt-auto pt-5 border-t border-white/5 flex items-center justify-between">
-                    <div className="flex items-center gap-3 text-white/20 group-hover:text-accent-glitch font-mono font-bold text-[10px] uppercase tracking-[0.2em] transition-colors duration-300">
+                  <div className="mt-auto pt-5 border-t border-border-subtle flex items-center justify-between">
+                    <div className="flex items-center gap-3 text-text-muted group-hover:text-accent-glitch font-mono font-bold text-[10px] uppercase tracking-[0.2em] transition-colors duration-300">
                       Try Now
                       <div className="w-8 h-[1px] bg-current transition-all duration-500 group-hover:w-12" />
                     </div>
-                    <ArrowRight className="w-4 h-4 text-white/20 group-hover:text-accent-glitch group-hover:translate-x-1 transition-all" />
+                    <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-accent-glitch group-hover:translate-x-1 transition-all" />
                   </div>
                 </div>
               </Link>

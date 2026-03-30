@@ -124,7 +124,7 @@ const ScrambledTitle: React.FC = () => {
   return (
     <h1
       ref={elementRef}
-      className="text-white text-6xl font-bold tracking-wider justify-center"
+      className="text-text-primary text-6xl font-bold tracking-wider justify-center"
       style={{ fontFamily: "monospace" }}
     >
       RAINING LETTERS

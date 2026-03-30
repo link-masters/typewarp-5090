@@ -75,7 +75,7 @@ export default function SEOTrophy({ toolSlug }: { toolSlug: string }) {
   return (
     <>
       <h2
-        className="text-base sm:text-lg md:text-2xl font-black text-white tracking-tight uppercase leading-tight break-words mt-16 mb-8 border-b border-white/10 pb-4"
+        className="text-base sm:text-lg md:text-2xl font-black text-text-primary tracking-tight uppercase leading-tight break-words mt-16 mb-8 border-b border-neutral-200 dark:border-white/10 pb-4"
         id="platform-mechanics-and-unicode-architecture"
       >
         Platform Mechanics &amp; Unicode Architecture
@@ -90,7 +90,7 @@ export default function SEOTrophy({ toolSlug }: { toolSlug: string }) {
                   return (
                     <h3
                       key={j}
-                      className="text-sm sm:text-base md:text-lg font-black text-white mt-10 mb-5 tracking-wide uppercase before:content-[''] before:inline-block before:w-1.5 before:h-4 before:bg-accent-glitch/60 before:mr-3 before:align-middle"
+                      className="text-sm sm:text-base md:text-lg font-black text-text-primary mt-10 mb-5 tracking-wide uppercase before:content-[''] before:inline-block before:w-1.5 before:h-4 before:bg-accent-glitch/60 before:mr-3 before:align-middle"
                     >
                       {line.replace("### ", "")}
                     </h3>
@@ -99,7 +99,7 @@ export default function SEOTrophy({ toolSlug }: { toolSlug: string }) {
                 return (
                   <p
                     key={j}
-                    className="text-white/50 font-mono leading-[1.8] mb-6 text-[14px] md:text-[15px]"
+                    className="text-neutral-500 dark:text-white/50 font-mono leading-[1.8] mb-6 text-[14px] md:text-[15px]"
                   >
                     {line}
                   </p>

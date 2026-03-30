@@ -125,7 +125,7 @@ export default function PrivacyPage() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 tracking-tight uppercase leading-[0.9]">
-            <span className="text-white">Privacy</span>{" "}
+            <span className="text-text-primary">Privacy</span>{" "}
             <span className="text-accent-glitch">Policy.</span>
           </h1>
 
@@ -140,14 +140,14 @@ export default function PrivacyPage() {
           {highlights.map((h) => (
             <div
               key={h.label}
-              className="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 bg-bg-card border border-white/[0.06] rounded-2xl hover:border-accent-glitch/25 transition-all duration-300 relative overflow-hidden"
+              className="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 bg-bg-card border border-neutral-200 dark:border-white/[0.06] rounded-2xl hover:border-accent-glitch/25 transition-all duration-300 relative overflow-hidden"
             >
               <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-glitch/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="p-2 sm:p-3 bg-white/[0.04] rounded-xl group-hover:bg-accent-glitch/10 transition-colors shrink-0">
+              <div className="p-2 sm:p-3 bg-neutral-100 dark:bg-white/[0.04] rounded-xl group-hover:bg-accent-glitch/10 transition-colors shrink-0">
                 <h.icon className="w-5 h-5 sm:w-6 sm:h-6 text-accent-glitch" />
               </div>
               <div>
-                <div className="text-lg sm:text-xl font-black text-white leading-none">
+                <div className="text-lg sm:text-xl font-black text-text-primary leading-none">
                   {h.value}
                 </div>
                 <div className="text-[10px] sm:text-[11px] text-text-muted font-mono uppercase tracking-widest mt-1">
@@ -163,12 +163,12 @@ export default function PrivacyPage() {
           {sections.map((section, index) => (
             <div
               key={section.title}
-              className="group p-5 sm:p-6 md:p-8 bg-bg-card border border-white/[0.06] rounded-2xl hover:border-accent-glitch/25 transition-all duration-300 relative overflow-hidden"
+              className="group p-5 sm:p-6 md:p-8 bg-bg-card border border-neutral-200 dark:border-white/[0.06] rounded-2xl hover:border-accent-glitch/25 transition-all duration-300 relative overflow-hidden"
             >
               <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-glitch/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
               <div className="flex items-start gap-4 sm:gap-5">
-                <div className="p-2.5 sm:p-3 bg-white/[0.04] rounded-xl group-hover:bg-accent-glitch/10 transition-colors shrink-0">
+                <div className="p-2.5 sm:p-3 bg-neutral-100 dark:bg-white/[0.04] rounded-xl group-hover:bg-accent-glitch/10 transition-colors shrink-0">
                   <section.icon className="w-5 h-5 sm:w-6 sm:h-6 text-accent-glitch" />
                 </div>
 
@@ -177,7 +177,7 @@ export default function PrivacyPage() {
                     <span className="text-[10px] sm:text-xs font-mono text-accent-glitch/50 font-bold">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <h2 className="text-sm sm:text-base md:text-lg font-bold text-white uppercase tracking-wide group-hover:text-accent-glitch transition-colors">
+                    <h2 className="text-sm sm:text-base md:text-lg font-bold text-text-primary uppercase tracking-wide group-hover:text-accent-glitch transition-colors">
                       {section.title}
                     </h2>
                   </div>
@@ -191,26 +191,26 @@ export default function PrivacyPage() {
         </div>
 
         {/* Footer Info */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 sm:p-6 bg-bg-card border border-white/[0.06] rounded-2xl">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 sm:p-6 bg-bg-card border border-neutral-200 dark:border-white/[0.06] rounded-2xl">
           <div>
             <p className="text-[10px] sm:text-xs font-mono text-text-muted uppercase tracking-widest mb-1">
               Last Updated
             </p>
-            <p className="text-sm sm:text-base font-bold text-white">
+            <p className="text-sm sm:text-base font-bold text-text-primary">
               February 10, 2026
             </p>
           </div>
           <div className="flex items-center gap-3">
             <Link
               href="/terms"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.04] border border-white/[0.1] text-white font-bold text-[10px] sm:text-xs uppercase tracking-widest rounded-xl hover:border-accent-glitch/30 hover:bg-accent-glitch/5 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/[0.1] text-text-primary font-bold text-[10px] sm:text-xs uppercase tracking-widest rounded-xl hover:border-accent-glitch/30 hover:bg-accent-glitch/5 transition-all duration-300"
             >
               Terms
               <ArrowRight className="w-3 h-3" />
             </Link>
             <Link
               href="/gdpr"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.04] border border-white/[0.1] text-white font-bold text-[10px] sm:text-xs uppercase tracking-widest rounded-xl hover:border-accent-glitch/30 hover:bg-accent-glitch/5 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/[0.1] text-text-primary font-bold text-[10px] sm:text-xs uppercase tracking-widest rounded-xl hover:border-accent-glitch/30 hover:bg-accent-glitch/5 transition-all duration-300"
             >
               GDPR
               <ArrowRight className="w-3 h-3" />

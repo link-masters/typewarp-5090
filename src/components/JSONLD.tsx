@@ -5,6 +5,7 @@ export default function JSONLD({ data }: { data: any }) {
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      suppressHydrationWarning
     />
   );
 }

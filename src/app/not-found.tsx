@@ -6,7 +6,7 @@ import { AlertTriangle, Home, RotateCcw } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-bg-void text-text-primary flex items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen bg-bg-void light:bg-white text-text-primary flex items-center justify-center relative overflow-hidden">
       <BackgroundEffect />
 
       <div className="container max-w-2xl px-4 relative z-10 text-center">
@@ -27,14 +27,14 @@ export default function NotFound() {
         <div className="flex flex-col md:flex-row gap-4 justify-center">
           <Link
             href="/"
-            className="px-8 py-4 bg-accent-glitch text-black font-black text-xs uppercase tracking-widest hover:bg-white transition-all flex items-center justify-center gap-3"
+            className="px-8 py-4 bg-accent-glitch text-black font-black text-xs uppercase tracking-widest hover:bg-neutral-900 light:hover:bg-neutral-800 hover:text-white transition-all flex items-center justify-center gap-3 rounded-xl"
           >
             <Home className="w-4 h-4" />
             REBOOT_TO_ROOT
           </Link>
           <button
             onClick={() => window.location.reload()}
-            className="px-8 py-4 border border-white/10 text-white font-black text-xs uppercase tracking-widest hover:border-accent-glitch hover:text-accent-glitch transition-all flex items-center justify-center gap-3"
+            className="px-8 py-4 border border-neutral-200 dark:border-white/10 text-text-primary font-black text-xs uppercase tracking-widest hover:border-accent-glitch hover:text-accent-glitch transition-all flex items-center justify-center gap-3 rounded-xl"
           >
             <RotateCcw className="w-4 h-4" />
             RETRY_SIGNAL

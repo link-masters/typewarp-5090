@@ -68,14 +68,21 @@ const BackgroundEffect = memo(function BackgroundEffect() {
         return;
       }
 
-      ctx.fillStyle = "rgba(3, 3, 3, 0.15)";
+      const isLight = document.documentElement.classList.contains("light");
+      const bgFade = isLight ? "rgba(245,245,245,0.15)" : "rgba(3,3,3,0.15)";
+      const charColor = isLight
+        ? Math.random() > 0.98 ? "#16a34a" : "rgba(22,163,74,0.10)"
+        : Math.random() > 0.98 ? "#39ff14" : "rgba(57,255,20,0.12)";
+
+      ctx.fillStyle = bgFade;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.font = `${fontSize}px monospace`;
 
       for (let i = 0; i < drops.length; i += step) {
         const text = characters[(Math.random() * characters.length) | 0];
-        ctx.fillStyle =
-          Math.random() > 0.98 ? "#39ff14" : "rgba(57, 255, 20, 0.12)";
+        ctx.fillStyle = isLight
+          ? Math.random() > 0.98 ? "#16a34a" : "rgba(22,163,74,0.10)"
+          : Math.random() > 0.98 ? "#39ff14" : "rgba(57,255,20,0.12)";
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
         if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) {

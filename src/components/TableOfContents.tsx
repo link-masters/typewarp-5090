@@ -81,9 +81,9 @@ export default function TableOfContents({
   };
 
   return (
-    <nav className="bg-bg-card/40 backdrop-blur-md border border-white/5 sticky top-32 overflow-hidden shadow-2xl group transition-all duration-300 hover:border-accent-glitch/20">
+    <nav className="bg-bg-card/40 backdrop-blur-md border border-neutral-200 dark:border-white/5 sticky top-32 overflow-hidden shadow-2xl group transition-all duration-300 hover:border-neutral-300 dark:hover:border-accent-glitch/20">
       {/* Progress Indicator */}
-      <div className="h-[2px] bg-white/5 relative">
+      <div className="h-[2px] bg-neutral-200 dark:bg-white/5 relative">
         <div
           className="h-full bg-accent-glitch shadow-[0_0_10px_var(--accent-glitch)] transition-all duration-300 ease-out"
           style={{ width: `${progress}%` }}
@@ -94,16 +94,16 @@ export default function TableOfContents({
       {/* Header */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full p-5 flex items-center justify-between hover:bg-white/[0.03] transition-all group/header"
+        className="w-full p-5 flex items-center justify-between hover:bg-neutral-100 dark:hover:bg-white/[0.03] transition-all group/header"
       >
         <div className="flex items-center gap-4">
           <div className="relative">
-            <div className="w-10 h-10 border border-white/10 flex items-center justify-center bg-white/5 transition-all group-hover/header:border-accent-glitch/50 group-hover/header:bg-accent-glitch/10">
+            <div className="w-10 h-10 border border-neutral-200 dark:border-white/10 flex items-center justify-center bg-neutral-100 dark:bg-white/5 transition-all group-hover/header:border-accent-glitch/50 group-hover/header:bg-accent-glitch/10">
               <List className="w-4 h-4 text-text-muted group-hover/header:text-accent-glitch transition-colors" />
             </div>
           </div>
           <div className="text-left font-mono">
-            <div className="text-[10px] font-black text-white uppercase tracking-[0.3em] leading-none mb-1.5">
+            <div className="text-[10px] font-black text-text-primary uppercase tracking-[0.3em] leading-none mb-1.5">
               Table of Contents
             </div>
             <div className="flex items-center gap-2">
@@ -139,7 +139,7 @@ export default function TableOfContents({
                     className={`w-full text-left py-2.5 px-4 text-[9px] font-black transition-all flex items-center gap-4 uppercase tracking-widest relative group/item overflow-hidden ${
                       isActive
                         ? "text-accent-glitch"
-                        : "text-text-muted hover:text-white"
+                        : "text-text-muted hover:text-text-primary"
                     }`}
                   >
                     {/* Active Background Effect */}
@@ -148,13 +148,13 @@ export default function TableOfContents({
                     )}
 
                     {/* Hover Effect */}
-                    <div className="absolute inset-0 bg-white/5 -translate-x-full group-hover/item:translate-x-0 transition-transform duration-300" />
+                    <div className="absolute inset-0 bg-neutral-100 dark:bg-white/5 -translate-x-full group-hover/item:translate-x-0 transition-transform duration-300" />
 
                     <span
                       className={`w-6 h-6 border flex items-center justify-center text-[8px] transition-all shrink-0 relative z-10 ${
                         isActive
                           ? "border-accent-glitch bg-accent-glitch text-black shadow-[0_0_15px_-3px_var(--accent-glitch)] scale-110"
-                          : "border-white/10 text-white/20 group-hover/item:border-white/30 group-hover/item:text-white"
+                          : "border-neutral-200 dark:border-white/10 text-neutral-400 dark:text-white/20 group-hover/item:border-neutral-300 dark:group-hover/item:border-white/30 group-hover/item:text-text-primary"
                       }`}
                     >
                       {String(index + 1).padStart(2, "0")}
@@ -175,7 +175,7 @@ export default function TableOfContents({
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-neutral-200 dark:via-white/5 to-transparent" />
     </nav>
   );
 }

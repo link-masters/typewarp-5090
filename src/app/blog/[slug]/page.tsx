@@ -94,7 +94,7 @@ function ToolsSection() {
 
   return (
     <div className="space-y-6">
-      <div className="p-6 bg-bg-card border border-accent-glitch/20 group relative overflow-hidden">
+      <div className="p-6 bg-bg-card border border-accent-glitch/20 light:border-accent-glitch/30 light:shadow-[0_1px_3px_rgba(0,0,0,0.04)] group relative overflow-hidden">
         <div className="relative z-10 font-mono text-center">
           <div className="text-[10px] text-accent-glitch uppercase tracking-[0.4em] mb-4 flex items-center justify-center gap-2">
             <Zap className="w-3 h-3 text-accent-glitch" />
@@ -120,13 +120,13 @@ function ToolsSection() {
         return (
           <div
             key={catSlug}
-            className="bg-bg-card border border-white/5 p-6 font-mono"
+            className="bg-bg-card border border-neutral-200 dark:border-white/5 p-6 font-mono"
           >
             <div className="flex items-center gap-3 mb-6">
               <span className="text-xl grayscale group-hover:grayscale-0 opacity-40">
                 {category.icon}
               </span>
-              <h3 className="text-[9px] font-black text-white uppercase tracking-[0.3em]">
+              <h3 className="text-[9px] font-black text-text-primary uppercase tracking-[0.3em]">
                 {category.name}
               </h3>
             </div>
@@ -187,15 +187,12 @@ export default async function BlogPostPage({
     publisher: {
       "@type": "Organization",
       name: "TypeWarp",
-      logo: {
-        "@type": "ImageObject",
-        url: `${SITE_URL}/logo.png`,
-      },
+      logo: `${SITE_URL}/logo.png`,
     },
   };
 
   return (
-    <article className="min-h-screen pt-36 pb-20 bg-bg-void text-text-primary relative overflow-hidden">
+    <article className="min-h-screen pt-36 pb-20 bg-bg-void light:bg-white text-text-primary relative overflow-hidden">
       <BackgroundEffect />
       <JSONLD data={jsonLd} />
       <div className="container mx-auto max-w-7xl relative z-10 px-4">
@@ -222,7 +219,7 @@ export default async function BlogPostPage({
         </nav>
 
         {/* Main Image */}
-        <div className="relative w-full aspect-[21/9] mb-12 bg-bg-card border border-white/10 group overflow-hidden max-w-6xl mx-auto shadow-2xl">
+        <div className="relative w-full aspect-[21/9] mb-12 bg-bg-card border border-neutral-200 dark:border-white/10 group overflow-hidden max-w-6xl mx-auto shadow-2xl rounded-2xl">
           <Image
             src={post.image}
             alt={post.title}
@@ -258,12 +255,12 @@ export default async function BlogPostPage({
             {post.description}
           </p>
 
-          <div className="flex items-center gap-4 mt-12 pt-8 border-t border-white/5">
+          <div className="flex items-center gap-4 mt-12 pt-8 border-t border-neutral-200 dark:border-white/5">
             <div className="w-10 h-10 border border-accent-glitch/30 flex items-center justify-center font-mono text-accent-glitch text-lg bg-accent-glitch/5">
               {post.author[0]}
             </div>
             <div className="font-mono text-[10px] uppercase tracking-[0.2em]">
-              <div className="text-white">{post.author}</div>
+              <div className="text-text-primary">{post.author}</div>
               <div className="text-text-muted">Author</div>
             </div>
           </div>
@@ -282,12 +279,12 @@ export default async function BlogPostPage({
               <TableOfContents items={tocItems} />
             </div>
             <div
-              className="prose prose-sm prose-invert max-w-none 
+              className="prose prose-sm dark:prose-invert max-w-none 
               prose-headings:uppercase prose-headings:font-black prose-headings:tracking-tighter prose-headings:text-text-primary
               prose-p:font-mono prose-p:text-text-muted prose-p:leading-relaxed
               prose-a:text-accent-glitch prose-a:no-underline hover:prose-a:underline
               prose-code:text-accent-glitch prose-code:bg-bg-card prose-code:px-1 prose-code:before:content-none prose-code:after:content-none
-              prose-strong:text-white prose-strong:font-black"
+              prose-strong:text-text-primary prose-strong:font-black"
             >
               <MDXRemote
                 source={post.content}
