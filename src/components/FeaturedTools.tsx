@@ -24,7 +24,7 @@ export default function FeaturedTools() {
       slug: "cursed-text",
       category: "dark-horror",
       icon: Ghost,
-      accent: "text-accent-glitch",
+      accent: "text-emerald-600 dark:text-accent-glitch",
     },
     {
       name: "Zalgo Script",
@@ -45,7 +45,7 @@ export default function FeaturedTools() {
       slug: "gaming-font",
       category: "social-fonts",
       icon: Cpu,
-      accent: "text-accent-glitch",
+      accent: "text-emerald-600 dark:text-accent-glitch",
     },
     {
       name: "Secure Base64",
@@ -71,7 +71,7 @@ export default function FeaturedTools() {
         <div className="flex flex-col md:flex-row items-end justify-between mb-10 md:mb-16 gap-6 md:gap-8">
           <div className="max-w-2xl text-left">
             <h2 className="text-4xl md:text-5xl font-black tracking-tighter uppercase mb-4 md:mb-6 leading-[0.9] text-text-primary">
-              Popular <span className="text-accent-glitch">Effects</span>
+              Popular <span className="text-emerald-600 dark:text-accent-glitch">Effects</span>
             </h2>
             <p className="text-text-muted font-mono text-sm md:text-lg max-w-xl">
               Professional tools designed to help you create unique designs and
@@ -81,7 +81,7 @@ export default function FeaturedTools() {
 
           <Link
             href="/collection"
-            className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted hover:text-text-primary light:hover:text-accent-glitch transition-colors border-b border-border-subtle pb-2 mb-2 flex items-center gap-3 shrink-0"
+            className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted hover:text-text-primary light:hover:text-emerald-600 dark:text-accent-glitch transition-colors border-b border-border-subtle pb-2 mb-2 flex items-center gap-3 shrink-0"
           >
             Toolkit
             <ArrowRight className="w-3 h-3" />
@@ -102,7 +102,7 @@ export default function FeaturedTools() {
 
                 <div className="relative z-10 flex flex-col h-full">
                   <div className="mb-4 flex items-center justify-start origin-left group-hover:scale-110 transition-transform duration-500 relative">
-                    <Icon className="w-6 h-6 text-text-muted group-hover:text-accent-glitch transition-colors duration-500" />
+                    <Icon className="w-6 h-6 text-text-muted group-hover:text-emerald-600 dark:text-accent-glitch transition-colors duration-500" />
                   </div>
 
                   <h3 className="text-lg font-black text-text-primary uppercase tracking-tighter mb-3 group-hover:text-text-primary transition-all duration-500 whitespace-nowrap overflow-hidden text-ellipsis">
@@ -115,11 +115,11 @@ export default function FeaturedTools() {
                   </p>
 
                   <div className="mt-auto pt-5 border-t border-border-subtle flex items-center justify-between">
-                    <div className="flex items-center gap-3 text-text-muted group-hover:text-accent-glitch font-mono font-bold text-[10px] uppercase tracking-[0.2em] transition-colors duration-300">
+                    <div className="flex items-center gap-3 text-text-muted group-hover:text-emerald-600 dark:text-accent-glitch font-mono font-bold text-[10px] uppercase tracking-[0.2em] transition-colors duration-300">
                       Try Now
                       <div className="w-8 h-[1px] bg-current transition-all duration-500 group-hover:w-12" />
                     </div>
-                    <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-accent-glitch group-hover:translate-x-1 transition-all" />
+                    <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-emerald-600 dark:text-accent-glitch group-hover:translate-x-1 transition-all" />
                   </div>
                 </div>
               </Link>

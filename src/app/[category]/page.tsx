@@ -175,7 +175,7 @@ export default async function CategoryPage({
                   impact while maintaining the underlying semantic integrity of
                   your text. Whether you are creating a cursed aesthetic for a
                   horror-themed profile or using professional fancy fonts for
-                  branding, our generators provide instantaneous, zero-latency
+                  branding, our generators provide instant
                   results through client-side browser execution.
                 </p>
               </div>

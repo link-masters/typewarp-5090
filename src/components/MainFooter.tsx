@@ -21,6 +21,7 @@ import {
 const legalLinks = [
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
+  { href: "/all-tools", label: "All Pages", },
   { href: "/terms", label: "Terms" },
   { href: "/privacy", label: "Privacy" },
   { href: "/cookies", label: "Cookies" },
@@ -29,8 +30,6 @@ const legalLinks = [
 ];
 
 const socialLinks = [
-  { Icon: Twitter, href: "#", label: "Twitter" },
-  { Icon: Github, href: "#", label: "GitHub" },
   { Icon: Mail, href: "mailto:community@typewarp.com", label: "Email" },
 ];
 
@@ -74,7 +73,7 @@ const Footer = () => {
   const desktopColumns = splitIntoColumns(categories, desktopCols);
 
   return (
-    <footer className="w-full border-t border-neutral-200 dark:border-white/[0.1] bg-white dark:bg-[#0a0a0a] relative overflow-hidden font-mono">
+    <footer className="w-full border-t border-border-subtle light:border-neutral-200 bg-bg-card relative overflow-hidden font-mono">
       {/* Top gradient line */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-500/20 dark:via-accent-glitch/15 to-transparent" />
 
@@ -300,7 +299,7 @@ const Footer = () => {
       </div>
 
       {/* ===== Bottom Bar ===== */}
-      <div className="border-t border-neutral-200/50 dark:border-white/[0.08] bg-white dark:bg-[#0a0a0a]">
+      <div className="border-t border-border-subtle light:border-neutral-200 bg-bg-card">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 h-14 sm:h-16 md:h-20 flex items-center justify-between gap-4">
           {/* Left */}
           <div className="flex items-center gap-3 sm:gap-4 md:gap-6 min-w-0">

@@ -94,7 +94,7 @@ const sections = [
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen pt-24 lg:pt-28 pb-16 sm:pb-20 bg-bg-void text-text-primary relative overflow-hidden">
+    <div className="min-h-screen pt-6 lg:pt-8 pb-16 sm:pb-20 bg-bg-void text-text-primary relative overflow-hidden">
       <BackgroundEffect />
 
       <div className="mx-auto px-4 sm:px-6 max-w-4xl relative z-10">
@@ -102,24 +102,24 @@ export default function TermsPage() {
         <nav className="flex items-center gap-2 mb-4 lg:mb-6 font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] text-text-muted">
           <Link
             href="/"
-            className="hover:text-accent-glitch transition-colors flex items-center gap-1.5"
+            className="hover:text-emerald-600 dark:text-accent-glitch transition-colors flex items-center gap-1.5"
           >
             <Home className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             Home
           </Link>
           <ChevronRight className="w-3 h-3 opacity-30" />
-          <span className="text-accent-glitch">Terms</span>
+          <span className="text-emerald-600 dark:text-accent-glitch">Terms</span>
         </nav>
 
         {/* Hero */}
         <section className="mb-12 sm:mb-16">
-          <div className="inline-block px-4 py-1.5 mb-5 sm:mb-6 bg-accent-glitch/10 border border-accent-glitch/20 rounded-full text-accent-glitch text-[10px] sm:text-[11px] font-mono font-black uppercase tracking-[0.3em]">
+          <div className="inline-block px-4 py-1.5 mb-5 sm:mb-6 bg-accent-glitch/10 border border-accent-glitch/20 rounded-full text-emerald-600 dark:text-accent-glitch text-[10px] sm:text-[11px] font-mono font-black uppercase tracking-[0.3em]">
             Legal
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 tracking-tight uppercase leading-[0.9]">
             <span className="text-text-primary">Terms of</span>{" "}
-            <span className="text-accent-glitch">Service.</span>
+            <span className="text-emerald-600 dark:text-accent-glitch">Service.</span>
           </h1>
 
           <p className="text-text-muted text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed">
@@ -139,15 +139,15 @@ export default function TermsPage() {
 
               <div className="flex items-start gap-4 sm:gap-5">
                 <div className="p-2.5 sm:p-3 bg-neutral-100 dark:bg-white/[0.04] rounded-xl group-hover:bg-accent-glitch/10 transition-colors shrink-0">
-                  <section.icon className="w-5 h-5 sm:w-6 sm:h-6 text-accent-glitch" />
+                  <section.icon className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 dark:text-accent-glitch" />
                 </div>
 
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-3 mb-2 sm:mb-3">
-                    <span className="text-[10px] sm:text-xs font-mono text-accent-glitch/50 font-bold">
+                    <span className="text-[10px] sm:text-xs font-mono text-emerald-600 dark:text-accent-glitch/50 font-bold">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <h2 className="text-sm sm:text-base md:text-lg font-bold text-text-primary uppercase tracking-wide group-hover:text-accent-glitch transition-colors">
+                    <h2 className="text-sm sm:text-base md:text-lg font-bold text-text-primary uppercase tracking-wide group-hover:text-emerald-600 dark:text-accent-glitch transition-colors">
                       {section.title}
                     </h2>
                   </div>

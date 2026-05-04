@@ -32,24 +32,19 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About TypeWarp",
   description:
-    "Learn about TypeWarp — the world's most advanced cursed text generator and typography platform. Discover our mission to provide elite tools.",
+    "TypeWarp is a free text transformation platform using Unicode character mapping. All tools run client-side with no data collection. Built with Next.js and TypeScript.",
   keywords: [
     "about typewarp",
-    "text transformation tool",
-    "unicode mapping engine",
-    "cursed text tool",
-    "glitch font generator",
-    "typewarp mission",
+    "unicode text tools",
     "free text generator",
     "text effects platform",
-    "cross platform fonts",
   ],
   openGraph: {
-    title: "About TypeWarp | Mission & Technology",
+    title: "About TypeWarp",
     description:
-      "Discover TypeWarp — 88+ free text transformation tools. Real-time processing, zero data collection, cross-platform compatible.",
+      "TypeWarp — free text transformation tools. All processing runs client-side. No data collection, no accounts required.",
     url: `${SITE_URL}/about`,
     type: "website",
     images: [
@@ -64,9 +59,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About TypeWarp | Mission & Technology",
+    title: "About TypeWarp",
     description:
-      "Discover TypeWarp — 88+ free text transformation tools with real-time processing and zero data collection.",
+      "TypeWarp — free text transformation tools. All processing runs client-side with no data collection.",
     creator: "@typewarp",
     images: ["/og-image.png"],
   },
@@ -94,8 +89,8 @@ const stats = [
     icon: Fingerprint,
   },
   {
-    value: "<1ms",
-    label: "Latency",
+    value: "Instant",
+    label: "Processing",
     icon: Gauge,
   },
 ];
@@ -110,7 +105,7 @@ const features: Feature[] = [
   {
     icon: Zap,
     title: "Instant Processing",
-    desc: "Sub-millisecond text transforms — zero server calls, zero loading.",
+    desc: "Text transforms run instantly — zero server calls, zero loading screens.",
   },
   {
     icon: ShieldCheck,
@@ -230,7 +225,7 @@ const AboutPage = () => {
   };
 
   return (
-    <div className="min-h-screen pt-24 lg:pt-28 pb-16 sm:pb-20 bg-bg-void text-text-primary relative overflow-hidden">
+    <div className="min-h-screen pt-6 lg:pt-8 pb-16 sm:pb-20 bg-bg-void text-text-primary relative overflow-hidden">
       <BackgroundEffect />
       <JSONLD data={jsonLd} />
 
@@ -239,30 +234,30 @@ const AboutPage = () => {
         <nav className="flex items-center gap-2 mb-10 sm:mb-12 font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] text-text-muted">
           <Link
             href="/"
-            className="hover:text-accent-glitch transition-colors flex items-center gap-1.5"
+            className="hover:text-emerald-600 dark:text-accent-glitch transition-colors flex items-center gap-1.5"
           >
             <Home className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             Home
           </Link>
           <ChevronRight className="w-3 h-3 opacity-30" />
-          <span className="text-accent-glitch">About</span>
+          <span className="text-emerald-600 dark:text-accent-glitch">About</span>
         </nav>
 
         {/* ── Hero ── */}
         <section className="text-center mb-16 sm:mb-20 md:mb-24">
-          <div className="inline-block px-4 py-1.5 mb-5 sm:mb-6 bg-accent-glitch/10 border border-accent-glitch/20 rounded-full text-accent-glitch text-[10px] sm:text-[11px] font-mono font-black uppercase tracking-[0.3em]">
+          <div className="inline-block px-4 py-1.5 mb-5 sm:mb-6 bg-accent-glitch/10 border border-accent-glitch/20 rounded-full text-emerald-600 dark:text-accent-glitch text-[10px] sm:text-[11px] font-mono font-black uppercase tracking-[0.3em]">
             About TypeWarp
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 sm:mb-8 tracking-tight uppercase leading-[0.9]">
             <span className="text-text-primary">Beyond the</span>{" "}
-            <span className="text-accent-glitch">Standard Script.</span>
+            <span className="text-emerald-600 dark:text-accent-glitch">Standard Script.</span>
           </h1>
 
           <p className="text-text-muted text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
             A free, open text transformation platform for creators, developers &
             anyone who believes text should be{" "}
-            <span className="text-accent-glitch font-semibold">
+            <span className="text-emerald-600 dark:text-accent-glitch font-semibold">
               unforgettable
             </span>
             .
@@ -278,7 +273,7 @@ const AboutPage = () => {
             >
               <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-glitch/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="p-2 sm:p-3 bg-neutral-100 dark:bg-white/[0.04] rounded-xl group-hover:bg-accent-glitch/10 transition-colors shrink-0">
-                <s.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-accent-glitch" />
+                <s.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-emerald-600 dark:text-accent-glitch" />
               </div>
               <div>
                 <div className="text-xl sm:text-2xl md:text-3xl font-black text-text-primary leading-none">
@@ -296,9 +291,9 @@ const AboutPage = () => {
         <section className="grid grid-cols-1 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-14 mb-16 sm:mb-20 md:mb-28 items-center">
           <div className="lg:col-span-3">
             <div className="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-6">
-              <div className="w-1.5 h-8 sm:h-10 bg-accent-glitch rounded-full" />
+              <div className="w-1.5 h-8 sm:h-10 bg-emerald-500 dark:bg-accent-glitch rounded-full" />
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight">
-                The <span className="text-accent-glitch">Philosophy</span>
+                The <span className="text-emerald-600 dark:text-accent-glitch">Philosophy</span>
               </h2>
             </div>
             <div className="space-y-4 sm:space-y-5 text-text-muted text-sm sm:text-base md:text-lg leading-relaxed">
@@ -314,7 +309,7 @@ const AboutPage = () => {
               <p>
                 We provide creators and developers with a high-performance
                 toolkit using sophisticated Unicode mapping tables with{" "}
-                <span className="text-accent-glitch font-medium">
+                <span className="text-emerald-600 dark:text-accent-glitch font-medium">
                   7,500+ character mappings
                 </span>{" "}
                 — the bridge between ordinary and extraordinary.
@@ -329,7 +324,7 @@ const AboutPage = () => {
 
           {/* Visual */}
           <div className="lg:col-span-2 relative aspect-square max-w-[300px] sm:max-w-[350px] mx-auto lg:max-w-none border border-neutral-200 dark:border-white/[0.06] bg-bg-card rounded-3xl flex items-center justify-center group overflow-hidden">
-            <div className="relative z-10 text-[8rem] sm:text-[10rem] font-black text-black/[0.04] dark:text-white/[0.04] group-hover:text-accent-glitch/15 group-hover:scale-105 transition-all duration-700 select-none font-mono leading-none">
+            <div className="relative z-10 text-[8rem] sm:text-[10rem] font-black text-black/[0.04] dark:text-white/[0.04] group-hover:text-emerald-600 dark:text-accent-glitch/15 group-hover:scale-105 transition-all duration-700 select-none font-mono leading-none">
               TW
             </div>
             <div className="absolute inset-0 flex items-center justify-center">
@@ -346,9 +341,9 @@ const AboutPage = () => {
         {/* ── Features ── */}
         <section className="mb-16 sm:mb-20 md:mb-28">
           <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-            <div className="w-1.5 h-8 sm:h-10 bg-accent-glitch rounded-full" />
+            <div className="w-1.5 h-8 sm:h-10 bg-emerald-500 dark:bg-accent-glitch rounded-full" />
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight">
-              Platform <span className="text-accent-glitch">Features</span>
+              Platform <span className="text-emerald-600 dark:text-accent-glitch">Features</span>
             </h2>
           </div>
 
@@ -360,10 +355,10 @@ const AboutPage = () => {
               >
                 <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-glitch/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="p-2.5 sm:p-3 bg-neutral-100 dark:bg-white/[0.04] rounded-xl group-hover:bg-accent-glitch/10 transition-colors shrink-0">
-                  <f.icon className="w-5 h-5 sm:w-6 sm:h-6 text-accent-glitch" />
+                  <f.icon className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 dark:text-accent-glitch" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-sm sm:text-base font-bold text-text-primary mb-1.5 sm:mb-2 uppercase tracking-wide leading-tight group-hover:text-accent-glitch transition-colors">
+                  <h3 className="text-sm sm:text-base font-bold text-text-primary mb-1.5 sm:mb-2 uppercase tracking-wide leading-tight group-hover:text-emerald-600 dark:text-accent-glitch transition-colors">
                     {f.title}
                   </h3>
                   <p className="text-xs sm:text-sm text-text-muted leading-relaxed">
@@ -378,9 +373,9 @@ const AboutPage = () => {
         {/* ── Categories ── */}
         <section className="mb-16 sm:mb-20 md:mb-28">
           <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-            <div className="w-1.5 h-8 sm:h-10 bg-accent-glitch rounded-full" />
+            <div className="w-1.5 h-8 sm:h-10 bg-emerald-500 dark:bg-accent-glitch rounded-full" />
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight">
-              <span className="text-accent-glitch">{categories.length}</span>{" "}
+              <span className="text-emerald-600 dark:text-accent-glitch">{categories.length}</span>{" "}
               Categories
             </h2>
           </div>
@@ -398,10 +393,10 @@ const AboutPage = () => {
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-3 mb-1 sm:mb-1.5">
-                    <h3 className="text-sm sm:text-base font-bold text-text-primary group-hover:text-accent-glitch transition-colors truncate uppercase tracking-wide">
+                    <h3 className="text-sm sm:text-base font-bold text-text-primary group-hover:text-emerald-600 dark:text-accent-glitch transition-colors truncate uppercase tracking-wide">
                       {cat.name}
                     </h3>
-                    <span className="text-[10px] sm:text-xs font-mono font-bold text-accent-glitch/60 shrink-0 bg-accent-glitch/10 px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] sm:text-xs font-mono font-bold text-emerald-600 dark:text-accent-glitch/60 shrink-0 bg-accent-glitch/10 px-2 py-0.5 rounded-full">
                       {cat.tools.length} Tools
                     </span>
                   </div>
@@ -414,12 +409,52 @@ const AboutPage = () => {
           </div>
         </section>
 
+        {/* ── Who Built This ── */}
+        <section className="mb-16 sm:mb-20 md:mb-28">
+          <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+            <div className="w-1.5 h-8 sm:h-10 bg-emerald-500 dark:bg-accent-glitch rounded-full" />
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight">
+              Who Built <span className="text-emerald-600 dark:text-accent-glitch">This</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="p-6 sm:p-8 bg-bg-card border border-neutral-200 dark:border-white/[0.06] rounded-2xl">
+              <p className="text-text-muted text-sm leading-relaxed">
+                TypeWarp was built by a small team of developers interested in Unicode
+                typography, character encoding, and web performance. We rely on the
+                Unicode Standard (published by the Unicode Consortium at{" "}
+                <a href="https://unicode.org" className="text-emerald-600 dark:text-accent-glitch underline" target="_blank" rel="noopener noreferrer">
+                  unicode.org
+                </a>
+                ) for all character mappings. Our understanding of mathematical
+                alphanumeric symbols (U+1D400-U+1D7FF), combining diacritical marks
+                (U+0300-U+036F), and encoding schemes (RFC 4648 for Base64, ITU-R
+                M.1677-1 for Morse) is based on publicly available standards documents.
+              </p>
+            </div>
+
+            <div className="p-6 sm:p-8 bg-bg-card border border-neutral-200 dark:border-white/[0.06] rounded-2xl">
+              <h3 className="text-sm font-bold text-text-primary uppercase tracking-wide mb-3">
+                References &amp; Standards
+              </h3>
+              <ul className="space-y-2 text-xs text-text-muted font-mono">
+                <li>• Unicode Standard, Version 15.1 — unicode.org</li>
+                <li>• RFC 4648 — Base16, Base32, Base64 Data Encodings</li>
+                <li>• ITU-R M.1677-1 — International Morse Code</li>
+                <li>• ISO/IEC 9899:2018 — C Standard (ASCII reference)</li>
+                <li>• RFC 3629 — UTF-8 Encoding Standard</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         {/* ── Tech Stack ── */}
         <section className="mb-16 sm:mb-20 md:mb-28">
           <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-            <div className="w-1.5 h-8 sm:h-10 bg-accent-glitch rounded-full" />
+            <div className="w-1.5 h-8 sm:h-10 bg-emerald-500 dark:bg-accent-glitch rounded-full" />
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight">
-              Under the <span className="text-accent-glitch">Hood</span>
+              Under the <span className="text-emerald-600 dark:text-accent-glitch">Hood</span>
             </h2>
           </div>
 
@@ -431,7 +466,7 @@ const AboutPage = () => {
               >
                 <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-glitch/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="p-2 sm:p-2.5 bg-neutral-100 dark:bg-white/[0.04] rounded-xl group-hover:bg-accent-glitch/10 transition-colors shrink-0">
-                  <t.icon className="w-5 h-5 sm:w-6 sm:h-6 text-accent-glitch/80" />
+                  <t.icon className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 dark:text-accent-glitch/80" />
                 </div>
                 <div className="min-w-0">
                   <div className="text-[10px] sm:text-[11px] font-mono text-text-muted uppercase tracking-widest leading-none mb-1 sm:mb-1.5">
@@ -449,9 +484,9 @@ const AboutPage = () => {
         {/* ── Roadmap ── */}
         <section className="mb-16 sm:mb-20 md:mb-28">
           <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-            <div className="w-1.5 h-8 sm:h-10 bg-accent-glitch rounded-full" />
+            <div className="w-1.5 h-8 sm:h-10 bg-emerald-500 dark:bg-accent-glitch rounded-full" />
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight">
-              What&apos;s <span className="text-accent-glitch">Next</span>
+              What&apos;s <span className="text-emerald-600 dark:text-accent-glitch">Next</span>
             </h2>
           </div>
 
@@ -473,7 +508,7 @@ const AboutPage = () => {
                   <span
                     className={`inline-block px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider ${
                       r.status === "live"
-                        ? "bg-accent-glitch/15 text-accent-glitch"
+                        ? "bg-accent-glitch/15 text-emerald-600 dark:text-accent-glitch"
                         : r.status === "upcoming"
                           ? "bg-blue-500/10 text-blue-400"
                           : "bg-white/[0.06] text-text-muted"
@@ -496,7 +531,7 @@ const AboutPage = () => {
                       <span
                         className={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${
                           r.status === "live"
-                            ? "bg-accent-glitch"
+                            ? "bg-emerald-500 dark:bg-accent-glitch"
                             : r.status === "upcoming"
                               ? "bg-blue-400/50"
                               : "bg-white/20"
@@ -532,7 +567,7 @@ const AboutPage = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
               <Link
                 href="/collection"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-5 bg-accent-glitch text-black font-black text-xs sm:text-sm uppercase tracking-widest rounded-xl hover:bg-white transition-all duration-300 active:scale-[0.97]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-5 bg-emerald-500 dark:bg-accent-glitch text-white dark:text-bg-void font-black text-xs sm:text-sm uppercase tracking-widest rounded-xl hover:bg-emerald-600 dark:hover:bg-[#2be010] transition-all duration-300 active:scale-[0.97]"
               >
                 Explore All Tools
                 <ArrowRight className="w-5 h-5" />

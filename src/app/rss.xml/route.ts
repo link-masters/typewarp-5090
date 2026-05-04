@@ -10,7 +10,7 @@ export async function GET() {
   <channel>
     <title>TypeWarp Blog</title>
     <link>${baseUrl}/blog</link>
-    <description>Technical guides on text manipulation, typography trends, and digital entropy</description>
+    <description>Guides on text manipulation, typography, and creative effects</description>
     <language>en-us</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${baseUrl}/rss.xml" rel="self" type="application/rss+xml"/>

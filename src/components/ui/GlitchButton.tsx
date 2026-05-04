@@ -32,7 +32,7 @@ export default function GlitchButton({
         relative overflow-hidden group
         ${
           isPrimary
-            ? "bg-transparent border-border-subtle text-text-primary hover:bg-accent-glitch hover:text-black hover:border-accent-glitch"
+            ? "bg-transparent border-border-subtle text-text-primary hover:bg-emerald-500 dark:hover:bg-accent-glitch hover:text-white dark:hover:text-bg-void hover:border-emerald-500 dark:hover:border-accent-glitch"
             : "bg-transparent border-border-subtle text-text-muted hover:border-text-primary hover:text-text-primary"
         }
         ${className}

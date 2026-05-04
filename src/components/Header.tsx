@@ -9,8 +9,6 @@ import { ToolIcon } from "@/components/ToolIcon";
 import {
   motion,
   AnimatePresence,
-  useScroll,
-  useMotionValueEvent,
 } from "framer-motion";
 import {
   Menu,
@@ -73,8 +71,13 @@ const Header = () => {
   const leaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
 
-  const { scrollY } = useScroll();
-  useMotionValueEvent(scrollY, "change", (v) => setIsScrolled(v > 12));
+  // Glass effect on scroll
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // How many nav items fit based on screen — show limited, rest in "More" dropdown
   const VISIBLE_COUNT = 6;
@@ -173,19 +176,14 @@ const Header = () => {
   const activeCat = categories.find((c) => c.slug === activeCategory);
 
   return (
-    <header className="fixed top-4 md:top-5 left-0 right-0 z-50 w-full font-mono flex justify-center px-4 md:px-6 lg:px-8 pointer-events-none">
-      <div className="w-full max-w-[1440px] relative pointer-events-auto">
-        {/* ===== Glass background ===== */}
-        <div
-          className={`absolute inset-0 transition-all duration-500 ease-out rounded-full border ${
-            isScrolled
-              ? "bg-white/92 dark:bg-[#080808]/93 backdrop-blur-2xl border-neutral-200 dark:border-white/[0.07] shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.6)]"
-              : "bg-white/60 dark:bg-[#080808]/65 backdrop-blur-xl border-neutral-200/30 dark:border-white/[0.03] shadow-[0_4px_20px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)]"
-          }`}
-        />
-
+    <header className="relative lg:sticky top-0 z-50 w-full font-mono">
+      <div className="w-full">
         {/* ===== Main navigation bar ===== */}
-        <div className="relative z-50 w-full px-4 sm:px-6 md:px-8 h-14 sm:h-16 lg:h-[68px] flex items-center justify-between gap-2 sm:gap-3 lg:gap-4">
+        <div className={`w-full px-4 sm:px-6 md:px-8 h-14 sm:h-16 lg:h-[68px] flex items-center justify-between gap-2 sm:gap-3 lg:gap-4 border-b border-border-subtle light:border-neutral-200 transition-all duration-300 ${
+          isScrolled
+            ? "bg-white/80 dark:bg-[#080808]/80 backdrop-blur-xl shadow-sm"
+            : "bg-bg-card"
+        }`}>
           {/* ---- Logo ---- */}
           <Link
             href="/"
@@ -257,6 +255,20 @@ const Header = () => {
                   </Link>
                 </div>
               ))}
+
+              {/* Blog link */}
+              <Link
+                href="/blog"
+                onClick={killDropdown}
+                aria-current={pathname.startsWith("/blog") ? "page" : undefined}
+                className={`group/btn flex items-center gap-1 xl:gap-1.5 px-2.5 xl:px-4 py-2 xl:py-2.5 text-[10px] xl:text-[11px] 2xl:text-[12px] font-bold uppercase tracking-wider transition-all duration-200 rounded-xl relative whitespace-nowrap ${
+                  pathname.startsWith("/blog")
+                    ? "text-emerald-600 dark:text-accent-glitch"
+                    : "text-neutral-500 dark:text-text-muted hover:text-neutral-800 dark:hover:text-text-primary"
+                }`}
+              >
+                Blog
+              </Link>
 
               {/* "More" button for overflow categories */}
               {hasOverflow && (

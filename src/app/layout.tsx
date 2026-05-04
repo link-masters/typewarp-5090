@@ -12,6 +12,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 
+// Inter: primary font, swap immediately, no preload — system font renders first
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -19,11 +20,12 @@ const inter = Inter({
   preload: true,
 });
 
+// JetBrains Mono: only used for code/mono text, low priority
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
-  preload: true,
+  preload: false,
 });
 
 const siteJsonLd = {
@@ -46,8 +48,13 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "TypeWarp",
   url: SITE_URL,
-  logo: `${SITE_URL}/logo.png`,
-  image: `${SITE_URL}/logo.png`,
+  logo: {
+    "@type": "ImageObject",
+    url: `${SITE_URL}/logo-square.png`,
+    width: 512,
+    height: 512,
+  },
+  image: `${SITE_URL}/logo-square.png`,
   sameAs: [SITE_URL],
 };
 
@@ -63,30 +70,23 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  applicationName: "TypeWarp",
   title: {
-    default: "TypeWarp | Cursed Text & Glitch Font Toolkit",
+    default: "TypeWarp — Free Text Generator",
     template: "%s | TypeWarp",
   },
   description:
-    "The ultimate cursed text toolkit. Transform your digital typography with glitch effects, Zalgo text, and deep-fried fonts for Discord, Instagram, and TikTok.",
+    "Free text generator with 88+ tools: cursed text, Zalgo, glitch fonts, and aesthetic styles.",
   keywords: [
     "cursed text generator",
     "glitch text generator",
     "zalgo text generator",
     "fancy text generator",
-    "weird text generator",
-    "aesthetic font generator",
     "unicode text converter",
     "cool fonts for discord",
     "fancy fonts for instagram",
-    "cursed font copy paste",
     "text effects online",
-    "creepy text maker",
-    "scary text generator",
-    "glitch font maker",
-    "text transformation tool",
     "free font generator",
-    "social media fonts",
     "typewarp",
   ],
   authors: [{ name: "TypeWarp Team", url: SITE_URL }],
@@ -102,23 +102,23 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: SITE_URL,
     siteName: "TypeWarp",
-    title: "TypeWarp | The Ultimate Cursed Text Toolkit",
+    title: "TypeWarp — Free Text Generator",
     description:
-      "The ultimate cursed text toolkit. Transform your typography with glitch effects, Zalgo text, and deep-fried fonts.",
+      "Free text generator with 88+ tools: cursed text, Zalgo, glitch fonts, and aesthetic styles.",
     images: [
       {
         url: `${SITE_URL}/og-image.png`,
-        width: 1200,
-        height: 630,
-        alt: "TypeWarp - Cursed Typography",
+        width: 2880,
+        height: 1626,
+        alt: "TypeWarp — Free Text Generator",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "TypeWarp | The Ultimate Cursed Text Toolkit",
+    title: "TypeWarp — Free Text Generator",
     description:
-      "The ultimate cursed text toolkit. Transform your typography with glitch effects, Zalgo text, and deep-fried fonts.",
+      "Free text generator with 88+ tools: cursed text, Zalgo, glitch fonts, and aesthetic styles.",
     creator: "@typewarp",
     images: [`${SITE_URL}/og-image.png`],
   },
@@ -139,10 +139,6 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: "TypeWarp",
   },
-  // Add real verification IDs from Google Search Console / Yandex Webmaster
-  // verification: {
-  //   google: "YOUR_REAL_GOOGLE_VERIFICATION_CODE",
-  // },
   icons: {
     icon: [
       { url: "/favicon-48.png", sizes: "48x48", type: "image/png" },
@@ -162,27 +158,33 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Prevent theme flash on load — default to light */}
+        {/* Preconnect to external origins for faster script/font downloads */}
+        <link rel="preconnect" href="https://cloud.umami.is" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://va.vercel-scripts.com" crossOrigin="anonymous" />
+
+        {/* Prevent theme flash on load */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){var t=localStorage.getItem('tw-theme');var theme=t||'light';document.documentElement.classList.add(theme);})();`,
+            __html: `(function(){var t=localStorage.getItem('tw-theme');var d=document.documentElement;d.classList.add(t||'light');d.style.colorScheme=t||'light';})();`,
           }}
         />
-        {/* Umami Analytics */}
+
+        {/* Analytics — all set to lazyOnload so they never block FCP/LCP */}
         <Script
           defer
           src="https://cloud.umami.is/script.js"
           data-website-id="c8e67150-1fcb-43a6-940c-b27c953fecce"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        {/* Google Analytics — using Next.js Script to avoid render-blocking */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-131CE97GZN"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
         <Script
           id="google-analytics"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -192,6 +194,7 @@ export default function RootLayout({
             `,
           }}
         />
+
         <JSONLD data={siteJsonLd} />
         <JSONLD data={organizationJsonLd} />
         <link rel="manifest" href="/site.webmanifest" />
@@ -207,11 +210,11 @@ export default function RootLayout({
       </head>
       <body
         suppressHydrationWarning
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-bg-void text-text-primary selection:bg-accent-glitch selection:text-black`}
+        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-bg-void text-text-primary selection:bg-emerald-500 dark:selection:bg-accent-glitch selection:text-white dark:selection:text-bg-void`}
       >
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent-glitch focus:text-black focus:font-bold focus:text-sm focus:rounded-lg focus:outline-none"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-emerald-500 dark:focus:bg-accent-glitch focus:text-white dark:focus:text-bg-void focus:font-bold focus:text-sm focus:rounded-lg focus:outline-none"
         >
           Skip to main content
         </a>

@@ -85,7 +85,7 @@ export default function TableOfContents({
       {/* Progress Indicator */}
       <div className="h-[2px] bg-neutral-200 dark:bg-white/5 relative">
         <div
-          className="h-full bg-accent-glitch shadow-[0_0_10px_var(--accent-glitch)] transition-all duration-300 ease-out"
+          className="h-full bg-emerald-500 dark:bg-accent-glitch shadow-[0_0_10px_rgba(16,185,129,0.5)] dark:shadow-[0_0_10px_var(--accent-glitch)] transition-all duration-300 ease-out"
           style={{ width: `${progress}%` }}
         />
         <div className="absolute top-0 right-0 h-full w-4 bg-gradient-to-l from-bg-void to-transparent z-10" />
@@ -99,7 +99,7 @@ export default function TableOfContents({
         <div className="flex items-center gap-4">
           <div className="relative">
             <div className="w-10 h-10 border border-neutral-200 dark:border-white/10 flex items-center justify-center bg-neutral-100 dark:bg-white/5 transition-all group-hover/header:border-accent-glitch/50 group-hover/header:bg-accent-glitch/10">
-              <List className="w-4 h-4 text-text-muted group-hover/header:text-accent-glitch transition-colors" />
+              <List className="w-4 h-4 text-text-muted group-hover/header:text-emerald-600 dark:text-accent-glitch transition-colors" />
             </div>
           </div>
           <div className="text-left font-mono">
@@ -138,7 +138,7 @@ export default function TableOfContents({
                     onClick={() => scrollToHeading(item.id)}
                     className={`w-full text-left py-2.5 px-4 text-[9px] font-black transition-all flex items-center gap-4 uppercase tracking-widest relative group/item overflow-hidden ${
                       isActive
-                        ? "text-accent-glitch"
+                        ? "text-emerald-600 dark:text-accent-glitch"
                         : "text-text-muted hover:text-text-primary"
                     }`}
                   >
@@ -153,7 +153,7 @@ export default function TableOfContents({
                     <span
                       className={`w-6 h-6 border flex items-center justify-center text-[8px] transition-all shrink-0 relative z-10 ${
                         isActive
-                          ? "border-accent-glitch bg-accent-glitch text-black shadow-[0_0_15px_-3px_var(--accent-glitch)] scale-110"
+                          ? "border-emerald-500 dark:border-accent-glitch bg-emerald-500 dark:bg-accent-glitch text-white dark:text-bg-void shadow-[0_0_15px_-3px_rgba(16,185,129,0.5)] dark:shadow-[0_0_15px_-3px_var(--accent-glitch)] scale-110"
                           : "border-neutral-200 dark:border-white/10 text-neutral-400 dark:text-white/20 group-hover/item:border-neutral-300 dark:group-hover/item:border-white/30 group-hover/item:text-text-primary"
                       }`}
                     >
@@ -165,7 +165,7 @@ export default function TableOfContents({
                     </span>
 
                     {isActive && (
-                      <div className="absolute left-0 top-0 w-[2px] h-full bg-accent-glitch shadow-[2px_0_10px_var(--accent-glitch)]" />
+                      <div className="absolute left-0 top-0 w-[2px] h-full bg-emerald-500 dark:bg-accent-glitch shadow-[2px_0_10px_rgba(16,185,129,0.5)] dark:shadow-[2px_0_10px_var(--accent-glitch)]" />
                     )}
                   </button>
                 </li>

@@ -30,7 +30,6 @@ export const metadata: Metadata = {
   description:
     "Free text generator with 88+ tools: cursed text, Zalgo, glitch fonts, and aesthetic styles. Create unique copy-paste text for Discord, Instagram, and TikTok.",
   keywords: [
-    "cursed text generator",
     "glitch text generator",
     "zalgo text generator",
     "fancy text generator",
@@ -50,15 +49,15 @@ export const metadata: Metadata = {
     "typewarp",
   ],
   openGraph: {
-    title: "TypeWarp | Modern Text Effects Generator",
+    title: "TypeWarp — Free Cursed Text & Glitch Font Generator",
     description:
-      "Create cursed text, Zalgo fonts, and glitch effects instantly. 88+ free text tools for Discord, Twitter, Instagram. No signup needed.",
+      "Free text generator with 88+ tools: cursed text, Zalgo, glitch fonts, and aesthetic styles. Copy-paste text for Discord, Instagram, and TikTok.",
     images: [
       {
         url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "TypeWarp - Free Cursed Text Generator with 88+ Glitch Font Tools",
+        width: 2880,
+        height: 1626,
+        alt: "TypeWarp — Free Cursed Text & Glitch Font Generator",
       },
     ],
     url: SITE_URL,
@@ -67,9 +66,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "TypeWarp | Modern Text Effects Generator",
+    title: "TypeWarp — Free Cursed Text & Glitch Font Generator",
     description:
-      "Create cursed text, Zalgo fonts, and glitch effects instantly. 88+ free text tools.",
+      "Free text generator with 88+ tools: cursed text, Zalgo, glitch fonts, and aesthetic styles.",
     creator: "@typewarp",
     images: ["/og-image.png"],
   },
@@ -291,7 +290,7 @@ export default async function Home() {
 
       {/* Capabilities Section */}
       <section
-        className="py-24 md:py-32 px-4 bg-bg-void relative overflow-hidden"
+        className="below-fold py-24 md:py-32 px-4 bg-bg-void relative overflow-hidden"
         aria-labelledby="features-heading"
       >
         <div className="container mx-auto max-w-7xl">
@@ -303,7 +302,7 @@ export default async function Home() {
               id="features-heading"
               className="text-4xl md:text-5xl font-black tracking-tighter uppercase leading-[0.9]"
             >
-              Modern <span className="text-accent-glitch">Design Tools</span>
+              Modern <span className="text-emerald-600 dark:text-accent-glitch">Design Tools</span>
             </h2>
           </div>
 
@@ -313,11 +312,11 @@ export default async function Home() {
               return (
                 <div key={i} className="flex flex-col gap-6 group">
                   <div className="w-14 h-14 flex items-center justify-center bg-bg-card border border-border-subtle rounded-2xl group-hover:scale-110 group-hover:border-accent-glitch/20 transition-all duration-500 relative overflow-hidden">
-                    <Icon className="w-6 h-6 text-text-muted group-hover:text-accent-glitch transition-all duration-500" />
+                    <Icon className="w-6 h-6 text-text-muted group-hover:text-emerald-600 dark:text-accent-glitch transition-all duration-500" />
                     <div className="absolute inset-0 bg-accent-glitch/[0.02] opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                   <div className="space-y-4">
-                    <h3 className="text-2xl font-black uppercase tracking-tight text-text-primary group-hover:text-accent-glitch transition-all duration-500">
+                    <h3 className="text-2xl font-black uppercase tracking-tight text-text-primary group-hover:text-emerald-600 dark:text-accent-glitch transition-all duration-500">
                       {cap.title}
                     </h3>
                     <p className="text-text-muted text-base leading-relaxed group-hover:text-text-primary transition-colors duration-500">
@@ -332,7 +331,7 @@ export default async function Home() {
       </section>
       {/* Categories Explorer Section */}
       <section
-        className="py-20 md:py-32 px-4 bg-bg-void relative overflow-hidden"
+        className="below-fold py-20 md:py-32 px-4 bg-bg-void relative overflow-hidden"
         aria-labelledby="categories-heading"
       >
         <div className="container mx-auto max-w-7xl relative z-10">
@@ -342,7 +341,7 @@ export default async function Home() {
                 id="categories-heading"
                 className="text-3xl md:text-5xl font-black tracking-tighter uppercase mb-4 md:mb-6 leading-tight"
               >
-                Creative <span className="text-accent-glitch">Collections</span>
+                Creative <span className="text-emerald-600 dark:text-accent-glitch">Collections</span>
               </h2>
               <p className="text-text-muted font-mono text-base md:text-lg max-w-xl">
                 Browse our curated categories to find the perfect look for your
@@ -352,7 +351,7 @@ export default async function Home() {
 
             <Link
               href="/collection"
-              className="font-mono text-xs uppercase tracking-[0.2em] text-text-muted hover:text-accent-glitch transition-colors flex items-center gap-3 border-b border-border-subtle pb-2 mb-2"
+              className="font-mono text-xs uppercase tracking-[0.2em] text-text-muted hover:text-emerald-600 dark:text-accent-glitch transition-colors flex items-center gap-3 border-b border-border-subtle pb-2 mb-2"
               title="Browse all 50+ text effect tools"
             >
               View All
@@ -377,10 +376,10 @@ export default async function Home() {
                       <ToolIcon
                         slug={category.slug}
                         categorySlug={category.slug}
-                        className="w-6 h-6 text-text-muted group-hover:text-accent-glitch transition-all duration-500"
+                        className="w-6 h-6 text-text-muted group-hover:text-emerald-600 dark:text-accent-glitch transition-all duration-500"
                       />
                     </div>
-                    <div className="font-mono text-[10px] text-text-muted group-hover:text-accent-glitch/20 transition-colors">
+                    <div className="font-mono text-[10px] text-text-muted group-hover:text-emerald-600 dark:text-accent-glitch/20 transition-colors">
                       {category.count.toString().padStart(2, "0")} TOOLS
                     </div>
                   </div>
@@ -394,7 +393,7 @@ export default async function Home() {
                   </p>
 
                   <div className="mt-auto pt-5 border-t border-border-subtle flex items-center justify-between">
-                    <div className="flex items-center gap-3 text-text-muted group-hover:text-accent-glitch font-mono font-bold text-[10px] uppercase tracking-[0.2em] transition-colors duration-300">
+                    <div className="flex items-center gap-3 text-text-muted group-hover:text-emerald-600 dark:text-accent-glitch font-mono font-bold text-[10px] uppercase tracking-[0.2em] transition-colors duration-300">
                       <span className="sr-only">
                         Explore {category.name} tools
                       </span>
@@ -402,7 +401,7 @@ export default async function Home() {
                       <div className="w-8 h-[1px] bg-current transition-all duration-500 group-hover:w-12" />
                     </div>
                     <ArrowRight
-                      className="w-4 h-4 text-text-muted group-hover:text-accent-glitch group-hover:translate-x-1 transition-all"
+                      className="w-4 h-4 text-text-muted group-hover:text-emerald-600 dark:text-accent-glitch group-hover:translate-x-1 transition-all"
                       aria-hidden="true"
                     />
                   </div>
@@ -414,7 +413,7 @@ export default async function Home() {
       </section>
       {/* About Section */}
       <section
-        className="py-20 md:py-32 px-4 bg-bg-void relative overflow-hidden border-t border-border-subtle"
+        className="below-fold py-20 md:py-32 px-4 bg-bg-void relative overflow-hidden border-t border-border-subtle"
         aria-labelledby="about-heading"
       >
         <div className="container mx-auto max-w-7xl relative z-10">
@@ -429,7 +428,7 @@ export default async function Home() {
                 id="about-heading"
                 className="text-3xl md:text-5xl font-black tracking-tighter uppercase leading-tight"
               >
-                How It <span className="text-accent-glitch">Works</span>
+                How It <span className="text-emerald-600 dark:text-accent-glitch">Works</span>
               </h2>
             </div>
             <p className="text-text-muted font-mono text-sm max-w-sm text-left md:text-right">
@@ -448,7 +447,7 @@ export default async function Home() {
                 </span>
                 <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter text-text-primary mb-4 leading-tight">
                   Free Text Generator,{" "}
-                  <span className="text-accent-glitch">88+ Tools</span>
+                  <span className="text-emerald-600 dark:text-accent-glitch">88+ Tools</span>
                 </h3>
                 <p className="text-text-muted text-sm leading-relaxed max-w-xl">
                   TypeWarp gives you instant access to over 88 Unicode text
@@ -470,7 +469,7 @@ export default async function Home() {
                 </span>
                 <div>
                   <div className="text-5xl md:text-6xl font-black tracking-tighter text-text-primary leading-none mb-3">
-                    149<span className="text-accent-glitch">K</span>
+                    149<span className="text-emerald-600 dark:text-accent-glitch">K</span>
                   </div>
                   <p className="text-text-muted text-sm leading-relaxed">
                     Unicode characters in the standard. TypeWarp maps your input
@@ -511,7 +510,7 @@ export default async function Home() {
                   <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted">
                     {card.num}
                   </span>
-                  <h3 className="text-base font-black uppercase tracking-tighter text-text-primary leading-tight group-hover:text-accent-glitch transition-colors duration-500">
+                  <h3 className="text-base font-black uppercase tracking-tighter text-text-primary leading-tight group-hover:text-emerald-600 dark:text-accent-glitch transition-colors duration-500">
                     {card.title}
                   </h3>
                   <p className="text-text-muted text-[11px] leading-relaxed group-hover:text-text-primary transition-colors duration-500">
@@ -555,17 +554,17 @@ export default async function Home() {
                   <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted">
                     {card.num}
                   </span>
-                  <h3 className="text-sm font-black uppercase tracking-tighter text-text-primary leading-tight group-hover:text-accent-glitch transition-colors duration-500">
+                  <h3 className="text-sm font-black uppercase tracking-tighter text-text-primary leading-tight group-hover:text-emerald-600 dark:text-accent-glitch transition-colors duration-500">
                     {card.title}
                   </h3>
                   <p className="text-text-muted text-[11px] leading-relaxed group-hover:text-text-primary transition-colors duration-500">
                     {card.body}
                   </p>
                   <div className="mt-auto pt-4 border-t border-border-subtle flex items-center justify-between">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted group-hover:text-accent-glitch transition-colors duration-300">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted group-hover:text-emerald-600 dark:text-accent-glitch transition-colors duration-300">
                       Use Case
                     </span>
-                    <ArrowRight className="w-3.5 h-3.5 text-text-muted group-hover:text-accent-glitch group-hover:translate-x-1 transition-all" aria-hidden="true" />
+                    <ArrowRight className="w-3.5 h-3.5 text-text-muted group-hover:text-emerald-600 dark:text-accent-glitch group-hover:translate-x-1 transition-all" aria-hidden="true" />
                   </div>
                 </div>
               </div>
@@ -591,7 +590,7 @@ export default async function Home() {
                 id="blog-heading"
                 className="text-xl md:text-2xl lg:text-3xl font-black tracking-tighter uppercase mb-1 md:mb-2 text-left leading-[0.9]"
               >
-                Recent <span className="text-accent-glitch">Articles</span>
+                Recent <span className="text-emerald-600 dark:text-accent-glitch">Articles</span>
               </h2>
               <p className="text-text-muted font-mono text-[9px] md:text-[10px] max-w-xl text-left uppercase tracking-[0.3em]">
                 Design, typography, and creative text effects.
@@ -600,7 +599,7 @@ export default async function Home() {
 
             <Link
               href="/blog"
-              className="font-mono text-[9px] uppercase tracking-[0.3em] text-text-muted hover:text-accent-glitch light:hover:text-accent-glitch transition-colors border-b border-border-subtle pb-1.5 shrink-0"
+              className="font-mono text-[9px] uppercase tracking-[0.3em] text-text-muted hover:text-emerald-600 dark:text-accent-glitch light:hover:text-emerald-600 dark:text-accent-glitch transition-colors border-b border-border-subtle pb-1.5 shrink-0"
               title="Read typography tutorials and design guides"
             >
               View All
@@ -622,7 +621,7 @@ export default async function Home() {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(57,255,20,0.02)_0%,transparent_70%)] pointer-events-none" />
 
             <div className="relative z-10">
-              <span className="inline-block px-4 py-1.5 bg-accent-glitch/10 text-accent-glitch text-[10px] font-bold uppercase tracking-[0.4em] mb-6 md:mb-8 rounded-full border border-accent-glitch/20">
+              <span className="inline-block px-4 py-1.5 bg-accent-glitch/10 text-emerald-600 dark:text-accent-glitch text-[10px] font-bold uppercase tracking-[0.4em] mb-6 md:mb-8 rounded-full border border-accent-glitch/20">
                 Ready to Start
               </span>
 
@@ -630,7 +629,7 @@ export default async function Home() {
                 id="cta-heading"
                 className="text-4xl md:text-5xl font-black text-text-primary mb-6 md:mb-8 tracking-tighter leading-[0.9] uppercase"
               >
-                Start <span className="text-accent-glitch">Creating</span>
+                Start <span className="text-emerald-600 dark:text-accent-glitch">Creating</span>
               </h2>
 
               <p className="text-text-muted text-sm md:text-xl mb-10 md:mb-14 max-w-xl mx-auto leading-relaxed">
@@ -641,7 +640,7 @@ export default async function Home() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 w-full max-w-md mx-auto">
                 <Link
                   href="/collection"
-                  className="group relative w-full sm:w-auto px-10 py-4 md:py-5 bg-accent-glitch text-black font-black text-xs md:text-sm rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_8px_24px_-4px_rgba(57,255,20,0.35)]"
+                  className="group relative w-full sm:w-auto px-10 py-4 md:py-5 bg-emerald-500 dark:bg-accent-glitch text-white dark:text-bg-void font-black text-xs md:text-sm rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_-5px_rgba(16,185,129,0.5)] dark:shadow-[0_0_25px_-5px_rgba(57,255,20,0.5)] hover:shadow-[0_0_35px_-5px_rgba(16,185,129,0.5)] dark:hover:shadow-[0_0_35px_-5px_rgba(57,255,20,0.5)]"
                   title="Generate cursed text now"
                 >
                   <span className="relative z-10 uppercase tracking-widest text-center block">
@@ -650,7 +649,7 @@ export default async function Home() {
                 </Link>
                 <Link
                   href="/collection"
-                  className="w-full sm:w-auto px-10 py-4 md:py-5 border-2 border-text-primary/20 text-text-primary font-black text-xs md:text-sm rounded-full hover:border-accent-glitch hover:text-accent-glitch transition-all uppercase tracking-widest text-center"
+                  className="w-full sm:w-auto px-10 py-4 md:py-5 border-2 border-emerald-500/30 dark:border-accent-glitch/20 text-emerald-500 dark:text-white font-black text-xs md:text-sm rounded-full hover:border-emerald-500 dark:hover:border-accent-glitch hover:text-emerald-600 dark:hover:text-emerald-600 dark:text-accent-glitch hover:bg-emerald-500/5 dark:hover:bg-accent-glitch/5 transition-all uppercase tracking-widest text-center"
                   title="Browse all cursed text and glitch font tools"
                 >
                   View Tools

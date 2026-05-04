@@ -96,8 +96,8 @@ function ToolsSection() {
     <div className="space-y-6">
       <div className="p-6 bg-bg-card border border-accent-glitch/20 light:border-accent-glitch/30 light:shadow-[0_1px_3px_rgba(0,0,0,0.04)] group relative overflow-hidden">
         <div className="relative z-10 font-mono text-center">
-          <div className="text-[10px] text-accent-glitch uppercase tracking-[0.4em] mb-4 flex items-center justify-center gap-2">
-            <Zap className="w-3 h-3 text-accent-glitch" />
+          <div className="text-[10px] text-emerald-600 dark:text-accent-glitch uppercase tracking-[0.4em] mb-4 flex items-center justify-center gap-2">
+            <Zap className="w-3 h-3 text-emerald-600 dark:text-accent-glitch" />
             Explore Tools
           </div>
           <p className="text-[10px] text-text-muted mb-6">
@@ -105,7 +105,7 @@ function ToolsSection() {
           </p>
           <Link
             href="/collection"
-            className="block py-3 bg-accent-glitch text-black font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_20px_rgba(57,255,20,0.1)] rounded-full"
+            className="block py-3 bg-emerald-500 dark:bg-accent-glitch text-white dark:text-bg-void font-black text-[10px] uppercase tracking-widest hover:bg-emerald-600 dark:hover:bg-[#2be010] transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] dark:shadow-[0_0_20px_rgba(57,255,20,0.1)] rounded-full"
           >
             Access Collection
           </Link>
@@ -135,7 +135,7 @@ function ToolsSection() {
                 <Link
                   key={tool.slug}
                   href={`/${catSlug}/${tool.slug}`}
-                  className="flex items-center gap-3 p-3 text-[9px] text-text-muted hover:text-accent-glitch hover:bg-accent-glitch/5 transition-all uppercase tracking-widest border border-transparent hover:border-accent-glitch/10"
+                  className="flex items-center gap-3 p-3 text-[9px] text-text-muted hover:text-emerald-600 dark:text-accent-glitch hover:bg-accent-glitch/5 transition-all uppercase tracking-widest border border-transparent hover:border-accent-glitch/10"
                 >
                   <ToolIcon
                     slug={tool.slug}
@@ -192,7 +192,7 @@ export default async function BlogPostPage({
   };
 
   return (
-    <article className="min-h-screen pt-36 pb-20 bg-bg-void light:bg-white text-text-primary relative overflow-hidden">
+    <article className="min-h-screen pt-6 pb-20 bg-bg-void light:bg-white text-text-primary relative overflow-hidden">
       <BackgroundEffect />
       <JSONLD data={jsonLd} />
       <div className="container mx-auto max-w-7xl relative z-10 px-4">
@@ -200,7 +200,7 @@ export default async function BlogPostPage({
         <nav className="flex items-center gap-4 mb-8 font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted max-w-6xl mx-auto">
           <Link
             href="/"
-            className="hover:text-accent-glitch transition-colors flex items-center gap-2"
+            className="hover:text-emerald-600 dark:text-accent-glitch transition-colors flex items-center gap-2"
           >
             <Home className="w-3 h-3" />
             Home
@@ -208,12 +208,12 @@ export default async function BlogPostPage({
           <ChevronRight className="w-3 h-3 opacity-30" />
           <Link
             href="/blog"
-            className="hover:text-accent-glitch transition-colors"
+            className="hover:text-emerald-600 dark:text-accent-glitch transition-colors"
           >
             Blog
           </Link>
           <ChevronRight className="w-3 h-3 opacity-30" />
-          <div className="text-accent-glitch truncate max-w-[150px]">
+          <div className="text-emerald-600 dark:text-accent-glitch truncate max-w-[150px]">
             {post.slug.toUpperCase()}
           </div>
         </nav>
@@ -235,15 +235,15 @@ export default async function BlogPostPage({
         {/* Post Header */}
         <header className="max-w-6xl mx-auto mb-16">
           <div className="flex items-center gap-6 mb-8 flex-wrap font-mono">
-            <span className="px-3 py-1 bg-accent-glitch text-black text-[9px] font-black tracking-widest uppercase">
+            <span className="px-3 py-1 bg-emerald-500 dark:bg-accent-glitch text-white dark:text-bg-void text-[9px] font-black tracking-widest uppercase">
               {post.category}
             </span>
             <span className="text-[9px] text-text-muted flex items-center gap-2 uppercase tracking-widest">
-              <Calendar className="w-3 h-3 text-accent-glitch" />
+              <Calendar className="w-3 h-3 text-emerald-600 dark:text-accent-glitch" />
               {new Date(post.date).toLocaleDateString()}
             </span>
             <span className="text-[9px] text-text-muted flex items-center gap-2 uppercase tracking-widest">
-              <Clock className="w-3 h-3 text-accent-glitch" />
+              <Clock className="w-3 h-3 text-emerald-600 dark:text-accent-glitch" />
               {readingTime} Min Read
             </span>
           </div>
@@ -256,7 +256,7 @@ export default async function BlogPostPage({
           </p>
 
           <div className="flex items-center gap-4 mt-12 pt-8 border-t border-neutral-200 dark:border-white/5">
-            <div className="w-10 h-10 border border-accent-glitch/30 flex items-center justify-center font-mono text-accent-glitch text-lg bg-accent-glitch/5">
+            <div className="w-10 h-10 border border-accent-glitch/30 flex items-center justify-center font-mono text-emerald-600 dark:text-accent-glitch text-lg bg-accent-glitch/5">
               {post.author[0]}
             </div>
             <div className="font-mono text-[10px] uppercase tracking-[0.2em]">
@@ -282,8 +282,8 @@ export default async function BlogPostPage({
               className="prose prose-sm dark:prose-invert max-w-none 
               prose-headings:uppercase prose-headings:font-black prose-headings:tracking-tighter prose-headings:text-text-primary
               prose-p:font-mono prose-p:text-text-muted prose-p:leading-relaxed
-              prose-a:text-accent-glitch prose-a:no-underline hover:prose-a:underline
-              prose-code:text-accent-glitch prose-code:bg-bg-card prose-code:px-1 prose-code:before:content-none prose-code:after:content-none
+              prose-a:text-emerald-600 dark:text-accent-glitch prose-a:no-underline hover:prose-a:underline
+              prose-code:text-emerald-600 dark:text-accent-glitch prose-code:bg-bg-card prose-code:px-1 prose-code:before:content-none prose-code:after:content-none
               prose-strong:text-text-primary prose-strong:font-black"
             >
               <MDXRemote

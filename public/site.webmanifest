@@ -1,18 +1,29 @@
 {
-  "name": "TypeWarp - Modern Text Effects Generator",
+  "name": "TypeWarp",
   "short_name": "TypeWarp",
-  "description": "The ultimate text transformation and typography platform. Transform your text into fancy fonts, cursed text, zalgo, and more.",
+  "description": "Free text generator with 88+ tools: cursed text, Zalgo, glitch fonts, and aesthetic styles.",
   "icons": [
     {
-      "src": "/logo.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
+      "src": "/favicon-48.png",
+      "sizes": "48x48",
+      "type": "image/png"
     },
     {
       "src": "/logo.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
     }
   ],
   "theme_color": "#000000",

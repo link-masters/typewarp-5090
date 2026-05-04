@@ -22,7 +22,7 @@ const InternalLink = ({ href, children, ...props }: any) => {
     return (
       <Link
         href={href}
-        className="text-accent-glitch hover:text-text-primary font-bold transition-colors duration-300 inline-flex items-center gap-1.5 group border-b border-accent-glitch/20 hover:border-accent-glitch/60 pb-0.5"
+        className="text-emerald-600 dark:text-accent-glitch hover:text-text-primary font-bold transition-colors duration-300 inline-flex items-center gap-1.5 group border-b border-accent-glitch/20 hover:border-accent-glitch/60 pb-0.5"
         {...props}
       >
         {children}
@@ -38,7 +38,7 @@ const InternalLink = ({ href, children, ...props }: any) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-accent-glitch hover:text-text-primary font-bold transition-colors duration-300 inline-flex items-center gap-1.5 group border-b border-accent-glitch/20 hover:border-accent-glitch/60 pb-0.5"
+      className="text-emerald-600 dark:text-accent-glitch hover:text-text-primary font-bold transition-colors duration-300 inline-flex items-center gap-1.5 group border-b border-accent-glitch/20 hover:border-accent-glitch/60 pb-0.5"
       {...props}
     >
       {children}
@@ -65,7 +65,7 @@ const Callout = ({
   const iconStyles = {
     info: "text-blue-400 bg-blue-500/10 border-blue-500/20",
     warning: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
-    tip: "text-accent-glitch bg-accent-glitch/10 border-accent-glitch/20",
+    tip: "text-emerald-600 dark:text-accent-glitch bg-accent-glitch/10 border-accent-glitch/20",
     important: "text-red-400 bg-red-500/10 border-red-500/20",
   };
 
@@ -101,7 +101,7 @@ const Callout = ({
                 : type === "warning"
                   ? "text-yellow-400"
                   : type === "tip"
-                    ? "text-accent-glitch"
+                    ? "text-emerald-600 dark:text-accent-glitch"
                     : "text-red-400"
             }`}
           >
@@ -140,18 +140,18 @@ const InlineToolCard = ({
           <ToolIcon
             slug={tool.slug}
             categorySlug={category}
-            className="w-6 h-6 text-text-muted group-hover:text-accent-glitch transition-colors duration-500"
+            className="w-6 h-6 text-text-muted group-hover:text-emerald-600 dark:text-accent-glitch transition-colors duration-500"
           />
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-[10px] font-mono text-text-muted uppercase tracking-widest mb-1">
             Try this tool
           </p>
-          <h4 className="text-sm font-black text-text-primary group-hover:text-accent-glitch transition-colors uppercase tracking-wider">
+          <h4 className="text-sm font-black text-text-primary group-hover:text-emerald-600 dark:text-accent-glitch transition-colors uppercase tracking-wider">
             {tool.name}
           </h4>
         </div>
-        <ChevronRight className="w-5 h-5 text-neutral-300 dark:text-white/10 group-hover:text-accent-glitch group-hover:translate-x-1 transition-all duration-300" />
+        <ChevronRight className="w-5 h-5 text-neutral-300 dark:text-white/10 group-hover:text-emerald-600 dark:text-accent-glitch group-hover:translate-x-1 transition-all duration-300" />
       </div>
     </Link>
   );
@@ -165,7 +165,7 @@ const FAQ = ({ children }: { children: React.ReactNode }) => {
         {/* Header */}
         <div className="px-6 py-4 border-b border-border-subtle flex items-center gap-3">
           <div className="w-8 h-8 bg-bg-card border border-border-subtle rounded-lg flex items-center justify-center">
-            <HelpCircle className="w-4 h-4 text-accent-glitch" />
+            <HelpCircle className="w-4 h-4 text-emerald-600 dark:text-accent-glitch" />
           </div>
           <div>
             <h3 className="text-xs font-black uppercase tracking-wider text-text-primary">
@@ -186,7 +186,7 @@ const FAQ = ({ children }: { children: React.ReactNode }) => {
 const FAQItem = ({ q, children }: { q: string; children: React.ReactNode }) => {
   return (
     <div className="py-4 border-b border-border-subtle">
-      <h4 className="text-sm font-mono font-bold text-text-primary leading-relaxed mb-2 before:content-['Q'] before:inline-flex before:items-center before:justify-center before:w-6 before:h-6 before:bg-accent-glitch/10 before:text-accent-glitch before:rounded before:text-[10px] before:mr-3">
+      <h4 className="text-sm font-mono font-bold text-text-primary leading-relaxed mb-2 before:content-['Q'] before:inline-flex before:items-center before:justify-center before:w-6 before:h-6 before:bg-accent-glitch/10 before:text-emerald-600 dark:text-accent-glitch before:rounded before:text-[10px] before:mr-3">
         {q}
       </h4>
       <div className="pl-9 text-text-muted font-mono text-[13px] leading-[1.8] [&>p]:mb-0">
@@ -202,7 +202,7 @@ const SystemIntel = ({ label, value }: { label: string; value: string }) => (
     <span className="text-text-muted dark:text-white/30 uppercase tracking-widest font-bold">
       {label}
     </span>
-    <span className="ml-auto text-accent-glitch font-black uppercase tracking-widest">
+    <span className="ml-auto text-emerald-600 dark:text-accent-glitch font-black uppercase tracking-widest">
       {value}
     </span>
   </div>
@@ -286,7 +286,7 @@ const MDXComponents = {
   code: (props: any) => (
     <code
       {...props}
-      className="bg-neutral-100 dark:bg-white/5 px-2 py-1 text-accent-glitch font-mono text-xs border border-border-subtle rounded-md"
+      className="bg-neutral-100 dark:bg-white/5 px-2 py-1 text-emerald-600 dark:text-accent-glitch font-mono text-xs border border-border-subtle rounded-md"
     />
   ),
   a: InternalLink,

@@ -20,7 +20,7 @@ import NoIndexOnQueryParams from "@/components/NoIndexOnQueryParams";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Explore technical guides on digital entropy, Unicode manipulation, and creative typography. Master the art of glitch with our expert-led blog.",
+    "Explore guides on Unicode text manipulation, typography, and creative text effects for social media and web.",
   keywords: [
     "typography blog",
     "font design",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Systems Intel | TypeWarp Blog",
     description:
-      "Deep dives into the art of text manipulation, typography trends, and digital entropy.",
+      "Guides on text manipulation, typography trends, and creative effects.",
     url: `${SITE_URL}/blog`,
     type: "website",
     images: [
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Systems Intel | TypeWarp Blog",
     description:
-      "Deep dives into text manipulation, typography trends, and digital entropy.",
+      "Guides on text manipulation, typography trends, and creative effects.",
     creator: "@typewarp",
     images: ["/og-image.png"],
   },
@@ -68,7 +68,7 @@ export default async function BlogPage() {
     "@context": "https://schema.org",
     "@type": "Blog",
     name: "TypeWarp Blog",
-    description: "Technical guides on text transformation and digital entropy",
+    description: "Guides on text manipulation, typography, and creative effects",
     url: `${SITE_URL}/blog`,
     publisher: {
       "@type": "Organization",
@@ -87,7 +87,7 @@ export default async function BlogPage() {
   };
 
   return (
-    <div className="min-h-screen pt-40 pb-24 px-6 bg-bg-void light:bg-white text-text-primary relative overflow-hidden">
+    <div className="min-h-screen pt-6 pb-24 bg-bg-void light:bg-white text-text-primary relative overflow-hidden">
       {/* Background Glow */}
       <div className="fixed top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-10%,rgba(57,255,20,0.02)_0%,transparent_50%)] pointer-events-none hidden dark:block" />
       <JSONLD data={jsonLd} />
@@ -100,20 +100,20 @@ export default async function BlogPage() {
         <div className="flex items-center gap-3 mb-10 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400 dark:text-white/30">
           <Link
             href="/"
-            className="hover:text-accent-glitch transition-colors flex items-center gap-2"
+            className="hover:text-emerald-600 dark:text-accent-glitch transition-colors flex items-center gap-2"
           >
             <Home className="w-3 h-3" />
             HOME
           </Link>
           <ChevronRight className="w-3 h-3 opacity-20" />
-          <div className="text-accent-glitch/80">BLOG</div>
+          <div className="text-emerald-600 dark:text-accent-glitch/80">BLOG</div>
         </div>
 
         <header className="mb-16 md:mb-24">
           <div className="max-w-2xl text-left">
             <h1 className="text-4xl md:text-5xl font-black tracking-tighter uppercase mb-6 leading-[0.9] flex flex-col md:block items-start md:items-baseline">
               <span className="whitespace-nowrap">TypeWarp</span>{" "}
-              <span className="text-accent-glitch whitespace-nowrap">Blog</span>
+              <span className="text-emerald-600 dark:text-accent-glitch whitespace-nowrap">Blog</span>
             </h1>
             <p className="text-neutral-500 dark:text-white/40 font-mono text-base md:text-lg max-w-xl">
               Tips and guides on digital typography, social media trends, and
@@ -136,7 +136,7 @@ export default async function BlogPage() {
 
           <div className="relative z-10">
             <h2 className="text-4xl md:text-6xl font-black text-text-primary mb-6 md:mb-8 tracking-tighter uppercase leading-[0.9]">
-              Explore Our <span className="text-accent-glitch">Collection</span>
+              Explore Our <span className="text-emerald-600 dark:text-accent-glitch">Collection</span>
             </h2>
             <p className="text-neutral-500 dark:text-white/40 font-mono text-sm md:text-lg mb-10 md:mb-14 max-w-2xl mx-auto leading-relaxed">
               Discover {TOTAL_TOOLS_COUNT}+ tools for your creative projects.
@@ -149,7 +149,7 @@ export default async function BlogPage() {
                 <span className="relative z-10 uppercase tracking-[0.2em] text-center block w-full">
                   Explore All Tools
                 </span>
-                <div className="absolute inset-0 bg-accent-glitch opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-emerald-500 dark:bg-accent-glitch opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
             </div>
           </div>

@@ -32,7 +32,7 @@ export default function CyberInput({
       <motion.div
         initial={{ width: 0 }}
         whileFocus={{ width: "100%" }}
-        className="absolute bottom-0 left-0 h-[2px] bg-accent-glitch shadow-[0_0_15px_var(--accent-glitch)] z-10"
+        className="absolute bottom-0 left-0 h-[2px] bg-emerald-500 dark:bg-accent-glitch shadow-[0_0_15px_rgba(16,185,129,0.5)] dark:shadow-[0_0_15px_var(--accent-glitch)] z-10"
       />
 
       {/* Corner accents */}

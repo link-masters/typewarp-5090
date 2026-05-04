@@ -64,7 +64,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen pt-24 lg:pt-28 pb-16 sm:pb-24 bg-bg-void text-text-primary relative overflow-hidden">
+    <div className="min-h-screen pt-6 lg:pt-8 pb-16 sm:pb-24 bg-bg-void text-text-primary relative overflow-hidden">
       <BackgroundEffect />
       <JSONLD data={jsonLd} />
 
@@ -73,28 +73,28 @@ export default function ContactPage() {
         <nav className="flex items-center gap-2 mb-8 md:mb-16 font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] text-text-muted">
           <Link
             href="/"
-            className="hover:text-accent-glitch transition-colors flex items-center gap-1.5"
+            className="hover:text-emerald-600 dark:text-accent-glitch transition-colors flex items-center gap-1.5"
           >
             <Home className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             Home
           </Link>
           <ChevronRight className="w-3 h-3 opacity-30" />
-          <span className="text-accent-glitch">Contact</span>
+          <span className="text-emerald-600 dark:text-accent-glitch">Contact</span>
         </nav>
 
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
           {/* Left Column: Premium Typography & Info */}
           <div className="flex-1 w-full lg:sticky lg:top-32">
             <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 sm:mb-8 bg-accent-glitch/5 border border-accent-glitch/20 rounded-full">
-              <Sparkles className="w-3 h-3 text-accent-glitch" />
-              <span className="text-accent-glitch text-[9px] sm:text-[10px] font-mono font-black uppercase tracking-[0.2em]">
+              <Sparkles className="w-3 h-3 text-emerald-600 dark:text-accent-glitch" />
+              <span className="text-emerald-600 dark:text-accent-glitch text-[9px] sm:text-[10px] font-mono font-black uppercase tracking-[0.2em]">
                 TypeWarp Support
               </span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 tracking-tight uppercase leading-[0.85] whitespace-nowrap">
               <span className="text-text-primary">Let&apos;s</span>{" "}
-              <span className="text-accent-glitch">Connect.</span>
+              <span className="text-emerald-600 dark:text-accent-glitch">Connect.</span>
             </h1>
 
             <p className="text-text-muted text-sm sm:text-base max-w-md leading-relaxed mb-10 md:mb-14">
@@ -109,17 +109,17 @@ export default function ContactPage() {
               >
                 <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-glitch/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="w-12 h-12 bg-neutral-100 dark:bg-[#111] border border-neutral-200 dark:border-white/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-accent-glitch/5 group-hover:border-accent-glitch/20 transition-all">
-                  <Mail className="w-5 h-5 text-neutral-400 dark:text-white/40 group-hover:text-accent-glitch transition-colors" />
+                  <Mail className="w-5 h-5 text-neutral-400 dark:text-white/40 group-hover:text-emerald-600 dark:text-accent-glitch transition-colors" />
                 </div>
                 <div>
                   <h3 className="text-[10px] font-mono text-text-muted uppercase tracking-[0.2em] font-bold mb-1">
                     Email Us
                   </h3>
-                  <p className="text-sm md:text-base text-text-primary font-bold group-hover:text-accent-glitch transition-colors">
+                  <p className="text-sm md:text-base text-text-primary font-bold group-hover:text-emerald-600 dark:text-accent-glitch transition-colors">
                     community@typewarp.com
                   </p>
                 </div>
-                <ArrowRight className="w-4 h-4 text-neutral-300 dark:text-white/10 group-hover:text-accent-glitch ml-auto transition-colors" />
+                <ArrowRight className="w-4 h-4 text-neutral-300 dark:text-white/10 group-hover:text-emerald-600 dark:text-accent-glitch ml-auto transition-colors" />
               </a>
 
               <div className="group flex items-center gap-4 p-5 bg-white dark:bg-[#0a0a0a] border border-neutral-200 dark:border-white/5 rounded-2xl relative overflow-hidden shadow-sm dark:shadow-none">
@@ -149,7 +149,7 @@ export default function ContactPage() {
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-8 rounded-lg bg-accent-glitch/10 flex items-center justify-center border border-accent-glitch/20">
-                    <MessageSquare className="w-4 h-4 text-accent-glitch" />
+                    <MessageSquare className="w-4 h-4 text-emerald-600 dark:text-accent-glitch" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-black text-text-primary uppercase tracking-tight">
                     Send a Message
@@ -169,10 +169,10 @@ export default function ContactPage() {
         <div className="mt-16 sm:mt-24">
           <div className="flex flex-col items-center gap-4 mb-10 md:mb-14">
             <div className="w-12 h-12 bg-white dark:bg-[#0c0c0c] border border-neutral-200 dark:border-white/10 rounded-xl flex items-center justify-center">
-              <MessageSquare className="w-6 h-6 text-accent-glitch" />
+              <MessageSquare className="w-6 h-6 text-emerald-600 dark:text-accent-glitch" />
             </div>
             <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-center">
-              How We Can <span className="text-accent-glitch">Help</span>
+              How We Can <span className="text-emerald-600 dark:text-accent-glitch">Help</span>
             </h2>
             <p className="text-neutral-400 dark:text-white/30 font-mono text-xs uppercase tracking-widest">
               Support categories
@@ -225,7 +225,7 @@ export default function ContactPage() {
             </h3>
             <div className="space-y-6">
               <div>
-                <h4 className="text-xs font-mono font-bold text-accent-glitch uppercase tracking-wider mb-2">
+                <h4 className="text-xs font-mono font-bold text-emerald-600 dark:text-accent-glitch uppercase tracking-wider mb-2">
                   What information should I include in my message?
                 </h4>
                 <p className="text-neutral-500 dark:text-white/50 font-mono text-[12px] leading-[1.8]">
@@ -237,7 +237,7 @@ export default function ContactPage() {
                 </p>
               </div>
               <div>
-                <h4 className="text-xs font-mono font-bold text-accent-glitch uppercase tracking-wider mb-2">
+                <h4 className="text-xs font-mono font-bold text-emerald-600 dark:text-accent-glitch uppercase tracking-wider mb-2">
                   Is my data safe when I contact you?
                 </h4>
                 <p className="text-neutral-500 dark:text-white/50 font-mono text-[12px] leading-[1.8]">
@@ -249,7 +249,7 @@ export default function ContactPage() {
                 </p>
               </div>
               <div>
-                <h4 className="text-xs font-mono font-bold text-accent-glitch uppercase tracking-wider mb-2">
+                <h4 className="text-xs font-mono font-bold text-emerald-600 dark:text-accent-glitch uppercase tracking-wider mb-2">
                   Can I request a custom text generator?
                 </h4>
                 <p className="text-neutral-500 dark:text-white/50 font-mono text-[12px] leading-[1.8]">

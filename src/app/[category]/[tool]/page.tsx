@@ -9,6 +9,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import MDXComponents from "@/components/MDXComponents";
 import SEOTrophy from "@/components/SEOTrophy";
 import { SITE_URL } from "@/lib/config";
+import ToolFAQ from "@/components/ToolFAQ";
 
 export function generateStaticParams() {
   const params: { category: string; tool: string }[] = [];
@@ -180,15 +181,14 @@ export default async function ToolPage({
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
+    "@type": "SoftwareApplication",
     name: tool.name,
-    description: `Free online ${tool.name.toLowerCase()} — generate ${category.name.toLowerCase()} text effects instantly. Works on Discord, Instagram, TikTok and all platforms.`,
-    applicationCategory: "DesignApplication",
+    description: `Free online ${tool.name.toLowerCase()} — generate ${category.name.toLowerCase()} text effects. Works on Discord, Instagram, TikTok and all platforms.`,
+    applicationCategory: "UtilitiesApplication",
     operatingSystem: "All",
     browserRequirements: "Requires JavaScript",
     url: `${SITE_URL}/${categorySlug}/${toolSlug}`,
     image: `${SITE_URL}/og-image.png`,
-    screenshot: `${SITE_URL}/og-image.png`,
     offers: {
       "@type": "Offer",
       price: "0",
@@ -264,20 +264,22 @@ export default async function ToolPage({
       {/* Tool functionality area (Client Component) */}
       <ToolView category={category} tool={tool} hideFaqs={true} />
 
-      {/* Primary content area (Server Components) */}
+      {/* Primary content area (Server Components) — no divider, clean flow */}
       {toolContent ? (
-        <div className="bg-bg-void light:bg-white py-16 md:py-24 border-t border-border-subtle light:border-neutral-200 relative overflow-hidden">
-          {/* Subtle Ambient Glow */}
-          <div className="absolute top-0 left-0 w-full h-96 bg-[radial-gradient(circle_at_50%_0%,rgba(57,255,20,0.02)_0%,transparent_100%)] pointer-events-none hidden dark:block" />
-
+        <div className="bg-bg-void light:bg-white py-12 md:py-20 relative overflow-hidden">
           <div className="container mx-auto max-w-7xl px-6 relative z-10">
-            {/* Main Content Area */}
             <div className="max-w-4xl mx-auto">
               <div
                 className="prose dark:prose-invert max-w-none
+                  prose-headings:font-black prose-headings:tracking-tighter prose-headings:uppercase
+                  prose-h2:text-xl md:text-2xl prose-h2:mt-0 prose-h2:mb-6
+                  prose-h3:text-base md:text-lg prose-h3:mt-8 prose-h3:mb-4
+                  prose-p:text-text-muted prose-p:leading-relaxed prose-p:text-sm md:text-base
                   prose-strong:text-text-primary prose-strong:font-bold
-                  prose-ul:list-none prose-ol:list-none
-                  prose-li:p-0 prose-li:m-0"
+                  prose-code:text-emerald-600 dark:text-accent-glitch prose-code:bg-bg-card prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
+                  prose-code:before:content-none prose-code:after:content-none
+                  prose-ul:space-y-1 prose-ul:my-4
+                  prose-li:text-text-muted prose-li:text-sm prose-li:marker:text-accent-glitch"
               >
                 <MDXRemote
                   source={modifiedContent}
@@ -292,6 +294,15 @@ export default async function ToolPage({
           <GenericSEOTent tool={tool} category={category} />
         </div>
       )}
+
+      {/* Shared FAQ — client component, data-nosnippet so Google ignores duplicate content */}
+      <div className="bg-bg-void light:bg-white py-12 md:py-20">
+        <div className="container mx-auto max-w-7xl px-6">
+          <div className="max-w-4xl mx-auto">
+            <ToolFAQ toolName={tool.name} />
+          </div>
+        </div>
+      </div>
     </>
   );
 }

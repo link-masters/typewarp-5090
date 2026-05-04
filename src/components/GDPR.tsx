@@ -36,7 +36,7 @@ const GDPR = () => {
         <div className="p-5 flex flex-col gap-5">
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 shrink-0 bg-accent-glitch/10 flex items-center justify-center rounded-full">
-              <ShieldCheck className="w-6 h-6 text-accent-glitch" />
+              <ShieldCheck className="w-6 h-6 text-emerald-600 dark:text-accent-glitch" />
             </div>
 
             <div className="flex-1">
@@ -60,7 +60,7 @@ const GDPR = () => {
 
             <button
               onClick={handleAccept}
-              className="bg-accent-glitch text-black font-bold text-xs py-2.5 px-8 hover:brightness-110 active:scale-95 transition-all shadow-lg hover:shadow-accent-glitch/20 rounded-full"
+              className="bg-emerald-500 dark:bg-accent-glitch text-white dark:text-bg-void font-bold text-xs py-2.5 px-8 hover:brightness-110 active:scale-95 transition-all shadow-lg hover:shadow-emerald-500/20 dark:hover:shadow-accent-glitch/20 rounded-full"
             >
               Accept All
             </button>

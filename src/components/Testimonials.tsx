@@ -31,7 +31,7 @@ export default function Testimonials() {
       <div className="container mx-auto max-w-7xl px-6 relative z-10">
         <div className="text-center mb-12 md:mb-14 lg:mb-16">
           <h2 className="text-3xl md:text-3xl lg:text-4xl font-black tracking-tighter uppercase mb-4 md:mb-5 leading-[0.9]">
-            Community <span className="text-accent-glitch">Reviews</span>
+            Community <span className="text-emerald-600 dark:text-accent-glitch">Reviews</span>
           </h2>
           <p className="text-neutral-500 dark:text-white/40 font-mono text-sm md:text-base max-w-xl mx-auto leading-relaxed">
             See what other creators are saying about our collection of tools.
@@ -50,7 +50,7 @@ export default function Testimonials() {
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-500/10 dark:via-accent-glitch/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-              <Quote className="w-6 h-6 md:w-7 md:h-7 text-accent-glitch opacity-10 mb-6 group-hover:opacity-100 transition-opacity duration-500" />
+              <Quote className="w-6 h-6 md:w-7 md:h-7 text-emerald-600 dark:text-accent-glitch opacity-10 mb-6 group-hover:opacity-100 transition-opacity duration-500" />
 
               <p className="text-neutral-600 dark:text-white/60 text-sm md:text-base leading-relaxed mb-6 md:mb-8 italic">
                 &quot;{t.text}&quot;

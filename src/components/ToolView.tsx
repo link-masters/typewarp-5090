@@ -159,39 +159,6 @@ export default function ToolView({
     };
   }, [openDropdown]);
 
-  // Prevent scroll chaining for input and output textareas
-  useEffect(() => {
-    const refs = [inputRef, outputRef];
-    const cleanups: (() => void)[] = [];
-
-    refs.forEach((ref) => {
-      const el = ref.current;
-      if (!el) return;
-
-      const handleWheel = (e: WheelEvent) => {
-        const { scrollTop, scrollHeight, clientHeight } = el;
-        const delta = e.deltaY;
-        const isScrollingUp = delta < 0;
-        const isScrollingDown = delta > 0;
-
-        if (
-          (isScrollingUp && scrollTop <= 0) ||
-          (isScrollingDown && scrollTop + clientHeight >= scrollHeight - 1)
-        ) {
-          if (scrollHeight > clientHeight) {
-            e.preventDefault();
-          }
-        }
-        e.stopPropagation();
-      };
-
-      el.addEventListener("wheel", handleWheel, { passive: false });
-      cleanups.push(() => el.removeEventListener("wheel", handleWheel));
-    });
-
-    return () => cleanups.forEach((c) => c());
-  }, [output]);
-
   const lockBodyScroll = useCallback(() => {
     document.body.style.overflow = "hidden";
     document.documentElement.style.overflowX = "hidden";
@@ -236,7 +203,7 @@ export default function ToolView({
   };
 
   return (
-    <div className="min-h-screen pt-24 lg:pt-28 pb-24 bg-bg-void light:bg-white text-text-primary relative overflow-hidden">
+    <div className="min-h-screen pt-6 lg:pt-8 pb-24 bg-bg-void light:bg-white text-text-primary relative overflow-hidden">
       {/* Background Glow */}
       <div className="fixed top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-10%,rgba(57,255,20,0.02)_0%,transparent_50%)] pointer-events-none hidden dark:block" />
 
@@ -245,7 +212,7 @@ export default function ToolView({
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-4 lg:mb-6 font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted">
           <Link
             href="/"
-            className="hover:text-accent-glitch transition-colors flex items-center gap-1.5 shrink-0"
+            className="hover:text-emerald-600 dark:text-accent-glitch transition-colors flex items-center gap-1.5 shrink-0"
           >
             <Home className="w-2.5 h-2.5" />
             HOME
@@ -253,13 +220,13 @@ export default function ToolView({
           <ChevronRight className="w-2.5 h-2.5 opacity-20 shrink-0" />
           <Link
             href={`/${category.slug}`}
-            className="hover:text-accent-glitch transition-colors flex items-center gap-1.5 shrink-0"
+            className="hover:text-emerald-600 dark:text-accent-glitch transition-colors flex items-center gap-1.5 shrink-0"
           >
             <Terminal className="w-2.5 h-2.5" />
             {category.name}
           </Link>
           <ChevronRight className="w-2.5 h-2.5 opacity-20 shrink-0" />
-          <div className="text-accent-glitch opacity-80 truncate max-w-[120px] xs:max-w-none">
+          <div className="text-emerald-600 dark:text-accent-glitch opacity-80 truncate max-w-[120px] xs:max-w-none">
             {tool.name}
           </div>
         </div>
@@ -276,7 +243,7 @@ export default function ToolView({
               </div>
 
               {/* Decorative Background Elements */}
-              <div className="absolute top-0 left-0 w-1 h-full bg-accent-glitch" />
+              <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500 dark:bg-accent-glitch" />
               <div className="absolute top-0 left-0 w-full h-px bg-border-subtle" />
             </div>
 
@@ -323,7 +290,7 @@ export default function ToolView({
             {/* Output Panel */}
             <div className="bg-bg-card border border-border-subtle light:border-neutral-200 relative group shadow-lg flex flex-col transition-all duration-300 focus-within:border-accent-glitch/50 focus-within:ring-1 focus-within:ring-accent-glitch/20 rounded-xl light:shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
               <div className="p-2 border-b border-border-subtle light:border-neutral-200 bg-bg-void/50 light:bg-neutral-50 flex justify-between items-center px-4 py-3 rounded-t-xl">
-                <div className="flex items-center gap-2 text-[10px] sm:text-[9px] font-mono uppercase tracking-[0.3em] text-accent-glitch shrink-0 mt-0.5">
+                <div className="flex items-center gap-2 text-[10px] sm:text-[9px] font-mono uppercase tracking-[0.3em] text-emerald-600 dark:text-accent-glitch shrink-0 mt-0.5">
                   <Zap className="w-3.5 h-3.5 sm:w-3 sm:h-3" />
                   Preview
                 </div>
@@ -332,7 +299,7 @@ export default function ToolView({
                   className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-black uppercase tracking-widest text-[10px] transition-all active:scale-95 shadow-md min-w-[100px] shrink-0 ${
                     isCopied
                       ? "bg-text-primary text-bg-void"
-                      : "bg-accent-glitch text-black hover:-translate-y-0.5 hover:shadow-lg"
+                      : "bg-emerald-500 dark:bg-accent-glitch text-white dark:text-bg-void hover:-translate-y-0.5 hover:shadow-lg"
                   }`}
                 >
                   {isCopied ? (
@@ -379,7 +346,7 @@ export default function ToolView({
             <div className="bg-bg-card border border-border-subtle light:border-neutral-200 p-4 relative group shadow-xl rounded-xl light:shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
               <div className="flex items-center gap-3 mb-6 md:mb-8">
                 <div className="w-10 h-10 border border-accent-glitch/30 bg-accent-glitch/5 rounded-lg flex items-center justify-center">
-                  <Settings className="w-5 h-5 text-accent-glitch" />
+                  <Settings className="w-5 h-5 text-emerald-600 dark:text-accent-glitch" />
                 </div>
                 <h2 className="text-xs font-mono uppercase tracking-[0.3em] text-text-primary">
                   Settings
@@ -391,7 +358,7 @@ export default function ToolView({
                   <div key={control.id} className="flex flex-col gap-4">
                     <div className="flex justify-between items-center font-mono text-[9px] uppercase tracking-widest">
                       <span className="text-text-muted">{control.label}</span>
-                      <span className="text-accent-glitch">
+                      <span className="text-emerald-600 dark:text-accent-glitch">
                         {options.customSettings?.[control.id] ??
                           control.defaultValue}
                       </span>
@@ -451,7 +418,7 @@ export default function ToolView({
                           <ChevronDown
                             className={`w-4 h-4 transition-all duration-150 ${
                               openDropdown === control.id
-                                ? "rotate-180 text-accent-glitch"
+                                ? "rotate-180 text-emerald-600 dark:text-accent-glitch"
                                 : "text-text-muted group-hover:text-text-primary/50"
                             }`}
                           />
@@ -492,7 +459,7 @@ export default function ToolView({
                                         }}
                                         className={`w-full text-left px-3 py-2.5 text-[11px] font-mono uppercase tracking-wider transition-all duration-75 rounded-lg flex items-center justify-between group/opt ${
                                           isActive
-                                            ? "bg-accent-glitch/10 light:bg-emerald-50 border border-accent-glitch/30 light:border-emerald-200 text-accent-glitch light:text-emerald-600 font-black"
+                                            ? "bg-accent-glitch/10 light:bg-emerald-50 border border-accent-glitch/30 light:border-emerald-200 text-emerald-600 dark:text-accent-glitch light:text-emerald-600 font-black"
                                             : "border border-transparent text-text-muted light:text-neutral-500 hover:bg-border-subtle light:hover:bg-neutral-100 hover:text-text-primary light:hover:text-neutral-900 hover:border-border-subtle light:hover:border-neutral-200"
                                         }`}
                                       >
@@ -539,7 +506,7 @@ export default function ToolView({
                           className={`p-1.5 rounded-sm transition-all duration-500 ${
                             (options.customSettings?.[control.id] ??
                             control.defaultValue)
-                              ? "bg-accent-glitch text-black shadow-[0_0_10px_rgba(57,255,20,0.3)]"
+                              ? "bg-emerald-500 dark:bg-accent-glitch text-white dark:text-bg-void shadow-[0_0_10px_rgba(16,185,129,0.3)] dark:shadow-[0_0_10px_rgba(57,255,20,0.3)]"
                               : "bg-border-subtle text-text-muted group-hover:bg-text-muted/20"
                           }`}
                         >
@@ -578,7 +545,7 @@ export default function ToolView({
                             className={`text-[7px] font-mono tracking-widest mt-0.5 transition-opacity duration-300 ${
                               (options.customSettings?.[control.id] ??
                               control.defaultValue)
-                                ? "text-accent-glitch/80"
+                                ? "text-emerald-600 dark:text-accent-glitch/80"
                                 : "text-text-muted"
                             }`}
                           >
@@ -611,7 +578,7 @@ export default function ToolView({
                               className={`absolute top-0.5 w-2.5 h-2.5 rounded-full shadow-lg ${
                                 (options.customSettings?.[control.id] ??
                                 control.defaultValue)
-                                  ? "bg-accent-glitch shadow-[0_0_8px_rgba(57,255,20,0.8)]"
+                                  ? "bg-emerald-500 dark:bg-accent-glitch shadow-[0_0_8px_rgba(16,185,129,0.8)] dark:shadow-[0_0_8px_rgba(57,255,20,0.8)]"
                                   : "bg-text-muted/40"
                               }`}
                             />
@@ -647,9 +614,9 @@ export default function ToolView({
                     }`}
                   >
                     <div
-                      className={`p-1.5 rounded-sm transition-all duration-500 ${
+                          className={`p-1.5 rounded-sm transition-all duration-500 ${
                         options.uppercase
-                          ? "bg-accent-glitch text-black shadow-[0_0_10px_rgba(57,255,20,0.3)]"
+                          ? "bg-emerald-500 dark:bg-accent-glitch text-white dark:text-bg-void shadow-[0_0_10px_rgba(16,185,129,0.3)] dark:shadow-[0_0_10px_rgba(57,255,20,0.3)]"
                           : "bg-border-subtle text-text-muted group-hover:bg-text-muted/20"
                       }`}
                     >
@@ -669,7 +636,7 @@ export default function ToolView({
                       <span
                         className={`text-[7px] font-mono tracking-widest mt-0.5 transition-opacity duration-300 ${
                           options.uppercase
-                            ? "text-accent-glitch/80"
+                            ? "text-emerald-600 dark:text-accent-glitch/80"
                             : "text-text-muted"
                         }`}
                       >
@@ -690,7 +657,7 @@ export default function ToolView({
                           animate={{ x: options.uppercase ? 16 : 2 }}
                           className={`absolute top-0.5 w-2.5 h-2.5 rounded-full shadow-lg ${
                             options.uppercase
-                              ? "bg-accent-glitch shadow-[0_0_8px_rgba(57,255,20,0.8)]"
+                              ? "bg-emerald-500 dark:bg-accent-glitch shadow-[0_0_8px_rgba(16,185,129,0.8)] dark:shadow-[0_0_8px_rgba(57,255,20,0.8)]"
                               : "bg-text-muted/40"
                           }`}
                         />
@@ -710,9 +677,9 @@ export default function ToolView({
                     }`}
                   >
                     <div
-                      className={`p-1.5 rounded-sm transition-all duration-500 ${
+                          className={`p-1.5 rounded-sm transition-all duration-500 ${
                         showPlatformLimits
-                          ? "bg-accent-glitch text-black shadow-[0_0_10px_rgba(57,255,20,0.3)]"
+                          ? "bg-emerald-500 dark:bg-accent-glitch text-white dark:text-bg-void shadow-[0_0_10px_rgba(16,185,129,0.3)] dark:shadow-[0_0_10px_rgba(57,255,20,0.3)]"
                           : "bg-border-subtle text-text-muted group-hover:bg-text-muted/20"
                       }`}
                     >
@@ -732,7 +699,7 @@ export default function ToolView({
                       <span
                         className={`text-[7px] font-mono tracking-widest mt-0.5 transition-opacity duration-300 ${
                           showPlatformLimits
-                            ? "text-accent-glitch/80"
+                            ? "text-emerald-600 dark:text-accent-glitch/80"
                             : "text-text-muted"
                         }`}
                       >
@@ -755,7 +722,7 @@ export default function ToolView({
                           animate={{ x: showPlatformLimits ? 16 : 2 }}
                           className={`absolute top-0.5 w-2.5 h-2.5 rounded-full shadow-lg ${
                             showPlatformLimits
-                              ? "bg-accent-glitch shadow-[0_0_8px_rgba(57,255,20,0.8)]"
+                              ? "bg-emerald-500 dark:bg-accent-glitch shadow-[0_0_8px_rgba(16,185,129,0.8)] dark:shadow-[0_0_8px_rgba(57,255,20,0.8)]"
                               : "bg-text-muted/40"
                           }`}
                         />
@@ -791,7 +758,7 @@ export default function ToolView({
                                     <span>{platform.icon}</span> {platform.name}
                                   </span>
                                   <span
-                                    className={`text-[8px] font-mono ${isOver ? "text-red-500" : "text-accent-glitch/70"}`}
+                                    className={`text-[8px] font-mono ${isOver ? "text-red-500" : "text-emerald-600 dark:text-accent-glitch/70"}`}
                                   >
                                     {len}/{platform.limit}
                                   </span>
@@ -826,7 +793,7 @@ export default function ToolView({
             exit={{ opacity: 0, y: 20, x: "-50%" }}
             className="fixed bottom-12 left-1/2 z-[100] pointer-events-none hidden md:block"
           >
-            <div className="bg-accent-glitch text-black px-4 py-1.5 shadow-[0_0_20px_rgba(57,255,20,0.4)] flex items-center gap-2">
+            <div className="bg-emerald-500 dark:bg-accent-glitch text-white dark:text-bg-void px-4 py-1.5 shadow-[0_0_20px_rgba(16,185,129,0.4)] dark:shadow-[0_0_20px_rgba(57,255,20,0.4)] flex items-center gap-2">
               <span className="text-[10px] font-mono font-black uppercase tracking-[0.2em]">
                 COPIED
               </span>

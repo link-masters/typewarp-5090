@@ -17,7 +17,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100"
           />
           <div className="absolute top-4 left-4">
-            <span className="px-3 py-1 text-[10px] font-mono font-bold bg-accent-glitch text-black uppercase tracking-widest rounded-md">
+            <span className="px-3 py-1 text-[10px] font-mono font-bold bg-emerald-500 dark:bg-accent-glitch text-white dark:text-bg-void uppercase tracking-widest rounded-md">
               {post.category}
             </span>
           </div>
@@ -27,7 +27,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
         <div className="p-6 md:p-8 flex flex-col flex-grow relative z-10">
           <div className="flex items-center gap-4 text-[10px] font-mono text-text-muted mb-4 uppercase tracking-[0.2em]">
             <span className="flex items-center gap-1.5 group-hover:text-text-primary transition-colors">
-              <Calendar className="w-3.5 h-3.5 text-accent-glitch/70" />
+              <Calendar className="w-3.5 h-3.5 text-emerald-600 dark:text-accent-glitch/70" />
               {new Date(post.date).toLocaleDateString("en-US", {
                 month: "short",
                 day: "numeric",
@@ -35,12 +35,12 @@ export default function BlogCard({ post }: { post: BlogPost }) {
               })}
             </span>
             <span className="flex items-center gap-1.5 group-hover:text-text-primary transition-colors">
-              <User className="w-3.5 h-3.5 text-accent-glitch/70" />
+              <User className="w-3.5 h-3.5 text-emerald-600 dark:text-accent-glitch/70" />
               {post.author}
             </span>
           </div>
 
-          <h2 className="text-xl md:text-2xl font-black text-text-primary mb-4 tracking-tighter uppercase leading-tight group-hover:text-accent-glitch transition-all duration-500">
+          <h2 className="text-xl md:text-2xl font-black text-text-primary mb-4 tracking-tighter uppercase leading-tight group-hover:text-emerald-600 dark:text-accent-glitch transition-all duration-500">
             {post.title}
           </h2>
 
@@ -49,7 +49,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
           </p>
 
           <div className="mt-auto flex items-center justify-between">
-            <div className="flex items-center gap-2 text-text-muted group-hover:text-accent-glitch font-mono font-bold text-[10px] uppercase tracking-[0.3em] transition-colors duration-300">
+            <div className="flex items-center gap-2 text-text-muted group-hover:text-emerald-600 dark:text-accent-glitch font-mono font-bold text-[10px] uppercase tracking-[0.3em] transition-colors duration-300">
               Read More
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
             </div>

@@ -96,7 +96,7 @@ export default function ContactForm() {
           animate={{ opacity: 1, y: 0 }}
           className={`p-4 rounded-xl text-xs flex items-center gap-3 ${
             status.type === "success"
-              ? "bg-accent-glitch/10 text-accent-glitch border border-accent-glitch/20"
+              ? "bg-accent-glitch/10 text-emerald-600 dark:text-accent-glitch border border-accent-glitch/20"
               : "bg-red-500/10 text-red-500 border border-red-500/20"
           }`}
         >
@@ -112,7 +112,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={isPending}
-        className="w-full sm:w-auto h-12 flex items-center justify-center gap-3 bg-accent-glitch text-black px-8 text-xs font-bold uppercase tracking-widest rounded-xl hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-accent-glitch/10"
+        className="w-full sm:w-auto h-12 flex items-center justify-center gap-3 bg-emerald-500 dark:bg-accent-glitch text-white dark:text-bg-void px-8 text-xs font-bold uppercase tracking-widest rounded-xl hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-emerald-500/10 dark:shadow-accent-glitch/10"
       >
         {isPending ? (
           <>

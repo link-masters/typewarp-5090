@@ -17,7 +17,7 @@ export default function CategoryClientView({
   category,
 }: CategoryClientViewProps) {
   return (
-    <div className="min-h-screen bg-bg-void light:bg-white text-text-primary pt-32 pb-24 px-6 relative overflow-hidden">
+    <div className="min-h-screen bg-bg-void light:bg-white text-text-primary pt-6 pb-24 px-6 relative overflow-hidden">
       {/* Background Glow — dark only */}
       <div className="fixed top-0 left-0 w-full h-full dark:bg-[radial-gradient(circle_at_50%_-10%,rgba(57,255,20,0.02)_0%,transparent_50%)] pointer-events-none" />
 
@@ -128,6 +128,8 @@ export default function CategoryClientView({
                 <ToolCard
                   title={tool.name}
                   description={category.name}
+                  slug={tool.slug}
+                  categorySlug={category.slug}
                   icon={
                     <ToolIcon
                       slug={tool.slug}

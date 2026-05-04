@@ -27,14 +27,14 @@ export default function NotFound() {
         <div className="flex flex-col md:flex-row gap-4 justify-center">
           <Link
             href="/"
-            className="px-8 py-4 bg-accent-glitch text-black font-black text-xs uppercase tracking-widest hover:bg-neutral-900 light:hover:bg-neutral-800 hover:text-white transition-all flex items-center justify-center gap-3 rounded-xl"
+            className="px-8 py-4 bg-emerald-500 dark:bg-accent-glitch text-white dark:text-bg-void font-black text-xs uppercase tracking-widest hover:bg-emerald-600 dark:hover:bg-[#2be010] transition-all flex items-center justify-center gap-3 rounded-xl"
           >
             <Home className="w-4 h-4" />
             REBOOT_TO_ROOT
           </Link>
           <button
             onClick={() => window.location.reload()}
-            className="px-8 py-4 border border-neutral-200 dark:border-white/10 text-text-primary font-black text-xs uppercase tracking-widest hover:border-accent-glitch hover:text-accent-glitch transition-all flex items-center justify-center gap-3 rounded-xl"
+            className="px-8 py-4 border border-neutral-200 dark:border-white/10 text-text-primary font-black text-xs uppercase tracking-widest hover:border-accent-glitch hover:text-emerald-600 dark:text-accent-glitch transition-all flex items-center justify-center gap-3 rounded-xl"
           >
             <RotateCcw className="w-4 h-4" />
             RETRY_SIGNAL

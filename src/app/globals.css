@@ -64,14 +64,14 @@
 
 /* ── Light mode ── */
 .light {
-  --bg-void: #ffffff;
+  --bg-void: #fafafa;
   --bg-card: #ffffff;
   --text-primary: #111111;
-  --text-muted: #6b7280;
-  --accent-glitch: #16a34a;
-  --accent-glitch-rgb: 22, 163, 74;
-  --accent-gradient: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
-  --border-subtle: rgba(0, 0, 0, 0.1);
+  --text-muted: #4b5563;
+  --accent-glitch: #059669;
+  --accent-glitch-rgb: 5, 150, 105;
+  --accent-gradient: linear-gradient(135deg, #059669 0%, #047857 100%);
+  --border-subtle: rgba(0, 0, 0, 0.08);
   --background: var(--bg-void);
   --foreground: var(--text-primary);
 }
@@ -105,7 +105,6 @@ body {
   color: var(--text-primary);
   font-family: var(--font-inter), sans-serif;
   overflow-x: hidden;
-  cursor: crosshair;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeSpeed;
@@ -160,7 +159,7 @@ body {
 
 .light .prose-invert p,
 .light .prose-invert li {
-  color: rgba(0, 0, 0, 0.6) !important;
+  color: var(--text-muted) !important;
 }
 
 .light .prose-invert h1,
@@ -235,10 +234,6 @@ body {
     animation: none !important;
   }
 
-  body {
-    cursor: default;
-  }
-
   button:not([class*="prose"]):not([class*="inline"]) {
     min-height: 44px;
   }
@@ -272,5 +267,19 @@ section {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ── Performance: hint browser to keep connection alive ── */
+/* ── Font rendering: force swap for all text during load ── */
+body {
+  font-display: swap;
+}
+
+/* ── Content-visibility: defer rendering of below-fold sections ── */
+@media (min-width: 768px) {
+  .below-fold {
+    content-visibility: auto;
+    contain-intrinsic-size: 500px;
   }
 }

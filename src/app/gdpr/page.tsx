@@ -90,7 +90,7 @@ const rights = [
 
 export default function GDPRPage() {
   return (
-    <div className="min-h-screen pt-24 lg:pt-28 pb-16 sm:pb-20 bg-bg-void text-text-primary relative overflow-hidden">
+    <div className="min-h-screen pt-6 lg:pt-8 pb-16 sm:pb-20 bg-bg-void text-text-primary relative overflow-hidden">
       <BackgroundEffect />
 
       <div className="mx-auto px-4 sm:px-6 max-w-4xl relative z-10">
@@ -98,24 +98,24 @@ export default function GDPRPage() {
         <nav className="flex items-center gap-2 mb-4 lg:mb-6 font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] text-text-muted">
           <Link
             href="/"
-            className="hover:text-accent-glitch transition-colors flex items-center gap-1.5"
+            className="hover:text-emerald-600 dark:text-accent-glitch transition-colors flex items-center gap-1.5"
           >
             <Home className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             Home
           </Link>
           <ChevronRight className="w-3 h-3 opacity-30" />
-          <span className="text-accent-glitch">GDPR</span>
+          <span className="text-emerald-600 dark:text-accent-glitch">GDPR</span>
         </nav>
 
         {/* Hero */}
         <section className="mb-12 sm:mb-16">
-          <div className="inline-block px-4 py-1.5 mb-5 sm:mb-6 bg-accent-glitch/10 border border-accent-glitch/20 rounded-full text-accent-glitch text-[10px] sm:text-[11px] font-mono font-black uppercase tracking-[0.3em]">
+          <div className="inline-block px-4 py-1.5 mb-5 sm:mb-6 bg-accent-glitch/10 border border-accent-glitch/20 rounded-full text-emerald-600 dark:text-accent-glitch text-[10px] sm:text-[11px] font-mono font-black uppercase tracking-[0.3em]">
             EU Compliance Framework
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 tracking-tight uppercase leading-[0.9]">
             <span className="text-text-primary">GDPR</span>{" "}
-            <span className="text-accent-glitch">Standards.</span>
+            <span className="text-emerald-600 dark:text-accent-glitch">Standards.</span>
           </h1>
 
           <p className="text-text-muted text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed">
@@ -130,7 +130,7 @@ export default function GDPRPage() {
         <section className="mb-12 sm:mb-16">
           <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-text-primary mb-6">
             Data Preservation{" "}
-            <span className="text-accent-glitch">& Privacy</span>
+            <span className="text-emerald-600 dark:text-accent-glitch">& Privacy</span>
           </h2>
           <div className="prose dark:prose-invert max-w-none text-text-muted space-y-4 text-sm sm:text-base">
             <p>
@@ -155,7 +155,7 @@ export default function GDPRPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-12 sm:mb-16">
           <div className="p-6 md:p-8 bg-bg-card border border-neutral-200 dark:border-white/[0.06] rounded-3xl relative overflow-hidden group">
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-glitch/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            <Globe className="w-8 h-8 text-neutral-400 dark:text-white/50 mb-5 group-hover:text-accent-glitch transition-colors" />
+            <Globe className="w-8 h-8 text-neutral-400 dark:text-white/50 mb-5 group-hover:text-emerald-600 dark:text-accent-glitch transition-colors" />
             <h2 className="text-xl font-bold text-text-primary mb-3">
               Global Standards
             </h2>
@@ -169,7 +169,7 @@ export default function GDPRPage() {
 
           <div className="p-6 md:p-8 bg-bg-card border border-neutral-200 dark:border-white/[0.06] rounded-3xl relative overflow-hidden group">
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-glitch/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            <Minimize2 className="w-8 h-8 text-neutral-400 dark:text-white/50 mb-5 group-hover:text-accent-glitch transition-colors" />
+            <Minimize2 className="w-8 h-8 text-neutral-400 dark:text-white/50 mb-5 group-hover:text-emerald-600 dark:text-accent-glitch transition-colors" />
             <h2 className="text-xl font-bold text-text-primary mb-3">
               Privacy by Design
             </h2>
@@ -185,7 +185,7 @@ export default function GDPRPage() {
         {/* Core Principles Section */}
         <section className="mb-12 sm:mb-16 bg-bg-card/30 border border-neutral-200 dark:border-white/[0.04] p-6 sm:p-10 rounded-3xl">
           <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-text-primary mb-8 border-b border-neutral-200 dark:border-white/5 pb-6">
-            Our <span className="text-accent-glitch">Principles</span>
+            Our <span className="text-emerald-600 dark:text-accent-glitch">Principles</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8 text-sm text-text-muted leading-relaxed">
             <div className="space-y-2">
@@ -233,9 +233,9 @@ export default function GDPRPage() {
         {/* User Rights */}
         <section className="mb-12 sm:mb-16">
           <div className="flex items-center gap-4 mb-8">
-            <div className="w-1.5 h-8 sm:h-10 bg-accent-glitch rounded-full" />
+            <div className="w-1.5 h-8 sm:h-10 bg-emerald-500 dark:bg-accent-glitch rounded-full" />
             <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-text-primary">
-              Your <span className="text-accent-glitch">Rights</span>
+              Your <span className="text-emerald-600 dark:text-accent-glitch">Rights</span>
             </h2>
           </div>
 
@@ -246,7 +246,7 @@ export default function GDPRPage() {
                 className="flex items-center gap-4 p-4 sm:p-5 bg-bg-card border border-neutral-200 dark:border-white/[0.06] rounded-2xl hover:border-neutral-300 dark:hover:border-white/[0.12] transition-colors group"
               >
                 <div className="p-2 sm:p-3 bg-neutral-100 dark:bg-white/[0.04] rounded-xl group-hover:bg-accent-glitch/10 transition-colors shrink-0">
-                  <right.icon className="w-5 h-5 text-accent-glitch" />
+                  <right.icon className="w-5 h-5 text-emerald-600 dark:text-accent-glitch" />
                 </div>
                 <div>
                   <h3 className="text-sm sm:text-base font-bold text-text-primary mb-1 uppercase tracking-wide">
@@ -274,7 +274,7 @@ export default function GDPRPage() {
         {/* Legal Grounding */}
         <section className="mb-12 sm:mb-16">
           <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-text-primary mb-6">
-            Legal <span className="text-accent-glitch">Basis</span>
+            Legal <span className="text-emerald-600 dark:text-accent-glitch">Basis</span>
           </h2>
           <div className="prose dark:prose-invert max-w-none text-text-muted space-y-4 text-sm sm:text-base">
             <p>
